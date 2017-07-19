@@ -1,0 +1,74 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="render-raw">
+    <template>
+        <custom-style>
+        </custom-style>
+        <style>
+        p, li, h1, h2, h3, h4, h5  {
+            line-height: normal; 
+        }
+        h1, h2, h3, h4, h5 {
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        p {
+        }
+
+
+        a {
+            overflow-wrap: break-word;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        ul, ol {
+            padding-left: 30px;
+        }
+
+        .indent-margin {
+            margin-left: 1em;
+        }
+        </style>
+        <div id="content"></div>
+    </template>
+    <script>
+    class RenderRaw extends Polymer.Element {
+        static get is() {
+            return 'render-raw';
+        }
+
+
+        static get properties() {
+            return {
+                htmlData: {
+                    type: String,
+                    value: '',
+                },
+            };
+        }
+
+        static get observers() {
+            return [
+                'htmlChanged(htmlData)'
+            ];
+        }
+
+        constructor() {
+            super();
+        }
+
+        htmlChanged(data) {
+            this.root.querySelector('#content').innerHTML = data; 
+        }
+        ready() {
+            super.ready();
+        }
+    }
+
+    customElements.define(RenderRaw.is, RenderRaw);
+    </script>
+</dom-module>

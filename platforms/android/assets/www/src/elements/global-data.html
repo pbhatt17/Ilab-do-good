@@ -1,0 +1,72 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="global-data">
+    <template>
+        <custom-style>
+        </custom-style>
+        <style>
+
+        </style>
+    </template>
+    <div></div>
+    <script>
+    var __globalRef = {
+        locale: "en",
+        update: function() {
+            this.__listeners.forEach(item => item.update());
+        },
+        __listeners: [],
+    };
+    class GlobalData extends Polymer.Element {
+        static get is() {
+            return 'global-data';
+        }
+
+
+        static get properties() {
+            return {
+                locale: {
+                    type: String,
+                    reflectToAttribute: true,
+                    notify: true,
+                    observer: 'setLocale',
+                },
+                globalRef: {
+                    type: Object,
+                    value: __globalRef,
+                }
+
+            };
+        }
+
+        static get observers() {
+            return [
+            ];
+        }
+
+        update() {
+            this.locale = this.globalRef.locale;
+        }
+
+        setLocale(newLocale, oldLocale) {
+            this.locale = newLocale;
+            this.globalRef.locale = newLocale;
+            this.globalRef.update();
+        }
+        _getLocale(ref) {
+            return ref.locale;
+        }
+        constructor() {
+            super();
+            __globalRef.__listeners.push(this);
+        }
+
+
+        ready() {
+
+            super.ready();
+        }
+    }
+
+    customElements.define(GlobalData.is, GlobalData);
+    </script>
+</dom-module>

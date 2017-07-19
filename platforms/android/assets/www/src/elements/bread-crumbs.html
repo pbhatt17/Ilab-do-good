@@ -1,0 +1,105 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="./app-link.html">
+<dom-module id="bread-crumbs">
+    <template>
+        <custom-style>
+        </custom-style>
+        <style>
+        .inline {
+            display: inline;
+        }
+        app-link .link {
+            color: #1a0dab;
+            text-decoration: underline;
+        }
+        </style>
+        <app-route route="[[route]]" pattern="/:page" data="{{routeData}}"></app-route>
+        <app-route route="[[route]]" pattern="/:page/:stepId" data="{{routeData}}"></app-route>
+        <app-route route="[[route]]" pattern="/:page/:stepId/:topicId" data="{{routeData}}"></app-route>
+        <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
+            <div class="inline" page-name="default">
+                <app-link href="/home"><div class="link inline"><localized-data value="home"></localized-data></div></app-link>
+            </div>
+            <div page-name="home">
+            </div>
+        </iron-pages>
+        <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]">
+            <div class="inline" page-name="step">
+                > [[step.stepTitle]]
+            </div>
+            <div class="inline" page-name="topic">
+                > <app-link href="/step/[[step.index]]"><div class="link inline">[[step.stepTitle]]</div></app-link> > [[topic.title]]
+            </div>
+            <div class="inline" page-name="search-results">
+                > Search Results
+            </div>
+        </iron-pages>
+    </template>
+    <script>
+    class BreadCrumbs extends Polymer.Element {
+        static get is() {
+            return 'bread-crumbs';
+        }
+
+
+        static get properties() {
+            return {
+                stepData: {
+                    type: Array,
+                    value: null,
+                },
+                route: {
+                    type: Object,
+                    value: null,
+                },
+                step: {
+                    type: Object,
+                    computed: 'getStep(routeData.stepId)',
+                },
+                topic: {
+                    type: Object,
+                    computed: 'getTopic(step, routeData.topicId)',
+                },
+                locale: {
+                    type: String,
+                }
+            };
+        }
+
+        getStep(id) {
+            console.log(this.routeData);
+            return this.stepData[Number.parseInt(id) - 1];
+        }
+
+        getTopic(step, id) {
+            if (!step) {
+                return null;
+            } else {
+                return step.topics[Number.parseInt(id) - 1];
+            }
+        }
+
+        static get observers() {
+            return [];
+        }
+
+        constructor() {
+            super();
+        }
+
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    customElements.define(BreadCrumbs.is, BreadCrumbs);
+    </script>
+</dom-module>

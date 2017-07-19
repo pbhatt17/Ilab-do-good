@@ -1,0 +1,49 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<dom-module id="info-page">
+    <template>
+        <style include="shared-styles">
+        :host {
+            display: block;
+        }
+        
+        chain-anchor-link {
+            padding: 10px;
+        }
+        
+        img {
+            width: 100%;
+        }
+        </style>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur suscipit eros in turpis tempus, at luctus nibh commodo. In vitae urna posuere, maximus justo sit amet, lacinia est. Maecenas tincidunt dui a libero egestas, ut viverra leo fringilla. Nam elementum leo magna, sed laoreet augue vestibulum ut. Maecenas aliquet diam leo, sit amet posuere risus molestie eget. In quis neque a magna rutrum porta. Mauris ultrices faucibus massa.</p>
+        <p>In faucibus neque erat. Nunc dignissim vulputate enim quis ornare. Mauris leo nisl, tincidunt eget egestas posuere, maximus a felis. Phasellus lectus est, lobortis et lacus ac, laoreet dapibus elit. Curabitur at scelerisque augue, semper imperdiet ante. Donec malesuada nec leo vitae vestibulum. Sed pharetra congue ex, ac feugiat felis hendrerit vitae. Proin iaculis nisi quis urna tempor, ut efficitur ligula tempus. In at lectus ex. Suspendisse ac turpis sed tortor aliquam ornare quis nec augue. Nunc tincidunt ut tellus a egestas. Phasellus in leo nec tortor faucibus suscipit. Praesent eget ultrices massa, non condimentum justo.</p>
+        <p>Vestibulum aliquet nisi sit amet lorem lobortis, sit amet placerat turpis convallis. Vivamus egestas dignissim velit fermentum mattis. Sed efficitur felis euismod varius dapibus. Fusce gravida, urna maximus porttitor maximus, tellus felis aliquet diam, mollis fermentum mi turpis sit amet libero. Cras vestibulum mollis placerat. Aenean tempor, metus sit amet pellentesque fermentum, arcu elit ornare nunc, scelerisque porttitor erat orci eget ipsum. Integer sagittis cursus venenatis. Vestibulum accumsan massa turpis, et lacinia turpis posuere eget. Praesent ultricies, massa ut congue faucibus, turpis nibh maximus massa, vitae faucibus ex neque id quam. Aenean pulvinar dui at sapien elementum, ut malesuada ante blandit.</p>
+        <p>Donec tincidunt ex lacus, a congue justo dictum tincidunt. In sit amet elit pellentesque, aliquam lectus in, luctus lectus. Pellentesque sodales ipsum sit amet eros viverra venenatis. Mauris non ipsum sem. Donec sit amet turpis in est posuere tempus. Vestibulum scelerisque accumsan odio at auctor. Nunc nec iaculis magna. Quisque commodo, mi at porttitor tincidunt, orci elit sagittis velit, quis scelerisque sapien nibh mollis nisl.</p>
+        <p>Integer mollis sem dui, viverra luctus dolor auctor id. Nam sit amet nunc a lorem faucibus placerat et vel enim. Duis cursus mi et tincidunt blandit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed quis facilisis nulla. Sed blandit interdum urna in tempus. Etiam et varius orci, vel lobortis purus. Fusce maximus sodales purus, vel tempus elit viverra in. Maecenas odio felis, mollis ultrices rhoncus eget, sollicitudin at neque. In id luctus nisl, iaculis lobortis quam. Suspendisse non lorem non massa fringilla tincidunt non vel mauris.</p>
+    </template>
+    <script>
+    class InfoPage extends Polymer.Element {
+        static get is() {
+            return 'info-page';
+        }
+        static get properties() {
+            return {};
+        }
+
+        ready() {
+            super.ready();
+        }
+    }
+
+    window.customElements.define(InfoPage.is, InfoPage);
+    </script>
+</dom-module>

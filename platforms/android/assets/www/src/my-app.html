@@ -1,0 +1,464 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="my-icons.html">
+<link rel="import" href="./elements/bread-crumbs.html">
+<link rel="import" href="./elements/chain-anchor-link.html">
+<link rel="import" href="./elements/expandable-item.html">
+<link rel="import" href="./elements/render-raw.html">
+<link rel="import" href="./elements/localized.html">
+<link rel="import" href="./elements/global-data.html">
+<link rel="import" href="./elements/app-link.html">
+<dom-module id="my-app">
+    <template>
+        <style include="iron-flex"></style>
+        <style>
+        :host {
+            --app-primary-color: rgb(35, 78, 106);
+            --app-secondary-color: black;
+            display: block;
+        }
+        
+        app-header {
+            color: #fff;
+            background-color: var(--app-primary-color);
+        }
+        
+        app-header paper-icon-button {
+            --paper-icon-button-ink-color: white;
+        }
+        
+        .drawer-list {
+            margin: 0 20px;
+        }
+        
+        .drawer-list app-link {
+            display: block;
+            padding: 0 16px;
+            text-decoration: none;
+            color: var(--app-secondary-color);
+            line-height: 40px;
+        }
+        
+        .drawer-list app-link.iron-selected {
+            color: black;
+            font-weight: bold;
+        }
+        
+        #top {
+            width: 100%;
+            background-color: white;
+        }
+        
+        #search-bar {
+            margin: 0px 2px 2px 2px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        </style>
+        <global-data locale="{{lang}}"></global-data>
+        <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
+        <app-drawer-layout class="temp-width" fullbleed force-narrow>
+            <!-- Drawer content -->
+            <app-drawer id="drawer" slot="drawer" persistent>
+                <app-toolbar>
+                    <localized-data value="menu"></localized-data>
+                </app-toolbar>
+                <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+                    <paper-dropdown-menu label="Language">
+                        <paper-listbox attr-for-selected="lang" selected="{{lang}}">
+                            <paper-item lang="en">English</paper-item>
+                            <paper-item lang="es">Espanol</paper-item>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                    <app-link name="home" href="/home">
+                        <localized-data value="home"></localized-data>
+                    </app-link>
+                    <dom-repeat items="[[stepData]]">
+                        <template>
+                            <expandable-item>
+                                <div slot="label">
+                                    <app-link href="/step/[[item.index]]">
+                                        <localized-data value="stepPrefix"></localized-data> [[item.index]]</app-link>
+                                </div>
+                                <div slot="items">
+                                    <ul>
+                                        <dom-repeat items="[[item.topics]]" as="topic">
+                                            <template>
+                                                <li>
+                                                    <app-link href="/topic/[[item.index]]/[[topic.index]]">[[topic.title]]</a>
+                                                </li>
+                                            </template>
+                                        </dom-repeat>
+                                    </ul>
+                                </div>
+                            </expandable-item>
+                        </template>
+                    </dom-repeat>
+                    <app-link name="info" href="/info">
+                        <localized-data value="info"></localized-data>
+                    </app-link>
+                </iron-selector>
+            </app-drawer>
+            <!-- Main content -->
+            <app-header-layout has-scrolling-region>
+                <app-header slot="header" condenses reveals effects="waterfall">
+                    <app-toolbar>
+                        <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
+                        <div main-title class="layout horizontal">
+                            <div class="flex-none">ILAB</div>
+                            <div class="flex layout horizontal center-justified">
+                                <localized-data value="appFullTitle"></localized-data>
+                            </div>
+                        </div>
+                        <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles></paper-icon-button>
+                    </app-toolbar>
+                </app-header>
+                <div id="top">
+                    <div hidden$="[[!isSearching]]">
+                        <paper-material id="search-bar" elevation="1">
+                            <iron-a11y-keys id="a11y" keys="enter" on-keys-pressed="onSearch" target="[[searchInputTarget]]"></iron-a11y-keys>
+                            <paper-input id="search-input" value="{{searchText}}" placeholder="Search..."></paper-input>
+                        </paper-material>
+                    </div>
+                    <bread-crumbs route="[[route]]" step-data="[[stepData]]"></bread-crumbs>
+                </div>
+                <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="home" role="main">
+                    <my-home name="home" route="[[subroute]]"></my-home>
+                    <my-step-splash name="step" route="[[subroute]]" step-data="[[stepData]]"></my-step-splash>
+                    <my-topic name="topic" route="[[subroute]]" step-data="[[stepData]]"></my-topic>
+                    <info-page name="info" route="[[subroute]]"></info-page>
+                    <search-results name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]"></search-results>
+                </iron-pages>
+            </app-header-layout>
+        </app-drawer-layout>
+    </template>
+    <script>
+    class MyApp extends Polymer.Element {
+
+        static get is() {
+            return 'my-app';
+        }
+
+        static get properties() {
+            return {
+                page: {
+                    type: String,
+                    reflectToAttribute: true,
+                    observer: '_pageChanged',
+                },
+                stepData: {
+                    type: Array,
+                    computed: '_stepData(lang)',
+                },
+                lang: {
+                    type: String,
+                },
+                isSearching: {
+                    type: Boolean,
+                    observer: '_searchChange',
+                },
+                target: {
+                    type: Object,
+                },
+                route: {
+                    type: Object,
+                    value: {
+                        path: "/home"
+                    }
+                },
+            };
+        }
+
+        static get observers() {
+            return [
+                '_routePageChanged(routeData.page)',
+            ];
+        }
+
+        _searchChange(isSearching) {
+            if (isSearching) {
+                this.$['search-input'].focus();
+            }
+        }
+
+        onSearch() {
+            this.set('route.path', '/search-results');
+        }
+
+        _routePageChanged(page) {
+            // Polymer 2.0 will call with `undefined` on initialization.
+            // Ignore until we are properly called with a string.
+            if (page === undefined) {
+                return;
+            }
+
+            // If no page was found in the route data, page will be an empty string.
+            // Deault to 'home' in that case.
+            this.page = page || 'home';
+            if (this.page === "android_asset") {
+                this.page = "home";
+            }
+
+            // Close a non-persistent drawer when the page & route are changed. 
+            if (!this.$.drawer.persistent) {
+                this.$.drawer.close();
+            }
+            if (this.page !== 'search-results') {
+                this.isSearching = false;
+            }
+        }
+
+        _pageChanged(page) {
+            // Load page import on demand. Show 404 page if fails
+            var resolvedPageUrl = this.resolveUrl(page + '.html');
+            Polymer.importHref(
+                resolvedPageUrl,
+                null,
+                null,
+                true);
+        }
+
+
+        _stepData(lang) {
+            return {
+                en: [{
+                    index: 1,
+                    sidebarData: '<a href="/">See all publications from ILAB\'s Office of Child Labor, Forced Labor and Human Trafficking.</a>',
+                    type: "splash",
+                    stepTitle: "Step 1: Engage Stakeholders and Partners",
+                    pageTopicDescription: "The links on the left-hand side of this page provide more information about engaging with various stakeholders and partners. It is recommended that you read them in the order presented; you can move from one section to the next without returning to this page.",
+                    pageNote: "Note: Any references to companies or other non-governmental entities within this guide are only for informational purposes and should not be interpreted as an official endorsement of those entities, their products or services by the U.S. Department of Labor.",
+                    learningObjectives: [
+                        "Understand the importance of getting external entities involved in your social compliance system.",
+                        "Become familiar with the various forms that engagement can take, including specific examples of partnerships and other collaboration.",
+                        "Identify and engage with your stakeholders.",
+                    ],
+                    keyTerms: [{
+                        termName: "Stakeholder",
+                        termDefinition: "A person or group directly or indirectly affected by, or otherwise having an interest in, your company’s policies and/or actions. The term stakeholder is widely used in government, business, and civil society organizations, not solely in relation to social compliance. However, a company’s social compliance program may have stakeholders distinct from those of the company as a whole."
+                    }, {
+                        termName: "Community",
+                        termDefinition: "For purposes of this toolkit, a community is comprised of the people in a geographic area (neighborhood, village, town, region) located at some point along your company’s supply chain. The communities in your company’s supply chains are among your stakeholders."
+                    }],
+                    topics: [{
+                        index: 1,
+                        type: "other",
+                        title: "Why Seek Stakeholder Engagement?",
+                        rawData: '<h1 class="red">Why Seek Stakeholder Engagement?</h1> <p>At this  point, you probably do not have all the information you need to set up a  successful social compliance system.  For  example, how big of a problem is child labor in  a particular country or city from which you source?  What services should you provide to a victim  of labor trafficking,  if one is identified in your supply chain?   Who should you hire to provide training to your key suppliers on social  compliance? </p> <p>Do not try  to answer these questions by yourself.   By involving your stakeholders in your system, you will gather more  ideas and have a broader range of people with whom to vet issues and  solutions.  Stakeholder involvement  allows you to gather a variety of perspectives before you commit to a  particular approach.  Engaging stakeholders  can help you to understand the consequences of certain decisions and actions  for specific stakeholders, the varied and changing expectations from  stakeholders, and the key issues that surface in your supply chains.  It also provides buy-in, because those who  participate in the development of a system will be less likely to criticize it  later if they see their ideas integrated into your selected approach and  programs.</p>',
+                    }, {
+                        index: 2,
+                        type: "other",
+                        title: "Lorum Ipsum",
+                        rawData: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dictum commodo metus non semper. Donec eget luctus diam, eu blandit urna. Sed euismod, ipsum et pharetra pulvinar, lorem sapien ullamcorper erat, et rutrum nisl libero eu urna. Sed ullamcorper elit eu sapien sollicitudin, nec consequat tellus varius. Praesent nulla augue, rutrum id lacus ac, accumsan semper nunc. Donec finibus quam quis felis semper, nec convallis dolor scelerisque. Etiam placerat felis lorem, quis rhoncus lorem tincidunt nec. Etiam ultricies odio massa, ut auctor ligula varius id. Sed eu auctor nunc, quis interdum justo. Nam ut orci et nibh auctor laoreet sed vitae purus. Duis rhoncus sit amet ex a facilisis. Phasellus aliquet neque ex, quis pellentesque massa tincidunt a.</p><p> Quisque est turpis, cursus et nunc non, porttitor dictum ante. Integer euismod, arcu ac placerat volutpat, sapien mi ullamcorper metus, non laoreet est urna tempor tortor. Sed lacinia ex nisl, et pretium erat fermentum non. Phasellus vehicula metus fringilla, viverra elit a, interdum enim. Aenean sit amet tellus mollis, tempus urna sed, tristique tortor. Proin in pellentesque nunc, eget vestibulum felis. Duis molestie vehicula enim in porta. Etiam quis ultricies mauris. Morbi eget augue ipsum.</p>',
+                    }],
+                    furtherResources: [
+                        "Amengual, Matthew. “Complementary Labor Regulation: The Uncoordinated Combination of State and Private Regulators in the Dominican Republic,” World Development 38, no. 3 (March 2010): 405-414.",
+                        "Bader, Christine. Is the Organization Investigating Apple's Factories Good Enough? Forbes.com. March 5, 2012; available at http://www.forbes.com/sites/forbesleadershipforum/2012/03/05/is-the-organization-investigating-apples-factories-good-enough/.",
+                        "Burchell, Jon, and Joanne Cook. “It’s good to talk? Examining attitudes towards corporate social responsibility dialogue and engagement processes,” Business Ethics: A European Review 15, no. 2 (April 2006): 154-170.",
+                        "Casey, Roseann. Meaningful Change: Raising the Bar in Supply Chain Workplace Standards, Working Paper No., 29, Corporate Social Responsibility Initiative. November 2006; available from http://www.hks.harvard.edu/m-rcbg/CSRI/publications/workingpaper_29_casey.pdf.",
+                        "Dickson, Marsha, Suzanne Loker, Molly Eckman, “Stakeholder Theory and Social Responsibility.” Social Responsibility in the Global Apparel Industry; Fairchild Books, 2009: 112-215. ",
+                        "International Finance Corporation. Stakeholder Engagement: A Good Practice Handbook for Companies Doing Business in Emerging Markets. May 2007; available from http://www.scribd.com/doc/16903354/Stakeholder-Engagement-A-Good-Practice-Handbook-for-Companies-Doing-Business-in-Emerging-Markets-May-2007.",
+                        "ISO 26000, Guidance on Social Responsibility, 2010.",
+                        "Mamic, Ivanka, Managing Global Supply Chain: The Sports Footwear, Apparel and Retail Sectors, Journal of Business Ethics, (2005) 59: 81–100",
+                        "Retail Sectors,” Journal of Business Ethics, (2005) 59: 81–100.",
+                        "Muthuri, Judy N., Wendy Chapple, and Jeremy Moon, “An Integrated Approach to Implementing ‘Community Participation’ in Corporate Community Involvement: Lessons from Magadi Soda in Kenya,” Journal of Business Ethics 85, Supplement 2 (2009): 431-444.",
+                        "Perrez-Aleman, Paola, and Marion Sandilands. “Building Value at the Top and the Bottom of the Global Supply Chain: MNC-NGO Partnerships,” California Management Review 51, no. 1 (Fall 2008): 24-49.",
+                        "Van Tulder, Rob, Jeroen van Wijk, and Ans Kolk, “From Chain Liability to Chain Responsibility: MNE Approaches to Implement Safety and Health Codes in International Supply Chains,” Journal of Business Ethics 85, Supplement 2 (2009): 399-412.",
+                    ],
+                }, {
+                    index: 2,
+                    title: "Step 2: Assess Risks and Impacts",
+                    type: "splash",
+                    stepTitle: "Step 2: Assess Risks and Impacts",
+                    pageTopicDescription: "The links on the left-hand side of this page provide more information about assessing risks and impacts.  It is recommended that you read them in the order presented; you can move from one section to the next without returning to this page.",
+                    pageNote: "Note:  Any references to companies or other non-governmental entities within this guide are only for informational purposes and should not be interpreted as an official endorsement of those entities, their products or services by the U.S. Department of Labor.",
+                    learningObjectives: [
+                        "Understand the importance of risk and impact assessment as part of an overall due diligence approach.",
+                        "Understand supply chain mapping as a critical step in assessing risks and impacts of labor abuse.",
+                        "Learn the steps involved in risk and impact assessment and what resources are available.",
+                        "Know how to use your assessment information and available resources.",
+                    ],
+                    keyTerms: [{
+                        termName: "Due Diligence",
+                        termDefinition: "As defined by the United Nations Guiding Principles on Business and Human Rights, a process that includes assessing actual and potential human rights impacts (including fundamental labor rights such as child labor and forced labor), integrating and acting upon the findings, tracking responses and communicating how impacts are addressed.  Due diligence should cover assessment of the adverse impacts that a business may cause or contribute to through its own activities, as well as those that may be directly linked to its operations, products or services through business relationships.  Due diligence varies in complexity with the size of a business enterprise, the risk of severe human rights impacts and the nature and context of a business’s operations."
+                    }, {
+                        termName: "Risk",
+                        termDefinition: "A situation that increases the potential for damage to your company, such as reputational damage or legal liability, or damage to individuals or entities affected by your company’s activities or linked to your company’s operations, products or services through business relationships."
+                    }, {
+                        termName: "Impact",
+                        termDefinition: "A situation in which damage has been done to your company, such as reputational damage or legal liability, or to individuals or entities affected by your company’s activities or linked to your company’s operations, products or services through business relationships."
+                    }, ],
+                    topics: [{
+                        index: 1,
+                        type: "other",
+                        title: "Why Conduct Risk and Impact Assessments?",
+                        rawData: '<h1 class="red">Why Conduct Risk and Impact Assessments?</h1> <p>Risk and impact assessments are  fundamental elements of the due diligence process.  They help identify ways in which you may be  causing or contributing to labor rights abuses, as well as areas where you  might be at risk of doing so.  Assessments can help identify both existing child labor and forced labor in  your supply chains, or risks of where in the supply chain these abuses may  occur.  This allows you to immediately  take steps to mitigate or remediate existing problems, or to target your social  compliance efforts to those areas of the supply chain with the greatest risks. </p>',
+                    }],
+                    furtherResources: [
+                        "Amengual, Matthew. “Complementary Labor Regulation: The Uncoordinated Combination of State and Private Regulators in the Dominican Republic,” World Development 38, no. 3 (March 2010): 405-414.",
+                        "Bader, Christine. Is the Organization Investigating Apple's Factories Good Enough? Forbes.com. March 5, 2012; available at http://www.forbes.com/sites/forbesleadershipforum/2012/03/05/is-the-organization-investigating-apples-factories-good-enough/.",
+                        "Burchell, Jon, and Joanne Cook. “It’s good to talk? Examining attitudes towards corporate social responsibility dialogue and engagement processes,” Business Ethics: A European Review 15, no. 2 (April 2006): 154-170.",
+                        "Casey, Roseann. Meaningful Change: Raising the Bar in Supply Chain Workplace Standards, Working Paper No., 29, Corporate Social Responsibility Initiative. November 2006; available from http://www.hks.harvard.edu/m-rcbg/CSRI/publications/workingpaper_29_casey.pdf.",
+                        "Dickson, Marsha, Suzanne Loker, Molly Eckman, “Stakeholder Theory and Social Responsibility.” Social Responsibility in the Global Apparel Industry; Fairchild Books, 2009: 112-215. ",
+                        "International Finance Corporation. Stakeholder Engagement: A Good Practice Handbook for Companies Doing Business in Emerging Markets. May 2007; available from http://www.scribd.com/doc/16903354/Stakeholder-Engagement-A-Good-Practice-Handbook-for-Companies-Doing-Business-in-Emerging-Markets-May-2007.",
+                        "ISO 26000, Guidance on Social Responsibility, 2010.",
+                        "Mamic, Ivanka, Managing Global Supply Chain: The Sports Footwear, Apparel and Retail Sectors, Journal of Business Ethics, (2005) 59: 81–100",
+                        "Retail Sectors,” Journal of Business Ethics, (2005) 59: 81–100.",
+                        "Muthuri, Judy N., Wendy Chapple, and Jeremy Moon, “An Integrated Approach to Implementing ‘Community Participation’ in Corporate Community Involvement: Lessons from Magadi Soda in Kenya,” Journal of Business Ethics 85, Supplement 2 (2009): 431-444.",
+                        "Perrez-Aleman, Paola, and Marion Sandilands. “Building Value at the Top and the Bottom of the Global Supply Chain: MNC-NGO Partnerships,” California Management Review 51, no. 1 (Fall 2008): 24-49.",
+                        "Van Tulder, Rob, Jeroen van Wijk, and Ans Kolk, “From Chain Liability to Chain Responsibility: MNE Approaches to Implement Safety and Health Codes in International Supply Chains,” Journal of Business Ethics 85, Supplement 2 (2009): 399-412.",
+                    ],
+                }],
+                es: [{
+                    index: 1,
+                    type: "splash",
+                    stepTitle: "Step ES 1: Engage Stakeholders and Partners",
+                    pageTopicDescription: "The links on the left-hand side of this page provide more information about engaging with various stakeholders and partners. It is recommended that you read them in the order presented; you can move from one section to the next without returning to this page.",
+                    pageNote: "Note: Any references to companies or other non-governmental entities within this guide are only for informational purposes and should not be interpreted as an official endorsement of those entities, their products or services by the U.S. Department of Labor.",
+                    learningObjectives: [
+                        "Understand the importance of getting external entities involved in your social compliance system.",
+                        "Become familiar with the various forms that engagement can take, including specific examples of partnerships and other collaboration.",
+                        "Identify and engage with your stakeholders.",
+                    ],
+                    keyTerms: [{
+                        termName: "Stakeholder",
+                        termDefinition: "A person or group directly or indirectly affected by, or otherwise having an interest in, your company’s policies and/or actions. The term stakeholder is widely used in government, business, and civil society organizations, not solely in relation to social compliance. However, a company’s social compliance program may have stakeholders distinct from those of the company as a whole."
+                    }, {
+                        termName: "Community",
+                        termDefinition: "For purposes of this toolkit, a community is comprised of the people in a geographic area (neighborhood, village, town, region) located at some point along your company’s supply chain. The communities in your company’s supply chains are among your stakeholders."
+                    }],
+                    topics: [{
+                        index: 1,
+                        type: "other",
+                        title: "Why Seek Stakeholder Engagement?",
+                        rawData: '<h1 class="red">Why Seek Stakeholder Engagement?</h1> <p>At this  point, you probably do not have all the information you need to set up a  successful social compliance system.  For  example, how big of a problem is child labor in  a particular country or city from which you source?  What services should you provide to a victim  of labor trafficking,  if one is identified in your supply chain?   Who should you hire to provide training to your key suppliers on social  compliance? </p> <p>Do not try  to answer these questions by yourself.   By involving your stakeholders in your system, you will gather more  ideas and have a broader range of people with whom to vet issues and  solutions.  Stakeholder involvement  allows you to gather a variety of perspectives before you commit to a  particular approach.  Engaging stakeholders  can help you to understand the consequences of certain decisions and actions  for specific stakeholders, the varied and changing expectations from  stakeholders, and the key issues that surface in your supply chains.  It also provides buy-in, because those who  participate in the development of a system will be less likely to criticize it  later if they see their ideas integrated into your selected approach and  programs.</p>',
+                    }, {
+                        index: 2,
+                        type: "other",
+                        title: "Lorum Ipsum",
+                        rawData: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dictum commodo metus non semper. Donec eget luctus diam, eu blandit urna. Sed euismod, ipsum et pharetra pulvinar, lorem sapien ullamcorper erat, et rutrum nisl libero eu urna. Sed ullamcorper elit eu sapien sollicitudin, nec consequat tellus varius. Praesent nulla augue, rutrum id lacus ac, accumsan semper nunc. Donec finibus quam quis felis semper, nec convallis dolor scelerisque. Etiam placerat felis lorem, quis rhoncus lorem tincidunt nec. Etiam ultricies odio massa, ut auctor ligula varius id. Sed eu auctor nunc, quis interdum justo. Nam ut orci et nibh auctor laoreet sed vitae purus. Duis rhoncus sit amet ex a facilisis. Phasellus aliquet neque ex, quis pellentesque massa tincidunt a.</p><p> Quisque est turpis, cursus et nunc non, porttitor dictum ante. Integer euismod, arcu ac placerat volutpat, sapien mi ullamcorper metus, non laoreet est urna tempor tortor. Sed lacinia ex nisl, et pretium erat fermentum non. Phasellus vehicula metus fringilla, viverra elit a, interdum enim. Aenean sit amet tellus mollis, tempus urna sed, tristique tortor. Proin in pellentesque nunc, eget vestibulum felis. Duis molestie vehicula enim in porta. Etiam quis ultricies mauris. Morbi eget augue ipsum.</p>',
+                    }],
+                    furtherResources: [
+                        "Amengual, Matthew. “Complementary Labor Regulation: The Uncoordinated Combination of State and Private Regulators in the Dominican Republic,” World Development 38, no. 3 (March 2010): 405-414.",
+                        "Bader, Christine. Is the Organization Investigating Apple's Factories Good Enough? Forbes.com. March 5, 2012; available at http://www.forbes.com/sites/forbesleadershipforum/2012/03/05/is-the-organization-investigating-apples-factories-good-enough/.",
+                        "Burchell, Jon, and Joanne Cook. “It’s good to talk? Examining attitudes towards corporate social responsibility dialogue and engagement processes,” Business Ethics: A European Review 15, no. 2 (April 2006): 154-170.",
+                        "Casey, Roseann. Meaningful Change: Raising the Bar in Supply Chain Workplace Standards, Working Paper No., 29, Corporate Social Responsibility Initiative. November 2006; available from http://www.hks.harvard.edu/m-rcbg/CSRI/publications/workingpaper_29_casey.pdf.",
+                        "Dickson, Marsha, Suzanne Loker, Molly Eckman, “Stakeholder Theory and Social Responsibility.” Social Responsibility in the Global Apparel Industry; Fairchild Books, 2009: 112-215. ",
+                        "International Finance Corporation. Stakeholder Engagement: A Good Practice Handbook for Companies Doing Business in Emerging Markets. May 2007; available from http://www.scribd.com/doc/16903354/Stakeholder-Engagement-A-Good-Practice-Handbook-for-Companies-Doing-Business-in-Emerging-Markets-May-2007.",
+                        "ISO 26000, Guidance on Social Responsibility, 2010.",
+                        "Mamic, Ivanka, Managing Global Supply Chain: The Sports Footwear, Apparel and Retail Sectors, Journal of Business Ethics, (2005) 59: 81–100",
+                        "Retail Sectors,” Journal of Business Ethics, (2005) 59: 81–100.",
+                        "Muthuri, Judy N., Wendy Chapple, and Jeremy Moon, “An Integrated Approach to Implementing ‘Community Participation’ in Corporate Community Involvement: Lessons from Magadi Soda in Kenya,” Journal of Business Ethics 85, Supplement 2 (2009): 431-444.",
+                        "Perrez-Aleman, Paola, and Marion Sandilands. “Building Value at the Top and the Bottom of the Global Supply Chain: MNC-NGO Partnerships,” California Management Review 51, no. 1 (Fall 2008): 24-49.",
+                        "Van Tulder, Rob, Jeroen van Wijk, and Ans Kolk, “From Chain Liability to Chain Responsibility: MNE Approaches to Implement Safety and Health Codes in International Supply Chains,” Journal of Business Ethics 85, Supplement 2 (2009): 399-412.",
+                    ],
+                }, {
+                    index: 2,
+                    title: "Step 2: Assess Risks and Impacts",
+                    type: "splash",
+                    stepTitle: "Step 2: Assess Risks and Impacts",
+                    pageTopicDescription: "The links on the left-hand side of this page provide more information about assessing risks and impacts.  It is recommended that you read them in the order presented; you can move from one section to the next without returning to this page.",
+                    pageNote: "Note:  Any references to companies or other non-governmental entities within this guide are only for informational purposes and should not be interpreted as an official endorsement of those entities, their products or services by the U.S. Department of Labor.",
+                    learningObjectives: [
+                        "Understand the importance of risk and impact assessment as part of an overall due diligence approach.",
+                        "Understand supply chain mapping as a critical step in assessing risks and impacts of labor abuse.",
+                        "Learn the steps involved in risk and impact assessment and what resources are available.",
+                        "Know how to use your assessment information and available resources.",
+                    ],
+                    keyTerms: [{
+                        termName: "Due Diligence",
+                        termDefinition: "As defined by the United Nations Guiding Principles on Business and Human Rights, a process that includes assessing actual and potential human rights impacts (including fundamental labor rights such as child labor and forced labor), integrating and acting upon the findings, tracking responses and communicating how impacts are addressed.  Due diligence should cover assessment of the adverse impacts that a business may cause or contribute to through its own activities, as well as those that may be directly linked to its operations, products or services through business relationships.  Due diligence varies in complexity with the size of a business enterprise, the risk of severe human rights impacts and the nature and context of a business’s operations."
+                    }, {
+                        termName: "Risk",
+                        termDefinition: "A situation that increases the potential for damage to your company, such as reputational damage or legal liability, or damage to individuals or entities affected by your company’s activities or linked to your company’s operations, products or services through business relationships."
+                    }, {
+                        termName: "Impact",
+                        termDefinition: "A situation in which damage has been done to your company, such as reputational damage or legal liability, or to individuals or entities affected by your company’s activities or linked to your company’s operations, products or services through business relationships."
+                    }, ],
+                    topics: [{
+                        index: 1,
+                        type: "other",
+                        title: "Why Conduct Risk and Impact Assessments?",
+                        rawData: '<h1 class="red">Why Conduct Risk and Impact Assessments?</h1> <p>Risk and impact assessments are  fundamental elements of the due diligence process.  They help identify ways in which you may be  causing or contributing to labor rights abuses, as well as areas where you  might be at risk of doing so.  Assessments can help identify both existing child labor and forced labor in  your supply chains, or risks of where in the supply chain these abuses may  occur.  This allows you to immediately  take steps to mitigate or remediate existing problems, or to target your social  compliance efforts to those areas of the supply chain with the greatest risks. </p>',
+                    }],
+                    furtherResources: [
+                        "Amengual, Matthew. “Complementary Labor Regulation: The Uncoordinated Combination of State and Private Regulators in the Dominican Republic,” World Development 38, no. 3 (March 2010): 405-414.",
+                        "Bader, Christine. Is the Organization Investigating Apple's Factories Good Enough? Forbes.com. March 5, 2012; available at http://www.forbes.com/sites/forbesleadershipforum/2012/03/05/is-the-organization-investigating-apples-factories-good-enough/.",
+                        "Burchell, Jon, and Joanne Cook. “It’s good to talk? Examining attitudes towards corporate social responsibility dialogue and engagement processes,” Business Ethics: A European Review 15, no. 2 (April 2006): 154-170.",
+                        "Casey, Roseann. Meaningful Change: Raising the Bar in Supply Chain Workplace Standards, Working Paper No., 29, Corporate Social Responsibility Initiative. November 2006; available from http://www.hks.harvard.edu/m-rcbg/CSRI/publications/workingpaper_29_casey.pdf.",
+                        "Dickson, Marsha, Suzanne Loker, Molly Eckman, “Stakeholder Theory and Social Responsibility.” Social Responsibility in the Global Apparel Industry; Fairchild Books, 2009: 112-215. ",
+                        "International Finance Corporation. Stakeholder Engagement: A Good Practice Handbook for Companies Doing Business in Emerging Markets. May 2007; available from http://www.scribd.com/doc/16903354/Stakeholder-Engagement-A-Good-Practice-Handbook-for-Companies-Doing-Business-in-Emerging-Markets-May-2007.",
+                        "ISO 26000, Guidance on Social Responsibility, 2010.",
+                        "Mamic, Ivanka, Managing Global Supply Chain: The Sports Footwear, Apparel and Retail Sectors, Journal of Business Ethics, (2005) 59: 81–100",
+                        "Retail Sectors,” Journal of Business Ethics, (2005) 59: 81–100.",
+                        "Muthuri, Judy N., Wendy Chapple, and Jeremy Moon, “An Integrated Approach to Implementing ‘Community Participation’ in Corporate Community Involvement: Lessons from Magadi Soda in Kenya,” Journal of Business Ethics 85, Supplement 2 (2009): 431-444.",
+                        "Perrez-Aleman, Paola, and Marion Sandilands. “Building Value at the Top and the Bottom of the Global Supply Chain: MNC-NGO Partnerships,” California Management Review 51, no. 1 (Fall 2008): 24-49.",
+                        "Van Tulder, Rob, Jeroen van Wijk, and Ans Kolk, “From Chain Liability to Chain Responsibility: MNE Approaches to Implement Safety and Health Codes in International Supply Chains,” Journal of Business Ethics 85, Supplement 2 (2009): 399-412.",
+                    ],
+                }]
+            }[lang];
+        }
+
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            super.connectedCallback();
+            this.root.querySelector('my-home').addEventListener('link-followed', event => {
+                console.log(event.detail.target);
+                this.root.querySelector('bread-crumbs').scrollIntoView()
+                this.set('route.path', event.detail.target);
+            });
+            this.root.addEventListener('link-followed', event => {
+                console.log(event.detail.target);
+                this.root.querySelector('bread-crumbs').scrollIntoView()
+                this.set('route.path', event.detail.target);
+                console.log(this.route.path);
+                console.log(JSON.stringify(this.route));
+                console.log(JSON.stringify(this.routeData));
+            });
+        }
+        ready() {
+            super.ready();
+            this.lang = 'es';
+            this.searchInputTarget = this.$['search-input'];
+
+            this.page = "home";
+        }
+    }
+
+    window.customElements.define(MyApp.is, MyApp);
+    </script>
+</dom-module>
