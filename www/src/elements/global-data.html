@@ -19,6 +19,7 @@
     };
     document.addEventListener('deviceready', () => {
         __globalRef.device = cordova.platformId;
+        console.log(cordova.platformId);
         __globalRef.update();
     }, false);
     class GlobalData extends Polymer.Element {
@@ -84,6 +85,7 @@
 
         ready() { 
             super.ready();
+            this.update();
         }
     }
 

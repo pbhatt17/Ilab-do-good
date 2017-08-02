@@ -101,13 +101,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.$['info-btn'].addEventListener('click', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
-                        target: "/index-info"
+                        target: "/index-about-page"
                     },
                     bubbles: true
                 }));
             });
-            var x = this.root.querySelector('#background');
-            console.log(x.src);
         }
     }
 

@@ -47,25 +47,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template>
         <style include="iron-flex"></style>
         <style>
-        :host {
+         :host {
             --app-primary-color: rgb(0, 51, 84);
             --app-secondary-color: black;
             display: block;
         }
-        
+
         app-header {
             color: #fff;
             background-color: var(--app-primary-color);
         }
-        
+
         app-header paper-icon-button {
             --paper-icon-button-ink-color: white;
         }
-        
+
         .drawer-list {
             margin: 0 20px;
         }
-        
+
         .drawer-list app-link,
         .drawer-list a {
             display: block;
@@ -74,35 +74,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             color: var(--app-secondary-color);
             line-height: 40px;
         }
-        
+
         .drawer-list app-link.iron-selected,
-        .drawer-list > li.iron-selected > app-link,
-        .drawer-list > expandable-item.iron-selected > div > app-link {
+        .drawer-list>li.iron-selected>app-link,
+        .drawer-list>expandable-item.iron-selected>div>app-link {
             color: black;
             font-weight: bold;
         }
-        
+
         #top {
             width: 100%;
             background-color: white;
         }
-        
+
         #search-bar {
             margin: 0px 2px 2px 2px;
             padding-left: 10px;
             padding-right: 10px;
         }
-        
+
         .logo-img {
             height: 50px;
         }
-        
+
         .logo-img-small {
             height: 40px;
         }
-        
+
         #home-page {
             background-color:
+        }
+
+        app-toolbar {
+            padding-left: 0px;
+
+            height: 48px;
+        }
+        .title-bar-text p {
+            margin: 0;
+        }
+        .secondary-title {
+            font-size: 16px;
         }
         </style>
         <global-data locale="{{lang}}"></global-data>
@@ -124,6 +136,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </paper-dropdown-menu-->
                     <app-link name="home" href="/home">
                         <localized-data value="home"></localized-data>
+                    </app-link>
+                    <app-link name="index-info" href="/info-about-page">
+                        About this App
+                    </app-link>
+                    <app-link name="what-are-cl-fl" href="/info-what-are-page">
+                        What are Child Labor and Forced Labor?
                     </app-link>
                     <expandable-item name="steps-landing">
                         <div slot="label">
@@ -160,16 +178,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             </iron-selector>
                         </div>
                     </expandable-item>
-                    <app-link name="index-info" href="/index-info">
-                        <localized-data value="info"></localized-data>
-                    </app-link>
-                    <app-link name="key-resources" href="/home">
+                    <app-link name="key-resources" href="/info-key-resources">
                         Key Resources
                     </app-link>
-                    <app-link name="mockup-page" href="/mockup-page">
-                        Mockup Highlights
-                    </app-link>
-                    <a href="mailto:GlobalKids@dol.gov" target="_top">Contact Us</a>
+                    <a href="mailto:GlobalKids@dol.gov?subject=Comments on Do Good App" target="_top">Contact Us</a>
                 </iron-selector>
             </app-drawer>
             <!-- Main content -->
@@ -178,11 +190,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <app-toolbar>
                         <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
                         <div main-title class="layout horizontal">
-                            <div class="flex-none"><img class="logo-img-small" src="imgs/ilab.png" /></div>
+                            <div class="flex-none layout vertical center-justified"><img class="logo-img-small" src="imgs/ilab.png" /></div>
                             <div class="flex layout horizontal center-justified">
-                                <localized-data value="appFullTitle"></localized-data>
+                                <div class="layout vertical title-bar-text">
+                                    <div class="flex layout horizontal center-justified">
+                                        <p>Do Good</p>
+                                    </div>
+                                    <div class="flex layout horizontal center-justified">
+                                        <p class="secondary-title">Business</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex-none"><img class="logo-img" src="imgs/dol.png" /></div>
+                            <div class="flex-none layout vertical center-justified"><img class="logo-img" src="imgs/dol.png" /></div>
                         </div>
                     </app-toolbar>
                 </app-header>
@@ -317,13 +336,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 //resolvedPageUrl = this.resolveUrl('info-sub-page.html');
             } else {
                 resolvedPageUrl = this.resolveUrl(page + '.html');
+                Polymer.importHref(
+                    resolvedPageUrl,
+                    null,
+                    null,
+                    true);
             }
 
-            Polymer.importHref(
-                resolvedPageUrl,
-                null,
-                null,
-                true);
         }
 
 
@@ -381,8 +400,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             this.page = "home";
 
-            ajax('GET', "/data.json")
+            ajax('GET', "data.json")
                 .then(response => {
+                    console.log("got step data");
                     this.baseStepData = JSON.parse(response);
                     for (var lang in this.baseStepData) {
                         this.baseStepData[lang].steps.forEach(step => {
@@ -390,21 +410,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 ajax('GET', step.furtherResources).then(result => {
                                     console.log("found " + step.furtherResources)
                                     step.furtherResources = result;
-                                    this.debounce("update", function() {
-                                        //TODO
-                                    });
                                 }).catch(error => {
                                     console.log("didn't find topic.");
                                 });
                             }
                             step.topics.forEach(topic => {
                                 if (!!topic.url) {
+                                    if (topic.url[0] == "/") {
+                                        topic.url = topic.url.substr(1);
+                                        console.log(topic.url);
+                                    }
                                     ajax('GET', topic.url).then(result => {
                                         console.log("found " + topic.url)
                                         topic.rawData = result;
-                                        this.debounce("update", function() {
-                                            //TODO
-                                        });
                                     }).catch(error => {
                                         console.log("didn't find topic.");
                                     });

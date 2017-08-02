@@ -56,13 +56,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             if (!targetData || !targetData.url) {
                 return;
             }
+            if(targetData.url[0] === "/") {
+                targetData.url = targetData.url.substr(1);
+            }
             ajax("GET", targetData.url)
                 .then(response => {
                     this.htmlContent = response;
                 }).catch(error => {
                     console.log("error while attempting to load info-sub-page: " + error);
                 });
-
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
 
         }
 
