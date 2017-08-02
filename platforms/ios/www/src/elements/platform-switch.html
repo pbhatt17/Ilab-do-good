@@ -6,8 +6,7 @@
         <style>
 
         </style>
-        <global-data device="{{device}}"></global-data>
-
+        <global-data id="data" device="{{device}}"></global-data>
         <iron-pages class="inline" attr-for-selected="page-name" selected="[[device]]" fallback-selection="error">
             <div page-name="error">
                 ERROR
@@ -40,11 +39,20 @@
 
         static get observers() {
             return [
+                'check(device)'
             ];
         }
 
+        check(test) {
+        }
+
         constructor() {
+
             super();
+        }
+
+        connectedCallback() {
+            super.connectedCallback(); 
         }
 
         ready() {

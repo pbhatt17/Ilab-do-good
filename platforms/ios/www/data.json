@@ -5,34 +5,41 @@
             "title": "About this Toolkit",
             "url": "/info-pages/about-page.html",
             "preview": "About This Toolkit",
-            "keywords": ["keyword"]
+            "keywords": ["Child Labor", "Forced Labor"]
         }, {
             "id": "info-what-are-page",
             "title": "What are Child Labor and Forced Labor?",
             "url": "/info-pages/what-are.html",
             "preview": "What are Child Labor and Forced Labor?",
-            "keywords": ["keyword"]
+            "keywords": ["Child Labor", "Forced Labor"]
         }, {
             "id": "info-why-develop-page",
             "title": "Why Develop a Social Compliance System?",
             "url": "/info-pages/why-develop.html",
             "hidden": true,
             "preview": "Why Develop a Social Compliance System?",
-            "keywords": ["keyword"]
+            "keywords": ["Laws"]
         }, {
             "id": "info-basics-page",
             "title": "Basics of a Social Compliance System",
             "url": "/info-pages/basics.html",
             "hidden": true,
             "preview": "Basics of a Social Compliance System",
-            "keywords": ["keyword"]
+            "keywords": ["Management systems"]
+        }, {
+            "id": "info-key-resources",
+            "title": "Key Resources",
+            "url": "/info-pages/key-resources.html",
+            "hidden": true,
+            "preview": "Key Resources",
+            "keywords": []
         }],
         "steps": [{
             "index": 1,
             "type": "splash",
             "stepTitle": "Step 1: Engage Stakeholders and Partners",
             "preview": "This is a sample preview for Step 1",
-            "keywords": ["keyword"],
+            "keywords": ["Stakeholder", "Community"],
             "learningObjectives": [
                 "Understand the importance of getting external entities involved in your social compliance system.",
                 "Become familiar with the various forms that engagement can take, including specific examples of partnerships and other collaboration.",
@@ -49,35 +56,35 @@
                 "index": 1,
                 "type": "other",
                 "preview": "This is a sample preview for 'Why Seek Stakeholder Engagement?'",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Why Seek Stakeholder Engagement?",
                 "url": "/topics/step1/topic1.html"
             }, {
                 "index": 2,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "What Can Stakeholders Do?",
                 "url": "/topics/step1/topic2.html"
             }, {
                 "index": 3,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 3",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Engaging Your Stakeholders",
                 "url": "/topics/step1/topic3.html"
             }, {
                 "index": 4,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 3",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "The Role of Government Entities in Social Compliance Systems",
                 "url": "/topics/step1/topic4.html"
             }, {
                 "index": 5,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Industry Associations and Initiatives",
                 "url": "/topics/step1/topic5.html"
             }],
@@ -87,7 +94,7 @@
             "type": "splash",
             "stepTitle": "Step 2:  Assess Risks And Impacts",
             "preview": "This is a sample preview for Step 2",
-            "keywords": ["keyword"],
+            "keywords": ["Due diligence", "Risk", "Impact"],
             "learningObjectives": [
                 "Understand the importance of risk and impact assessment as part of an overall due diligence approach.",
                 "Understand supply chain mapping as a critical step in assessing risks and impacts of labor abuse.",
@@ -108,63 +115,63 @@
                 "index": 1,
                 "type": "other",
                 "preview": "This is a sample preview for 'Why Seek Stakeholder Engagement?'",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Why Conduct Risk and Impact Assessments?",
                 "url": "/topics/step2/topic1.html"
             }, {
                 "index": 2,
                 "type": "other",
                 "preview": "This is a sample preview for Step 2 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Assessing Internal Impacts and Risk Factors",
                 "url": "/topics/step2/topic2.html"
             }, {
                 "index": 3,
                 "type": "other",
                 "preview": "This is a sample preview for Step 2 Topic 3",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Assessing External Impacts and Risk Factors",
                 "url": "/topics/step2/topic3.html"
             }, {
                 "index": 4,
                 "type": "other",
                 "preview": "This is a sample preview for Step 2 Topic 3",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Supply Chain Mapping",
                 "url": "/topics/step2/topic4.html"
             }, {
                 "index": 5,
                 "type": "other",
                 "preview": "This is a sample preview for Step 2 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Risk and Impact Information Gathering",
                 "url": "/topics/step2/topic5.html"
             }, {
                 "index": 6,
                 "type": "other",
                 "preview": "This is a sample preview for Step 2 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Migrant Workers",
                 "url": "/topics/step2/topic6.html"
             }, {
                 "index": 7,
                 "type": "other",
                 "preview": "This is a sample preview for Step 2 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Using Risk and Impact Assessment Information",
                 "url": "/topics/step2/topic7.html"
             }, {
                 "index": 8,
                 "type": "other",
                 "preview": "This is a sample preview for Step 2 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Social Compliance Data Management",
                 "url": "/topics/step2/topic8.html"
             }, {
                 "index": 9,
                 "type": "other",
                 "preview": "This is a sample preview for Step 2 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Addressing Root Causes",
                 "url": "/topics/step2/topic9.html"
             }],
@@ -174,7 +181,7 @@
             "type": "splash",
             "stepTitle": "Step 3:  Develop a Code of Conduct",
             "preview": "This is a sample preview for Step 3",
-            "keywords": ["keyword"],
+            "keywords": ["Code of conduct", "Code"],
             "learningObjectives": [
                 "Know the main standards that should be included in a good code of conduct.",
                 "Understand the basic steps involved in developing and revising a code.",
@@ -188,49 +195,49 @@
                 "index": 1,
                 "type": "other",
                 "preview": "This is a sample preview for 'International Framework Agreements (IFAs)'",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "International Framework Agreements (IFAs)",
                 "url": "/topics/step3/topic1.html"
             }, {
                 "index": 2,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "What Makes a Good Code of Conduct?",
                 "url": "/topics/step3/topic2.html"
             }, {
                 "index": 3,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 3",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Standards on Child Labor and Forced Labor",
                 "url": "/topics/step3/topic3.html"
             }, {
                 "index": 4,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 3",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Forced Labor and Trafficking in Persons",
                 "url": "/topics/step3/topic4.html"
             }, {
                 "index": 5,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "How to Develop a Code",
                 "url": "/topics/step3/topic5.html"
             }, {
                 "index": 6,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Joining an Existing Code",
                 "url": "/topics/step3/topic6.html"
             }, {
                 "index": 7,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Communicating the Code",
                 "url": "/topics/step3/topic6.html"
             }],
@@ -240,7 +247,7 @@
             "type": "splash",
             "stepTitle": "Step 4:  Communicate and Train across your Supply Chain",
             "preview": "This is a sample preview for Step 4",
-            "keywords": ["keyword"],
+            "keywords": ["Grievance", "Grievance Mechanism", "Training", "Worker Voice"],
             "learningObjectives": [
                 "Identify the people and groups to whom you should communicate and provide training.",
                 "Define the topics that should be covered in communication and training activities for each group.",
@@ -255,45 +262,117 @@
                 "index": 1,
                 "type": "other",
                 "preview": "This is a sample preview for 'Communicating, Not Policing'",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Communicating, Not Policing",
                 "url": "/topics/step4/topic1.html"
             }, {
                 "index": 2,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Who Should be Trained?",
                 "url": "/topics/step4/topic2.html"
             }, {
                 "index": 3,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 3",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "What Topics Should Training and Capacity-Building Cover?",
                 "url": "/topics/step4/topic3.html"
             }, {
                 "index": 4,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 3",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Where, When and How Should Training be Conducted?",
                 "url": "/topics/step4/topic4.html"
             }, {
                 "index": 5,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Essential Components of a Company Grievance Mechanism",
                 "url": "/topics/step4/topic5.html"
             }, {
                 "index": 6,
                 "type": "other",
                 "preview": "This is a sample preview for Step 1 Topic 2",
-                "keywords": ["keyword"],
+                "keywords": [],
                 "title": "Basic Design Elements of a Project-Level Grievance Mechanism",
                 "url": "/topics/step4/topic6.html"
             }],
+            "furtherResources": "/topics/step4/bib.html"
+        }, {
+            "index": 5,
+            "type": "splash",
+            "stepTitle": "Step 4:  Communicate and Train across your Supply Chain",
+            "preview": "This is a sample preview for Step 4",
+            "keywords": ["Social Audit", "Auditing", "Monitoring"],
+            "learningObjectives": [
+                "Identify the people and groups to whom you should communicate and provide training.",
+                "Define the topics that should be covered in communication and training activities for each group.",
+                "Learn about appropriate communication channels and training formats for different audiences.",
+                "Understand how to put effective grievance mechanisms in place."
+            ],
+            "keyTerms": [{
+                "termName": "Grievance",
+                "termDefinition": "A concern or complaint raised by an individual or a group within a community affected by company operations."
+            }],
+            "topics": [],
+            "furtherResources": "/topics/step4/bib.html"
+        }, {
+            "index": 6,
+            "type": "splash",
+            "stepTitle": "Step 4:  Communicate and Train across your Supply Chain",
+            "preview": "This is a sample preview for Step 4",
+            "keywords": ["Violation", "Remediation", "Corrective Action Plan", "CAP"],
+            "learningObjectives": [
+                "Identify the people and groups to whom you should communicate and provide training.",
+                "Define the topics that should be covered in communication and training activities for each group.",
+                "Learn about appropriate communication channels and training formats for different audiences.",
+                "Understand how to put effective grievance mechanisms in place."
+            ],
+            "keyTerms": [{
+                "termName": "Grievance",
+                "termDefinition": "A concern or complaint raised by an individual or a group within a community affected by company operations."
+            }],
+            "topics": [],
+            "furtherResources": "/topics/step4/bib.html"
+        }, {
+            "index": 7,
+            "type": "splash",
+            "stepTitle": "Step 4:  Communicate and Train across your Supply Chain",
+            "preview": "This is a sample preview for Step 4",
+            "keywords": ["Independent review", "Independent monitoring", "Independent verification", "Certification body", "CB", "Impact Evaluation"],
+            "learningObjectives": [
+                "Identify the people and groups to whom you should communicate and provide training.",
+                "Define the topics that should be covered in communication and training activities for each group.",
+                "Learn about appropriate communication channels and training formats for different audiences.",
+                "Understand how to put effective grievance mechanisms in place."
+            ],
+            "keyTerms": [{
+                "termName": "Grievance",
+                "termDefinition": "A concern or complaint raised by an individual or a group within a community affected by company operations."
+            }],
+            "topics": [],
+            "furtherResources": "/topics/step4/bib.html"
+        }, {
+            "index": 8,
+            "type": "splash",
+            "stepTitle": "Step 4:  Communicate and Train across your Supply Chain",
+            "preview": "This is a sample preview for Step 4",
+            "keywords": ["Public reporting"],
+            "learningObjectives": [
+                "Identify the people and groups to whom you should communicate and provide training.",
+                "Define the topics that should be covered in communication and training activities for each group.",
+                "Learn about appropriate communication channels and training formats for different audiences.",
+                "Understand how to put effective grievance mechanisms in place."
+            ],
+            "keyTerms": [{
+                "termName": "Grievance",
+                "termDefinition": "A concern or complaint raised by an individual or a group within a community affected by company operations."
+            }],
+            "topics": [],
             "furtherResources": "/topics/step4/bib.html"
         }]
     }
