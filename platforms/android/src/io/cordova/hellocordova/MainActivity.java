@@ -21,6 +21,9 @@ package io.cordova.hellocordova;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebSettings.ZoomDensity;
 
 public class MainActivity extends CordovaActivity
 {
@@ -28,7 +31,12 @@ public class MainActivity extends CordovaActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
+        super.init();
+        WebView webView = (WebView) super.appView.getEngine().getView();
+        WebSettings settings = webView.getSettings();
+        //settings.setBuiltInZoomControls(true);
+        //settings.setDefaultZoom(ZoomDensity.MEDIUM);
+        //settings.setSupportZoom(true);
         // enable Cordova apps to be started in the background
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.getBoolean("cdvStartInBackground", false)) {

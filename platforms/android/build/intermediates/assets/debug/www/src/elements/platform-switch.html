@@ -1,0 +1,66 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="platform-switch">
+    <template>
+        <custom-style>
+        </custom-style>
+        <style>
+
+        </style>
+        <global-data id="data" device="{{device}}"></global-data>
+        <h1>Device is [[device]].</h1>
+        <iron-pages class="inline" attr-for-selected="page-name" selected="[[device]]" fallback-selection="error">
+            <div page-name="error">
+                ERROR
+            </div>
+            <div page-name="browser">
+                <slot name="browser"></slot>
+            </div> 
+            <div page-name="android">
+                <slot name="android"></slot>
+            </div>
+            <div page-name="ios">
+                <slot name="ios"></slot>
+            </div>
+        </iron-pages>
+    </template>
+    <script>
+    class PlatformSwitch extends Polymer.Element {
+        static get is() {
+            return 'platform-switch';
+        }
+
+
+        static get properties() {
+            return {
+                device: {
+                    type: String,
+                }
+            };
+        }
+
+        static get observers() {
+            return [
+                'check(device)'
+            ];
+        }
+
+        check(test) {
+        }
+
+        constructor() {
+
+            super();
+        }
+
+        connectedCallback() {
+            super.connectedCallback(); 
+        }
+
+        ready() {
+            super.ready();
+        }
+    }
+
+    customElements.define(PlatformSwitch.is, PlatformSwitch);
+    </script>
+</dom-module>

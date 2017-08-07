@@ -51,14 +51,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         #top {
             background-color: white;
         }
+        
+        .link-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            top: 6px;
+        }
+        
+        app-link {
+            display: block;
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
         </style>
         <div id="top">
-            <chain-anchor-link></chain-anchor-link>
+            <app-link href="/info-why-develop-page"><img class="link-icon" src="imgs/question mark.png" /> Why develop a social compliance system?</app-link>
+            <border-separator></border-separator>
+            <app-link href="/info-basics-page"><img class="link-icon" src="imgs/building blocks.png" /> Basics of a social compliance system</app-link>
+            <border-separator></border-separator>
+            <app-link href="/steps-landing"><img class="link-icon" src="imgs/gear.png" /> Steps to a social compliance system</app-link>
+            <slot name="append"></slot>
         </div>
         <div class="bottom">
-            <img id="background" src="imgs/bg.png" />
-            <!--img id="icon" src="../imgs/dol.png" /-->
-            <h2 id="icon">LOGO</h2>
+            <img id="background" src="imgs/test_bg.jpg" />
             <paper-icon-button id="info-btn" icon="icons:info"></paper-icon-button>
         </div>
     </template>
@@ -73,10 +89,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         ready() {
             super.ready();
-            this.root.querySelector('chain-anchor-link').addEventListener('link-followed', event => {
+            this.root.addEventListener('link-followed', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
-                        target: "/step/" + event.detail.step,
+                        target: event.detail.target,
                     },
                     bubbles: true
                 }));
@@ -85,13 +101,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.$['info-btn'].addEventListener('click', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
-                        target: "/info"
+                        target: "/index-about-page"
                     },
                     bubbles: true
                 }));
             });
-            var x = this.root.querySelector('#background');
-            console.log(x.src);
         }
     }
 

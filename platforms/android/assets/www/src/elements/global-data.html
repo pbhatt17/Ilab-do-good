@@ -11,11 +11,17 @@
     <script>
     var __globalRef = {
         locale: "en",
+        device: null,
         update: function() {
             this.__listeners.forEach(item => item.update());
         },
         __listeners: [],
     };
+    document.addEventListener('deviceready', () => {
+        __globalRef.device = cordova.platformId;
+        console.log(cordova.platformId);
+        __globalRef.update();
+    }, false);
     class GlobalData extends Polymer.Element {
         static get is() {
             return 'global-data';
@@ -29,6 +35,12 @@
                     reflectToAttribute: true,
                     notify: true,
                     observer: 'setLocale',
+                },
+                device: {
+                    type: String,
+                    reflectToAttribute: true,
+                    notify: true,
+                    observer: 'setDevice',
                 },
                 globalRef: {
                     type: Object,
@@ -45,6 +57,7 @@
 
         update() {
             this.locale = this.globalRef.locale;
+            this.device = this.globalRef.device;
         }
 
         setLocale(newLocale, oldLocale) {
@@ -52,8 +65,17 @@
             this.globalRef.locale = newLocale;
             this.globalRef.update();
         }
+
+        setDevice(newDevice, oldDevice) {
+            this.device = newDevice;
+            this.globalRef.device = newDevice;
+            this.globalRef.update();
+        }
         _getLocale(ref) {
             return ref.locale;
+        }
+        _getDevice(ref) {
+            return ref.device;
         }
         constructor() {
             super();
@@ -61,9 +83,9 @@
         }
 
 
-        ready() {
-
+        ready() { 
             super.ready();
+            this.update();
         }
     }
 
