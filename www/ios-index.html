@@ -31339,6 +31339,636 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     window.customElements.define(IndexInfo.is, IndexInfo);
     </script>
 </dom-module>
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<dom-module id="my-home" assetpath="src/">
+    <template>
+        <style include="shared-styles">
+        :host {
+            display: block;
+        }
+        
+        chain-anchor-link {
+            padding: 10px;
+        }
+        
+        #background {
+            width: 100%;
+            position: relative;
+            bottom: -7px;
+        }
+        
+        .bottom {
+            z-index: -1;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            overflow-y: hidden;
+        }
+        
+        #info-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            color: white;
+        }
+        
+        #icon {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            color: white;
+        }
+        
+        #top {
+            background-color: white;
+            padding-bottom: 4px;
+        }
+        
+        .link-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            top: 6px;
+        }
+        
+        app-link {
+            display: block;
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+        </style>
+        <div id="top">
+            <app-link href="/info-why-develop-page"><img class="link-icon" src="imgs/question mark.png"> Why develop a social compliance system?</app-link>
+            <border-separator></border-separator>
+            <app-link href="/info-basics-page"><img class="link-icon" src="imgs/building blocks.png"> Basics of a social compliance system</app-link>
+            <border-separator></border-separator>
+            <app-link href="/steps-landing"><img class="link-icon" src="imgs/gear.png"> Steps to a social compliance system</app-link>
+        </div>
+        <slot name="append"></slot>
+        <div class="bottom">
+            <img id="background" src="imgs/test_bg.jpg">
+            <paper-icon-button id="info-btn" icon="icons:info"></paper-icon-button>
+        </div>
+    </template>
+    <script>
+    class MyHome extends Polymer.Element {
+        static get is() {
+            return 'my-home';
+        }
+        static get properties() {
+            return {};
+        }
+
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+
+            this.$['info-btn'].addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/index-about-page"
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(MyHome.is, MyHome);
+    </script>
+</dom-module>
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<dom-module id="info-page" assetpath="src/">
+    <template>
+        <style include="shared-styles">
+        :host {
+            display: block;
+        }
+        
+        app-link {
+            display: block;
+            color: #1a0dab;
+            text-decoration: underline;
+        }
+        </style>
+        <dom-repeat items="[[infoData]]">
+            <template>
+                <info-sub-page target-data="[[item]]" html-content="{{item.content}}"></info-sub-page> 
+            </template>
+        </dom-repeat>
+    </template>
+    <script>
+    class InfoPage extends Polymer.Element {
+        static get is() {
+            return 'info-page';
+        }
+        static get properties() {
+            return {
+                infoData: {
+                    type: Array,
+                }
+            };
+        }
+
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(InfoPage.is, InfoPage);
+    </script>
+</dom-module>
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<dom-module id="search-results" assetpath="src/">
+    <template>
+        <style include="shared-styles">
+        :host {
+            display: block;
+        }
+        
+        .inline {
+            display: inline;
+        }
+        
+        app-link .link {
+            color: #1a0dab;
+            text-decoration: underline;
+        }
+        
+        .preview {
+            margin-left: 10px;
+        }
+        
+        .result:nth-child(even) {
+            background-color: #DDD;
+        }
+        </style>
+        <dom-repeat items="[[results]]" as="result">
+            <template>
+                <div class="result">
+                    <iron-pages selected="[[result.type]]" attr-for-selected="type" role="main">
+                        <div type="step">
+                            <app-link href$="/step/[[result.index]]">
+                                <div class="link">[[result.title]]</div>
+                            </app-link>
+                        </div>
+                        <div type="topic">
+                            <app-link href$="/topic/[[result.stepIndex]]/[[result.index]]">
+                                <div class="link">[[result.title]]</div>
+                            </app-link>
+                        </div>
+                        <div type="info">
+                            <app-link href$="/[[result.id]]">
+                                <div class="link">[[result.title]]</div>
+                            </app-link>
+                        </div>
+                    </iron-pages>
+                    <div class="preview">
+                        <render-raw html-data="[[result.preview]]"></render-raw>
+                    </div>
+                </div>
+            </template>
+        </dom-repeat>
+    </template>
+    <script>
+    class SearchResults extends Polymer.Element {
+        static get is() {
+            return 'search-results';
+        }
+        static get properties() {
+            return {
+                stepData: {
+                    type: Object,
+                },
+                infoData: {
+                    type: Object,
+                },
+                searchTerm: {
+                    type: String,
+                    value: '',
+                },
+                results: {
+                    type: Array,
+                    computed: '_search(stepData, infoData, searchTerm)',
+                }
+            };
+        }
+
+        _search(stepData, infoData, searchTerm) {
+            function searchObject(obj, term) {
+                if (obj === null || obj === undefined) {
+                    return false;
+                }
+
+                if (obj instanceof Array) {
+                    return obj.reduce((accum, item) => accum || searchObject(item, term), false)
+                }
+                if (typeof obj === "string") {
+                    return term.test(obj);
+                }
+                if (obj instanceof Object) {
+                    for (var prop in obj) {
+                        if (searchObject(obj[prop], term)) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            var stepsToSearch = stepData.map(item => ({
+                index: item.index,
+                title: item.stepTitle,
+                learningObjectives: item.learningObjectives,
+                keyTerms: item.keyTerms,
+                topics: item.topics.map(topic => topic.title),
+                furtherResources: item.furtherResources,
+                preview: item.preview,
+                keywords: item.keywords,
+                type: "step"
+            }));
+
+            var topicsToSearch = stepData.map(item => item.topics.map(topic => ({
+                index: topic.index,
+                title: topic.title,
+                stepIndex: item.index,
+                rawData: topic.rawData,
+                preview: topic.preview,
+                keywords: topic.keywords,
+                type: "topic",
+            }))).reduce((accum, item) => accum.concat(item), []);
+
+            var infoToSearch = infoData.map(item => ({
+                id: item.id,
+                title: item.title,
+                content: item.content,
+                preview: item.preview,
+                keywords: item.keywords,
+                type: "info"
+            }));
+
+
+            searchTerm = new RegExp(searchTerm, 'i');
+            var all = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(item => searchObject(item, searchTerm));
+            console.log(this.infoData);
+            return all;
+        }
+
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+
+        }
+    }
+
+    window.customElements.define(SearchResults.is, SearchResults);
+    </script>
+</dom-module>
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<dom-module id="my-step-splash" assetpath="src/">
+    <template>
+        <style include="shared-styles">
+        :host {
+            display: block;
+            padding: 10px;
+        }
+        app-link .link {
+            color: #1a0dab;
+            text-decoration: underline;
+        }
+
+        li {
+            word-wrap: break-word;
+        }
+
+        #next {
+            margin-left: 16px;
+            margin-bottom: 10px;
+        }
+        </style>
+        <app-route route="{{route}}" pattern="/:stepId" data="{{routeData}}"></app-route>
+        <div class="main">
+            <div class="title-bar">
+                <h1>[[data.stepTitle]]</h1>
+            </div>
+            <expandable-item>
+                <h3 slot="label">Learning Objectives</h3>
+                <ul slot="items">
+                    <dom-repeat items="[[data.learningObjectives]]">
+                        <template>
+                            <li>
+                                [[item]]
+                            </li>
+                        </template>
+                    </dom-repeat>
+                </ul>
+            </expandable-item>
+            <border-separator></border-separator>
+            <expandable-item>
+                <h3 slot="label">Key Terms</h3>
+                <ul slot="items">
+                    <dom-repeat items="[[data.keyTerms]]">
+                        <template>
+                            <li>
+                                <strong>[[item.termName]]</strong> -- [[item.termDefinition]]
+                            </li>
+                        </template>
+                    </dom-repeat>
+                </ul>
+            </expandable-item>
+            <border-separator></border-separator>
+            <expandable-item>
+                <h3 slot="label">Topics</h3>
+                <div slot="items">
+                    <ul>
+                        <dom-repeat items="[[data.topics]]">
+                            <template>
+                                <li>
+                                    <app-link href="/topic/[[data.index]]/[[item.index]]"><div class="link">[[item.title]]</div></app-link>
+                                </li>
+                            </template>
+                        </dom-repeat>
+                    </ul>
+                    <paper-button id="next" hidden$="[[!hasNext]]" raised="">Continue to Step [[nextStepId]]</paper-button>
+                </div>
+            </expandable-item>
+            <border-separator></border-separator>
+            <expandable-item>
+                <h3 slot="label">Further Resources</h3>
+                <div slot="items">
+                    <render-raw html-data="[[data.furtherResources]]"></render-raw>
+                </div>
+            </expandable-item>
+        </div>
+    </template>
+    <script>
+    class MyStepSplash extends Polymer.Element {
+        static get is() {
+            return 'my-step-splash';
+        }
+        static get properties() {
+            return {
+                stepData: {
+                    type: Object,
+                },
+                data: {
+                    type: Object,
+                    computed: '_withIndex(routeData.stepId, stepData)'
+                },
+                hasNext: {
+                    type: Boolean,
+                    computed: '_hasNext(stepData, routeData.stepId)'
+                },
+                nextStepId: {
+                    type: Number,
+                    computed: '_nextId(routeData.stepId)'
+                }
+
+            };
+        }
+        _nextId(id) {
+            return Number.parseInt(id) + 1;
+        }
+
+        _hasNext(data, stepId) {
+            return Number.parseInt(stepId)  < data.length;
+        }
+
+        _withIndex(id, stepData) { 
+            if(!id || !stepData) {
+                return null;
+            }
+            return stepData[Number.parseInt(id) - 1];
+        }
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.next.addEventListener('click', event => { 
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(MyStepSplash.is, MyStepSplash);
+    </script>
+</dom-module>
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<dom-module id="steps-landing" assetpath="src/">
+    <template>
+        <style include="shared-styles">
+        :host {
+            display: block;
+        }
+        
+        chain-anchor-link {
+            padding: 10px;
+        }}
+        </style>
+        <chain-anchor-link></chain-anchor-link>         
+    </template>
+    <script>
+    class StepsLanding extends Polymer.Element {
+        static get is() {
+            return 'steps-landing';
+        }
+        static get properties() {
+            return {};
+        }
+
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/step/" + event.detail.step,
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(StepsLanding.is, StepsLanding);
+    </script>
+</dom-module>
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<dom-module id="my-topic" assetpath="src/">
+    <template>
+        <style include="shared-styles">
+        :host {
+            display: block;
+            padding: 10px;
+        }
+        
+        </style>
+        <app-route route="{{route}}" pattern="/:stepId/:topicId" data="{{routeData}}"></app-route>
+        <div class="main">
+            <render-raw html-data="[[data.rawData]]"></render-raw>
+            <paper-button id="next" hidden$="[[!hasNext]]" raised="">Next Topic</paper-button>
+            <paper-button id="nextStep" hidden$="[[!showNextStep]]" raised="">Next Step</paper-button>
+        </div>
+    </template>
+    <script>
+    class MyTopic extends Polymer.Element {
+        static get is() {
+            return 'my-topic';
+        }
+        static get properties() {
+            return {
+                data: {
+                    type: Object,
+                    computed: '_withIndex(routeData.stepId, routeData.topicId, stepData)',
+                },
+
+                hasNext: {
+                    type: Boolean,
+                    computed: '_hasNext(routeData.stepId, routeData.topicId, stepData)',
+                },
+                showNextStep: {
+                    type: Boolean,
+                    computed: '_showNextStep(routeData.stepId, hasNext, stepData)',
+                },
+                stepData: {
+                    type: Object,
+                }
+            };
+        }
+
+        _withIndex(stepId, topicId, stepData) {
+        	if(!stepId || !topicId || !stepData) {
+        		return null;
+        	}
+            return stepData[Number.parseInt(stepId) - 1].topics[Number.parseInt(topicId) - 1];
+        }
+
+        _hasNext(stepId, topicId, stepData) {
+            if(!stepId || !topicId || !stepData) {
+                return null;
+            }
+            return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
+        }
+
+        _showNextStep(stepId, hasNextTopic, stepData) {
+            if(!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasNextTopic) {
+                return false;
+            }
+
+            console.log(stepId, stepData.length)
+
+
+            return Number.parseInt(stepId) < stepData.length;
+        }
+        ready() {
+            super.ready();
+            this.$.next.addEventListener('click', event => { 
+                
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.nextStep.addEventListener('click', event => { 
+                
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(MyTopic.is, MyTopic);
+    </script>
+</dom-module>
 <dom-module id="my-app" assetpath="src/">
     <template>
         <style include="iron-flex"></style>
