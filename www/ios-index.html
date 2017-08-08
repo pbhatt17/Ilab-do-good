@@ -31594,6 +31594,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         _search(stepData, infoData, searchTerm) {
+            if(stepData === null || infoData === null || searchTerm === null) {
+                return [];
+            }
             function searchObject(obj, term) {
                 if (obj === null || obj === undefined) {
                     return false;
@@ -31784,6 +31787,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         _hasNext(data, stepId) {
+            if(data === null || stepId === null) {
+                return false
+            }
             return Number.parseInt(stepId)  < data.length;
         }
 
