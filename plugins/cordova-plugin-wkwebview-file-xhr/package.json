@@ -1,0 +1,98 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-wkwebview-file-xhr",
+        "scope": null,
+        "escapedName": "cordova-plugin-wkwebview-file-xhr",
+        "name": "cordova-plugin-wkwebview-file-xhr",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\25088\\Documents\\dol-repo\\trunk\\node_modules"
+    ]
+  ],
+  "_from": "cordova-plugin-wkwebview-file-xhr@latest",
+  "_id": "cordova-plugin-wkwebview-file-xhr@1.0.0",
+  "_inCache": true,
+  "_location": "/cordova-plugin-wkwebview-file-xhr",
+  "_nodeVersion": "5.11.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/cordova-plugin-wkwebview-file-xhr-1.0.0.tgz_1494425891076_0.3273919632192701"
+  },
+  "_npmUser": {
+    "name": "oraclejet",
+    "email": "oraclejet_us@oracle.com"
+  },
+  "_npmVersion": "3.8.6",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-wkwebview-file-xhr",
+    "scope": null,
+    "escapedName": "cordova-plugin-wkwebview-file-xhr",
+    "name": "cordova-plugin-wkwebview-file-xhr",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-wkwebview-file-xhr/-/cordova-plugin-wkwebview-file-xhr-1.0.0.tgz",
+  "_shasum": "0826a6db2c757a00d5ce49aba2b19280fab6b773",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-wkwebview-file-xhr",
+  "_where": "C:\\Users\\25088\\Documents\\dol-repo\\trunk\\node_modules",
+  "author": {
+    "name": "oraclejet"
+  },
+  "bugs": {
+    "url": "https://github.com/oracle/cordova-plugin-wkwebview-file-xhr/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-wkwebview-file-xhr",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "dependencies": {},
+  "description": "Cordova WKWebView File XHR Plugin",
+  "devDependencies": {
+    "jshint": "^2.6.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "0826a6db2c757a00d5ce49aba2b19280fab6b773",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-wkwebview-file-xhr/-/cordova-plugin-wkwebview-file-xhr-1.0.0.tgz"
+  },
+  "gitHead": "248dce3b0305bdc1fb36312097dcc7d3cde6aed9",
+  "homepage": "https://github.com/oracle/cordova-plugin-wkwebview-file-xhr#readme",
+  "keywords": [
+    "cordova",
+    "wkwebview",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "license": "UPL-1.0",
+  "maintainers": [
+    {
+      "name": "oraclejet",
+      "email": "oraclejet_us@oracle.com"
+    }
+  ],
+  "name": "cordova-plugin-wkwebview-file-xhr",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oracle/cordova-plugin-wkwebview-file-xhr.git"
+  },
+  "scripts": {
+    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests",
+    "test": "npm run jshint"
+  },
+  "version": "1.0.0"
+}

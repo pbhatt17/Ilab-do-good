@@ -9,13 +9,16 @@
         ],
         "plugins": {
             "cordova-plugin-whitelist": {},
-            "cordova-plugin-inappbrowser": {}
+            "cordova-plugin-inappbrowser": {},
+            "cordova-plugin-wkwebview-file-xhr": {}
         }
     },
     "dependencies": {
         "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-inappbrowser": "^1.7.1",
-        "cordova-plugin-whitelist": "1"
+        "cordova-plugin-whitelist": "1",
+        "cordova-plugin-wkwebview-engine": "^1.1.3",
+        "cordova-plugin-wkwebview-file-xhr": "^1.0.0"
     }
 }
