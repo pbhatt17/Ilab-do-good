@@ -1,0 +1,162 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<dom-module id="search-results">
+    <template>
+        <style include="shared-styles">
+        :host {
+            display: block;
+        }
+        
+        .inline {
+            display: inline;
+        }
+        
+        app-link .link {
+            color: #1a0dab;
+            text-decoration: underline;
+        }
+        
+        .preview {
+            margin-left: 10px;
+        }
+        
+        .result:nth-child(even) {
+            background-color: #DDD;
+        }
+        </style>
+        <dom-repeat items="[[results]]" as="result">
+            <template>
+                <div class="result">
+                    <iron-pages selected="[[result.type]]" attr-for-selected="type" role="main">
+                        <div type="step">
+                            <app-link href$="/step/[[result.index]]">
+                                <div class="link">[[result.title]]</div>
+                            </app-link>
+                        </div>
+                        <div type="topic">
+                            <app-link href$="/topic/[[result.stepIndex]]/[[result.index]]">
+                                <div class="link">[[result.title]]</div>
+                            </app-link>
+                        </div>
+                        <div type="info">
+                            <app-link href$="/[[result.id]]">
+                                <div class="link">[[result.title]]</div>
+                            </app-link>
+                        </div>
+                    </iron-pages>
+                    <div class="preview">
+                        <render-raw html-data="[[result.preview]]"></render-raw>
+                    </div>
+                </div>
+            </template>
+        </dom-repeat>
+    </template>
+    <script>
+    class SearchResults extends Polymer.Element {
+        static get is() {
+            return 'search-results';
+        }
+        static get properties() {
+            return {
+                stepData: {
+                    type: Object,
+                },
+                infoData: {
+                    type: Object,
+                },
+                searchTerm: {
+                    type: String,
+                    value: '',
+                },
+                results: {
+                    type: Array,
+                    computed: '_search(stepData, infoData, searchTerm)',
+                }
+            };
+        }
+
+        _search(stepData, infoData, searchTerm) {
+            function searchObject(obj, term) {
+                if (obj === null || obj === undefined) {
+                    return false;
+                }
+
+                if (obj instanceof Array) {
+                    return obj.reduce((accum, item) => accum || searchObject(item, term), false)
+                }
+                if (typeof obj === "string") {
+                    return term.test(obj);
+                }
+                if (obj instanceof Object) {
+                    for (var prop in obj) {
+                        if (searchObject(obj[prop], term)) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            var stepsToSearch = stepData.map(item => ({
+                index: item.index,
+                title: item.stepTitle,
+                learningObjectives: item.learningObjectives,
+                keyTerms: item.keyTerms,
+                topics: item.topics.map(topic => topic.title),
+                furtherResources: item.furtherResources,
+                preview: item.preview,
+                keywords: item.keywords,
+                type: "step"
+            }));
+
+            var topicsToSearch = stepData.map(item => item.topics.map(topic => ({
+                index: topic.index,
+                title: topic.title,
+                stepIndex: item.index,
+                rawData: topic.rawData,
+                preview: topic.preview,
+                keywords: topic.keywords,
+                type: "topic",
+            }))).reduce((accum, item) => accum.concat(item), []);
+
+            var infoToSearch = infoData.map(item => ({
+                id: item.id,
+                title: item.title,
+                content: item.content,
+                preview: item.preview,
+                keywords: item.keywords,
+                type: "info"
+            }));
+
+
+            searchTerm = new RegExp(searchTerm, 'i');
+            var all = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(item => searchObject(item, searchTerm));
+            console.log(this.infoData);
+            return all;
+        }
+
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+
+        }
+    }
+
+    window.customElements.define(SearchResults.is, SearchResults);
+    </script>
+</dom-module>
