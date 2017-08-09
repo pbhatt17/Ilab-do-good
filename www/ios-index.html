@@ -30560,20 +30560,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <style include="iron-flex iron-flex-alignment"></style>
         </custom-style>
         <style>
-        :host {
+         :host {
             display: block;
         }
-        
+
         img {
             max-height: 910px;
             max-width: 910px;
             width: 100%;
+            /*height: auto;*/
         }
-        
+
         .inside {
             position: relative;
         }
-
         </style>
         <div class="outside layout vertical center-justified">
             <div class="inside layout horizontal center-justified">
@@ -30618,15 +30618,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         connectedCallback() {
             super.connectedCallback();
-            var img = this.root.querySelector('img');
-            img.style.height = img.offsetWidth + "px";
-            var map = this.root.querySelector('map'); 
-            imageMapResize(map, img);
+            setTimeout(() => {
+                var img = this.root.querySelector('img');
+                img.style.height = img.width + "px";
+                var map = this.root.querySelector('map');
+                imageMapResize(map, img);
+            }, 1);
             window.addEventListener('resize', (event) => {
                 //img.style.height = img.offsetWidth + "px";
                 //imageMapResize(map, img);
             });
 
+        }
+
+        recalcMap() {
+            setTimeout(() => {
+                var img = this.root.querySelector('img');
+                img.style.height = img.width + "px";
+                var map = this.root.querySelector('map');
+                imageMapResize(map, img);
+            }, 1);
         }
 
 
@@ -30657,8 +30668,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     customElements.define(ChainAnchorLink.is, ChainAnchorLink);
     </script>
-</dom-module>
-<dom-module id="expandable-item" assetpath="src/elements/">
+</dom-module><dom-module id="expandable-item" assetpath="src/elements/">
     <template>
         <custom-style>
             <style include="iron-flex iron-flex-alignment"></style>
@@ -31823,158 +31833,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     window.customElements.define(MyStepSplash.is, MyStepSplash);
     </script>
 </dom-module>
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<dom-module id="steps-landing" assetpath="src/">
-    <template>
-        <style include="shared-styles">
-        :host {
-            display: block;
-        }
-        
-        chain-anchor-link {
-            padding: 10px;
-        }}
-        </style>
-        <chain-anchor-link></chain-anchor-link>         
-    </template>
-    <script>
-    class StepsLanding extends Polymer.Element {
-        static get is() {
-            return 'steps-landing';
-        }
-        static get properties() {
-            return {};
-        }
-
-        ready() {
-            super.ready();
-            this.root.addEventListener('link-followed', event => {
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: "/step/" + event.detail.step,
-                    },
-                    bubbles: true
-                }));
-            });
-        }
-    }
-
-    window.customElements.define(StepsLanding.is, StepsLanding);
-    </script>
-</dom-module>
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<dom-module id="my-topic" assetpath="src/">
-    <template>
-        <style include="shared-styles">
-        :host {
-            display: block;
-            padding: 10px;
-        }
-        
-        </style>
-        <app-route route="{{route}}" pattern="/:stepId/:topicId" data="{{routeData}}"></app-route>
-        <div class="main">
-            <render-raw html-data="[[data.rawData]]"></render-raw>
-            <paper-button id="next" hidden$="[[!hasNext]]" raised="">Next Topic</paper-button>
-            <paper-button id="nextStep" hidden$="[[!showNextStep]]" raised="">Next Step</paper-button>
-        </div>
-    </template>
-    <script>
-    class MyTopic extends Polymer.Element {
-        static get is() {
-            return 'my-topic';
-        }
-        static get properties() {
-            return {
-                data: {
-                    type: Object,
-                    computed: '_withIndex(routeData.stepId, routeData.topicId, stepData)',
-                },
-
-                hasNext: {
-                    type: Boolean,
-                    computed: '_hasNext(routeData.stepId, routeData.topicId, stepData)',
-                },
-                showNextStep: {
-                    type: Boolean,
-                    computed: '_showNextStep(routeData.stepId, hasNext, stepData)',
-                },
-                stepData: {
-                    type: Object,
-                }
-            };
-        }
-
-        _withIndex(stepId, topicId, stepData) {
-        	if(!stepId || !topicId || !stepData) {
-        		return null;
-        	}
-            return stepData[Number.parseInt(stepId) - 1].topics[Number.parseInt(topicId) - 1];
-        }
-
-        _hasNext(stepId, topicId, stepData) {
-            if(!stepId || !topicId || !stepData) {
-                return null;
-            }
-            return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
-        }
-
-        _showNextStep(stepId, hasNextTopic, stepData) {
-            if(!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
-                return false;
-            }
-
-            if (hasNextTopic) {
-                return false;
-            }
-
-            console.log(stepId, stepData.length)
-
-
-            return Number.parseInt(stepId) < stepData.length;
-        }
-        ready() {
-            super.ready();
-            this.$.next.addEventListener('click', event => { 
-                
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) + 1).toString(),
-                    },
-                    bubbles: true
-                }));
-            });
-            this.$.nextStep.addEventListener('click', event => { 
-                
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
-                    },
-                    bubbles: true
-                }));
-            });
-        }
-    }
-
-    window.customElements.define(MyTopic.is, MyTopic);
-    </script>
-</dom-module>
 <dom-module id="my-app" assetpath="src/">
     <template>
         <style include="iron-flex"></style>
@@ -32172,7 +32030,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <my-topic name="topic" route="[[subroute]]" step-data="[[stepData]]"></my-topic>
                     <info-page name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
                     <search-results name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
-                    <steps-landing name="steps-landing" route="[[subroute]]"></steps-landing>
+                    <steps-landing id="landing" name="steps-landing" route="[[subroute]]"></steps-landing>
                     <dom-repeat items="{{infoData}}">
                         <template>
                             <info-sub-page name="[[item.id]]" target-data="[[infoFor(infoData, item.id)]]" html-content="{{item.content}}"></info-sub-page>
@@ -32281,11 +32139,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 //resolvedPageUrl = this.resolveUrl('info-sub-page.html');
             } else {
                 resolvedPageUrl = this.resolveUrl(page + '.html');
-                Polymer.importHref(
-                    resolvedPageUrl,
-                    null,
-                    null,
-                    true);
+                app.deviceReadyPromise.then(() => {
+                    Polymer.importHref(
+                        resolvedPageUrl,
+                        null,
+                        null,
+                        true);
+                    if(page === "steps-landing") {
+                        this.$.landing.recalcMap();
+                    }
+                });
             }
 
         }
@@ -32345,7 +32208,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             this.page = "home";
 
-            ajax('GET', "data.json")
+            app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
                     console.log("got step data");
                     this.baseStepData = JSON.parse(response);

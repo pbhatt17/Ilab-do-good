@@ -47,8 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="./info.html">
 <link rel="import" href="./search-results.html">
 <link rel="import" href="./step.html">
-<link rel="import" href="./steps-landing.html">
-<link rel="import" href="./topic.html">
+<link rel="import" href="./step.html">
 <dom-module id="my-app">
     <template>
         <style include="iron-flex"></style>
@@ -246,7 +245,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <my-topic name="topic" route="[[subroute]]" step-data="[[stepData]]"></my-topic>
                     <info-page name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
                     <search-results name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
-                    <steps-landing name="steps-landing" route="[[subroute]]"></steps-landing>
+                    <steps-landing id="landing" name="steps-landing" route="[[subroute]]"></steps-landing>
                     <dom-repeat items="{{infoData}}">
                         <template>
                             <info-sub-page name="[[item.id]]" target-data="[[infoFor(infoData, item.id)]]" html-content="{{item.content}}"></info-sub-page>
@@ -355,11 +354,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 //resolvedPageUrl = this.resolveUrl('info-sub-page.html');
             } else {
                 resolvedPageUrl = this.resolveUrl(page + '.html');
-                Polymer.importHref(
-                    resolvedPageUrl,
-                    null,
-                    null,
-                    true);
+                app.deviceReadyPromise.then(() => {
+                    Polymer.importHref(
+                        resolvedPageUrl,
+                        null,
+                        null,
+                        true);
+                    if(page === "steps-landing") {
+                        this.$.landing.recalcMap();
+                    }
+                });
             }
 
         }
@@ -419,7 +423,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             this.page = "home";
 
-            ajax('GET', "data.json")
+            app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
                     console.log("got step data");
                     this.baseStepData = JSON.parse(response);

@@ -7,20 +7,20 @@
             <style include="iron-flex iron-flex-alignment"></style>
         </custom-style>
         <style>
-        :host {
+         :host {
             display: block;
         }
-        
+
         img {
             max-height: 910px;
             max-width: 910px;
             width: 100%;
+            /*height: auto;*/
         }
-        
+
         .inside {
             position: relative;
         }
-
         </style>
         <div class="outside layout vertical center-justified">
             <div class="inside layout horizontal center-justified">
@@ -65,15 +65,26 @@
 
         connectedCallback() {
             super.connectedCallback();
-            var img = this.root.querySelector('img');
-            img.style.height = img.offsetWidth + "px";
-            var map = this.root.querySelector('map'); 
-            imageMapResize(map, img);
+            setTimeout(() => {
+                var img = this.root.querySelector('img');
+                img.style.height = img.width + "px";
+                var map = this.root.querySelector('map');
+                imageMapResize(map, img);
+            }, 1);
             window.addEventListener('resize', (event) => {
                 //img.style.height = img.offsetWidth + "px";
                 //imageMapResize(map, img);
             });
 
+        }
+
+        recalcMap() {
+            setTimeout(() => {
+                var img = this.root.querySelector('img');
+                img.style.height = img.width + "px";
+                var map = this.root.querySelector('map');
+                imageMapResize(map, img);
+            }, 1);
         }
 
 
