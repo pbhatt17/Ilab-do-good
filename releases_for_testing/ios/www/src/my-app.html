@@ -1,0 +1,466 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="my-icons.html">
+<link rel="import" href="./elements/bread-crumbs.html">
+<link rel="import" href="./elements/chain-anchor-link.html">
+<link rel="import" href="./elements/expandable-item.html">
+<link rel="import" href="./elements/render-raw.html">
+<link rel="import" href="./elements/localized.html">
+<link rel="import" href="./elements/global-data.html">
+<link rel="import" href="./elements/app-link.html">
+<link rel="import" href="./elements/platform-switch.html">
+<link rel="import" href="./elements/border-separator.html">
+<link rel="import" href="./info-sub-page.html">
+<link rel="import" href="./index-info.html">
+<link rel="import" href="./home.html">
+<link rel="import" href="./info.html">
+<link rel="import" href="./search-results.html">
+<link rel="import" href="./topic.html">
+<link rel="import" href="./step.html">
+<link rel="import" href="./steps-landing.html">
+<dom-module id="my-app">
+    <template>
+        <style include="iron-flex"></style>
+        <style include="paper-material-styles"></style>
+        <style>
+         :host {
+            --app-primary-color: rgb(0, 51, 84);
+            --app-secondary-color: black;
+            display: block;
+        }
+
+        app-header {
+            color: #fff;
+            background-color: var(--app-primary-color);
+        }
+
+        app-header paper-icon-button {
+            --paper-icon-button-ink-color: white;
+        }
+
+        .drawer-list {
+            margin: 0 20px;
+        }
+
+        .drawer-list app-link,
+        .drawer-list a {
+            display: block;
+            padding: 0 16px;
+            text-decoration: none;
+            color: var(--app-secondary-color);
+            line-height: 40px;
+        }
+
+        .drawer-list app-link.iron-selected,
+        .drawer-list>li.iron-selected>app-link,
+        .drawer-list>expandable-item.iron-selected>div>app-link {
+            color: black;
+            font-weight: bold;
+        }
+
+        #top {
+            width: 100%;
+            background-color: white;
+        }
+
+        #search-bar {
+            margin: 0px 2px 0px 2px;
+            padding-left: 10px;
+            padding-right: 10px;
+            @apply --paper-material-elevation-1;
+        }
+
+        .logo-img {
+            height: 50px;
+        }
+
+        .logo-img-small {
+            height: 40px;
+        }
+
+        #home-page {
+            background-color:
+        }
+
+        #icon {
+            color: white;
+        }
+
+
+        app-toolbar {
+            padding-left: 0px;
+
+            height: 48px;
+        }
+
+        .title-bar-text p {
+            margin: 0;
+        }
+
+        .secondary-title {
+            font-size: 16px;
+        }
+        </style>
+        <global-data locale="{{lang}}"></global-data>
+        <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
+        <app-route route="[[route]]" pattern="/:page/:stepId" data="{{routeData}}"></app-route>
+        <app-route route="[[route]]" pattern="/:page/:stepId/:topicId" data="{{routeData}}"></app-route>
+        <app-drawer-layout class="temp-width" fullbleed force-narrow>
+            <!-- Drawer content -->
+            <app-drawer id="drawer" slot="drawer" persistent>
+                <app-toolbar>
+                    <localized-data value="menu"></localized-data>
+                </app-toolbar>
+                <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
+                    <!--paper-dropdown-menu hidden label="Language">
+                        <paper-listbox attr-for-selected="lang" selected="{{lang}}">
+                            <paper-item lang="en">English</paper-item>
+                            <paper-item lang="es">Espanol</paper-item>
+                        </paper-listbox>
+                    </paper-dropdown-menu-->
+                    <app-link name="home" href="/home">
+                        <localized-data value="home"></localized-data>
+                    </app-link>
+                    <app-link name="index-info" href="/info-about-page">
+                        About this App
+                    </app-link>
+                    <app-link name="what-are-cl-fl" href="/info-what-are-page">
+                        What are Child Labor and Forced Labor?
+                    </app-link>
+                    <expandable-item name="steps-landing">
+                        <div slot="label">
+                            <app-link href="/steps-landing">
+                                Steps
+                            </app-link>
+                        </div>
+                        <div slot="items">
+                            <iron-selector selected="[[routeData.stepId]]" attr-for-selected="name" class="drawer-list" role="navigation">
+                                <dom-repeat items="[[stepData]]">
+                                    <template>
+                                        <expandable-item name="[[item.index]]">
+                                            <div slot="label">
+                                                <app-link href="/step/[[item.index]]">
+                                                    <localized-data value="stepPrefix"></localized-data> [[item.index]]
+                                                </app-link>
+                                            </div>
+                                            <div slot="items">
+                                                <ul>
+                                                    <iron-selector selected="[[routeData.stepId]][[routeData.topicId]]" attr-for-selected="name" class="drawer-list" role="navigation">
+                                                        <dom-repeat items="[[item.topics]]" as="topic">
+                                                            <template>
+                                                                <li name="[[item.index]][[topic.index]]">
+                                                                    <app-link href="/topic/[[item.index]]/[[topic.index]]">[[topic.title]]</app-link>
+                                                                </li>
+                                                            </template>
+                                                        </dom-repeat>
+                                                    </iron-selector>
+                                                </ul>
+                                            </div>
+                                        </expandable-item>
+                                    </template>
+                                </dom-repeat>
+                            </iron-selector>
+                        </div>
+                    </expandable-item>
+                    <app-link name="key-resources" href="/info-key-resources">
+                        Key Resources
+                    </app-link>
+                    <a href="mailto:GlobalKids@dol.gov?subject=Comments on Do Good App" target="_top">Contact Us</a>
+                </iron-selector>
+            </app-drawer>
+            <!-- Main content -->
+            <app-header-layout id="scrollingRegion" has-scrolling-region>
+                <app-header slot="header" fixed scroll-target="scrollingRegion">
+                    <app-toolbar>
+                        <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
+                        <div main-title class="layout horizontal">
+                            <div class="flex-none layout vertical center-justified"><img class="logo-img-small" src="imgs/ilab.png" /></div>
+                            <div class="flex layout horizontal center-justified">
+                                <div class="layout vertical title-bar-text">
+                                    <div class="flex layout horizontal center-justified">
+                                        <p>Do Good</p>
+                                    </div>
+                                    <div class="flex layout horizontal center-justified">
+                                        <p class="secondary-title">Business</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-none layout vertical center-justified"><img class="logo-img" src="imgs/dol.png" /></div>
+                        </div>
+                    </app-toolbar>
+                </app-header>
+                <div id="top">
+                    <div hidden$="[[!isSearching]]">
+                        <div id="search-bar">
+                            <iron-a11y-keys id="a11y" keys="enter" on-keys-pressed="onSearch" target="[[searchInputTarget]]"></iron-a11y-keys>
+                            <paper-input id="search-input" value="{{searchText}}" placeholder="Search..."></paper-input>
+                        </div>
+                    </div>
+                    <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="default" role="secondary">
+                        <bread-crumbs name="default" route="[[route]]" step-data="[[stepData]]" is-searching="{{isSearching}}"></bread-crumbs>
+                        <div name="home"></div>
+                    </iron-pages>
+                </div>
+                <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="home" role="main">
+                    <div name="home">
+                        <my-home route="[[subroute]]">
+                            <div slot="append" class="layout horizontal">
+                                <div class="flex">
+                                </div>
+                                <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles></paper-icon-button>
+                            </div>
+                        </my-home>
+                    </div>
+                    <my-step-splash name="step" route="[[subroute]]" step-data="[[stepData]]"></my-step-splash>
+                    <my-topic name="topic" route="[[subroute]]" step-data="[[stepData]]"></my-topic>
+                    <info-page name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
+                    <search-results name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
+                    <steps-landing id="landing" name="steps-landing" route="[[subroute]]"></steps-landing>
+                    <dom-repeat items="{{infoData}}">
+                        <template>
+                            <info-sub-page name="[[item.id]]" target-data="[[infoFor(infoData, item.id)]]" html-content="{{item.content}}"></info-sub-page>
+                        </template>
+                    </dom-repeat>
+                    <index-info name="index-info"></index-info>
+                    <mockup-page name="mockup-page"></mockup-page>
+                </iron-pages>
+            </app-header-layout>
+        </app-drawer-layout>
+    </template>
+    <script>
+    class MyApp extends Polymer.Element {
+
+        static get is() {
+            return 'my-app';
+        }
+
+        static get properties() {
+            return {
+                page: {
+                    type: String,
+                    reflectToAttribute: true,
+                    observer: '_pageChanged',
+                },
+                baseStepData: {
+                    type: Object,
+                    value: null,
+                },
+                stepData: {
+                    type: Array,
+                    computed: '_stepData(baseStepData, lang)',
+                },
+                infoData: {
+                    type: Object,
+                    computed: '_infoData(baseStepData, lang)',
+                },
+                infoDataVisible: {
+                    type: Object,
+                    computed: '_infoDataVisible(baseStepData, lang)',
+                },
+                lang: {
+                    type: String,
+                    value: "en",
+                },
+                isSearching: {
+                    type: Boolean,
+                    observer: '_searchChange',
+                },
+                target: {
+                    type: Object,
+                },
+                route: {
+                    type: Object,
+                    value: {
+                        path: "/home"
+                    }
+                },
+            };
+        }
+
+        static get observers() {
+            return [
+                '_routePageChanged(routeData.page)',
+            ];
+        }
+
+        _searchChange(isSearching) {
+            if (isSearching) {
+                this.$['search-input'].focus();
+            }
+        }
+
+        onSearch() {
+            this.set('route.path', '/search-results');
+        }
+
+        _routePageChanged(page) {
+            // Polymer 2.0 will call with `undefined` on initialization.
+            // Ignore until we are properly called with a string.
+            if (page === undefined) {
+                return;
+            }
+
+            // If no page was found in the route data, page will be an empty string.
+            // Deault to 'home' in that case.
+            this.page = page || 'home';
+            if (this.page === "android_asset") {
+                this.page = "home";
+            }
+
+
+            // Close a non-persistent drawer when the page & route are changed. 
+            if (!this.$.drawer.persistent) {
+                this.$.drawer.close();
+            }
+            if (this.page !== 'search-results') {
+                this.isSearching = false;
+            }
+        }
+
+        _pageChanged(page) {
+            // Load page import on demand. Show 404 page if fails
+            var resolvedPageUrl = this.resolveUrl(page + '.html');
+            if (/info.+/.exec(page)) {
+                //resolvedPageUrl = this.resolveUrl('info-sub-page.html');
+            } else {
+                resolvedPageUrl = this.resolveUrl(page + '.html');
+                app.deviceReadyPromise.then(() => {
+                    Polymer.importHref(
+                        resolvedPageUrl,
+                        null,
+                        null,
+                        true);
+                    if(page === "steps-landing") {
+                        this.$.landing.recalcMap();
+                    }
+                });
+            }
+
+        }
+
+
+        _stepData(baseData, lang) {
+            if (baseData === null) {
+                return null;
+            }
+            return baseData[lang].steps;
+        }
+
+        _infoData(baseData, lang) {
+            if (baseData === null) {
+                return null;
+            }
+            return baseData[lang].info;
+        }
+        _infoDataVisible(baseData, lang) {
+            if (baseData === null) {
+                return null;
+            }
+            return baseData[lang].info.filter(item => !item.hidden);
+        }
+
+
+        infoFor(target, id) {
+            if (target === null || target === undefined) {
+                return null;
+            }
+            return target.filter(item => item.id === id)[0];
+        }
+
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            super.connectedCallback();
+            this.root.querySelector('my-home').addEventListener('link-followed', event => {
+                console.log(event.detail.target);
+                window.scrollTo(0, 0);
+                //this.root.querySelector('bread-crumbs').scrollIntoView()
+                this.set('route.path', event.detail.target);
+            });
+            this.root.addEventListener('link-followed', event => {
+                console.log(event.detail.target);
+                window.scrollTo(0, 0);
+                this.root.querySelector('bread-crumbs').scrollIntoView()
+                this.set('route.path', event.detail.target);
+            });
+        }
+        ready() {
+            super.ready();
+            this.lang = 'en';
+            this.searchInputTarget = this.$['search-input'];
+
+            this.page = "home";
+
+            app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
+                .then(response => {
+                    console.log("got step data");
+                    this.baseStepData = JSON.parse(response);
+                    for (var lang in this.baseStepData) {
+                        this.baseStepData[lang].steps.forEach(step => {
+                            if (!!step.furtherResources) {
+                                ajax('GET', step.furtherResources).then(result => {
+                                    console.log("found " + step.furtherResources)
+                                    step.furtherResources = result;
+                                }).catch(error => {
+                                    console.log("didn't find topic.");
+                                });
+                            }
+                            step.topics.forEach(topic => {
+                                if (!!topic.url) {
+                                    if (topic.url[0] == "/") {
+                                        topic.url = topic.url.substr(1);
+                                        console.log(topic.url);
+                                    }
+                                    ajax('GET', topic.url).then(result => {
+                                        console.log("found " + topic.url)
+                                        topic.rawData = result;
+                                    }).catch(error => {
+                                        console.log("didn't find topic.");
+                                    });
+                                }
+                            });
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.log("error loading step data: " + error);
+                });
+        }
+    }
+
+    window.customElements.define(MyApp.is, MyApp);
+    </script>
+</dom-module>

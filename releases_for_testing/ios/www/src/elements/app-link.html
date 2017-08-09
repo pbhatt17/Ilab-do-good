@@ -1,0 +1,47 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="app-link">
+    <template>
+        <custom-style>
+        </custom-style>
+        <style>
+        :host {
+            cursor: pointer
+        }
+        </style>
+
+        <a id="link"><slot></slot></a>
+    </template>
+    <script>
+    class AppLink extends Polymer.Element {
+        static get is() {
+            return 'app-link';
+        }
+        static get properties() {
+            return {
+                href: {
+                    type: String,
+                    value: "",
+                }
+            };
+        }
+
+        constructor() {
+            super();
+        }
+
+        ready() {
+            super.ready();
+            this.root.querySelector('#link').addEventListener('click', event => { 
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: this.href,
+                    },
+                    bubbles: true
+                }));
+            })
+        }
+    }
+
+    customElements.define(AppLink.is, AppLink);
+    </script>
+</dom-module>

@@ -1,0 +1,118 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<style include="iron-flex iron-flex-alignment"></style>
+<dom-module id="chain-anchor-link">
+    <template>
+        <custom-style>
+            <style include="iron-flex iron-flex-alignment"></style>
+        </custom-style>
+        <style>
+         :host {
+            display: block;
+        }
+
+        img {
+            max-height: 910px;
+            max-width: 910px;
+            width: 100%;
+            /*height: auto;*/
+        }
+
+        .inside {
+            position: relative;
+        }
+        </style>
+        <div class="outside layout vertical center-justified">
+            <div class="inside layout horizontal center-justified">
+                <!--img src="imgs/circle_nav_off.png" usemap="#map" /-->
+                <img src="imgs/gear_demo_4.png" usemap="#map" />
+                <map name="map">
+                    <area shape="circle" coords="451,183,73" alt="Step 1: Engage" data-step="1">
+                    <area shape="circle" coords="652,269,73" alt="Step 2: Assess" data-step="2">
+                    <area shape="circle" coords="732,455,73" alt="Step 3: Develop" data-step="3">
+                    <area shape="circle" coords="655,637,73" alt="Step 4: Communicate and Train" data-step="4">
+                    <area shape="circle" coords="451,727,73" alt="Step 5: Monitor" data-step="5">
+                    <area shape="circle" coords="253,636,73" alt="Step 6: Remediate" data-step="6">
+                    <area shape="circle" coords="179,452,73" alt="Step 7: Review" data-step="7">
+                    <area shape="circle" coords="254,272,73" alt="Step 8: Report" data-step="8">
+                    <!--area shape="rect" coords="181,11,278,82" alt="Step 1: Engage" data-step="1">
+                    <area shape="poly" coords="343,53,304,98,374,156,426,92,359,36" alt="Step 2: Assess" data-step="2">
+                    <area shape="rect" coords="368,175,455,270" alt="Step 3: Develop" data-step="3">
+                    <area shape="poly" coords="365,289,384,312,407,322,425,343,331,422,314,402,319,384,305,356,291,346" alt="Step 4: Communicate and Train" data-step="4">
+                    <area shape="rect" coords="177,349,269,433" alt="Step 5: Monitor" data-step="5">
+                    <area shape="poly" coords="98,289,157,339,114,405,34,341,98,289" alt="Step 6: Remediate" data-step="6">
+                    <area shape="rect" coords="8,171,91,265" alt="Step 7: Review" data-step="7">
+                    <area shape="poly" coords="110,34,160,103,94,159,38,93" alt="Step 8: Report" data-step="8"-->
+                </map>
+                <!--p id="offset-text">Test Text</p-->
+            </div>
+        </div>
+    </template>
+    <script>
+    class ChainAnchorLink extends Polymer.Element {
+        static get is() {
+            return 'chain-anchor-link';
+        }
+
+
+        static get properties() {
+            return {};
+        }
+
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            super.connectedCallback();
+            setTimeout(() => {
+                var img = this.root.querySelector('img');
+                img.style.height = img.width + "px";
+                var map = this.root.querySelector('map');
+                imageMapResize(map, img);
+            }, 1);
+            window.addEventListener('resize', (event) => {
+                //img.style.height = img.offsetWidth + "px";
+                //imageMapResize(map, img);
+            });
+
+        }
+
+        recalcMap() {
+            setTimeout(() => {
+                var img = this.root.querySelector('img');
+                img.style.height = img.width + "px";
+                var map = this.root.querySelector('map');
+                imageMapResize(map, img);
+            }, 1);
+        }
+
+
+        ready() {
+            super.ready();
+            var target = this.root.querySelector('img');
+            var areas = [].slice.call(this.root.querySelectorAll('area'));
+            areas.forEach(area => {
+                area.addEventListener('mouseover', () => {
+                    target.src = "imgs/circle_nav_" + area.dataset.step + ".png";
+                });
+
+                area.addEventListener('mouseout', () => {
+                    target.src = "imgs/gear_demo_4.png";
+                });
+                area.addEventListener('click', () => {
+                    this.dispatchEvent(new CustomEvent('link-followed', {
+                        detail: {
+                            step: area.dataset.step
+                        },
+                        bubbles: true
+                    }));
+                });
+            });
+
+        }
+    }
+
+    customElements.define(ChainAnchorLink.is, ChainAnchorLink);
+    </script>
+</dom-module>

@@ -1,0 +1,153 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<dom-module id="my-step-splash">
+    <template>
+        <style include="shared-styles">
+        :host {
+            display: block;
+            padding: 10px;
+        }
+        app-link .link {
+            color: #1a0dab;
+            text-decoration: underline;
+        }
+
+        li {
+            word-wrap: break-word;
+        }
+
+        #next {
+            margin-left: 16px;
+            margin-bottom: 10px;
+        }
+        </style>
+        <app-route route="{{route}}" pattern="/:stepId" data="{{routeData}}"></app-route>
+        <div class="main">
+            <div class="title-bar">
+                <h1>[[data.stepTitle]]</h1>
+            </div>
+            <expandable-item>
+                <h3 slot="label">Learning Objectives</h3>
+                <ul slot="items">
+                    <dom-repeat items="[[data.learningObjectives]]">
+                        <template>
+                            <li>
+                                [[item]]
+                            </li>
+                        </template>
+                    </dom-repeat>
+                </ul>
+            </expandable-item>
+            <border-separator></border-separator>
+            <expandable-item>
+                <h3 slot="label">Key Terms</h3>
+                <ul slot="items">
+                    <dom-repeat items="[[data.keyTerms]]">
+                        <template>
+                            <li>
+                                <strong>[[item.termName]]</strong> -- [[item.termDefinition]]
+                            </li>
+                        </template>
+                    </dom-repeat>
+                </ul>
+            </expandable-item>
+            <border-separator></border-separator>
+            <expandable-item>
+                <h3 slot="label">Topics</h3>
+                <div slot="items">
+                    <ul>
+                        <dom-repeat items="[[data.topics]]">
+                            <template>
+                                <li>
+                                    <app-link href="/topic/[[data.index]]/[[item.index]]"><div class="link">[[item.title]]</div></app-link>
+                                </li>
+                            </template>
+                        </dom-repeat>
+                    </ul>
+                    <paper-button id="next" hidden$="[[!hasNext]]" raised>Continue to Step [[nextStepId]]</paper-button>
+                </div>
+            </expandable-item>
+            <border-separator></border-separator>
+            <expandable-item>
+                <h3 slot="label">Further Resources</h3>
+                <div slot="items">
+                    <render-raw html-data="[[data.furtherResources]]"></render-raw>
+                </div>
+            </expandable-item>
+        </div>
+    </template>
+    <script>
+    class MyStepSplash extends Polymer.Element {
+        static get is() {
+            return 'my-step-splash';
+        }
+        static get properties() {
+            return {
+                stepData: {
+                    type: Object,
+                },
+                data: {
+                    type: Object,
+                    computed: '_withIndex(routeData.stepId, stepData)'
+                },
+                hasNext: {
+                    type: Boolean,
+                    computed: '_hasNext(stepData, routeData.stepId)'
+                },
+                nextStepId: {
+                    type: Number,
+                    computed: '_nextId(routeData.stepId)'
+                }
+
+            };
+        }
+        _nextId(id) {
+            return Number.parseInt(id) + 1;
+        }
+
+        _hasNext(data, stepId) {
+            if(data === null || stepId === null) {
+                return false
+            }
+            return Number.parseInt(stepId)  < data.length;
+        }
+
+        _withIndex(id, stepData) { 
+            if(!id || !stepData) {
+                return null;
+            }
+            return stepData[Number.parseInt(id) - 1];
+        }
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.next.addEventListener('click', event => { 
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(MyStepSplash.is, MyStepSplash);
+    </script>
+</dom-module>
