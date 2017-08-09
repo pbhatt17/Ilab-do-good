@@ -31691,6 +31691,111 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
+<dom-module id="my-topic" assetpath="src/">
+    <template>
+        <style include="shared-styles">
+        :host {
+            display: block;
+            padding: 10px;
+        }
+        
+        </style>
+        <app-route route="{{route}}" pattern="/:stepId/:topicId" data="{{routeData}}"></app-route>
+        <div class="main">
+            <render-raw html-data="[[data.rawData]]"></render-raw>
+            <paper-button id="next" hidden$="[[!hasNext]]" raised="">Next Topic</paper-button>
+            <paper-button id="nextStep" hidden$="[[!showNextStep]]" raised="">Next Step</paper-button>
+        </div>
+    </template>
+    <script>
+    class MyTopic extends Polymer.Element {
+        static get is() {
+            return 'my-topic';
+        }
+        static get properties() {
+            return {
+                data: {
+                    type: Object,
+                    computed: '_withIndex(routeData.stepId, routeData.topicId, stepData)',
+                },
+
+                hasNext: {
+                    type: Boolean,
+                    computed: '_hasNext(routeData.stepId, routeData.topicId, stepData)',
+                },
+                showNextStep: {
+                    type: Boolean,
+                    computed: '_showNextStep(routeData.stepId, hasNext, stepData)',
+                },
+                stepData: {
+                    type: Object,
+                }
+            };
+        }
+
+        _withIndex(stepId, topicId, stepData) {
+        	if(!stepId || !topicId || !stepData) {
+        		return null;
+        	}
+            return stepData[Number.parseInt(stepId) - 1].topics[Number.parseInt(topicId) - 1];
+        }
+
+        _hasNext(stepId, topicId, stepData) {
+            if(!stepId || !topicId || !stepData) {
+                return null;
+            }
+            return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
+        }
+
+        _showNextStep(stepId, hasNextTopic, stepData) {
+            if(!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasNextTopic) {
+                return false;
+            }
+
+            console.log(stepId, stepData.length)
+
+
+            return Number.parseInt(stepId) < stepData.length;
+        }
+        ready() {
+            super.ready();
+            this.$.next.addEventListener('click', event => { 
+                
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.nextStep.addEventListener('click', event => { 
+                
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(MyTopic.is, MyTopic);
+    </script>
+</dom-module>
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
 <dom-module id="my-step-splash" assetpath="src/">
     <template>
         <style include="shared-styles">
@@ -31831,6 +31936,57 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     window.customElements.define(MyStepSplash.is, MyStepSplash);
+    </script>
+</dom-module>
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<dom-module id="steps-landing" assetpath="src/">
+    <template>
+        <style include="shared-styles">
+        :host {
+            display: block;
+        }
+        
+        chain-anchor-link {
+            padding: 10px;
+        }}
+        </style>
+        <chain-anchor-link id="cal"></chain-anchor-link>         
+    </template>
+    <script>
+    class StepsLanding extends Polymer.Element {
+        static get is() {
+            return 'steps-landing';
+        }
+        static get properties() {
+            return {};
+        }
+
+        recalcMap() {
+            this.$.cal.recalcMap();
+        }
+
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/step/" + event.detail.step,
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(StepsLanding.is, StepsLanding);
     </script>
 </dom-module>
 <dom-module id="my-app" assetpath="src/">
