@@ -1,14 +1,14 @@
 [
     {
-        "merged": "C:\\Users\\25088\\Documents\\dol-repo\\trunk\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_action_remove.png",
-        "source": "C:\\Users\\25088\\Documents\\dol-repo\\trunk\\platforms\\android\\res\\drawable-xhdpi\\ic_action_remove.png"
+        "merged": "C:\\Users\\25088\\Documents\\GitHub\\Ilab-do-good\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_action_next_item.png",
+        "source": "C:\\Users\\25088\\Documents\\GitHub\\Ilab-do-good\\platforms\\android\\res\\drawable-xhdpi\\ic_action_next_item.png"
     },
     {
-        "merged": "C:\\Users\\25088\\Documents\\dol-repo\\trunk\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_action_previous_item.png",
-        "source": "C:\\Users\\25088\\Documents\\dol-repo\\trunk\\platforms\\android\\res\\drawable-xhdpi\\ic_action_previous_item.png"
+        "merged": "C:\\Users\\25088\\Documents\\GitHub\\Ilab-do-good\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_action_remove.png",
+        "source": "C:\\Users\\25088\\Documents\\GitHub\\Ilab-do-good\\platforms\\android\\res\\drawable-xhdpi\\ic_action_remove.png"
     },
     {
-        "merged": "C:\\Users\\25088\\Documents\\dol-repo\\trunk\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_action_next_item.png",
-        "source": "C:\\Users\\25088\\Documents\\dol-repo\\trunk\\platforms\\android\\res\\drawable-xhdpi\\ic_action_next_item.png"
+        "merged": "C:\\Users\\25088\\Documents\\GitHub\\Ilab-do-good\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_action_previous_item.png",
+        "source": "C:\\Users\\25088\\Documents\\GitHub\\Ilab-do-good\\platforms\\android\\res\\drawable-xhdpi\\ic_action_previous_item.png"
     }
 ]

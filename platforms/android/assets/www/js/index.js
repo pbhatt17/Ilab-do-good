@@ -20,6 +20,11 @@ var app = {
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        this.deviceReadyPromise = new Promise((resolve, reject) => {
+            document.addEventListener('deviceready', () => {
+                resolve("done");
+            }, false); 
+        });
     },
 
     // deviceready Event Handler

@@ -115,6 +115,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         _hasNext(data, stepId) {
+            if(data === null || stepId === null) {
+                return false
+            }
             return Number.parseInt(stepId)  < data.length;
         }
 

@@ -65,7 +65,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }).catch(error => {
                     console.log("error while attempting to load info-sub-page: " + error);
                 });
-
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
 
         }
 

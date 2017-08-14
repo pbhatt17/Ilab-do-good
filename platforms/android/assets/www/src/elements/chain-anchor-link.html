@@ -7,20 +7,20 @@
             <style include="iron-flex iron-flex-alignment"></style>
         </custom-style>
         <style>
-        :host {
+         :host {
             display: block;
         }
-        
+
         img {
             max-height: 910px;
             max-width: 910px;
             width: 100%;
+            /*height: auto;*/
         }
-        
+
         .inside {
             position: relative;
         }
-
         </style>
         <div class="outside layout vertical center-justified">
             <div class="inside layout horizontal center-justified">
@@ -65,15 +65,26 @@
 
         connectedCallback() {
             super.connectedCallback();
-            var img = this.root.querySelector('img');
-            img.style.height = img.offsetWidth + "px";
-            var map = this.root.querySelector('map'); 
-            imageMapResize(map, img);
+            setTimeout(() => {
+                var img = this.root.querySelector('img');
+                img.style.height = img.width + "px";
+                var map = this.root.querySelector('map');
+                imageMapResize(map, img);
+            }, 1);
             window.addEventListener('resize', (event) => {
                 //img.style.height = img.offsetWidth + "px";
                 //imageMapResize(map, img);
             });
 
+        }
+
+        recalcMap() {
+            setTimeout(() => {
+                var img = this.root.querySelector('img');
+                img.style.height = img.width + "px";
+                var map = this.root.querySelector('map');
+                imageMapResize(map, img);
+            }, 1);
         }
 
 
@@ -83,11 +94,11 @@
             var areas = [].slice.call(this.root.querySelectorAll('area'));
             areas.forEach(area => {
                 area.addEventListener('mouseover', () => {
-                    //target.src = "imgs/circle_nav_" + area.dataset.step + ".png";
+                    target.src = "imgs/circle_nav_" + area.dataset.step + ".png";
                 });
 
                 area.addEventListener('mouseout', () => {
-                    //target.src = "android_asset/www/imgs/circle_nav_off.png";
+                    target.src = "imgs/gear_demo_4.png";
                 });
                 area.addEventListener('click', () => {
                     this.dispatchEvent(new CustomEvent('link-followed', {

@@ -50,6 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         #top {
             background-color: white;
+            padding-bottom: 4px;
         }
         
         .link-icon {
@@ -71,8 +72,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <app-link href="/info-basics-page"><img class="link-icon" src="imgs/building blocks.png" /> Basics of a social compliance system</app-link>
             <border-separator></border-separator>
             <app-link href="/steps-landing"><img class="link-icon" src="imgs/gear.png" /> Steps to a social compliance system</app-link>
-            <slot name="append"></slot>
         </div>
+        <slot name="append"></slot>
         <div class="bottom">
             <img id="background" src="imgs/test_bg.jpg" />
             <paper-icon-button id="info-btn" icon="icons:info"></paper-icon-button>

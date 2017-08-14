@@ -14,7 +14,9 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "cordova-plugin-inappbrowser": "1.7.1",
-    "cordova-plugin-whitelist": "1.3.2"
+    "cordova-plugin-whitelist": "1.3.2",
+    "cordova-plugin-wkwebview-file-xhr": "1.0.0",
+    "cordova-plugin-wkwebview-engine": "1.1.3"
 };
 // BOTTOM OF METADATA
 });

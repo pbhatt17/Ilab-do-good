@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
-<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/paper-styles/paper-styles.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="my-icons.html">
 <link rel="import" href="./elements/bread-crumbs.html">
@@ -43,9 +43,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="./elements/border-separator.html">
 <link rel="import" href="./info-sub-page.html">
 <link rel="import" href="./index-info.html">
+<link rel="import" href="./home.html">
+<link rel="import" href="./info.html">
+<link rel="import" href="./search-results.html">
+<link rel="import" href="./topic.html">
+<link rel="import" href="./step.html">
+<link rel="import" href="./steps-landing.html">
 <dom-module id="my-app">
     <template>
         <style include="iron-flex"></style>
+        <style include="paper-material-styles"></style>
         <style>
          :host {
             --app-primary-color: rgb(0, 51, 84);
@@ -88,9 +95,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         #search-bar {
-            margin: 0px 2px 2px 2px;
+            margin: 0px 2px 0px 2px;
             padding-left: 10px;
             padding-right: 10px;
+            @apply --paper-material-elevation-1;
         }
 
         .logo-img {
@@ -105,14 +113,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             background-color:
         }
 
+        #icon {
+            color: white;
+        }
+
+
         app-toolbar {
             padding-left: 0px;
 
             height: 48px;
         }
+
         .title-bar-text p {
             margin: 0;
         }
+
         .secondary-title {
             font-size: 16px;
         }
@@ -207,10 +222,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </app-header>
                 <div id="top">
                     <div hidden$="[[!isSearching]]">
-                        <paper-material id="search-bar" elevation="1">
+                        <div id="search-bar">
                             <iron-a11y-keys id="a11y" keys="enter" on-keys-pressed="onSearch" target="[[searchInputTarget]]"></iron-a11y-keys>
                             <paper-input id="search-input" value="{{searchText}}" placeholder="Search..."></paper-input>
-                        </paper-material>
+                        </div>
                     </div>
                     <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="default" role="secondary">
                         <bread-crumbs name="default" route="[[route]]" step-data="[[stepData]]" is-searching="{{isSearching}}"></bread-crumbs>
@@ -220,14 +235,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="home" role="main">
                     <div name="home">
                         <my-home route="[[subroute]]">
-                            <bread-crumbs slot="append" route="[[route]]" step-data="[[stepData]]" is-searching="{{isSearching}}"></bread-crumbs>
+                            <div slot="append" class="layout horizontal">
+                                <div class="flex">
+                                </div>
+                                <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles></paper-icon-button>
+                            </div>
                         </my-home>
                     </div>
                     <my-step-splash name="step" route="[[subroute]]" step-data="[[stepData]]"></my-step-splash>
                     <my-topic name="topic" route="[[subroute]]" step-data="[[stepData]]"></my-topic>
                     <info-page name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
                     <search-results name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
-                    <steps-landing name="steps-landing" route="[[subroute]]"></steps-landing>
+                    <steps-landing id="landing" name="steps-landing" route="[[subroute]]"></steps-landing>
                     <dom-repeat items="{{infoData}}">
                         <template>
                             <info-sub-page name="[[item.id]]" target-data="[[infoFor(infoData, item.id)]]" html-content="{{item.content}}"></info-sub-page>
@@ -336,11 +355,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 //resolvedPageUrl = this.resolveUrl('info-sub-page.html');
             } else {
                 resolvedPageUrl = this.resolveUrl(page + '.html');
-                Polymer.importHref(
-                    resolvedPageUrl,
-                    null,
-                    null,
-                    true);
+                app.deviceReadyPromise.then(() => {
+                    Polymer.importHref(
+                        resolvedPageUrl,
+                        null,
+                        null,
+                        true);
+                    if(page === "steps-landing") {
+                        this.$.landing.recalcMap();
+                    }
+                });
             }
 
         }
@@ -400,7 +424,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             this.page = "home";
 
-            ajax('GET', "data.json")
+            app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
                     console.log("got step data");
                     this.baseStepData = JSON.parse(response);

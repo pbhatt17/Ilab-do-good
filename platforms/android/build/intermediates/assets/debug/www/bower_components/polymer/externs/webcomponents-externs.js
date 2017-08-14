@@ -2,43 +2,21 @@
  * @fileoverview Externs for webcomponents polyfills
  * @externs
  */
-
-/**
- * @constructor
- * @extends {HTMLElement}
- */
-function CustomStyle(){}
-/**
- * @param {!HTMLStyleElement} style
- */
-CustomStyle.prototype.processHook = function(style){};
+/* eslint-disable */
 
 let HTMLImports = {
   /**
    * @param {function()} callback
    */
-  whenReady(callback){}
+  whenReady(callback){},
+  /**
+   * @param {Element} element
+   * @returns {Document} document
+   */
+  importForElement(element){}
 };
 
 window.HTMLImports = HTMLImports;
-
-let ShadyCSS = {
-  /**
-   * @param {!HTMLElement} element
-   * @param {Object=} overrides
-   */
-  applyStyle(element, overrides){},
-  updateStyles(){},
-  /**
-   * @param {!HTMLTemplateElement} template
-   * @param {string} is
-   * @param {string=} extendsElement
-   */
-  prepareTemplate(template, is, extendsElement){},
-  nativeCss: false,
-  nativeShadow: false
-};
-window.ShadyCSS = ShadyCSS;
 
 let ShadyDOM = {
   inUse: false,
@@ -70,4 +48,9 @@ HTMLElement.prototype._activeElement;
 /**
  * @param {HTMLTemplateElement} template
  */
-HTMLTemplateElement.prototype.decorate = function(template){};
+HTMLTemplateElement.decorate = function(template){};
+
+/**
+ * @param {function(function())} cb callback
+ */
+CustomElementRegistry.prototype.polyfillWrapFlushCallback = function(cb){};

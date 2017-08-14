@@ -35,7 +35,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * element will contain the imported document contents.
    *
    * @memberof Polymer
-   * @method importHref
    * @param {string} href URL to document to load.
    * @param {Function=} onload Callback to notify when an import successfully
    *   loaded.
@@ -46,10 +45,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @return {HTMLLinkElement} The link element for the URL to be loaded.
    */
   Polymer.importHref = function(href, onload, onerror, optAsync) {
-    let link =
-      document.head.querySelector('link[href="' + href + '"][import-href]');
+    let link = /** @type {HTMLLinkElement} */
+      (document.head.querySelector('link[href="' + href + '"][import-href]'));
     if (!link) {
-      link = document.createElement('link');
+      link = /** @type {HTMLLinkElement} */ (document.createElement('link'));
       link.rel = 'import';
       link.href = href;
       link.setAttribute('import-href', '');

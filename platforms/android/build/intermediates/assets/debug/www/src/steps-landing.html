@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             padding: 10px;
         }}
         </style>
-        <chain-anchor-link></chain-anchor-link>         
+        <chain-anchor-link id="cal"></chain-anchor-link>         
     </template>
     <script>
     class StepsLanding extends Polymer.Element {
@@ -29,6 +29,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         static get properties() {
             return {};
+        }
+
+        recalcMap() {
+            this.$.cal.recalcMap();
         }
 
         ready() {
