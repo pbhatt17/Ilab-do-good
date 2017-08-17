@@ -16,6 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="generator" content="Polymer Starter Kit">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
     <title>Do Good</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src * gap: file:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src * 'unsafe-inline' 'unsafe-eval'"> 
     <meta name="description" content="My App description">
     <link rel="icon" href="/images/favicon.ico">
     <!-- See https://goo.gl/OOhYW5 -->
@@ -30796,6 +30797,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             margin-left: 4px;
             margin-right: 4px;
         }
+
+        #eia-list border-separator {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        
         
         </style>
         <div id="content"></div>
@@ -31604,7 +31611,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         _search(stepData, infoData, searchTerm) {
-            if(stepData === null || infoData === null || searchTerm === null) {
+            if(stepData === null || infoData === null || searchTerm === null || searchTerm.length < 3) {
                 return [];
             }
             function searchObject(obj, term) {
@@ -31627,6 +31634,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
                 return false;
             }
+            function searchKeywords(obj, term) {
+                return obj.keywords.reduce((accum, item) => accum || term.test(item), false);
+            }
+
             var stepsToSearch = stepData.map(item => ({
                 index: item.index,
                 title: item.stepTitle,
@@ -31660,8 +31671,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
             searchTerm = new RegExp(searchTerm, 'i');
+            var keywordAll = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(item => searchKeywords(item, searchTerm));
+            if(keywordAll.length === 1) {
+                return keywordAll;
+            }
             var all = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(item => searchObject(item, searchTerm));
-            console.log(this.infoData);
             return all;
         }
 
@@ -32068,6 +32082,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             margin: 0;
         }
 
+        #fl-cl-label {
+            line-height: 100%;
+        }
+
         .secondary-title {
             font-size: 16px;
         }
@@ -32096,7 +32114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         About this App
                     </app-link>
                     <app-link name="what-are-cl-fl" href="/info-what-are-page">
-                        What are Child Labor and Forced Labor?
+                        <p id="fl-cl-label">What are Child Labor and Forced Labor?</p>
                     </app-link>
                     <expandable-item name="steps-landing">
                         <div slot="label">
@@ -32185,7 +32203,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <my-step-splash name="step" route="[[subroute]]" step-data="[[stepData]]"></my-step-splash>
                     <my-topic name="topic" route="[[subroute]]" step-data="[[stepData]]"></my-topic>
                     <info-page name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
-                    <search-results name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
+                    <search-results id="search" name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
                     <steps-landing id="landing" name="steps-landing" route="[[subroute]]"></steps-landing>
                     <dom-repeat items="{{infoData}}">
                         <template>
@@ -32262,6 +32280,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         onSearch() {
             this.set('route.path', '/search-results');
+            setTimeout(() => {
+                if(this.$.search.results.length === 1) {
+                    var item = this.$.search.results[0];
+                    window.scrollTo(0, 0);
+                    this.root.querySelector('bread-crumbs').scrollIntoView()
+                    if(item.type === "step") {
+                        this.set('route.path', '/step/' + item.index); 
+                    }
+                    if(item.type === "info") {
+                        this.set('route.path', '/' + item.id); 
+                    }
+                    if(item.type === "topic") {
+                        this.set('route.path', '/topic/' + item.stepIndex + '/' + item.index); 
+                    }
+
+                }
+            }, 15);
         }
 
         _routePageChanged(page) {

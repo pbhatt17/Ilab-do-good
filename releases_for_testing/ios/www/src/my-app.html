@@ -128,6 +128,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             margin: 0;
         }
 
+        #fl-cl-label {
+            line-height: 100%;
+        }
+
         .secondary-title {
             font-size: 16px;
         }
@@ -156,7 +160,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         About this App
                     </app-link>
                     <app-link name="what-are-cl-fl" href="/info-what-are-page">
-                        What are Child Labor and Forced Labor?
+                        <p id="fl-cl-label">What are Child Labor and Forced Labor?</p>
                     </app-link>
                     <expandable-item name="steps-landing">
                         <div slot="label">
@@ -245,7 +249,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <my-step-splash name="step" route="[[subroute]]" step-data="[[stepData]]"></my-step-splash>
                     <my-topic name="topic" route="[[subroute]]" step-data="[[stepData]]"></my-topic>
                     <info-page name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
-                    <search-results name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
+                    <search-results id="search" name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
                     <steps-landing id="landing" name="steps-landing" route="[[subroute]]"></steps-landing>
                     <dom-repeat items="{{infoData}}">
                         <template>
@@ -322,6 +326,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         onSearch() {
             this.set('route.path', '/search-results');
+            setTimeout(() => {
+                if(this.$.search.results.length === 1) {
+                    var item = this.$.search.results[0];
+                    window.scrollTo(0, 0);
+                    this.root.querySelector('bread-crumbs').scrollIntoView()
+                    if(item.type === "step") {
+                        this.set('route.path', '/step/' + item.index); 
+                    }
+                    if(item.type === "info") {
+                        this.set('route.path', '/' + item.id); 
+                    }
+                    if(item.type === "topic") {
+                        this.set('route.path', '/topic/' + item.stepIndex + '/' + item.index); 
+                    }
+
+                }
+            }, 15);
         }
 
         _routePageChanged(page) {

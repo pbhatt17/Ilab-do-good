@@ -85,7 +85,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         _search(stepData, infoData, searchTerm) {
-            if(stepData === null || infoData === null || searchTerm === null) {
+            if(stepData === null || infoData === null || searchTerm === null || searchTerm.length < 3) {
                 return [];
             }
             function searchObject(obj, term) {
@@ -108,6 +108,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
                 return false;
             }
+            function searchKeywords(obj, term) {
+                return obj.keywords.reduce((accum, item) => accum || term.test(item), false);
+            }
+
             var stepsToSearch = stepData.map(item => ({
                 index: item.index,
                 title: item.stepTitle,
@@ -141,8 +145,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
             searchTerm = new RegExp(searchTerm, 'i');
+            var keywordAll = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(item => searchKeywords(item, searchTerm));
+            if(keywordAll.length === 1) {
+                return keywordAll;
+            }
             var all = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(item => searchObject(item, searchTerm));
-            console.log(this.infoData);
             return all;
         }
 
