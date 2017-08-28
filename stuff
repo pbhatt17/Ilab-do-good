@@ -25,4 +25,14 @@ New Gear Graphic
 give ed heads up for sweat & toil about database
 
 
-if we put it under the image as a general passage of text IS23ol9TmxnD
+
+COPY 
+```
+<key>UIRequiresFullScreen</key>
+<true />
+<key>UIStatusBarHidden</key>
+<true />
+<key>UIViewControllerBasedStatusBarAppearance</key>
+<false />
+```
+into the plist file

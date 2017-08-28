@@ -21,3 +21,8 @@ Hope this helps...
         settings.setBuiltInZoomControls(true);
         settings.setDefaultZoom(ZoomDensity.MEDIUM);
         settings.setSupportZoom(true);
+
+
+
+for ios:
+polymer build --js-minify --css-minify --html-minify --js-compile --bundle

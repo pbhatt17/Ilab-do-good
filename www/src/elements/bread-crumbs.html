@@ -26,10 +26,10 @@
                         </app-link>
                         <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                             <div class="inline" page-name="default">
-                                > <app-link href="/steps-landing"><div class="link inline">Steps</div></app-link>
+                                <span aria-hidden="true">></span> <app-link href="/steps-landing"><div class="link inline">Steps</div></app-link>
                                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                                     <div class="inline" page-name="step">
-                                        > Step [[step.index]]
+                                        <span aria-hidden="true">></span> Step [[step.index]]
                                     </div>
                                     <div class="inline" page-name="topic">
                                         >
@@ -37,46 +37,47 @@
                                             <div class="link inline">Step [[step.index]]
                                                 <!--[[step.stepTitle]]-->
                                             </div>
-                                        </app-link> > Topic [[topic.index]] / [[step.topics.length]]
+                                        </app-link> 
+                                        <span aria-hidden="true">></span> Topic [[topic.index]] / [[step.topics.length]]
                                         <!--[[topic.title]]-->
                                     </div>
                                 </iron-pages>
                             </div>
                             <div class="inline" page-name="info-why-develop-page">
-                                > Why Develop a Social Compliance System
+                                <span aria-hidden="true">></span> Why Develop a Social Compliance System
                             </div>
                             <div class="inline" page-name="info-basics-page">
-                                > Basics of a Social Compliance System
+                                <span aria-hidden="true">></span> Basics of a Social Compliance System
                             </div>
                             <div class="inline" page-name="info-about-page">
-                                > About this Toolkit
+                                <span aria-hidden="true">></span> About this App
                             </div>
                             <div class="inline" page-name="info-what-are-page">
-                                > What are Forced Labor and Child Labor
+                                <span aria-hidden="true">></span> What are Child Labor and Forced Labor
                             </div>
                             <div class="inline" page-name="info-root-causes-page">
-                                > Addressing Root Causes
+                                <span aria-hidden="true">></span> Addressing Root Causes
+                            </div>
+                            <div class="inline" page-name="info-key-resources">
+                                <span aria-hidden="true">></span> Key Resources
                             </div>
                             <div class="inline" page-name="index-info">
-                                > More Info
+                                <span aria-hidden="true">></span> More Info
                             </div>
                             <div class="inline" page-name="steps-landing">
-                                > Steps
+                                <span aria-hidden="true">></span> Steps
                             </div>
                             <div class="inline" page-name="search-results">
-                                > Search Results
+                                <span aria-hidden="true">></span> Search Results
                             </div>
                             <div class="inline" page-name="info">
-                                > Info
+                                <span aria-hidden="true">></span> Info
                             </div>
                         </iron-pages>
                     </div>
                     <div page-name="home">
                     </div>
                 </iron-pages>
-            </div>
-            <div>
-                <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles></paper-icon-button>
             </div>
         </div>
     </template>

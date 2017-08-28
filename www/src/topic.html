@@ -20,7 +20,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
         <app-route route="{{route}}" pattern="/:stepId/:topicId" data="{{routeData}}"></app-route>
         <div class="main">
-            <render-raw html-data="[[data.rawData]]"></render-raw>
+            <render-raw html-data="[[data.rawData]]" target="{{targetId}}" aria-live="polite"></render-raw>
+            <paper-button id="prev" hidden$="[[!hasPrevious]]" raised>Previous Topic</paper-button>
+            <paper-button id="prevStep" hidden$="[[!showPreviousStep]]" raised>Previous Step</paper-button>
             <paper-button id="next" hidden$="[[!hasNext]]" raised>Next Topic</paper-button>
             <paper-button id="nextStep" hidden$="[[!showNextStep]]" raised>Next Step</paper-button>
         </div>
@@ -36,6 +38,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     type: Object,
                     computed: '_withIndex(routeData.stepId, routeData.topicId, stepData)',
                 },
+                targetId: {
+                    type: String,
+                    value: null
+                },
 
                 hasNext: {
                     type: Boolean,
@@ -44,6 +50,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 showNextStep: {
                     type: Boolean,
                     computed: '_showNextStep(routeData.stepId, hasNext, stepData)',
+                },
+
+
+                hasPrevious: {
+                    type: Boolean,
+                    computed: '_hasPrevious(routeData.stepId, routeData.topicId, stepData)',
+                },
+                showPreviousStep: {
+                    type: Boolean,
+                    computed: '_showPreviousStep(routeData.stepId, hasPrevious, stepData)',
                 },
                 stepData: {
                     type: Object,
@@ -79,6 +95,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             return Number.parseInt(stepId) < stepData.length;
         }
+
+        _hasPrevious(stepId, topicId, stepData) {
+            if(!stepId || !topicId || !stepData) {
+                return null;
+            }
+            return Number.parseInt(topicId) > 1;
+        }
+
+        _showPreviousStep(stepId, hasPerviousTopic, stepData) {
+            if(!stepId || hasPerviousTopic === null || hasPerviousTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasPerviousTopic) {
+                return false;
+            }
+
+            console.log(stepId, stepData.length)
+
+
+            return stepId > 1;
+        }
         ready() {
             super.ready();
             this.$.next.addEventListener('click', event => { 
@@ -95,6 +133,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
                         target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.prev.addEventListener('click', event => { 
+                
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.prevStep.addEventListener('click', event => { 
+                
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                        id: event.detail.id,
                     },
                     bubbles: true
                 }));

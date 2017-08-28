@@ -4,12 +4,14 @@
         <custom-style>
         </custom-style>
         <style>
-        :host {
+         :host {
             cursor: pointer
         }
         </style>
-
-        <a id="link"><slot></slot></a>
+        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter" on-keys-pressed="follow"></iron-a11y-keys>
+        <a id="link">
+            <slot></slot>
+        </a>
     </template>
     <script>
     class AppLink extends Polymer.Element {
@@ -21,6 +23,23 @@
                 href: {
                     type: String,
                     value: "",
+                },
+                targetId: {
+                    type: String,
+                    value: null
+                },
+                role: {
+                    type: String,
+                    value: "link",
+                    reflectToAttribute: true,
+                },
+                tabindex: {
+                    type: Number,
+                    value: 0,
+                    reflectToAttribute: true,
+                },
+                target: {
+                    type: Object
                 }
             };
         }
@@ -29,16 +48,23 @@
             super();
         }
 
+        follow() {
+            this.dispatchEvent(new CustomEvent('link-followed', {
+                detail: {
+                    target: this.href,
+                    id: this.targetId
+                },
+                bubbles: true
+            }));
+        }
+
         ready() {
             super.ready();
-            this.root.querySelector('#link').addEventListener('click', event => { 
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: this.href,
-                    },
-                    bubbles: true
-                }));
-            })
+            this.target = this;
+            this.addEventListener('click', this.follow);
+            this.root.querySelector('#link').addEventListener('click', () => {
+                this.follow();
+            });
         }
     }
 

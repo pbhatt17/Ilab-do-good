@@ -6,16 +6,26 @@
         <style is="custom-style" include="iron-flex"></style>
         <style is="custom-style" include="paper-material-styles"></style>
         <style>
-        p, li, h1, h2, h3, h4, h5  {
-            line-height: normal; 
+        p,
+        li,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            line-height: normal;
         }
-        h1, h2, h3, h4, h5 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
             margin-bottom: 5px;
             margin-top: 5px;
         }
 
-        p {
-        }
+        p {}
 
 
         a {
@@ -32,12 +42,14 @@
             max-width: 100%;
             height: auto;
         }
+
         .static-img {
             max-width: initial;
             height: initial;
         }
 
-        ul, ol {
+        ul,
+        ol {
             padding-left: 30px;
         }
 
@@ -46,23 +58,26 @@
         }
 
 
-        .example-in-action, .own-words {
+        .example-in-action,
+        .own-words {
             background-color: rgb(224, 224, 224);
-            padding-top:8px;
+            padding-top: 8px;
             padding-left: 8px;
             padding-right: 8px;
             padding-bottom: 4px;
             @apply --paper-material-elevation-1;
             margin-bottom: 6px;
-
         }
-        
-        .example-in-action h1, .example-in-action h2 {
+
+        .example-in-action h1,
+        .example-in-action h2 {
             color: rgb(31, 170, 219);
             margin-left: 4px;
             margin-right: 4px;
         }
-        .own-words h1, .own-words h2 {
+
+        .own-words h1,
+        .own-words h2 {
             color: rgb(249, 134, 19);
             margin-left: 4px;
             margin-right: 4px;
@@ -72,10 +87,39 @@
             margin-bottom: 10px;
             margin-top: 10px;
         }
-        
-        
+
+        #eia-list app-link {
+            color: black;
+            text-decoration: none;
+        }
+
+        .small-text {
+            font-size: 60%;
+        }
+
+        #law-list>li>expandable-item-no-icon {
+            margin-top: -16px;
+        }
+
+
+        td {
+            vertical-align: top;
+        }
+
+        table {
+
+            border-collapse: collapse;
+            margin-bottom: 8px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid grey;
+        }
         </style>
         <div id="content"></div>
+        <slot>
     </template>
     <script>
     class RenderRaw extends Polymer.Element {
@@ -90,12 +134,17 @@
                     type: String,
                     value: '',
                 },
+                target: {
+                    type: String,
+                    value: null
+                }
             };
         }
 
         static get observers() {
             return [
-                'htmlChanged(htmlData)'
+                'htmlChanged(htmlData)',
+                'targetChanged(htmlData, target)'
             ];
         }
 
@@ -104,15 +153,27 @@
         }
 
         htmlChanged(data) {
-            this.root.querySelector('#content').innerHTML = data; 
+            this.root.querySelector('#content').innerHTML = data;
             this.root.addEventListener('link-followed', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
                         target: event.detail.target,
+                        id: event.detail.id,
                     },
                     bubbles: true
                 }));
             });
+        }
+        targetChanged(data, target) {
+            if (target !== null) {
+                var scrollTarget = this.root.querySelector("#" + target);
+                console.log(scrollTarget);
+                if (scrollTarget !== null) {
+                    setTimeout(() => {
+                        scrollTarget.scrollIntoView();
+                    }, 16);
+                }
+            }
         }
         ready() {
             super.ready();
