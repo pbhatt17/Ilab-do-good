@@ -25,8 +25,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             text-decoration: underline;
         }
         
+
+        .link {
+            margin-left: 6px;
+        }
+
         .preview {
-            margin-left: 10px;
+            margin-left: 16px;
         }
         
         .result:nth-child(even) {
@@ -35,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
         <dom-repeat items="[[results]]" as="result">
             <template>
-                <div class="result">
+                <div class="result" aria-live="polite">
                     <iron-pages selected="[[result.type]]" attr-for-selected="type" role="main">
                         <div type="step">
                             <app-link href$="/step/[[result.index]]">

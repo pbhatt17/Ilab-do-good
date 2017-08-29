@@ -50,6 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         #top {
             background-color: white;
+            padding-left: 10px;
             padding-bottom: 4px;
         }
         
@@ -67,16 +68,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         </style>
         <div id="top">
-            <app-link href="/info-why-develop-page"><img class="link-icon" src="imgs/question mark.png" /> Why develop a social compliance system?</app-link>
+            <app-link href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png" /> Why develop a social compliance system?</app-link>
             <border-separator></border-separator>
-            <app-link href="/info-basics-page"><img class="link-icon" src="imgs/building blocks.png" /> Basics of a social compliance system</app-link>
+            <app-link href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png" /> Basics of a social compliance system</app-link>
             <border-separator></border-separator>
-            <app-link href="/steps-landing"><img class="link-icon" src="imgs/gear.png" /> Steps to a social compliance system</app-link>
+            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png" /> Steps to a social compliance system</app-link>
         </div>
         <slot name="append"></slot>
         <div class="bottom">
-            <img id="background" src="imgs/test_bg.jpg" />
-            <paper-icon-button id="info-btn" icon="icons:info"></paper-icon-button>
+            <img id="background" alt="Girl making jeans with sewing machine" src="imgs/test_bg.jpg" />
+            <paper-icon-button id="info-btn" icon="icons:info" aria-label="Info"></paper-icon-button>
         </div>
     </template>
     <script>
@@ -102,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.$['info-btn'].addEventListener('click', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
-                        target: "/index-about-page"
+                        target: "/info-about-page"
                     },
                     bubbles: true
                 }));
