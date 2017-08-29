@@ -49,6 +49,7 @@
         }
 
         follow() {
+
             this.dispatchEvent(new CustomEvent('link-followed', {
                 detail: {
                     target: this.href,
@@ -63,6 +64,9 @@
             this.target = this;
             this.addEventListener('click', this.follow);
             this.root.querySelector('#link').addEventListener('click', () => {
+                this.follow();
+            });
+            this.root.addEventListener('click', () => {
                 this.follow();
             });
         }
