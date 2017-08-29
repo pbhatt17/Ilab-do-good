@@ -28,7 +28,8 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarOverlaysWebView" value="false" />
-    <icon src="res/icon.png" />
+    <icon height="120" src="res/comply-chain-app-120.png" width="120" />
+    <icon height="180" src="res/comply-chain-app-180.png" width="180" />
     <engine name="android" spec="^6.2.3" />
     <engine name="browser" spec="^4.1.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />

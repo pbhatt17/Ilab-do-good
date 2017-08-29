@@ -30,6 +30,9 @@
 
         a {
             overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-all;
+            word-break: break-word;
         }
 
 
@@ -97,8 +100,18 @@
             font-size: 60%;
         }
 
-        #law-list>li>expandable-item-no-icon {
+        .browser #law-list>li>expandable-item-no-icon,
+        .android #law-list>li>expandable-item-no-icon {
             margin-top: -16px;
+        }
+
+        .ios #law-list li expandable-item-no-icon {
+            list-style-position: inside;
+            display: list-item;
+        }
+
+        .ios #no-expand {
+            padding-left: 8px;
         }
 
 
@@ -118,6 +131,7 @@
             border: 1px solid grey;
         }
         </style>
+        <global-data id="data" device="{{device}}"></global-data>
         <div id="content"></div>
         <slot>
     </template>
@@ -137,6 +151,9 @@
                 target: {
                     type: String,
                     value: null
+                },
+                device: {
+                    type: String
                 }
             };
         }
@@ -151,6 +168,7 @@
         constructor() {
             super();
         }
+
 
         htmlChanged(data) {
             this.root.querySelector('#content').innerHTML = data;
@@ -175,6 +193,11 @@
                 }
             }
         }
+        connectedCallback() {
+            super.connectedCallback();
+            this.root.querySelector('#content').classList.add(this.device);
+        }
+
         ready() {
             super.ready();
         }

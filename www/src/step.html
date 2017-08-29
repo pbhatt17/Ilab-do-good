@@ -127,10 +127,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             };
         }
         _hasTrainingMats(data) {
+            if (data === null || data === undefined) {
+                return false;
+            }
             return data.trainingMats !== null && data.trainingMats !== undefined;
         }
 
         _nextId(id) {
+            if (id === null || id === undefined) {
+                return null;
+            }
             return Number.parseInt(id) + 1;
         }
 

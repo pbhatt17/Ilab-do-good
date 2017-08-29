@@ -30977,6 +30977,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         a {
             overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-all;
+            word-break: break-word;
         }
 
 
@@ -31044,8 +31047,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             font-size: 60%;
         }
 
-        #law-list>li>expandable-item-no-icon {
+        .browser #law-list>li>expandable-item-no-icon,
+        .android #law-list>li>expandable-item-no-icon {
             margin-top: -16px;
+        }
+
+        .ios #law-list li expandable-item-no-icon {
+            list-style-position: inside;
+            display: list-item;
+        }
+
+        .ios #no-expand {
+            padding-left: 8px;
         }
 
 
@@ -31065,6 +31078,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             border: 1px solid grey;
         }
         </style>
+        <global-data id="data" device="{{device}}"></global-data>
         <div id="content"></div>
         <slot>
     </slot></template>
@@ -31084,6 +31098,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 target: {
                     type: String,
                     value: null
+                },
+                device: {
+                    type: String
                 }
             };
         }
@@ -31098,6 +31115,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         constructor() {
             super();
         }
+
 
         htmlChanged(data) {
             this.root.querySelector('#content').innerHTML = data;
@@ -31122,6 +31140,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
             }
         }
+        connectedCallback() {
+            super.connectedCallback();
+            this.root.querySelector('#content').classList.add(this.device);
+        }
+
         ready() {
             super.ready();
         }
@@ -32324,10 +32347,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             };
         }
         _hasTrainingMats(data) {
+            if (data === null || data === undefined) {
+                return false;
+            }
             return data.trainingMats !== null && data.trainingMats !== undefined;
         }
 
         _nextId(id) {
+            if (id === null || id === undefined) {
+                return null;
+            }
             return Number.parseInt(id) + 1;
         }
 
