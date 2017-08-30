@@ -12,10 +12,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="my-step-splash">
     <template>
         <style include="shared-styles">
-        :host {
+         :host {
             display: block;
             padding: 10px;
         }
+
         app-link .link {
             color: #1a0dab;
             text-decoration: underline;
@@ -28,6 +29,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         #next {
             margin-left: 16px;
             margin-bottom: 10px;
+        }
+
+        h3 {
+            margin: 0;
         }
         </style>
         <app-route route="{{route}}" pattern="/:stepId" data="{{routeData}}"></app-route>
@@ -68,7 +73,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <dom-repeat items="[[data.topics]]">
                             <template>
                                 <li>
-                                    <app-link href="/topic/[[data.index]]/[[item.index]]"><div class="link">[[item.title]]</div></app-link>
+                                    <app-link href="/topic/[[data.index]]/[[item.index]]">
+                                        <div class="link">[[item.title]]</div>
+                                    </app-link>
                                 </li>
                             </template>
                         </dom-repeat>
@@ -83,6 +90,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <render-raw html-data="[[data.furtherResources]]"></render-raw>
                 </div>
             </expandable-item>
+            <div hidden$="[[!_hasTrainingMats(data)]]">
+                <border-separator></border-separator>
+                <expandable-item>
+                    <h3 slot="label">Training Materials</h3>
+                    <div slot="items">
+                        <render-raw html-data="[[data.trainingMats]]"></render-raw>
+                    </div>
+                </expandable-item>
+            </div>
         </div>
     </template>
     <script>
@@ -110,19 +126,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             };
         }
+        _hasTrainingMats(data) {
+            if (data === null || data === undefined) {
+                return false;
+            }
+            return data.trainingMats !== null && data.trainingMats !== undefined;
+        }
+
         _nextId(id) {
+            if (id === null || id === undefined) {
+                return null;
+            }
             return Number.parseInt(id) + 1;
         }
 
         _hasNext(data, stepId) {
-            if(data === null || stepId === null) {
+            if (data === null || stepId === null) {
                 return false
             }
-            return Number.parseInt(stepId)  < data.length;
+            return Number.parseInt(stepId) < data.length;
         }
 
-        _withIndex(id, stepData) { 
-            if(!id || !stepData) {
+        _withIndex(id, stepData) {
+            if (!id || !stepData) {
                 return null;
             }
             return stepData[Number.parseInt(id) - 1];
@@ -133,11 +159,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
                         target: event.detail.target,
+                        id: event.detail.id,
                     },
                     bubbles: true
                 }));
             });
-            this.$.next.addEventListener('click', event => { 
+            this.$.next.addEventListener('click', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
                         target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),

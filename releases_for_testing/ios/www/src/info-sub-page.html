@@ -26,7 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         </style>
         <div id="data">
-            <render-raw html-data="[[htmlContent]]">
+            <render-raw html-data="[[htmlContent]]" target="{{targetId}}">
             </render-raw>
         </div>
     </template>
@@ -44,6 +44,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             return {
                 targetData: {
                     type: Object,
+                },
+                targetId: {
+                    type: String,
                 },
                 htmlContent: {
                     type: String,
@@ -69,6 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
                         target: event.detail.target,
+                        id: event.detail.id,
                     },
                     bubbles: true
                 }));
