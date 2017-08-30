@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HelloCordova</name>
+<widget id="gov.dol.complychain" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Comply Chain</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        A sample DoL application describing things about dealing with Child Labor and Forced Labor.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="julien.kilian@icfi.com" href="http://cordova.io">
+        ICF Dev
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -15,4 +15,13 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon height="120" platform="ios" src="res/comply-chain-app-120.png" width="120" />
+    <icon height="180" platform="ios" src="res/comply-chain-app-180.png" width="180" />
+    <icon height="72" platform="android" src="res/comply-chain-app-72.png" width="72" />
+    <preference name="SplashScreen" value="none" />
+    <preference name="ShowSplashScreen" value="false" />
+    <preference name="SplashScreenDelay" value="0" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
 </widget>

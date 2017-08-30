@@ -1,0 +1,110 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<style include="iron-flex iron-flex-alignment"></style>
+<dom-module id="chain-anchor-link">
+    <template>
+        <custom-style>
+            <style include="iron-flex iron-flex-alignment"></style>
+        </custom-style>
+        <style>
+         :host {
+            display: block;
+        }
+
+        img {
+            max-height: 910px;
+            max-width: 910px;
+            width: 100%;
+            /*height: auto;*/
+        }
+
+        .inside {
+            position: relative;
+        }
+        .outside { height: 100%; }
+        </style>
+        <div class="outside layout vertical center-justified">
+            <div class="inside layout horizontal center-justified">
+                <!--img src="imgs/circle_nav_off.png" usemap="#map" /-->
+                <img src="imgs/gear_demo_4.png" alt="Steps to a Social Compliance System" usemap="#map" />
+                <map name="map">
+                    <area shape="circle" coords="451,183,73" alt="Step 1: Engage" role="link" data-step="1">
+                    <area shape="circle" coords="652,269,73" alt="Step 2: Assess" role="link" data-step="2">
+                    <area shape="circle" coords="732,455,73" alt="Step 3: Develop" role="link" data-step="3">
+                    <area shape="circle" coords="655,637,73" alt="Step 4: Communicate and Train" role="link" data-step="4">
+                    <area shape="circle" coords="451,727,73" alt="Step 5: Monitor" role="link" data-step="5">
+                    <area shape="circle" coords="253,636,73" alt="Step 6: Remediate" role="link" data-step="6">
+                    <area shape="circle" coords="179,452,73" alt="Step 7: Review" role="link" data-step="7">
+                    <area shape="circle" coords="254,272,73" alt="Step 8: Report" role="link" data-step="8">
+                </map>
+            </div>
+        </div>
+    </template>
+    <script>
+    class ChainAnchorLink extends Polymer.Element {
+        static get is() {
+            return 'chain-anchor-link';
+        }
+
+
+        static get properties() {
+            return {};
+        }
+
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            super.connectedCallback();
+            setTimeout(() => {
+                var img = this.root.querySelector('img');
+                img.style.height = img.width + "px";
+                var map = this.root.querySelector('map');
+                imageMapResize(map, img);
+            }, 1);
+            window.addEventListener('resize', (event) => {
+                //img.style.height = img.offsetWidth + "px";
+                //imageMapResize(map, img);
+            });
+
+        }
+
+        recalcMap() {
+            setTimeout(() => {
+                var img = this.root.querySelector('img');
+                img.style.height = img.width + "px";
+                var map = this.root.querySelector('map');
+                imageMapResize(map, img);
+            }, 1);
+        }
+
+
+        ready() {
+            super.ready();
+            var target = this.root.querySelector('img');
+            var areas = [].slice.call(this.root.querySelectorAll('area'));
+            areas.forEach(area => {
+                area.addEventListener('mouseover', () => {
+                    target.src = "imgs/circle_nav_" + area.dataset.step + ".png";
+                });
+
+                area.addEventListener('mouseout', () => {
+                    target.src = "imgs/gear_demo_4.png";
+                });
+                area.addEventListener('click', () => {
+                    this.dispatchEvent(new CustomEvent('link-followed', {
+                        detail: {
+                            step: area.dataset.step
+                        },
+                        bubbles: true
+                    }));
+                });
+            });
+
+        }
+    }
+
+    customElements.define(ChainAnchorLink.is, ChainAnchorLink);
+    </script>
+</dom-module>
