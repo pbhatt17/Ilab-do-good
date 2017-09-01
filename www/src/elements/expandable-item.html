@@ -70,19 +70,39 @@
         constructor() {
             super();
         }
+        
         toggleOpen() {
-            this.isOpened = !this.isOpened;
-            if(this.isOpened) {
-                this.classList.add("open");
-            } else {
-                this.classList.remove("open"); 
-            }
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+
+                    this.isOpened = !this.isOpened;
+                    if (this.isOpened) {
+                        this.classList.add("open");
+                    } else {
+                        this.classList.remove("open");
+                    }
+                });
+        }
+
+        toggleJob() {
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+
+                    this.isOpened = !this.isOpened;
+                });
         }
 
         ready() {
             super.ready();
             this.root.querySelector('paper-button').addEventListener('click', event => {
-                this.isOpened = !this.isOpened;
+                this.toggleJob();
+            });
+            this.root.querySelector('paper-button').addEventListener('tap', event => {
+                this.toggleJob();
             });
             this.target = this;
         }

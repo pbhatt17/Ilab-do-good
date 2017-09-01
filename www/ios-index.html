@@ -30400,21 +30400,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         follow() {
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+                    this.dispatchEvent(new CustomEvent('link-followed', {
+                        detail: {
+                            target: this.href,
+                            id: this.targetId
+                        },
+                        bubbles: true
+                    }));
+                });
 
-            this.dispatchEvent(new CustomEvent('link-followed', {
-                detail: {
-                    target: this.href,
-                    id: this.targetId
-                },
-                bubbles: true
-            }));
         }
 
         ready() {
             super.ready();
             this.target = this;
-            this.addEventListener('click', this.follow);
+            this.addEventListener('click', () => {
+                this.follow();
+            });
+            this.addEventListener('tap', () => {
+                this.follow();
+            });
             this.root.querySelector('#link').addEventListener('click', () => {
+                this.follow();
+            });
+            this.root.querySelector('#link').addEventListener('tap', () => {
+                this.follow();
+            });
+            this.root.addEventListener('tap', () => {
                 this.follow();
             });
             this.root.addEventListener('click', () => {
@@ -30761,19 +30777,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         constructor() {
             super();
         }
+        
         toggleOpen() {
-            this.isOpened = !this.isOpened;
-            if(this.isOpened) {
-                this.classList.add("open");
-            } else {
-                this.classList.remove("open"); 
-            }
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+
+                    this.isOpened = !this.isOpened;
+                    if (this.isOpened) {
+                        this.classList.add("open");
+                    } else {
+                        this.classList.remove("open");
+                    }
+                });
+        }
+
+        toggleJob() {
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+
+                    this.isOpened = !this.isOpened;
+                });
         }
 
         ready() {
             super.ready();
             this.root.querySelector('paper-button').addEventListener('click', event => {
-                this.isOpened = !this.isOpened;
+                this.toggleJob();
+            });
+            this.root.querySelector('paper-button').addEventListener('tap', event => {
+                this.toggleJob();
             });
             this.target = this;
         }
@@ -30862,6 +30898,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.root.querySelector('paper-button').addEventListener('click', event => {
                 this.isOpened = !this.isOpened;
             });
+            this.root.querySelector('paper-button').addEventListener('tap', event => {
+                this.isOpened = !this.isOpened;
+            });
             this.target = this;
         }
     }
@@ -30874,15 +30913,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <style include="iron-flex iron-flex-alignment"></style>
         </custom-style>
         <style>
-        :host {
+         :host {
             display: block;
         }
+
         button {
             border: none;
             background-color: #ececec;
             text-align: left;
         }
-        :host(.open) {
+
+         :host(.open) {
             outline: none;
         }
         </style>
@@ -30930,18 +30971,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         toggleOpen() {
-            this.isOpened = !this.isOpened;
-            if(this.isOpened) {
-                this.classList.add("open");
-            } else {
-                this.classList.remove("open"); 
-            }
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+
+                    this.isOpened = !this.isOpened;
+                    if (this.isOpened) {
+                        this.classList.add("open");
+                    } else {
+                        this.classList.remove("open");
+                    }
+                });
+        }
+
+        toggleJob() {
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+
+                    this.isOpened = !this.isOpened;
+                });
         }
 
         ready() {
             super.ready();
             this.root.querySelector('.label').addEventListener('click', event => {
-                this.isOpened = !this.isOpened;
+                this.toggleJob();
+            });
+            this.root.querySelector('paper-button').addEventListener('tap', event => {
+                this.toggleJob();
             });
             this.target = this;
         }
@@ -30949,8 +31009,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     customElements.define(ExpandableItemNoIcon.is, ExpandableItemNoIcon);
     </script>
-</dom-module>
-<dom-module id="render-raw" assetpath="src/elements/">
+</dom-module><dom-module id="render-raw" assetpath="src/elements/">
     <template>
         <custom-style>
         </custom-style>
@@ -32290,7 +32349,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </ul>
             </expandable-item>
             <border-separator></border-separator>
-            <expandable-item>
+            <expandable-item is-opened="true">
                 <h3 slot="label">Topics</h3>
                 <div slot="items">
                     <ul>
@@ -32487,7 +32546,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             line-height: 40px;
         }
 
-        .drawer-list expandable-item app-link {
+        .drawer-list app-link {
             width: 100%;
             padding: 0 0 0 16px;
         }
@@ -32536,9 +32595,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             height: 48px;
         }
 
-        .title-bar-text p {
-            margin: 0;
-        }
+        .title-bar-text p {}
 
         .link-label {
             line-height: 100%;
@@ -32555,7 +32612,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         #step-list-scroll {
             overflow-y: auto;
-            max-height: 250px;
+            max-height: 225px;
         }
 
         .topic-link {
@@ -32584,7 +32641,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <!-- Drawer content -->
             <app-drawer id="drawer" slot="drawer" persistent="">
                 <app-toolbar>
-                    <localized-data value="menu"></localized-data>
+                    <div class="layout horizontal flex">
+                        <p class="flex">
+                            <localized-data value="menu"></localized-data>
+                        </p>
+                        <p>
+                            <paper-icon-button icon="icons:close" id="close-menu-btn" aria-label="Close Menu"></paper-icon-button>
+                        </p>
+                    </div>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
                     <!--paper-dropdown-menu hidden label="Language">
@@ -32603,8 +32667,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <p class="link-label">What are Child Labor and Forced Labor?</p>
                     </app-link>
                     <border-separator></border-separator>
-                    <div id="step-list-scroll">
-                        <expandable-item-link name="steps-landing">
+                    <div id="step-list-scroll" aria-live="polite">
+                        <!--expandable-item-link name="steps-landing">
                             <div slot="label">
                                 <app-link href="/steps-landing">
                                     Steps
@@ -32638,7 +32702,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </dom-repeat>
                                 </iron-selector>
                             </div>
-                        </expandable-item-link>
+                        </expandable-item-link-->
+                        <iron-pages selected="[[menuState]]" attr-for-selected="state" fallback-selection="none" role="secondary">
+                            <div class="layout horizontal" state="none">
+                                <app-link class="flex" href="/steps-landing">Steps</app-link>
+                                <paper-icon-button icon="expand-more" on-click="showSteps"></paper-icon-button>
+                            </div>
+                            <div state="listSteps">
+                                <div class="layout horizontal">
+                                <app-link class="flex" href="/steps-landing"><strong>Steps</strong></app-link>
+                                    <paper-icon-button icon="expand-less" on-click="menuBack"></paper-icon-button>
+                                </div>
+                                <dom-repeat items="[[stepData]]">
+                                    <template>
+                                        <div class="layout horizontal">
+                                            <app-link class="flex" href="/step/[[item.index]]">
+                                                <localized-data value="stepPrefix"></localized-data> [[item.index]]
+                                            </app-link>
+                                            <paper-icon-button icon="expand-more" value="[[item]]" on-click="gotoStep"></paper-icon-button>
+                                        </div>
+                                    </template>
+                                </dom-repeat>
+                            </div>
+                            <div state="listTopics">
+                                <div class="layout horizontal">
+                                    <app-link class="flex" href="/step/[[currentMenuStep.index]]"><strong>Step [[currentMenuStep.index]]</strong></app-link>
+                                    <paper-icon-button icon="expand-less" on-click="menuBack"></paper-icon-button>
+                                </div>
+                                <dom-repeat items="[[currentMenuStep.topics]]">
+                                    <template>
+                                        <div class="layout horizontal">
+                                            <div class="topic-link">
+                                                <app-link class="flex " href="/topic/[[currentMenuStep.index]]/[[item.index]]">
+                                                    <p class="link-label">[[item.title]]</p>
+                                                </app-link>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </dom-repeat>
+                            </div>
+                        </iron-pages>
                     </div>
                     <border-separator></border-separator>
                     <app-link name="key-resources" href="/info-key-resources">
@@ -32758,6 +32861,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         path: "/home"
                     }
                 },
+                menuState: {
+                    type: String,
+                    value: "none"
+                },
+                currentMenuStep: {
+                    type: Object,
+                    value: null
+                }
             };
         }
 
@@ -32766,6 +32877,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 '_routePageChanged(routeData.page)',
             ];
         }
+
+        menuBack() {
+            if (this.menuState === "listTopics") {
+                this.menuState = "listSteps";
+            } else if (this.menuState === "listSteps") {
+                this.menuState = "none";
+            }
+        }
+
+        showSteps() {
+            this.menuState = "listSteps";
+        }
+
+        gotoStep(e) {
+            this.currentMenuStep = e.srcElement.value;
+            this.menuState = "listTopics";
+
+        }
+
 
         _searchChange(isSearching) {
             if (isSearching) {
@@ -32904,6 +33034,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.$['bread-crumbs-search'].addEventListener('click', event => {
                 if (this.isSearching) {
                     this.$['search-input'].focus();
+                }
+            });
+            this.$['close-menu-btn'].addEventListener('click', event => {
+                if (!this.$.drawer.persistent) {
+                    this.$.drawer.close();
                 }
             });
         }
