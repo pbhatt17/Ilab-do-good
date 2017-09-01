@@ -6,19 +6,21 @@
             <style include="iron-flex iron-flex-alignment"></style>
         </custom-style>
         <style>
-        :host {
+         :host {
             display: block;
         }
+
         .icon {
             margin-left: 20px;
         }
-        :host(.open) {
-            outline: none;
+
+         :host(.open) {
+            /*outline: none;*/
         }
         </style>
         <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation></iron-a11y-keys>
         <div class="layout horizontal label">
-            <paper-button toggles tabindex="-1">
+            <paper-button toggles >
                 <div class="layout horizontal flex">
                     <div class="layout vertical center-justified flex">
                         <slot name="label"></slot>
@@ -34,9 +36,9 @@
                 </div>
             </paper-button>
         </div>
-        <div hidden$="[[!isOpened]]" aria-expanded$="[[isOpened]]">
+        <iron-collapse id="collapse">
             <slot name="items"></slot>
-        </div>
+        </iron-collapse>
     </template>
     <script>
     class ExpandableItem extends Polymer.Element {
@@ -51,16 +53,16 @@
                     type: Boolean,
                     value: false,
                 },
-                role: {
+                /*role: {
                     type: String,
-                    value: "button",
-                    reflectToAttribute: true,
+                    //value: "button",
+                    //reflectToAttribute: true,
                 },
                 tabindex: {
                     type: Number,
                     value: 0,
                     reflectToAttribute: true,
-                },
+                },*/
                 target: {
                     type: Object
                 }
@@ -70,7 +72,7 @@
         constructor() {
             super();
         }
-        
+
         toggleOpen() {
             this._debouncer = Polymer.Debouncer.debounce(
                 this._debouncer, // initially undefined
@@ -78,33 +80,24 @@
                 () => {
 
                     this.isOpened = !this.isOpened;
-                    if (this.isOpened) {
-                        this.classList.add("open");
-                    } else {
-                        this.classList.remove("open");
-                    }
+                    this.$.collapse.toggle();
                 });
+
         }
 
-        toggleJob() {
-            this._debouncer = Polymer.Debouncer.debounce(
-                this._debouncer, // initially undefined
-                Polymer.Async.timeOut.after(15),
-                () => {
-
-                    this.isOpened = !this.isOpened;
-                });
-        }
 
         ready() {
             super.ready();
             this.root.querySelector('paper-button').addEventListener('click', event => {
-                this.toggleJob();
+                this.toggleOpen();
             });
             this.root.querySelector('paper-button').addEventListener('tap', event => {
-                this.toggleJob();
+                this.toggleOpen();
             });
             this.target = this;
+            if(this.isOpened) {
+                this.$.collapse.show();
+            }
         }
     }
 
