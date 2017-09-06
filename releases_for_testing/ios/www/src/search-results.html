@@ -12,19 +12,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="search-results">
     <template>
         <style include="shared-styles">
-        :host {
+         :host {
             display: block;
         }
-        
+
         .inline {
             display: inline;
         }
-        
+
         app-link .link {
             color: #1a0dab;
             text-decoration: underline;
         }
-        
+
 
         .link {
             margin-left: 6px;
@@ -33,37 +33,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         .preview {
             margin-left: 16px;
         }
-        
+
         .result:nth-child(even) {
             background-color: #DDD;
         }
+
+        ul {
+            list-style-type: none;
+            padding-right: 10px;
+            padding-left: 10px;
+            margin-top: 0px;
+        }
         </style>
-        <dom-repeat items="[[results]]" as="result">
-            <template>
-                <div class="result" aria-live="polite">
-                    <iron-pages selected="[[result.type]]" attr-for-selected="type" role="main">
-                        <div type="step">
-                            <app-link href$="/step/[[result.index]]">
-                                <div class="link">[[result.title]]</div>
-                            </app-link>
-                        </div>
-                        <div type="topic">
-                            <app-link href$="/topic/[[result.stepIndex]]/[[result.index]]">
-                                <div class="link">[[result.title]]</div>
-                            </app-link>
-                        </div>
-                        <div type="info">
-                            <app-link href$="/[[result.id]]">
-                                <div class="link">[[result.title]]</div>
-                            </app-link>
-                        </div>
-                    </iron-pages>
-                    <div class="preview">
-                        <render-raw html-data="[[result.preview]]"></render-raw>
-                    </div>
-                </div>
-            </template>
-        </dom-repeat>
+        <div aria-live="polite">
+            <ul>
+                <dom-repeat items="[[results]]" as="result">
+                    <template>
+                        <li class="result">
+                            <iron-pages selected="[[result.type]]" attr-for-selected="type" role="main">
+                                <div type="step">
+                                    <app-link href$="/step/[[result.index]]">
+                                        <div class="link">[[result.title]]</div>
+                                    </app-link>
+                                </div>
+                                <div type="topic">
+                                    <app-link href$="/topic/[[result.stepIndex]]/[[result.index]]">
+                                        <div class="link">[[result.title]]</div>
+                                    </app-link>
+                                </div>
+                                <div type="info">
+                                    <app-link href$="/[[result.id]]">
+                                        <div class="link">[[result.title]]</div>
+                                    </app-link>
+                                </div>
+                            </iron-pages>
+                        </li>
+                    </template>
+                </dom-repeat>
+            </ul>
+        </div>
     </template>
     <script>
     class SearchResults extends Polymer.Element {
@@ -84,15 +92,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 },
                 results: {
                     type: Array,
-                    computed: '_search(stepData, infoData, searchTerm)',
+                    value: '_search(stepData, infoData, searchTerm)',
                 }
             };
         }
 
         _search(stepData, infoData, searchTerm) {
-            if(stepData === null || infoData === null || searchTerm === null || searchTerm.length < 3) {
+            if (stepData === null || infoData === null || searchTerm === null || searchTerm.length < 3) {
                 return [];
             }
+
             function searchObject(obj, term) {
                 if (obj === null || obj === undefined) {
                     return false;
@@ -113,6 +122,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
                 return false;
             }
+
             function searchKeywords(obj, term) {
                 return obj.keywords.reduce((accum, item) => accum || term.test(item), false);
             }
@@ -151,7 +161,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             searchTerm = new RegExp(searchTerm, 'i');
             var keywordAll = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(item => searchKeywords(item, searchTerm));
-            if(keywordAll.length === 1) {
+            if (keywordAll.length === 1) {
                 return keywordAll;
             }
             var all = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(item => searchObject(item, searchTerm));
