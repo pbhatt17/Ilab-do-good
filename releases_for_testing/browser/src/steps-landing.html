@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="shared-styles.html">
 <dom-module id="steps-landing">
     <template>
-        <style include="shared-styles">
+        <style include="shared-styles iron-flex iron-flex-alignment">
         :host {
             display: block;
         }
@@ -21,7 +21,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             height: 80%;
         }}
         </style>
-        <chain-anchor-link id="cal"></chain-anchor-link>         
+        <div class="layout horizontal center-justified">
+        <chain-anchor-link id="cal">
+            <slot></slot>
+        </chain-anchor-link>         
+        </div>
     </template>
     <script>
     class StepsLanding extends Polymer.Element {

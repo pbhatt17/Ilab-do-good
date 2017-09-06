@@ -11,23 +11,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="shared-styles.html">
 <dom-module id="info-sub-page">
     <template>
-        <style include="shared-styles">
-        :host {
+        <style include="shared-styles iron-flex iron-flex-alignment">
+         :host {
             display: block;
         }
-        
+
         app-link {
             color: #1a0dab;
             text-decoration: underline;
         }
+
         #data {
             margin-left: 10px;
             margin-right: 10px;
+            max-width: 700px;
         }
         </style>
-        <div id="data">
-            <render-raw html-data="[[htmlContent]]" target="{{targetId}}">
-            </render-raw>
+        <div class="layout horizontal center-justified">
+            <div id="data">
+                <render-raw html-data="[[htmlContent]]" target="{{targetId}}">
+                </render-raw>
+            </div>
         </div>
     </template>
     <script>
@@ -59,7 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             if (!targetData || !targetData.url) {
                 return;
             }
-            if(targetData.url[0] === "/") {
+            if (targetData.url[0] === "/") {
                 targetData.url = targetData.url.substr(1);
             }
             ajax("GET", targetData.url)
@@ -81,7 +85,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         ready() {
-            super.ready(); 
+            super.ready();
         }
     }
 

@@ -49,21 +49,37 @@
         }
 
         follow() {
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+                    this.dispatchEvent(new CustomEvent('link-followed', {
+                        detail: {
+                            target: this.href,
+                            id: this.targetId
+                        },
+                        bubbles: true
+                    }));
+                });
 
-            this.dispatchEvent(new CustomEvent('link-followed', {
-                detail: {
-                    target: this.href,
-                    id: this.targetId
-                },
-                bubbles: true
-            }));
         }
 
         ready() {
             super.ready();
             this.target = this;
-            this.addEventListener('click', this.follow);
+            this.addEventListener('click', () => {
+                this.follow();
+            });
+            this.addEventListener('tap', () => {
+                this.follow();
+            });
             this.root.querySelector('#link').addEventListener('click', () => {
+                this.follow();
+            });
+            this.root.querySelector('#link').addEventListener('tap', () => {
+                this.follow();
+            });
+            this.root.addEventListener('tap', () => {
                 this.follow();
             });
             this.root.addEventListener('click', () => {

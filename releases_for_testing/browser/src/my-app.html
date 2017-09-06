@@ -31,6 +31,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/paper-styles/paper-styles.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="my-icons.html">
 <link rel="import" href="./elements/bread-crumbs.html">
 <link rel="import" href="./elements/chain-anchor-link.html">
@@ -85,7 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             line-height: 40px;
         }
 
-        .drawer-list expandable-item app-link {
+        .drawer-list app-link {
             width: 100%;
             padding: 0 0 0 16px;
         }
@@ -134,9 +135,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             height: 48px;
         }
 
-        .title-bar-text p {
-            margin: 0;
-        }
+        .title-bar-text p {}
 
         .link-label {
             line-height: 100%;
@@ -153,7 +152,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         #step-list-scroll {
             overflow-y: auto;
-            max-height: 250px;
+            max-height: 225px;
         }
 
         .topic-link {
@@ -162,7 +161,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         #bread-crumbs-container {
-            margin-left: 6px;
+            margin-left: 10px;
         }
 
         #icon-background {
@@ -173,6 +172,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             position: absolute;
             margin: 5px;
         }
+
+        .inside-content {
+            max-width: 700px;
+        }
         </style>
         <global-data locale="{{lang}}"></global-data>
         <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
@@ -182,7 +185,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <!-- Drawer content -->
             <app-drawer id="drawer" slot="drawer" persistent>
                 <app-toolbar>
-                    <localized-data value="menu"></localized-data>
+                    <div class="layout horizontal flex">
+                        <p class="flex">
+                            <localized-data value="menu"></localized-data>
+                        </p>
+                        <p>
+                            <paper-icon-button icon="icons:close" id="close-menu-btn" aria-label="Close Menu"></paper-icon-button>
+                        </p>
+                    </div>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
                     <!--paper-dropdown-menu hidden label="Language">
@@ -201,8 +211,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <p class="link-label">What are Child Labor and Forced Labor?</p>
                     </app-link>
                     <border-separator></border-separator>
-                    <div id="step-list-scroll">
-                        <expandable-item-link name="steps-landing">
+                    <div id="step-list-scroll" aria-live="polite">
+                        <!--expandable-item-link name="steps-landing">
                             <div slot="label">
                                 <app-link href="/steps-landing">
                                     Steps
@@ -236,7 +246,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </dom-repeat>
                                 </iron-selector>
                             </div>
-                        </expandable-item-link>
+                        </expandable-item-link-->
+                        <iron-pages selected="[[menuState]]" attr-for-selected="state" fallback-selection="none" role="secondary">
+                            <div class="layout horizontal" state="none">
+                                <app-link class="flex" href="/steps-landing">Steps</app-link>
+                                <paper-icon-button icon="expand-more" on-click="showSteps" aria-label="Expand list of Steps"></paper-icon-button>
+                            </div>
+                            <div state="listSteps">
+                                <div class="layout horizontal">
+                                    <app-link class="flex" href="/steps-landing"><strong>Steps</strong></app-link>
+                                    <paper-icon-button icon="expand-less" on-click="menuBack" aria-label="Collapse list of steps"></paper-icon-button>
+                                </div>
+                                <dom-repeat items="[[stepData]]">
+                                    <template>
+                                        <div class="layout horizontal">
+                                            <app-link class="flex" href="/step/[[item.index]]">
+                                                <localized-data value="stepPrefix"></localized-data> [[item.index]]
+                                            </app-link>
+                                            <paper-icon-button icon="expand-more" value="[[item]]" on-click="gotoStep" aria-label="Expand list of topics"></paper-icon-button>
+                                        </div>
+                                    </template>
+                                </dom-repeat>
+                            </div>
+                            <div state="listTopics">
+                                <div class="layout horizontal">
+                                    <app-link class="flex" href="/step/[[currentMenuStep.index]]"><strong>Step [[currentMenuStep.index]]</strong></app-link>
+                                    <paper-icon-button icon="expand-less" on-click="menuBack" aria-label="Collapse list of topics"></paper-icon-button>
+                                </div>
+                                <dom-repeat items="[[currentMenuStep.topics]]">
+                                    <template>
+                                        <div class="layout horizontal">
+                                            <div class="topic-link">
+                                                <app-link class="flex " href="/topic/[[currentMenuStep.index]]/[[item.index]]">
+                                                    <p class="link-label">[[item.title]]</p>
+                                                </app-link>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </dom-repeat>
+                            </div>
+                        </iron-pages>
                     </div>
                     <border-separator></border-separator>
                     <app-link name="key-resources" href="/info-key-resources">
@@ -251,61 +300,65 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <app-toolbar>
                         <paper-icon-button icon="my-icons:menu" drawer-toggle aria-label="Menu"></paper-icon-button>
                         <div main-title class="layout horizontal">
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="ILAB Logo" class="logo-img-small" src="imgs/ilab.png"  /></a></div>
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="ILAB - The Bureau of International Labor Affairs" class="logo-img-small" src="imgs/ilab.png"  /></a></div>
                             <div class="flex layout horizontal center-justified">
                                 <div class="layout vertical title-bar-text">
                                     <div class="flex layout horizontal center-justified">
-                                        <p>Comply Chain</p>
+                                        <p><strong>Comply Chain</strong></p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="Department of Labor Logo" class="logo-img" src="imgs/dol.png" /></a></div>
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="United States Department of Labor" class="logo-img" src="imgs/dol.png" /></a></div>
                         </div>
                     </app-toolbar>
                 </app-header>
-                <div id="top">
-                    <div hidden$="[[!isSearching]]">
-                        <div id="search-bar">
-                            <iron-a11y-keys id="a11y" keys="enter" on-keys-pressed="onSearch" target="[[searchInputTarget]]"></iron-a11y-keys>
-                            <paper-input id="search-input" value="{{searchText}}" placeholder="Search..."></paper-input>
-                        </div>
-                    </div>
-                    <iron-pages id="bread-crumbs-container" selected="[[page]]" attr-for-selected="name" fallback-selection="default" role="secondary">
-                        <div name="default" class="layout horizontal">
-                            <bread-crumbs name="default" class="flex" route="[[route]]" step-data="[[stepData]]" is-searching="{{isSearching}}"></bread-crumbs>
-                            <div>
-                                <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles aria-label="Search" id="bread-crumbs-search"></paper-icon-button>
+                <div class="not-inside-content">
+                    <div id="top">
+                        <div hidden$="[[!isSearching]]">
+                            <div id="search-bar">
+                                <iron-a11y-keys id="a11y" keys="enter" on-keys-pressed="onSearch" target="[[searchInputTarget]]"></iron-a11y-keys>
+                                <paper-input id="search-input" value="{{searchText}}" placeholder="Search..."></paper-input>
                             </div>
                         </div>
-                        <div name="home"></div>
+                        <iron-pages id="bread-crumbs-container" selected="[[page]]" attr-for-selected="name" fallback-selection="default" role="secondary">
+                            <div name="default" class="layout horizontal">
+                                <bread-crumbs name="default" class="flex" route="[[route]]" step-data="[[stepData]]" is-searching="{{isSearching}}"></bread-crumbs>
+                                <div>
+                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles aria-label="Search" id="bread-crumbs-search"></paper-icon-button>
+                                </div>
+                            </div>
+                            <div name="home"></div>
+                        </iron-pages>
+                    </div>
+                    <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="home" role="main">
+                        <div name="home">
+                            <my-home route="[[subroute]]">
+                                <div slot="append" class="layout horizontal">
+                                    <div class="flex">
+                                    </div>
+                                    <div>
+                                        <div id="icon-background"></div>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="Search"></paper-icon-button>
+                                    </div>
+                                </div>
+                            </my-home>
+                        </div>
+                        <my-step-splash name="step" route="[[subroute]]" step-data="[[stepData]]"></my-step-splash>
+                        <my-topic target-id="{{targetId}}" name="topic" route="[[subroute]]" step-data="[[stepData]]"></my-topic>
+                        <info-page target-id="{{targetId}}" name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
+                        <search-results id="search" aria-live="polite" name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
+                        <steps-landing id="landing" name="steps-landing" route="[[subroute]]">
+                            <slot></slot>
+                        </steps-landing>
+                        <dom-repeat items="{{infoData}}">
+                            <template>
+                                <info-sub-page target-id="{{targetId}}" name="[[item.id]]" target-data="[[infoFor(infoData, item.id)]]" html-content="{{item.content}}"></info-sub-page>
+                            </template>
+                        </dom-repeat>
+                        <index-info name="index-info"></index-info>
+                        <mockup-page name="mockup-page"></mockup-page>
                     </iron-pages>
                 </div>
-                <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="home" role="main">
-                    <div name="home">
-                        <my-home route="[[subroute]]">
-                            <div slot="append" class="layout horizontal">
-                                <div class="flex">
-                                </div>
-                                <div>
-                                    <div id="icon-background"></div>
-                                    <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="Search"></paper-icon-button>
-                                </div>
-                            </div>
-                        </my-home>
-                    </div>
-                    <my-step-splash name="step" route="[[subroute]]" step-data="[[stepData]]"></my-step-splash>
-                    <my-topic target-id="{{targetId}}" name="topic" route="[[subroute]]" step-data="[[stepData]]"></my-topic>
-                    <info-page target-id="{{targetId}}" name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
-                    <search-results id="search" aria-live="polite" name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
-                    <steps-landing id="landing" name="steps-landing" route="[[subroute]]"></steps-landing>
-                    <dom-repeat items="{{infoData}}">
-                        <template>
-                            <info-sub-page target-id="{{targetId}}" name="[[item.id]]" target-data="[[infoFor(infoData, item.id)]]" html-content="{{item.content}}"></info-sub-page>
-                        </template>
-                    </dom-repeat>
-                    <index-info name="index-info"></index-info>
-                    <mockup-page name="mockup-page"></mockup-page>
-                </iron-pages>
             </app-header-layout>
         </app-drawer-layout>
     </template>
@@ -356,6 +409,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         path: "/home"
                     }
                 },
+                menuState: {
+                    type: String,
+                    value: "none"
+                },
+                currentMenuStep: {
+                    type: Object,
+                    value: null
+                }
             };
         }
 
@@ -364,6 +425,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 '_routePageChanged(routeData.page)',
             ];
         }
+
+        menuBack() {
+            if (this.menuState === "listTopics") {
+                this.menuState = "listSteps";
+            } else if (this.menuState === "listSteps") {
+                this.menuState = "none";
+            }
+        }
+
+        showSteps() {
+            this.menuState = "listSteps";
+        }
+
+        gotoStep(e) {
+            this.currentMenuStep = e.srcElement.value;
+            this.menuState = "listTopics";
+
+        }
+
 
         _searchChange(isSearching) {
             if (isSearching) {
@@ -504,6 +584,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     this.$['search-input'].focus();
                 }
             });
+            this.$['close-menu-btn'].addEventListener('click', event => {
+                if (!this.$.drawer.persistent) {
+                    this.$.drawer.close();
+                }
+            });
         }
         ready() {
             super.ready();
@@ -519,6 +604,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     for (var lang in this.baseStepData) {
                         this.baseStepData[lang].steps.forEach(step => {
                             if (!!step.furtherResources) {
+                                if (step.furtherResources[0] == "/") {
+                                    step.furtherResources = step.furtherResources.substr(1);
+                                }
                                 ajax('GET', step.furtherResources).then(result => {
                                     console.log("found " + step.furtherResources)
                                     step.furtherResources = result;
@@ -526,7 +614,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     console.log("didn't find bib.");
                                 });
                             }
+                            if (!!step.extraInfo) {
+                                if (step.extraInfo[0] == "/") {
+                                    step.extraInfo = step.extraInfo.substr(1);
+                                }
+                                ajax('GET', step.extraInfo).then(result => {
+                                    console.log("found " + step.extraInfo)
+                                    step.extraInfo = result;
+                                }).catch(error => {
+                                    console.log("didn't find extraInfo.");
+                                });
+                            }
                             if (!!step.trainingMats) {
+                                if (step.trainingMats[0] == "/") {
+                                    step.trainingMats = step.trainingMats.substr(1);
+                                }
                                 ajax('GET', step.trainingMats).then(result => {
                                     console.log("found " + step.trainingMats)
                                     step.trainingMats = result;
