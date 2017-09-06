@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             display: inline;
         }
 
-        app-link .link {
+        .link {
             color: #1a0dab;
             text-decoration: underline;
         }
@@ -51,19 +51,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <template>
                         <li class="result">
                             <iron-pages selected="[[result.type]]" attr-for-selected="type" role="main">
-                                <div type="step">
+                                <div class="link" type="step">
                                     <app-link href$="/step/[[result.index]]">
-                                        <div class="link">[[result.title]]</div>
+                                        [[result.title]]
                                     </app-link>
                                 </div>
-                                <div type="topic">
+                                <div class="link" type="topic">
                                     <app-link href$="/topic/[[result.stepIndex]]/[[result.index]]">
-                                        <div class="link">[[result.title]]</div>
-                                    </app-link>
+                                       [[result.title]]                                    </app-link>
                                 </div>
                                 <div type="info">
-                                    <app-link href$="/[[result.id]]">
-                                        <div class="link">[[result.title]]</div>
+                                    <app-link class="link" href$="/[[result.id]]">
+                                        [[result.title]]
                                     </app-link>
                                 </div>
                             </iron-pages>
@@ -92,7 +91,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 },
                 results: {
                     type: Array,
-                    value: '_search(stepData, infoData, searchTerm)',
+                    computed: '_search(stepData, infoData, searchTerm)',
                 }
             };
         }
