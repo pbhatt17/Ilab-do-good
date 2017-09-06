@@ -20,7 +20,7 @@
         </style>
         <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation></iron-a11y-keys>
         <div class="layout horizontal label">
-            <paper-button toggles >
+            <paper-button toggles aria-label="Expand Content">
                 <div class="layout horizontal flex">
                     <div class="layout vertical center-justified flex">
                         <slot name="label"></slot>
@@ -53,16 +53,7 @@
                     type: Boolean,
                     value: false,
                 },
-                /*role: {
-                    type: String,
-                    //value: "button",
-                    //reflectToAttribute: true,
-                },
-                tabindex: {
-                    type: Number,
-                    value: 0,
-                    reflectToAttribute: true,
-                },*/
+                
                 target: {
                     type: Object
                 }

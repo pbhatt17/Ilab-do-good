@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="shared-styles.html">
 <dom-module id="my-step-splash">
     <template>
-        <style include="shared-styles">
+        <style include="shared-styles iron-flex iron-flex-alignment">
          :host {
             display: block;
             padding: 10px;
@@ -34,70 +34,84 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         h3 {
             margin: 0;
         }
+
+        .main {
+            max-width: 700px;
+            width: 100%;
+        }
         </style>
         <app-route route="{{route}}" pattern="/:stepId" data="{{routeData}}"></app-route>
-        <div class="main">
-            <div class="title-bar">
-                <h1>[[data.stepTitle]]</h1>
-            </div>
-            <expandable-item>
-                <h3 slot="label">Learning Objectives</h3>
-                <ul slot="items">
-                    <dom-repeat items="[[data.learningObjectives]]">
-                        <template>
-                            <li>
-                                [[item]]
-                            </li>
-                        </template>
-                    </dom-repeat>
-                </ul>
-            </expandable-item>
-            <border-separator></border-separator>
-            <expandable-item>
-                <h3 slot="label">Key Terms</h3>
-                <ul slot="items">
-                    <dom-repeat items="[[data.keyTerms]]">
-                        <template>
-                            <li>
-                                <strong>[[item.termName]]</strong> -- [[item.termDefinition]]
-                            </li>
-                        </template>
-                    </dom-repeat>
-                </ul>
-            </expandable-item>
-            <border-separator></border-separator>
-            <expandable-item is-opened="true">
-                <h3 slot="label">Topics</h3>
-                <div slot="items">
-                    <ul>
-                        <dom-repeat items="[[data.topics]]">
+        <div class="layout horizontal center-justified">
+            <div class="main">
+                <div class="title-bar">
+                    <h1>[[data.stepTitle]]</h1>
+                </div>
+                <expandable-item>
+                    <h2 slot="label">Learning Objectives</h2>
+                    <ul slot="items">
+                        <dom-repeat items="[[data.learningObjectives]]">
                             <template>
                                 <li>
-                                    <app-link href="/topic/[[data.index]]/[[item.index]]">
-                                        <div class="link">[[item.title]]</div>
-                                    </app-link>
+                                    [[item]]
                                 </li>
                             </template>
                         </dom-repeat>
                     </ul>
-                    <paper-button id="next" hidden$="[[!hasNext]]" raised>Continue to Step [[nextStepId]]</paper-button>
-                </div>
-            </expandable-item>
-            <border-separator></border-separator>
-            <expandable-item>
-                <h3 slot="label">Further Resources</h3>
-                <div slot="items">
-                    <render-raw html-data="[[data.furtherResources]]"></render-raw>
-                </div>
-            </expandable-item>
-            <div hidden$="[[!_hasTrainingMats(data)]]">
+                </expandable-item>
                 <border-separator></border-separator>
                 <expandable-item>
-                    <h3 slot="label">Training Materials</h3>
+                    <h2 slot="label">Key Terms</h2>
                     <div slot="items">
-                        <render-raw html-data="[[data.trainingMats]]"></render-raw>
+                        <ul>
+                            <dom-repeat items="[[data.keyTerms]]">
+                                <template>
+                                    <li>
+                                        <strong>[[item.termName]]</strong> -- [[item.termDefinition]]
+                                    </li>
+                                </template>
+                            </dom-repeat>
+                        </ul>
+                        <div hidden$="[[!_hasExtraInfo(data)]]">
+                            <render-raw html-data="[[data.extraInfo]]"></render-raw>
+                        </div>
                     </div>
                 </expandable-item>
+                <border-separator></border-separator>
+                <expandable-item is-opened="true">
+                    <h2 slot="label">Topics</h2>
+                    <div slot="items">
+                        <ul>
+                            <dom-repeat items="[[data.topics]]">
+                                <template>
+                                    <li>
+                                        <app-link href="/topic/[[data.index]]/[[item.index]]">
+                                            <h3 class="link">[[item.title]]</h3>
+                                        </app-link>
+                                    </li>
+                                </template>
+                            </dom-repeat>
+                        </ul>
+                        <paper-button id="next" hidden$="[[!hasNext]]" raised>Continue to Step [[nextStepId]]</paper-button>
+                    </div>
+                </expandable-item>
+                <div hidden$="[[!_hasFurtherResources(data)]]">
+                    <border-separator></border-separator>
+                    <expandable-item>
+                        <h2 slot="label">Further Resources</h2>
+                        <div slot="items">
+                            <render-raw html-data="[[data.furtherResources]]"></render-raw>
+                        </div>
+                    </expandable-item>
+                </div>
+                <div hidden$="[[!_hasTrainingMats(data)]]">
+                    <border-separator></border-separator>
+                    <expandable-item>
+                        <h2 slot="label">Training Materials</h2>
+                        <div slot="items">
+                            <render-raw html-data="[[data.trainingMats]]"></render-raw>
+                        </div>
+                    </expandable-item>
+                </div>
             </div>
         </div>
     </template>
@@ -131,6 +145,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 return false;
             }
             return data.trainingMats !== null && data.trainingMats !== undefined;
+        }
+        _hasFurtherResources(data) {
+            if (data === null || data === undefined) {
+                return false;
+            }
+            return data.furtherResources !== null && data.furtherResources !== undefined;
+        }
+        _hasExtraInfo(data) {
+            if (data === null || data === undefined) {
+                return false;
+            }
+            return data.extraInfo !== null && data.extraInfo !== undefined;
         }
 
         _nextId(id) {

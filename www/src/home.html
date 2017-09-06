@@ -32,6 +32,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             position: absolute;
             bottom: 0;
             overflow-y: hidden;
+
+            background-image: url("../imgs/test_bg.jpg");
+            height: 100%;
+            background-position: bottom left;
+            background-size: cover;
+
         }
         
         #info-btn {
@@ -76,8 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
         <slot name="append"></slot>
         <div class="bottom">
-            <img id="background" alt="Girl making jeans with sewing machine" src="imgs/test_bg.jpg" />
-            <paper-icon-button id="info-btn" icon="icons:info" aria-label="Info"></paper-icon-button>
+            <paper-icon-button id="info-btn" icon="icons:info" aria-label="Info" role="link"></paper-icon-button>
         </div>
     </template>
     <script>

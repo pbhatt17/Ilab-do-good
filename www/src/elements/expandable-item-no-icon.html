@@ -16,18 +16,16 @@
             text-align: left;
         }
 
-         :host(.open) {
-            outline: none;
-        }
         </style>
         <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation></iron-a11y-keys>
         <div class="layout vertical">
-            <button class="label" toggles tabindex="-1">
+            <button class="label" toggles aria-label="Expand Content">
                 <slot name="label"></slot>
             </button>
-            <div hidden$="[[!isOpened]]" aria-expanded$="[[isOpened]]">
+            
+            <iron-collapse id="collapse">
                 <slot name="items"></slot>
-            </div>
+            </iron-collapse>
         </div>
     </template>
     <script>
@@ -43,16 +41,7 @@
                     type: Boolean,
                     value: false,
                 },
-                role: {
-                    type: String,
-                    value: "button",
-                    reflectToAttribute: true,
-                },
-                tabindex: {
-                    type: Number,
-                    value: 0,
-                    reflectToAttribute: true,
-                },
+                
                 target: {
                     type: Object
                 }
@@ -67,35 +56,22 @@
             this._debouncer = Polymer.Debouncer.debounce(
                 this._debouncer, // initially undefined
                 Polymer.Async.timeOut.after(15),
-                () => {
-
+                () => { 
                     this.isOpened = !this.isOpened;
-                    if (this.isOpened) {
-                        this.classList.add("open");
-                    } else {
-                        this.classList.remove("open");
-                    }
+                    this.$.collapse.toggle();
                 });
+
         }
 
-        toggleJob() {
-            this._debouncer = Polymer.Debouncer.debounce(
-                this._debouncer, // initially undefined
-                Polymer.Async.timeOut.after(15),
-                () => {
-
-                    this.isOpened = !this.isOpened;
-                });
-        }
 
         ready() {
             super.ready();
-            this.root.querySelector('.label').addEventListener('click', event => {
-                this.toggleJob();
+            this.root.querySelector('button').addEventListener('click', event => {
+                this.toggleOpen();
             });
-            this.root.querySelector('paper-button').addEventListener('tap', event => {
-                this.toggleJob();
-            });
+            if(this.isOpened) {
+                this.$.collapse.show();
+            }
             this.target = this;
         }
     }
