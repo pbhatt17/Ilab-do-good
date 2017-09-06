@@ -60,6 +60,10 @@
             margin-left: 1em;
         }
 
+        .exp-head{
+            font-size: 16px;
+        }
+
 
         .example-in-action,
         .own-words {
@@ -73,17 +77,19 @@
         }
 
         .example-in-action h1,
-        .example-in-action h2 {
-            color: rgb(31, 170, 219);
+        .example-in-action h2,
+        .example-in-action h3 {
             margin-left: 4px;
             margin-right: 4px;
+            color: rgb(31, 170, 219);
         }
 
         .own-words h1,
-        .own-words h2 {
-            color: rgb(249, 134, 19);
+        .own-words h2,
+        .own-words h3 {
             margin-left: 4px;
             margin-right: 4px;
+            color: rgb(249, 134, 19);
         }
 
         #eia-list border-separator {
@@ -130,10 +136,29 @@
         td {
             border: 1px solid grey;
         }
+
+        th,
+        td {
+            padding: 8px;
+        }
+
+        .flag-verite {
+            height: 120px;
+        }
+
+        .verite {
+            height: 100%;
+            width: auto;
+        }
+        .flag {
+    margin-bottom: 2%;
+            height:80%;
+            width: auto;
+        }
+
         </style>
         <global-data id="data" device="{{device}}"></global-data>
-        <div id="content"></div>
-        <slot>
+            <div id="content"></div>
     </template>
     <script>
     class RenderRaw extends Polymer.Element {

@@ -81,6 +81,9 @@
             this.root.querySelector('paper-button').addEventListener('click', event => {
                 this.isOpened = !this.isOpened;
             });
+            this.root.querySelector('paper-button').addEventListener('tap', event => {
+                this.isOpened = !this.isOpened;
+            });
             this.target = this;
         }
     }

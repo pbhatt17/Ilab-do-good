@@ -215,7 +215,7 @@
                 ],
                 "keyTerms": [{
                     "termName": "Code of Conduct (\"Code\")",
-                    "termDefinition": "The foundation of a social compliance program, a code of conduct is a document that sets out the social (and often, environmental) standards and policies with which a company and its suppliers are expected to comply.  Many companies refer to their codes by a name other than “code of conduct,” such as “terms of engagement,” “supplier expectations,” and many others, but the term is used throughout this App for consistency and clarity. A code is a set of voluntary standards; in this respect it differs from law— although relevant laws(both U.S.and source country) must be taken into account, as should collective bargaining agreements and international framework agreements(IFAs) with union federations, which are enforceable contracts.A code is not a substitute for any of these instruments."
+                    "termDefinition": "The foundation of a social compliance program, a code of conduct is a document that sets out the social (and often, environmental) standards and policies with which a company and its suppliers are expected to comply.  Many companies refer to their codes by a name other than “code of conduct,” such as “terms of engagement,” “supplier expectations,” and many others, but the term is used throughout this App for consistency and clarity."
                 }],
                 "topics": [{
                         "index": 1,
@@ -339,7 +339,7 @@
             {
                 "index": 5,
                 "type": "splash",
-                "stepTitle": "Step 5:  MONITOR COMPLIANCE",
+                "stepTitle": "Step 5:  Monitor Compliance",
                 "preview": "This is a sample preview for Step 5",
                 "keywords": ["Social Audit", "Auditing", "Monitoring"],
                 "learningObjectives": [
@@ -358,8 +358,14 @@
                     {
                         "termName": "Monitoring",
                         "termDefinition": "For the purposes of this App, synonymous with auditing."
+                    },
+
+                    {
+                        "termName": "Social Auditing",
+                        "termDefinition": "Social auditing is one of the key ways—in addition to engagement with unions/workers and grievance mechanisms—to obtain information about violations of a company’s code of conduct in your supply chain. Auditing uncovers problems; it does not solve problems. It is one piece of the larger social compliance system, and cannot and should not be done in isolation from stakeholder engagement, communication, remediation and the other steps in the process."
                     }
                 ],
+                "extraInfo": "/topics/step5/extraInfo.html",
                 "topics": [{
                         "index": 1,
                         "type": "other",
@@ -452,7 +458,7 @@
             {
                 "index": 6,
                 "type": "splash",
-                "stepTitle": "STEP 6:  REMEDIATE VIOLATIONS",
+                "stepTitle": "STEP 6:  Remediate Violations",
                 "preview": "This is a sample preview for Step 4",
                 "keywords": ["Violation", "Remediation", "Corrective Action Plan", "CAP"],
                 "learningObjectives": [
@@ -477,6 +483,7 @@
                         "termDefinition": "Every violation identified in an audit should be remediated.  Various stakeholders should play a role in remediation:  the management of the supplier facility should be committed to correcting the violations; the company should have the necessary mechanisms to ensure the technical assistance and support needed for correction; and workers or workers’ organizations should be consulted for their views about which remediation actions will work best. Remediation actions should always be designed to both correct the problem found and prevent it from recurring.  In the case of child labor and forced labor violations, this means both improving circumstances for individual child labor or forced labor victims and preventing further child labor or forced labor from occurring at the worksite."
                     }
                 ],
+                "extraInfo": "/topics/step6/extraInfo.html",
                 "topics": [{
                         "index": 1,
                         "type": "other",
@@ -513,8 +520,7 @@
                     }
 
 
-                ],
-                "furtherResources": "/topics/step6/bib.html"
+                ]
             },
             {
                 "index": 7,
@@ -533,7 +539,7 @@
 
                     {
                         "termName": "Independent Monitoring (Auditing)",
-                        "termDefinition": "Independent review consists of independent monitoring (auditing) and independent verification.  Independence in the social compliance context is defined by a lack of a direct financial transaction between the company and external entity."
+                        "termDefinition": "Monitoring/auditing carried out by audit professionals accredited by institutions or mechanisms; their role is to ensure that auditing takes place while eliminating any direct financial transaction between the company and the auditor. Typically, a company pays a separate, independent institution for auditing services, and/or for membership in that body. The institution accredits auditors under its established standards and is responsible for scheduling and oversight of all audits.  While this is designed to increase the credibility of the audit, in some sectors or geographic locations, this arrangement may not be available.  In addition, even without a direct financial transaction, some stakeholders may still have concerns about the degree of an auditor’s independence from the audited entity. Varying degrees of independence exist, and independence ultimately needs to be judged on a case-by-case basis."
                     },
                     {
                         "termName": "Independent Verification",
@@ -550,6 +556,7 @@
                     }
 
                 ],
+                "extraInfo": "/topics/step7/extraInfo.html",
                 "topics": [
 
                     {
@@ -597,6 +604,7 @@
                     "termName": "Public Reporting",
                     "termDefinition": "Communication that is made available to the public, through a variety of channels, about all elements of a company’s social compliance system."
                 }],
+                "extraInfo": "/topics/step6/extraInfo.html",
                 "topics": [
 
 

@@ -43,8 +43,9 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <icon height="120" src="res/comply-chain-app-120.png" width="120" />
-    <icon height="180" src="res/comply-chain-app-180.png" width="180" />
+    <icon height="120" platform="ios" src="res/comply-chain-app-120.png" width="120" />
+    <icon height="180" platform="ios" src="res/comply-chain-app-180.png" width="180" />
+    <icon height="72" platform="android" src="res/comply-chain-app-72.png" width="72" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <preference name="AllowInlineMediaPlayback" value="false" />
