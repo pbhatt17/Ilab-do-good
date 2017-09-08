@@ -40,12 +40,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="msapplication-TileColor" content="#3f51b5">
     <meta name="msapplication-tap-highlight" content="no">
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="scripts/promise.js"></script>
+    <script type="text/javascript" src="scripts/polyfills.js"></script>
     <script type="text/javascript" src="scripts/imageMapResize.js">
     </script>
     <script type="text/javascript" src="scripts/ajax.js"></script>
     <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
     <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     <!-- Load your application shell -->
     <!-- Add any global styles for body, document, etc. -->
     
@@ -31035,7 +31037,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             var target = slot.queryDistributedElements('img')[0];
             var map = slot.queryDistributedElements('map')[0];
             var areas = map.querySelectorAll('area');
+            console.log(window.innerWidth);
+            console.log(window.innerHeight);
             
+            var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight));
+
             setTimeout(() => {
                 var less = Math.min(this.offsetWidth, this.offsetHeight);
                 target.style.width = less + "px";
@@ -31059,12 +31065,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <style include="iron-flex iron-flex-alignment"></style>
         </custom-style>
         <style>
-         :host {
+         
+        :host {
             display: block;
+            width: 100%;
         }
 
         .icon {
             margin-left: 20px;
+        }
+
+        paper-button {
+            width: 100%;
         }
 
          :host(.open) {
@@ -31380,7 +31392,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             font-size: 16px;
         }
 
-
+        
         .example-in-action,
         .own-words {
             background-color: rgb(224, 224, 224);
@@ -31394,15 +31406,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         .example-in-action h1,
         .example-in-action h2,
-        .example-in-action h3 {
+        .example-in-action h3,
+        .example-in-action h4 {
             margin-left: 4px;
             margin-right: 4px;
-            color: rgb(31, 170, 219);
+            color: #00008b;
         }
 
         .own-words h1,
         .own-words h2,
-        .own-words h3 {
+        .own-words h3,
+        .own-words h4 {
             margin-left: 4px;
             margin-right: 4px;
             color: rgb(249, 134, 19);
@@ -31470,6 +31484,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     margin-bottom: 2%;
             height:80%;
             width: auto;
+        }
+        #content {
+            display: inline;
         }
 
         </style>
@@ -32657,7 +32674,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         li {
+            overflow-wrap: break-word;
             word-wrap: break-word;
+            word-break: break-all;
+            word-break: break-word;
         }
 
         #next {
@@ -32672,6 +32692,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         .main {
             max-width: 700px;
             width: 100%;
+        }
+        .topics {
+            margin-left: 15px;
+            margin-bottom: 10px;
         }
         </style>
         <app-route route="{{route}}" pattern="/:stepId" data="{{routeData}}"></app-route>
@@ -32700,7 +32724,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <dom-repeat items="[[data.keyTerms]]">
                                 <template>
                                     <li>
-                                        <strong>[[item.termName]]</strong> -- [[item.termDefinition]]
+                                        <strong>[[item.termName]]</strong> -- <render-raw html-data="[[item.termDefinition]]"></render-raw>
                                     </li>
                                 </template>
                             </dom-repeat>
@@ -32711,8 +32735,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                 </expandable-item>
                 <border-separator></border-separator>
-                <expandable-item is-opened="true">
-                    <h2 slot="label">Topics</h2>
+                <!--expandable-item is-opened="true"-->
+                <div class="topics">
+                    <h2 slot="label">TOPICS</h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.topics]]">
@@ -32727,7 +32752,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </ul>
                         <paper-button id="next" hidden$="[[!hasNext]]" raised="">Continue to Step [[nextStepId]]</paper-button>
                     </div>
-                </expandable-item>
+                    </div>
+                <!--/expandable-item-->
                 <div hidden$="[[!_hasFurtherResources(data)]]">
                     <border-separator></border-separator>
                     <expandable-item>
@@ -33104,7 +33130,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                             <app-link class="flex" href="/step/[[item.index]]">
                                                 <localized-data value="stepPrefix"></localized-data> [[item.index]]
                                             </app-link>
-                                            <paper-icon-button icon="expand-more" value="[[item]]" on-click="gotoStep" aria-label="Expand list of topics"></paper-icon-button>
+                                            <paper-icon-button icon="expand-more" value="[[item]]" on-click="gotoStep" aria-label="Expand list of topics for Step [[item.index]]"></paper-icon-button>
                                         </div>
                                     </template>
                                 </dom-repeat>
