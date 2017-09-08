@@ -1,5 +1,5 @@
 {
-  "entrypoint": "ios-index.html",
+  "entrypoint": "index.html",
   "shell": "src/my-app.html",
   "fragments": [
   ],

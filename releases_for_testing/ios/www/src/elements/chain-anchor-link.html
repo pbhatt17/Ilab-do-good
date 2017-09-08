@@ -134,7 +134,11 @@
             var target = slot.queryDistributedElements('img')[0];
             var map = slot.queryDistributedElements('map')[0];
             var areas = map.querySelectorAll('area');
+            console.log(window.innerWidth);
+            console.log(window.innerHeight);
             
+            var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight));
+
             setTimeout(() => {
                 var less = Math.min(this.offsetWidth, this.offsetHeight);
                 target.style.width = less + "px";

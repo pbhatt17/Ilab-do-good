@@ -23,7 +23,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         li {
+            overflow-wrap: break-word;
             word-wrap: break-word;
+            word-break: break-all;
+            word-break: break-word;
         }
 
         #next {
@@ -38,6 +41,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         .main {
             max-width: 700px;
             width: 100%;
+        }
+        .topics {
+            margin-left: 15px;
+            margin-bottom: 10px;
         }
         </style>
         <app-route route="{{route}}" pattern="/:stepId" data="{{routeData}}"></app-route>
@@ -66,7 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <dom-repeat items="[[data.keyTerms]]">
                                 <template>
                                     <li>
-                                        <strong>[[item.termName]]</strong> -- [[item.termDefinition]]
+                                        <strong>[[item.termName]]</strong> -- <render-raw html-data="[[item.termDefinition]]"></render-raw>
                                     </li>
                                 </template>
                             </dom-repeat>
@@ -77,8 +84,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                 </expandable-item>
                 <border-separator></border-separator>
-                <expandable-item is-opened="true">
-                    <h2 slot="label">Topics</h2>
+                <!--expandable-item is-opened="true"-->
+                <div class="topics">
+                    <h2 slot="label">TOPICS</h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.topics]]">
@@ -93,7 +101,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </ul>
                         <paper-button id="next" hidden$="[[!hasNext]]" raised>Continue to Step [[nextStepId]]</paper-button>
                     </div>
-                </expandable-item>
+                    </div>
+                <!--/expandable-item-->
                 <div hidden$="[[!_hasFurtherResources(data)]]">
                     <border-separator></border-separator>
                     <expandable-item>
