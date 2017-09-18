@@ -6,8 +6,7 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
+--><link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
@@ -36,7 +35,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="./elements/bread-crumbs.html">
 <link rel="import" href="./elements/chain-anchor-link.html">
 <link rel="import" href="./elements/expandable-item.html">
-<link rel="import" href="./elements/expandable-item-link.html">
 <link rel="import" href="./elements/expandable-item-no-icon.html">
 <link rel="import" href="./elements/render-raw.html">
 <link rel="import" href="./elements/localized.html">
@@ -150,9 +148,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             pointer-events: auto;
         }
 
-        #step-list-scroll {
-            overflow-y: auto;
-            max-height: 225px;
+        @media (max-height:630px) {
+            #step-list-scroll {
+                overflow-y: auto;
+                max-height: 225px;
+            }
         }
 
         .topic-link {
@@ -172,18 +172,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             position: absolute;
             margin: 5px;
         }
-
-        .inside-content {
-            max-width: 700px;
-        }
         </style>
         <global-data locale="{{lang}}"></global-data>
         <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
         <app-route route="[[route]]" pattern="/:page/:stepId" data="{{routeData}}"></app-route>
         <app-route route="[[route]]" pattern="/:page/:stepId/:topicId" data="{{routeData}}"></app-route>
-        <app-drawer-layout class="temp-width" fullbleed force-narrow>
+        <app-drawer-layout class="temp-width" fullbleed="" force-narrow="">
             <!-- Drawer content -->
-            <app-drawer id="drawer" slot="drawer" persistent>
+            <app-drawer id="drawer" slot="drawer" persistent="">
                 <app-toolbar>
                     <div class="layout horizontal flex">
                         <p class="flex">
@@ -211,42 +207,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <p class="link-label">What are Child Labor and Forced Labor?</p>
                     </app-link>
                     <border-separator></border-separator>
-                    <div id="step-list-scroll" aria-live="polite">
-                        <!--expandable-item-link name="steps-landing">
-                            <div slot="label">
-                                <app-link href="/steps-landing">
-                                    Steps
-                                </app-link>
-                            </div>
-                            <div slot="items">
-                                <iron-selector selected="[[routeData.stepId]]" attr-for-selected="name" class="drawer-list" role="navigation">
-                                    <dom-repeat items="[[stepData]]">
-                                        <template>
-                                            <expandable-item-link name="[[item.index]]">
-                                                <div slot="label">
-                                                    <app-link href="/step/[[item.index]]">
-                                                        <localized-data value="stepPrefix"></localized-data> [[item.index]]
-                                                    </app-link>
-                                                </div>
-                                                <div slot="items">
-                                                    <iron-selector selected="[[routeData.stepId]][[routeData.topicId]]" attr-for-selected="name" class="drawer-list" role="navigation">
-                                                        <dom-repeat items="[[item.topics]]" as="topic">
-                                                            <template>
-                                                                <div class="topic-link" name="[[item.index]][[topic.index]]">
-                                                                    <app-link href="/topic/[[item.index]]/[[topic.index]]">
-                                                                        <p class="link-label">[[topic.title]]</p>
-                                                                    </app-link>
-                                                                </div>
-                                                            </template>
-                                                        </dom-repeat>
-                                                    </iron-selector>
-                                                </div>
-                                            </expandable-item-link>
-                                        </template>
-                                    </dom-repeat>
-                                </iron-selector>
-                            </div>
-                        </expandable-item-link-->
+                    <div id="step-list-scroll" aria-live="polite"> 
                         <iron-pages selected="[[menuState]]" attr-for-selected="state" fallback-selection="none" role="secondary">
                             <div class="layout horizontal" state="none">
                                 <app-link class="flex" href="/steps-landing">Steps</app-link>
@@ -263,7 +224,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                             <app-link class="flex" href="/step/[[item.index]]">
                                                 <localized-data value="stepPrefix"></localized-data> [[item.index]]
                                             </app-link>
-                                            <paper-icon-button icon="expand-more" value="[[item]]" on-click="gotoStep" aria-label="Expand list of topics"></paper-icon-button>
+                                            <paper-icon-button icon="expand-more" step-target="[[item]]" data-index$="[[item.index]]" data-test-index="[[item.index]]" on-click="gotoStep" aria-label="Expand list of topics for Step [[item.index]]"></paper-icon-button>
                                         </div>
                                     </template>
                                 </dom-repeat>
@@ -295,12 +256,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </iron-selector>
             </app-drawer>
             <!-- Main content -->
-            <app-header-layout id="scrollingRegion" has-scrolling-region>
-                <app-header slot="header" fixed scroll-target="scrollingRegion">
+            <app-header-layout id="scrollingRegion" has-scrolling-region="">
+                <app-header slot="header" id="app-header" fixed="" scroll-target="scrollingRegion">
                     <app-toolbar>
-                        <paper-icon-button icon="my-icons:menu" drawer-toggle aria-label="Menu"></paper-icon-button>
-                        <div main-title class="layout horizontal">
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="ILAB - The Bureau of International Labor Affairs" class="logo-img-small" src="imgs/ilab.png"  /></a></div>
+                        <paper-icon-button icon="my-icons:menu" drawer-toggle="" aria-label="Menu"></paper-icon-button>
+                        <div main-title="" class="layout horizontal">
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="ILAB - The Bureau of International Labor Affairs" class="logo-img-small" src="imgs/ilab.png"></a></div>
                             <div class="flex layout horizontal center-justified">
                                 <div class="layout vertical title-bar-text">
                                     <div class="flex layout horizontal center-justified">
@@ -308,7 +269,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="United States Department of Labor" class="logo-img" src="imgs/dol.png" /></a></div>
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="United States Department of Labor" class="logo-img" src="imgs/dol.png"></a></div>
                         </div>
                     </app-toolbar>
                 </app-header>
@@ -324,7 +285,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <div name="default" class="layout horizontal">
                                 <bread-crumbs name="default" class="flex" route="[[route]]" step-data="[[stepData]]" is-searching="{{isSearching}}"></bread-crumbs>
                                 <div>
-                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles aria-label="Search" id="bread-crumbs-search"></paper-icon-button>
+                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search" id="bread-crumbs-search"></paper-icon-button>
                                 </div>
                             </div>
                             <div name="home"></div>
@@ -338,7 +299,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="Search"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home>
@@ -362,46 +323,187 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </app-header-layout>
         </app-drawer-layout>
     </template>
-    <script>
-    class MyApp extends Polymer.Element {
+    <script>var MyApp = function (_Polymer$Element) {
+    babelHelpers.inherits(MyApp, _Polymer$Element);
+    babelHelpers.createClass(MyApp, [{
+        key: 'menuBack',
+        value: function menuBack() {
+            if (this.menuState === "listTopics") {
+                this.menuState = "listSteps";
+            } else if (this.menuState === "listSteps") {
+                this.menuState = "none";
+            }
+            console.log("menuBack:" + this.menuState);
+        }
+    }, {
+        key: 'showSteps',
+        value: function showSteps() {
+            this.menuState = "listSteps";
+            console.log("showSteps:" + this.menuState);
+        }
+    }, {
+        key: 'gotoStep',
+        value: function gotoStep(e) {
+            this.currentMenuStep = e.target.stepTarget;
+            this.menuState = "listTopics";
+            console.log("gotoStep:" + this.menuState);
+            console.log("stepid:" + this.currentMenuStep);
+            console.log("stepid:" + e.target.dataset.index);
+            console.log("stepid:" + e.target.dataset.testIndex);
+            console.log("stepid:" + e.target.index);
+            console.log("stepid:" + e.target.testIndex);
+        }
+    }, {
+        key: '_searchChange',
+        value: function _searchChange(isSearching) {
+            if (isSearching) {
+                //this.$['search-input'].focus();
 
-        static get is() {
+            }
+        }
+    }, {
+        key: 'onSearch',
+        value: function onSearch() {
+            var _this2 = this;
+
+            this.set('route.path', '/search-results');
+            setTimeout(function () {
+                window.scrollTo(0, 0);
+                _this2.root.querySelector('bread-crumbs').scrollIntoView();
+                if (_this2.$.search.results.length === 1) {
+                    var item = _this2.$.search.results[0];
+                    if (item.type === "step") {
+                        _this2.set('route.path', '/step/' + item.index);
+                    }
+                    if (item.type === "info") {
+                        _this2.set('route.path', '/' + item.id);
+                    }
+                    if (item.type === "topic") {
+                        _this2.set('route.path', '/topic/' + item.stepIndex + '/' + item.index);
+                    }
+                }
+            }, 15);
+        }
+    }, {
+        key: '_routePageChanged',
+        value: function _routePageChanged(page) {
+            // Polymer 2.0 will call with `undefined` on initialization.
+            // Ignore until we are properly called with a string.
+            if (page === undefined) {
+                return;
+            }
+
+            // If no page was found in the route data, page will be an empty string.
+            // Deault to 'home' in that case.
+            this.page = page || 'home';
+            if (this.page === "android_asset") {
+                this.page = "home";
+            }
+
+            // Close a non-persistent drawer when the page & route are changed. 
+            if (!this.$.drawer.persistent) {
+                this.$.drawer.close();
+            }
+            if (this.page !== 'search-results') {
+                this.isSearching = false;
+                this.searchText = "";
+            }
+        }
+    }, {
+        key: '_pageChanged',
+        value: function _pageChanged(page) {
+            var _this3 = this;
+
+            // Load page import on demand. Show 404 page if fails
+            var resolvedPageUrl = this.resolveUrl(page + '.html');
+            if (/info.+/.exec(page)) {
+                //resolvedPageUrl = this.resolveUrl('info-sub-page.html');
+            } else {
+                resolvedPageUrl = this.resolveUrl(page + '.html');
+                app.deviceReadyPromise.then(function () {
+                    Polymer.importHref(resolvedPageUrl, null, null, true);
+                    if (page === "steps-landing") {
+                        _this3.$.landing.recalcMap();
+                    }
+                });
+            }
+        }
+    }, {
+        key: '_stepData',
+        value: function _stepData(baseData, lang) {
+            if (baseData === null) {
+                return null;
+            }
+            return baseData[lang].steps;
+        }
+    }, {
+        key: '_infoData',
+        value: function _infoData(baseData, lang) {
+            if (baseData === null) {
+                return null;
+            }
+            return baseData[lang].info;
+        }
+    }, {
+        key: '_infoDataVisible',
+        value: function _infoDataVisible(baseData, lang) {
+            if (baseData === null) {
+                return null;
+            }
+            return baseData[lang].info.filter(function (item) {
+                return !item.hidden;
+            });
+        }
+    }, {
+        key: 'infoFor',
+        value: function infoFor(target, id) {
+            if (target === null || target === undefined) {
+                return null;
+            }
+            return target.filter(function (item) {
+                return item.id === id;
+            })[0];
+        }
+    }], [{
+        key: 'is',
+        get: function get() {
             return 'my-app';
         }
-
-        static get properties() {
+    }, {
+        key: 'properties',
+        get: function get() {
             return {
                 page: {
                     type: String,
                     reflectToAttribute: true,
-                    observer: '_pageChanged',
+                    observer: '_pageChanged'
                 },
                 baseStepData: {
                     type: Object,
-                    value: null,
+                    value: null
                 },
                 stepData: {
                     type: Array,
-                    computed: '_stepData(baseStepData, lang)',
+                    computed: '_stepData(baseStepData, lang)'
                 },
                 infoData: {
                     type: Object,
-                    computed: '_infoData(baseStepData, lang)',
+                    computed: '_infoData(baseStepData, lang)'
                 },
                 infoDataVisible: {
                     type: Object,
-                    computed: '_infoDataVisible(baseStepData, lang)',
+                    computed: '_infoDataVisible(baseStepData, lang)'
                 },
                 lang: {
                     type: String,
-                    value: "en",
+                    value: "en"
                 },
                 isSearching: {
                     type: Boolean,
-                    observer: '_searchChange',
+                    observer: '_searchChange'
                 },
                 target: {
-                    type: Object,
+                    type: Object
                 },
                 route: {
                     type: Object,
@@ -419,246 +521,139 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
             };
         }
-
-        static get observers() {
-            return [
-                '_routePageChanged(routeData.page)',
-            ];
+    }, {
+        key: 'observers',
+        get: function get() {
+            return ['_routePageChanged(routeData.page)'];
         }
+    }]);
 
-        menuBack() {
-            if (this.menuState === "listTopics") {
-                this.menuState = "listSteps";
-            } else if (this.menuState === "listSteps") {
-                this.menuState = "none";
-            }
-        }
+    function MyApp() {
+        babelHelpers.classCallCheck(this, MyApp);
+        return babelHelpers.possibleConstructorReturn(this, (MyApp.__proto__ || Object.getPrototypeOf(MyApp)).call(this));
+    }
 
-        showSteps() {
-            this.menuState = "listSteps";
-        }
+    babelHelpers.createClass(MyApp, [{
+        key: 'connectedCallback',
+        value: function connectedCallback() {
+            var _this4 = this;
 
-        gotoStep(e) {
-            this.currentMenuStep = e.srcElement.value;
-            this.menuState = "listTopics";
-
-        }
-
-
-        _searchChange(isSearching) {
-            if (isSearching) {
-                //this.$['search-input'].focus();
-
-            }
-        }
-
-
-        onSearch() {
-            this.set('route.path', '/search-results');
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-                this.root.querySelector('bread-crumbs').scrollIntoView();
-                if (this.$.search.results.length === 1) {
-                    var item = this.$.search.results[0];
-                    if (item.type === "step") {
-                        this.set('route.path', '/step/' + item.index);
-                    }
-                    if (item.type === "info") {
-                        this.set('route.path', '/' + item.id);
-                    }
-                    if (item.type === "topic") {
-                        this.set('route.path', '/topic/' + item.stepIndex + '/' + item.index);
-                    }
-
-                }
-            }, 15);
-        }
-
-        _routePageChanged(page) {
-            // Polymer 2.0 will call with `undefined` on initialization.
-            // Ignore until we are properly called with a string.
-            if (page === undefined) {
-                return;
-            }
-
-            // If no page was found in the route data, page will be an empty string.
-            // Deault to 'home' in that case.
-            this.page = page || 'home';
-            if (this.page === "android_asset") {
-                this.page = "home";
-            }
-
-
-            // Close a non-persistent drawer when the page & route are changed. 
-            if (!this.$.drawer.persistent) {
-                this.$.drawer.close();
-            }
-            if (this.page !== 'search-results') {
-                this.isSearching = false;
-                this.searchText = "";
-            }
-        }
-
-        _pageChanged(page) {
-            // Load page import on demand. Show 404 page if fails
-            var resolvedPageUrl = this.resolveUrl(page + '.html');
-            if (/info.+/.exec(page)) {
-                //resolvedPageUrl = this.resolveUrl('info-sub-page.html');
-            } else {
-                resolvedPageUrl = this.resolveUrl(page + '.html');
-                app.deviceReadyPromise.then(() => {
-                    Polymer.importHref(
-                        resolvedPageUrl,
-                        null,
-                        null,
-                        true);
-                    if (page === "steps-landing") {
-                        this.$.landing.recalcMap();
-                    }
-                });
-            }
-
-        }
-
-
-        _stepData(baseData, lang) {
-            if (baseData === null) {
-                return null;
-            }
-            return baseData[lang].steps;
-        }
-
-        _infoData(baseData, lang) {
-            if (baseData === null) {
-                return null;
-            }
-            return baseData[lang].info;
-        }
-        _infoDataVisible(baseData, lang) {
-            if (baseData === null) {
-                return null;
-            }
-            return baseData[lang].info.filter(item => !item.hidden);
-        }
-
-
-        infoFor(target, id) {
-            if (target === null || target === undefined) {
-                return null;
-            }
-            return target.filter(item => item.id === id)[0];
-        }
-
-        constructor() {
-            super();
-        }
-
-        connectedCallback() {
-            super.connectedCallback();
-            this.root.querySelector('my-home').addEventListener('link-followed', event => {
+            babelHelpers.get(MyApp.prototype.__proto__ || Object.getPrototypeOf(MyApp.prototype), 'connectedCallback', this).call(this);
+            this.root.querySelector('my-home').addEventListener('link-followed', function (event) {
                 console.log(event.detail.target);
                 if (event.detail.id !== null) {
-                    window.scrollTo(0, 0);
-                    this.root.querySelector('bread-crumbs').scrollIntoView();
+                    _this4.root.querySelector('bread-crumbs').scrollIntoView();
+                    _this4.$['app-header'].scroll(0, 0);
+                    setTimeout(function () {
+                        _this4.$['app-header'].scroll(0, 0);
+                    }, 16);
                 }
                 //this.root.querySelector('bread-crumbs').scrollIntoView()
-                this.set('route.path', event.detail.target);
-                this.set('targetId', event.detail.id);
+                _this4.set('route.path', event.detail.target);
+                _this4.set('targetId', event.detail.id);
             });
-            this.root.addEventListener('link-followed', event => {
+            this.root.addEventListener('link-followed', function (event) {
                 console.log(event.detail.target);
                 if (event.detail.id !== null) {
-                    window.scrollTo(0, 0);
-                    this.root.querySelector('bread-crumbs').scrollIntoView();
+                    _this4.root.querySelector('bread-crumbs').scrollIntoView();
+                    _this4.$['app-header'].scroll(0, 0);
+                    setTimeout(function () {
+                        _this4.$['app-header'].scroll(0, 0);
+                    }, 16);
                 }
-                this.set('route.path', event.detail.target);
-                this.set('targetId', event.detail.id);
+                _this4.set('route.path', event.detail.target);
+                _this4.set('targetId', event.detail.id);
             });
-            this.$.icon.addEventListener('click', event => {
-                if (this.isSearching) {
-                    this.$['search-input'].focus();
-                }
-            });
-            this.$['bread-crumbs-search'].addEventListener('click', event => {
-                if (this.isSearching) {
-                    this.$['search-input'].focus();
+            this.$.icon.addEventListener('click', function (event) {
+                if (_this4.isSearching) {
+                    _this4.$['search-input'].focus();
                 }
             });
-            this.$['close-menu-btn'].addEventListener('click', event => {
-                if (!this.$.drawer.persistent) {
-                    this.$.drawer.close();
+            this.$['bread-crumbs-search'].addEventListener('click', function (event) {
+                if (_this4.isSearching) {
+                    _this4.$['search-input'].focus();
+                }
+            });
+            this.$['close-menu-btn'].addEventListener('click', function (event) {
+                if (!_this4.$.drawer.persistent) {
+                    _this4.$.drawer.close();
                 }
             });
         }
-        ready() {
-            super.ready();
+    }, {
+        key: 'ready',
+        value: function ready() {
+            var _this5 = this;
+
+            babelHelpers.get(MyApp.prototype.__proto__ || Object.getPrototypeOf(MyApp.prototype), 'ready', this).call(this);
             this.lang = 'en';
             this.searchInputTarget = this.$['search-input'];
 
             this.page = "home";
 
-            app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
-                .then(response => {
-                    console.log("got step data");
-                    this.baseStepData = JSON.parse(response);
-                    for (var lang in this.baseStepData) {
-                        this.baseStepData[lang].steps.forEach(step => {
-                            if (!!step.furtherResources) {
-                                if (step.furtherResources[0] == "/") {
-                                    step.furtherResources = step.furtherResources.substr(1);
-                                }
-                                ajax('GET', step.furtherResources).then(result => {
-                                    console.log("found " + step.furtherResources)
-                                    step.furtherResources = result;
-                                }).catch(error => {
-                                    console.log("didn't find bib.");
-                                });
+            app.deviceReadyPromise.then(function () {
+                return ajax('GET', "data.json");
+            }).then(function (response) {
+                console.log("got step data");
+                _this5.baseStepData = JSON.parse(response);
+                for (var lang in _this5.baseStepData) {
+                    _this5.baseStepData[lang].steps.forEach(function (step) {
+                        if (!!step.furtherResources) {
+                            if (step.furtherResources[0] == "/") {
+                                step.furtherResources = step.furtherResources.substr(1);
                             }
-                            if (!!step.extraInfo) {
-                                if (step.extraInfo[0] == "/") {
-                                    step.extraInfo = step.extraInfo.substr(1);
-                                }
-                                ajax('GET', step.extraInfo).then(result => {
-                                    console.log("found " + step.extraInfo)
-                                    step.extraInfo = result;
-                                }).catch(error => {
-                                    console.log("didn't find extraInfo.");
-                                });
-                            }
-                            if (!!step.trainingMats) {
-                                if (step.trainingMats[0] == "/") {
-                                    step.trainingMats = step.trainingMats.substr(1);
-                                }
-                                ajax('GET', step.trainingMats).then(result => {
-                                    console.log("found " + step.trainingMats)
-                                    step.trainingMats = result;
-                                }).catch(error => {
-                                    console.log("didn't find trainingMats.");
-                                });
-                            }
-                            step.topics.forEach(topic => {
-                                if (!!topic.url) {
-                                    if (topic.url[0] == "/") {
-                                        topic.url = topic.url.substr(1);
-                                        console.log(topic.url);
-                                    }
-                                    ajax('GET', topic.url).then(result => {
-                                        console.log("found " + topic.url)
-                                        topic.rawData = result;
-                                    }).catch(error => {
-                                        console.log("didn't find topic.");
-                                    });
-                                }
+                            ajax('GET', step.furtherResources).then(function (result) {
+                                console.log("found " + step.furtherResources);
+                                step.furtherResources = result;
+                            }).catch(function (error) {
+                                console.log("didn't find bib.");
                             });
+                        }
+                        if (!!step.extraInfo) {
+                            if (step.extraInfo[0] == "/") {
+                                step.extraInfo = step.extraInfo.substr(1);
+                            }
+                            ajax('GET', step.extraInfo).then(function (result) {
+                                console.log("found " + step.extraInfo);
+                                step.extraInfo = result;
+                            }).catch(function (error) {
+                                console.log("didn't find extraInfo.");
+                            });
+                        }
+                        if (!!step.trainingMats) {
+                            if (step.trainingMats[0] == "/") {
+                                step.trainingMats = step.trainingMats.substr(1);
+                            }
+                            ajax('GET', step.trainingMats).then(function (result) {
+                                console.log("found " + step.trainingMats);
+                                step.trainingMats = result;
+                            }).catch(function (error) {
+                                console.log("didn't find trainingMats.");
+                            });
+                        }
+                        step.topics.forEach(function (topic) {
+                            if (!!topic.url) {
+                                if (topic.url[0] == "/") {
+                                    topic.url = topic.url.substr(1);
+                                    console.log(topic.url);
+                                }
+                                ajax('GET', topic.url).then(function (result) {
+                                    console.log("found " + topic.url);
+                                    topic.rawData = result;
+                                }).catch(function (error) {
+                                    console.log("didn't find topic.");
+                                });
+                            }
                         });
-                    }
-                })
-                .catch(error => {
-                    console.log("error loading step data: " + error);
-                });
+                    });
+                }
+            }).catch(function (error) {
+                console.log("error loading step data: " + error);
+            });
         }
-    }
+    }]);
+    return MyApp;
+}(Polymer.Element);
 
-    window.customElements.define(MyApp.is, MyApp);
-    </script>
+window.customElements.define(MyApp.is, MyApp);</script>
 </dom-module>

@@ -6,8 +6,7 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
+--><link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <dom-module id="my-step-splash">
     <template>
@@ -23,7 +22,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         li {
+            overflow-wrap: break-word;
             word-wrap: break-word;
+            word-break: break-all;
+            word-break: break-word;
         }
 
         #next {
@@ -36,8 +38,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         .main {
-            max-width: 700px;
+            max-width: 900px;
             width: 100%;
+        }
+        .main > div {
+            width: 100%;
+        }
+
+        .topics {
+            margin-left: 15px;
+            margin-bottom: 10px;
+        }
+
+        @media screen and (-ms-high-contrast: active),
+        (-ms-high-contrast: none) {
+            .link {
+                margin-top: -25px;
+            }
         }
         </style>
         <app-route route="{{route}}" pattern="/:stepId" data="{{routeData}}"></app-route>
@@ -46,7 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div class="title-bar">
                     <h1>[[data.stepTitle]]</h1>
                 </div>
-                <expandable-item>
+                <expandable-item content-label="Learning Objectives">
                     <h2 slot="label">Learning Objectives</h2>
                     <ul slot="items">
                         <dom-repeat items="[[data.learningObjectives]]">
@@ -59,14 +76,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </ul>
                 </expandable-item>
                 <border-separator></border-separator>
-                <expandable-item>
+                <expandable-item content-label="Key Terms">
                     <h2 slot="label">Key Terms</h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.keyTerms]]">
                                 <template>
                                     <li>
-                                        <strong>[[item.termName]]</strong> -- [[item.termDefinition]]
+                                        <strong>[[item.termName]]</strong> --
+                                        <render-raw html-data="[[item.termDefinition]]"></render-raw>
                                     </li>
                                 </template>
                             </dom-repeat>
@@ -77,8 +95,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                 </expandable-item>
                 <border-separator></border-separator>
-                <expandable-item is-opened="true">
-                    <h2 slot="label">Topics</h2>
+                <!--expandable-item is-opened="true"-->
+                <div class="topics">
+                    <h2 slot="label">TOPICS</h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.topics]]">
@@ -91,12 +110,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 </template>
                             </dom-repeat>
                         </ul>
-                        <paper-button id="next" hidden$="[[!hasNext]]" raised>Continue to Step [[nextStepId]]</paper-button>
+                        <paper-button id="next" hidden$="[[!hasNext]]" raised="">Continue to Step [[nextStepId]]</paper-button>
                     </div>
-                </expandable-item>
+                </div>
+                <!--/expandable-item-->
                 <div hidden$="[[!_hasFurtherResources(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item>
+                    <expandable-item content-label="Further Resources">
                         <h2 slot="label">Further Resources</h2>
                         <div slot="items">
                             <render-raw html-data="[[data.furtherResources]]"></render-raw>
@@ -105,7 +125,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
                 <div hidden$="[[!_hasTrainingMats(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item>
+                    <expandable-item content-label="Training Materials">
                         <h2 slot="label">Training Materials</h2>
                         <div slot="items">
                             <render-raw html-data="[[data.trainingMats]]"></render-raw>
@@ -115,15 +135,97 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
         </div>
     </template>
-    <script>
-    class MyStepSplash extends Polymer.Element {
-        static get is() {
+    <script>var MyStepSplash = function (_Polymer$Element) {
+    babelHelpers.inherits(MyStepSplash, _Polymer$Element);
+
+    function MyStepSplash() {
+        babelHelpers.classCallCheck(this, MyStepSplash);
+        return babelHelpers.possibleConstructorReturn(this, (MyStepSplash.__proto__ || Object.getPrototypeOf(MyStepSplash)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(MyStepSplash, [{
+        key: '_hasTrainingMats',
+        value: function _hasTrainingMats(data) {
+            if (data === null || data === undefined) {
+                return false;
+            }
+            return data.trainingMats !== null && data.trainingMats !== undefined;
+        }
+    }, {
+        key: '_hasFurtherResources',
+        value: function _hasFurtherResources(data) {
+            if (data === null || data === undefined) {
+                return false;
+            }
+            return data.furtherResources !== null && data.furtherResources !== undefined;
+        }
+    }, {
+        key: '_hasExtraInfo',
+        value: function _hasExtraInfo(data) {
+            if (data === null || data === undefined) {
+                return false;
+            }
+            return data.extraInfo !== null && data.extraInfo !== undefined;
+        }
+    }, {
+        key: '_nextId',
+        value: function _nextId(id) {
+            if (id === null || id === undefined) {
+                return null;
+            }
+            return Number.parseInt(id) + 1;
+        }
+    }, {
+        key: '_hasNext',
+        value: function _hasNext(data, stepId) {
+            if (data === null || stepId === null) {
+                return false;
+            }
+            return Number.parseInt(stepId) < data.length;
+        }
+    }, {
+        key: '_withIndex',
+        value: function _withIndex(id, stepData) {
+            if (!id || !stepData) {
+                return null;
+            }
+            return stepData[Number.parseInt(id) - 1];
+        }
+    }, {
+        key: 'ready',
+        value: function ready() {
+            var _this2 = this;
+
+            babelHelpers.get(MyStepSplash.prototype.__proto__ || Object.getPrototypeOf(MyStepSplash.prototype), 'ready', this).call(this);
+            this.root.addEventListener('link-followed', function (event) {
+                _this2.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                        id: event.detail.id
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.next.addEventListener('click', function (event) {
+                _this2.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(_this2.routeData.stepId) + 1).toString()
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }], [{
+        key: 'is',
+        get: function get() {
             return 'my-step-splash';
         }
-        static get properties() {
+    }, {
+        key: 'properties',
+        get: function get() {
             return {
                 stepData: {
-                    type: Object,
+                    type: Object
                 },
                 data: {
                     type: Object,
@@ -140,67 +242,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             };
         }
-        _hasTrainingMats(data) {
-            if (data === null || data === undefined) {
-                return false;
-            }
-            return data.trainingMats !== null && data.trainingMats !== undefined;
-        }
-        _hasFurtherResources(data) {
-            if (data === null || data === undefined) {
-                return false;
-            }
-            return data.furtherResources !== null && data.furtherResources !== undefined;
-        }
-        _hasExtraInfo(data) {
-            if (data === null || data === undefined) {
-                return false;
-            }
-            return data.extraInfo !== null && data.extraInfo !== undefined;
-        }
+    }]);
+    return MyStepSplash;
+}(Polymer.Element);
 
-        _nextId(id) {
-            if (id === null || id === undefined) {
-                return null;
-            }
-            return Number.parseInt(id) + 1;
-        }
-
-        _hasNext(data, stepId) {
-            if (data === null || stepId === null) {
-                return false
-            }
-            return Number.parseInt(stepId) < data.length;
-        }
-
-        _withIndex(id, stepData) {
-            if (!id || !stepData) {
-                return null;
-            }
-            return stepData[Number.parseInt(id) - 1];
-        }
-        ready() {
-            super.ready();
-            this.root.addEventListener('link-followed', event => {
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: event.detail.target,
-                        id: event.detail.id,
-                    },
-                    bubbles: true
-                }));
-            });
-            this.$.next.addEventListener('click', event => {
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
-                    },
-                    bubbles: true
-                }));
-            });
-        }
-    }
-
-    window.customElements.define(MyStepSplash.is, MyStepSplash);
-    </script>
+window.customElements.define(MyStepSplash.is, MyStepSplash);</script>
 </dom-module>
