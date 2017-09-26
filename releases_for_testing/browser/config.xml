@@ -17,6 +17,11 @@
     <allow-intent href="geo:*" />
     <icon height="120" platform="ios" src="res/comply-chain-app-120.png" width="120" />
     <icon height="180" platform="ios" src="res/comply-chain-app-180.png" width="180" />
+    <icon height="144" platform="ios" src="res/comply-chain-app-144.png" width="144" />
+    <icon height="72" platform="ios" src="res/comply-chain-app-72.png" width="72" />
+    <icon height="76" platform="ios" src="res/comply-chain-app-76.png" width="76" />
+    <icon height="152" platform="ios" src="res/comply-chain-app-152.png" width="152" />
+    <icon height="167" platform="ios" src="res/comply-chain-app-167.png" width="167" />
     <icon height="72" platform="android" src="res/comply-chain-app-72.png" width="72" />
     <preference name="SplashScreen" value="none" />
     <preference name="ShowSplashScreen" value="false" />
@@ -24,4 +29,5 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#003354" />
 </widget>

@@ -9,18 +9,20 @@
         [[renderedValue]]
         <global-data locale="{{locale}}"></global-data>
     </template>
-    <script>
-    class Localized extends Polymer.Element {
-        static get is() {
+    <script>var Localized = function (_Polymer$Element) {
+    babelHelpers.inherits(Localized, _Polymer$Element);
+    babelHelpers.createClass(Localized, null, [{
+        key: 'is',
+        get: function get() {
             return 'localized-data';
         }
-
-
-        static get properties() {
+    }, {
+        key: 'properties',
+        get: function get() {
             return {
                 value: {
                     type: String,
-                    value: '',
+                    value: ''
                 },
                 locale: {
                     type: String,
@@ -32,41 +34,47 @@
                 }
             };
         }
-
-        static get observers() {
-            return [
-                'htmlChanged(htmlData)'
-            ];
+    }, {
+        key: 'observers',
+        get: function get() {
+            return ['htmlChanged(htmlData)'];
         }
+    }]);
 
-        constructor() {
-            super();
-        }
+    function Localized() {
+        babelHelpers.classCallCheck(this, Localized);
+        return babelHelpers.possibleConstructorReturn(this, (Localized.__proto__ || Object.getPrototypeOf(Localized)).call(this));
+    }
 
-        _render(value, locale) {
+    babelHelpers.createClass(Localized, [{
+        key: '_render',
+        value: function _render(value, locale) {
             var data = {
                 en: {
                     home: "Home",
                     menu: "Menu",
                     appFullTitle: "Do Good",
                     stepPrefix: "Step",
-                    info: "Info",
+                    info: "Info"
                 },
                 es: {
                     home: "Inicio",
                     menu: "Menu (ES)",
                     appFullTitle: "Do Good",
                     stepPrefix: "Step (ES)",
-                    info: "Info",
-                },
-            }
+                    info: "Info"
+                }
+            };
             return data[locale][value];
         }
-        ready() {
-            super.ready();
+    }, {
+        key: 'ready',
+        value: function ready() {
+            babelHelpers.get(Localized.prototype.__proto__ || Object.getPrototypeOf(Localized.prototype), 'ready', this).call(this);
         }
-    }
+    }]);
+    return Localized;
+}(Polymer.Element);
 
-    customElements.define(Localized.is, Localized);
-    </script>
+customElements.define(Localized.is, Localized);</script>
 </dom-module>

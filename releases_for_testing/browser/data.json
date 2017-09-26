@@ -215,7 +215,7 @@
                 ],
                 "keyTerms": [{
                     "termName": "Code of Conduct (\"Code\")",
-                    "termDefinition": "The foundation of a social compliance program, a code of conduct is a document that sets out the social (and often, environmental) standards and policies with which a company and its suppliers are expected to comply.  Many companies refer to their codes by a name other than “code of conduct,” such as “terms of engagement,” “supplier expectations,” and many others, but the term is used throughout this App for consistency and clarity."
+                    "termDefinition": "<p>The foundation of a social compliance program, a code of conduct is a document that sets out the social (and often, environmental) standards and policies with which a company and its suppliers are expected to comply.  Many companies refer to their codes by a name other than “code of conduct,” such as “terms of engagement,” “supplier expectations,” and many others, but the term is used throughout this App for consistency and clarity.</p><p>A code is a set of voluntary standards; in this respect it differs from law—although relevant laws (both U.S. and source country) must be taken into account, as should collective bargaining agreements and international framework agreements (IFAs) with union federations, which are enforceable contracts.  A code is not a substitute for any of these instruments.</p>"
                 }],
                 "topics": [{
                         "index": 1,
@@ -358,11 +358,6 @@
                     {
                         "termName": "Monitoring",
                         "termDefinition": "For the purposes of this App, synonymous with auditing."
-                    },
-
-                    {
-                        "termName": "Social Auditing",
-                        "termDefinition": "Social auditing is one of the key ways—in addition to engagement with unions/workers and grievance mechanisms—to obtain information about violations of a company’s code of conduct in your supply chain. Auditing uncovers problems; it does not solve problems. It is one piece of the larger social compliance system, and cannot and should not be done in isolation from stakeholder engagement, communication, remediation and the other steps in the process."
                     }
                 ],
                 "extraInfo": "/topics/step5/extraInfo.html",
@@ -477,11 +472,7 @@
                     {
                         "termName": "Corrective Action Plan (CAP)",
                         "termDefinition": "A plan of action for remediation of all violations found in a particular audit. "
-                    },
-                    {
-                        "termName": "",
-                        "termDefinition": "Every violation identified in an audit should be remediated.  Various stakeholders should play a role in remediation:  the management of the supplier facility should be committed to correcting the violations; the company should have the necessary mechanisms to ensure the technical assistance and support needed for correction; and workers or workers’ organizations should be consulted for their views about which remediation actions will work best. Remediation actions should always be designed to both correct the problem found and prevent it from recurring.  In the case of child labor and forced labor violations, this means both improving circumstances for individual child labor or forced labor victims and preventing further child labor or forced labor from occurring at the worksite."
-                    }
+                    }                
                 ],
                 "extraInfo": "/topics/step6/extraInfo.html",
                 "topics": [{
@@ -600,11 +591,8 @@
                     "Understand the nature and scope of the information that should be reported.",
                     "Get a sense of the work involved in preparing and issuing public reports."
                 ],
-                "keyTerms": [{
-                    "termName": "Public Reporting",
-                    "termDefinition": "Communication that is made available to the public, through a variety of channels, about all elements of a company’s social compliance system."
-                }],
-                "extraInfo": "/topics/step6/extraInfo.html",
+                "keyTerms": [],
+                "extraInfo": "/topics/step8/extraInfo.html",
                 "topics": [
 
 
