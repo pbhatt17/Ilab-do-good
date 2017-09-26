@@ -39,12 +39,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         .main {
-            max-width: 700px;
+            max-width: 900px;
             width: 100%;
         }
+        .main > div {
+            width: 100%;
+        }
+
         .topics {
             margin-left: 15px;
             margin-bottom: 10px;
+        }
+
+        @media screen and (-ms-high-contrast: active),
+        (-ms-high-contrast: none) {
+            .link {
+                margin-top: -25px;
+            }
         }
         </style>
         <app-route route="{{route}}" pattern="/:stepId" data="{{routeData}}"></app-route>
@@ -53,7 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div class="title-bar">
                     <h1>[[data.stepTitle]]</h1>
                 </div>
-                <expandable-item>
+                <expandable-item content-label="Learning Objectives">
                     <h2 slot="label">Learning Objectives</h2>
                     <ul slot="items">
                         <dom-repeat items="[[data.learningObjectives]]">
@@ -66,14 +77,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </ul>
                 </expandable-item>
                 <border-separator></border-separator>
-                <expandable-item>
+                <expandable-item content-label="Key Terms">
                     <h2 slot="label">Key Terms</h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.keyTerms]]">
                                 <template>
                                     <li>
-                                        <strong>[[item.termName]]</strong> -- <render-raw html-data="[[item.termDefinition]]"></render-raw>
+                                        <strong>[[item.termName]]</strong> --
+                                        <render-raw html-data="[[item.termDefinition]]"></render-raw>
                                     </li>
                                 </template>
                             </dom-repeat>
@@ -101,11 +113,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </ul>
                         <paper-button id="next" hidden$="[[!hasNext]]" raised>Continue to Step [[nextStepId]]</paper-button>
                     </div>
-                    </div>
+                </div>
                 <!--/expandable-item-->
                 <div hidden$="[[!_hasFurtherResources(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item>
+                    <expandable-item content-label="Further Resources">
                         <h2 slot="label">Further Resources</h2>
                         <div slot="items">
                             <render-raw html-data="[[data.furtherResources]]"></render-raw>
@@ -114,7 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
                 <div hidden$="[[!_hasTrainingMats(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item>
+                    <expandable-item content-label="Training Materials">
                         <h2 slot="label">Training Materials</h2>
                         <div slot="items">
                             <render-raw html-data="[[data.trainingMats]]"></render-raw>

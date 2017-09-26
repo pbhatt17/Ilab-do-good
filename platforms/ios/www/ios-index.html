@@ -16,7 +16,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="generator" content="Polymer Starter Kit">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no">
     <title>Comply Chain</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src * gap: file:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src * 'unsafe-inline' 'unsafe-eval'">
     <meta name="description" content="Comply Chain by ILAB">
     <link rel="icon" href="/images/favicon.ico">
     <!-- See https://goo.gl/OOhYW5 -->
@@ -30999,6 +30998,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             super.connectedCallback();
             var slot = Polymer.dom(this.querySelector('slot'));
             var target = slot.queryDistributedElements('img')[0];
+            target.removeAttribute("hidden");
             var map = slot.queryDistributedElements('map')[0];
             var areas = map.querySelectorAll('area');
 
@@ -31035,19 +31035,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         recalcMap() {
             var slot = Polymer.dom(this.querySelector('slot'));
             var target = slot.queryDistributedElements('img')[0];
+            target.removeAttribute("hidden");
             var map = slot.queryDistributedElements('map')[0];
             var areas = map.querySelectorAll('area');
             console.log(window.innerWidth);
             console.log(window.innerHeight);
             
-            var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight));
+            var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight - 110));
+
+
+            var isFirefox = typeof InstallTrigger !== 'undefined'; 
 
             setTimeout(() => {
-                var less = Math.min(this.offsetWidth, this.offsetHeight);
-                target.style.width = less + "px";
-                target.style.height = less + "px";
+                if (!isFirefox) {
+                    target.style.width = less + "px";
+                    target.style.height = less + "px";
+                }
                 imageMapResize(map, target);
             }, 1);
+
         }
 
 
@@ -31085,7 +31091,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
         <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
         <div class="layout horizontal label">
-            <paper-button toggles="" aria-label="Expand Content">
+            <paper-button toggles="" aria-label="Expand Content for [[contentLabel]]">
                 <div class="layout horizontal flex">
                     <div class="layout vertical center-justified flex">
                         <slot name="label"></slot>
@@ -31118,7 +31124,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     type: Boolean,
                     value: false,
                 },
-                
+                contentLabel: {
+                    type: String,
+                    value: ""
+                },
                 target: {
                     type: Object
                 }
@@ -31159,96 +31168,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     customElements.define(ExpandableItem.is, ExpandableItem);
     </script>
-</dom-module><dom-module id="expandable-item-link" assetpath="src/elements/">
-    <template>
-        <custom-style>
-            <style include="iron-flex iron-flex-alignment"></style>
-        </custom-style>
-        <style>
-         :host {
-            display: block;
-        }
-        :host(.open) {
-            outline: none;
-        }
-        </style>
-        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
-        <div class="layout horizontal label">
-            <div class="layout vertical center-justified flex" id="link-label">
-                <slot name="label"></slot>
-            </div>
-            <paper-button toggles="" tabindex="-1" aria-labelledby="link-label">
-                <div class="layout vertical center-justified">
-                    <div hidden$="[[isOpened]]">
-                        <iron-icon icon="expand-more"></iron-icon>
-                    </div>
-                    <div hidden$="[[!isOpened]]">
-                        <iron-icon icon="expand-less"></iron-icon>
-                    </div>
-                </div>
-            </paper-button>
-        </div>
-        <div hidden$="[[!isOpened]]" aria-expanded$="[[isOpened]]">
-            <slot name="items"></slot>
-        </div>
-    </template>
-    <script>
-    class ExpandableItemLink extends Polymer.Element {
-        static get is() {
-            return 'expandable-item-link';
-        }
-
-
-        static get properties() {
-            return {
-                isOpened: {
-                    type: Boolean,
-                    value: false,
-                },
-                role: {
-                    type: String,
-                    value: "button",
-                    reflectToAttribute: true,
-                },
-                tabindex: {
-                    type: Number,
-                    value: 0,
-                    reflectToAttribute: true,
-                },
-                target: {
-                    type: Object
-                }
-            };
-        }
-
-        constructor() {
-            super();
-        }
-
-        toggleOpen(e) {
-            console.log(e);
-            this.isOpened = !this.isOpened;
-            if(this.isOpened) {
-                this.classList.add("open");
-            } else {
-                this.classList.remove("open"); 
-            }
-        }
-
-        ready() {
-            super.ready();
-            this.root.querySelector('paper-button').addEventListener('click', event => {
-                this.isOpened = !this.isOpened;
-            });
-            this.root.querySelector('paper-button').addEventListener('tap', event => {
-                this.isOpened = !this.isOpened;
-            });
-            this.target = this;
-        }
-    }
-
-    customElements.define(ExpandableItemLink.is, ExpandableItemLink);
-    </script>
 </dom-module><dom-module id="expandable-item-no-icon" assetpath="src/elements/">
     <template>
         <custom-style>
@@ -31264,18 +31183,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             background-color: #ececec;
             text-align: left;
         }
-
         </style>
         <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
         <div class="layout vertical">
             <button class="label" toggles="" aria-label="Expand Content">
                 <slot name="label"></slot>
             </button>
-            
-            <iron-collapse id="collapse">
-                <slot name="items"></slot>
-            </iron-collapse>
         </div>
+        <iron-collapse id="collapse">
+            <slot name="items"></slot>
+        </iron-collapse>
     </template>
     <script>
     class ExpandableItemNoIcon extends Polymer.Element {
@@ -31290,7 +31207,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     type: Boolean,
                     value: false,
                 },
-                
+
                 target: {
                     type: Object
                 }
@@ -31305,7 +31222,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this._debouncer = Polymer.Debouncer.debounce(
                 this._debouncer, // initially undefined
                 Polymer.Async.timeOut.after(15),
-                () => { 
+                () => {
                     this.isOpened = !this.isOpened;
                     this.$.collapse.toggle();
                 });
@@ -31318,7 +31235,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.root.querySelector('button').addEventListener('click', event => {
                 this.toggleOpen();
             });
-            if(this.isOpened) {
+            if (this.isOpened) {
                 this.$.collapse.show();
             }
             this.target = this;
@@ -31435,6 +31352,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         .small-text {
             font-size: 60%;
         }
+        
+        @media only screen and (min-width: 450px) {
+            #img-browser {
+                height: auto;
+                width: 50%;
+            }
+        }
 
         .browser #law-list>li>expandable-item-no-icon,
         .android #law-list>li>expandable-item-no-icon {
@@ -31450,6 +31374,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             padding-left: 8px;
         }
 
+        expandable-item { 
+            width: 100%;
+        }
 
         td {
             vertical-align: top;
@@ -31477,13 +31404,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         .verite {
-            height: 100%;
-            width: auto;
+            height: 120px;
+            width: 112px;
         }
         .flag {
-    margin-bottom: 2%;
-            height:80%;
-            width: auto;
+            margin-bottom:30px; 
+            height: 59px;
+            width: 112px;
         }
         #content {
             display: inline;
@@ -31946,7 +31873,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         #data {
             margin-left: 10px;
             margin-right: 10px;
-            max-width: 700px;
+            max-width: 900px;
+            width: 100%;
         }
         </style>
         <div class="layout horizontal center-justified">
@@ -32130,20 +32058,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="my-home" assetpath="src/">
     <template>
         <style include="shared-styles">
-        :host {
+         :host {
             display: block;
         }
-        
+
         chain-anchor-link {
             padding: 10px;
         }
-        
+
         #background {
             width: 100%;
             position: relative;
             bottom: -7px;
         }
-        
+
         .bottom {
             z-index: -1;
             width: 100%;
@@ -32151,40 +32079,55 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             bottom: 0;
             overflow-y: hidden;
 
-            background-image: url("../imgs/test_bg.jpg");
             height: 100%;
-            background-position: bottom left;
+            background-position: 50% 50%;
             background-size: cover;
-
+            background-repeat: no-repeat;
         }
-        
+
+        @media (max-aspect-ratio:10/16) {
+            .bottom {
+                background-image: url("../imgs/test_bg.jpg");
+            }
+        }
+        @media (max-aspect-ratio:11/10) and (min-aspect-ratio: 10/16) {
+            .bottom {
+                background-image: url("../imgs/one_bg.jpg");
+            }
+        }
+        @media (min-aspect-ratio:11/10) {
+            .bottom {
+                background-image: url("../imgs/og_bg.jpg");
+            }
+        }
+
         #info-btn {
             position: absolute;
             bottom: 0;
             right: 0;
             color: white;
         }
-        
+
         #icon {
             position: absolute;
             bottom: 0;
             left: 0;
             color: white;
         }
-        
+
         #top {
             background-color: white;
             padding-left: 10px;
             padding-bottom: 4px;
         }
-        
+
         .link-icon {
             width: 24px;
             height: 24px;
             position: relative;
             top: 6px;
         }
-        
+
         app-link {
             display: block;
             margin-right: 10px;
@@ -32236,8 +32179,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     window.customElements.define(MyHome.is, MyHome);
     </script>
-</dom-module>
-<!--
+</dom-module><!--
 @license
 Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -32347,16 +32289,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <iron-pages selected="[[result.type]]" attr-for-selected="type" role="main">
                                 <div class="link" type="step">
                                     <app-link href$="/step/[[result.index]]">
-                                        [[result.title]]
+                                       <u> [[result.title]] </u>
                                     </app-link>
                                 </div>
                                 <div class="link" type="topic">
                                     <app-link href$="/topic/[[result.stepIndex]]/[[result.index]]">
-                                       [[result.title]]                                    </app-link>
+                                      <u> [[result.title]] </u>
+                                    </app-link>
                                 </div>
                                 <div type="info">
                                     <app-link class="link" href$="/[[result.id]]">
-                                        [[result.title]]
+                                      <u>  [[result.title]] </u>
                                     </app-link>
                                 </div>
                             </iron-pages>
@@ -32495,7 +32438,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         .main {
-            max-width: 700px;
+            max-width: 900px;
         }
         </style>
         <app-route route="{{route}}" pattern="/:stepId/:topicId" data="{{routeData}}"></app-route>
@@ -32690,12 +32633,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         .main {
-            max-width: 700px;
+            max-width: 900px;
             width: 100%;
         }
+        .main > div {
+            width: 100%;
+        }
+
         .topics {
             margin-left: 15px;
             margin-bottom: 10px;
+        }
+
+        @media screen and (-ms-high-contrast: active),
+        (-ms-high-contrast: none) {
+            .link {
+                margin-top: -25px;
+            }
         }
         </style>
         <app-route route="{{route}}" pattern="/:stepId" data="{{routeData}}"></app-route>
@@ -32704,7 +32658,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div class="title-bar">
                     <h1>[[data.stepTitle]]</h1>
                 </div>
-                <expandable-item>
+                <expandable-item content-label="Learning Objectives">
                     <h2 slot="label">Learning Objectives</h2>
                     <ul slot="items">
                         <dom-repeat items="[[data.learningObjectives]]">
@@ -32717,14 +32671,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </ul>
                 </expandable-item>
                 <border-separator></border-separator>
-                <expandable-item>
+                <expandable-item content-label="Key Terms">
                     <h2 slot="label">Key Terms</h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.keyTerms]]">
                                 <template>
                                     <li>
-                                        <strong>[[item.termName]]</strong> -- <render-raw html-data="[[item.termDefinition]]"></render-raw>
+                                        <strong>[[item.termName]]</strong> --
+                                        <render-raw html-data="[[item.termDefinition]]"></render-raw>
                                     </li>
                                 </template>
                             </dom-repeat>
@@ -32752,11 +32707,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </ul>
                         <paper-button id="next" hidden$="[[!hasNext]]" raised="">Continue to Step [[nextStepId]]</paper-button>
                     </div>
-                    </div>
+                </div>
                 <!--/expandable-item-->
                 <div hidden$="[[!_hasFurtherResources(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item>
+                    <expandable-item content-label="Further Resources">
                         <h2 slot="label">Further Resources</h2>
                         <div slot="items">
                             <render-raw html-data="[[data.furtherResources]]"></render-raw>
@@ -32765,7 +32720,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
                 <div hidden$="[[!_hasTrainingMats(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item>
+                    <expandable-item content-label="Training Materials">
                         <h2 slot="label">Training Materials</h2>
                         <div slot="items">
                             <render-raw html-data="[[data.trainingMats]]"></render-raw>
@@ -33017,9 +32972,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             pointer-events: auto;
         }
 
-        #step-list-scroll {
-            overflow-y: auto;
-            max-height: 225px;
+        @media (max-height:630px) {
+            #step-list-scroll {
+                overflow-y: auto;
+                max-height: 225px;
+            }
         }
 
         .topic-link {
@@ -33038,10 +32995,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             border-radius: 50%;
             position: absolute;
             margin: 5px;
-        }
-
-        .inside-content {
-            max-width: 700px;
         }
         </style>
         <global-data locale="{{lang}}"></global-data>
@@ -33078,42 +33031,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <p class="link-label">What are Child Labor and Forced Labor?</p>
                     </app-link>
                     <border-separator></border-separator>
-                    <div id="step-list-scroll" aria-live="polite">
-                        <!--expandable-item-link name="steps-landing">
-                            <div slot="label">
-                                <app-link href="/steps-landing">
-                                    Steps
-                                </app-link>
-                            </div>
-                            <div slot="items">
-                                <iron-selector selected="[[routeData.stepId]]" attr-for-selected="name" class="drawer-list" role="navigation">
-                                    <dom-repeat items="[[stepData]]">
-                                        <template>
-                                            <expandable-item-link name="[[item.index]]">
-                                                <div slot="label">
-                                                    <app-link href="/step/[[item.index]]">
-                                                        <localized-data value="stepPrefix"></localized-data> [[item.index]]
-                                                    </app-link>
-                                                </div>
-                                                <div slot="items">
-                                                    <iron-selector selected="[[routeData.stepId]][[routeData.topicId]]" attr-for-selected="name" class="drawer-list" role="navigation">
-                                                        <dom-repeat items="[[item.topics]]" as="topic">
-                                                            <template>
-                                                                <div class="topic-link" name="[[item.index]][[topic.index]]">
-                                                                    <app-link href="/topic/[[item.index]]/[[topic.index]]">
-                                                                        <p class="link-label">[[topic.title]]</p>
-                                                                    </app-link>
-                                                                </div>
-                                                            </template>
-                                                        </dom-repeat>
-                                                    </iron-selector>
-                                                </div>
-                                            </expandable-item-link>
-                                        </template>
-                                    </dom-repeat>
-                                </iron-selector>
-                            </div>
-                        </expandable-item-link-->
+                    <div id="step-list-scroll" aria-live="polite"> 
                         <iron-pages selected="[[menuState]]" attr-for-selected="state" fallback-selection="none" role="secondary">
                             <div class="layout horizontal" state="none">
                                 <app-link class="flex" href="/steps-landing">Steps</app-link>
@@ -33130,7 +33048,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                             <app-link class="flex" href="/step/[[item.index]]">
                                                 <localized-data value="stepPrefix"></localized-data> [[item.index]]
                                             </app-link>
-                                            <paper-icon-button icon="expand-more" value="[[item]]" on-click="gotoStep" aria-label="Expand list of topics for Step [[item.index]]"></paper-icon-button>
+                                            <paper-icon-button icon="expand-more" step-target="[[item]]" data-index$="[[item.index]]" data-test-index="[[item.index]]" on-click="gotoStep" aria-label="Expand list of topics for Step [[item.index]]"></paper-icon-button>
                                         </div>
                                     </template>
                                 </dom-repeat>
@@ -33163,7 +33081,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </app-drawer>
             <!-- Main content -->
             <app-header-layout id="scrollingRegion" has-scrolling-region="">
-                <app-header slot="header" fixed="" scroll-target="scrollingRegion">
+                <app-header slot="header" id="app-header" fixed="" scroll-target="scrollingRegion">
                     <app-toolbar>
                         <paper-icon-button icon="my-icons:menu" drawer-toggle="" aria-label="Menu"></paper-icon-button>
                         <div main-title="" class="layout horizontal">
@@ -33299,15 +33217,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             } else if (this.menuState === "listSteps") {
                 this.menuState = "none";
             }
+            console.log("menuBack:" + this.menuState);
         }
 
         showSteps() {
             this.menuState = "listSteps";
+            console.log("showSteps:" + this.menuState);
         }
 
         gotoStep(e) {
-            this.currentMenuStep = e.srcElement.value;
+            this.currentMenuStep = e.target.stepTarget;
             this.menuState = "listTopics";
+            console.log("gotoStep:" + this.menuState);
+            console.log("stepid:" + this.currentMenuStep);
+            console.log("stepid:" + e.target.dataset.index);
+            console.log("stepid:" + e.target.dataset.testIndex);
+            console.log("stepid:" + e.target.index);
+            console.log("stepid:" + e.target.testIndex);
 
         }
 
@@ -33425,8 +33351,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.root.querySelector('my-home').addEventListener('link-followed', event => {
                 console.log(event.detail.target);
                 if (event.detail.id !== null) {
-                    window.scrollTo(0, 0);
                     this.root.querySelector('bread-crumbs').scrollIntoView();
+                    this.$['app-header'].scroll(0, 0); 
+                    setTimeout(() => {
+                        this.$['app-header'].scroll(0, 0); 
+                    }, 16);
                 }
                 //this.root.querySelector('bread-crumbs').scrollIntoView()
                 this.set('route.path', event.detail.target);
@@ -33435,8 +33364,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.root.addEventListener('link-followed', event => {
                 console.log(event.detail.target);
                 if (event.detail.id !== null) {
-                    window.scrollTo(0, 0);
                     this.root.querySelector('bread-crumbs').scrollIntoView();
+                    this.$['app-header'].scroll(0, 0);
+                    setTimeout(() => {
+                        this.$['app-header'].scroll(0, 0); 
+                    }, 16);
                 }
                 this.set('route.path', event.detail.target);
                 this.set('targetId', event.detail.id);
@@ -33541,7 +33473,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     </style></div>
     <my-app>
-        <img src="imgs/gear_demo_4.png" alt="Steps to a Social Compliance System" usemap="#map">
+        <img hidden="" src="imgs/gear_demo_4.png" alt="Steps to a Social Compliance System" usemap="#map">
         <map name="map">
             <area shape="circle" coords="442,175,74" alt="Step 1: Engage Stakeholders and Partners" role="link" data-step="1" href="#">
             <area shape="circle" coords="643,261,74" alt="Step 2: Assess Risks and Impacts" role="link" data-step="2" href="#">

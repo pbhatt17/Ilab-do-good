@@ -13,6 +13,7 @@
     "topics/*",
     "topics/**/*",
     "info-pages/*",
+    "info-pages/images/*",
     "data.json",
     "bower.json"
   ],

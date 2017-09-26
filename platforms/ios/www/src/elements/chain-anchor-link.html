@@ -96,6 +96,7 @@
             super.connectedCallback();
             var slot = Polymer.dom(this.querySelector('slot'));
             var target = slot.queryDistributedElements('img')[0];
+            target.removeAttribute("hidden");
             var map = slot.queryDistributedElements('map')[0];
             var areas = map.querySelectorAll('area');
 
@@ -132,19 +133,25 @@
         recalcMap() {
             var slot = Polymer.dom(this.querySelector('slot'));
             var target = slot.queryDistributedElements('img')[0];
+            target.removeAttribute("hidden");
             var map = slot.queryDistributedElements('map')[0];
             var areas = map.querySelectorAll('area');
             console.log(window.innerWidth);
             console.log(window.innerHeight);
             
-            var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight));
+            var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight - 110));
+
+
+            var isFirefox = typeof InstallTrigger !== 'undefined'; 
 
             setTimeout(() => {
-                var less = Math.min(this.offsetWidth, this.offsetHeight);
-                target.style.width = less + "px";
-                target.style.height = less + "px";
+                if (!isFirefox) {
+                    target.style.width = less + "px";
+                    target.style.height = less + "px";
+                }
                 imageMapResize(map, target);
             }, 1);
+
         }
 
 

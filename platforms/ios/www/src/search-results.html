@@ -53,16 +53,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <iron-pages selected="[[result.type]]" attr-for-selected="type" role="main">
                                 <div class="link" type="step">
                                     <app-link href$="/step/[[result.index]]">
-                                        [[result.title]]
+                                       <u> [[result.title]] </u>
                                     </app-link>
                                 </div>
                                 <div class="link" type="topic">
                                     <app-link href$="/topic/[[result.stepIndex]]/[[result.index]]">
-                                       [[result.title]]                                    </app-link>
+                                      <u> [[result.title]] </u>
+                                    </app-link>
                                 </div>
                                 <div type="info">
                                     <app-link class="link" href$="/[[result.id]]">
-                                        [[result.title]]
+                                      <u>  [[result.title]] </u>
                                     </app-link>
                                 </div>
                             </iron-pages>
