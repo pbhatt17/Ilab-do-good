@@ -107,6 +107,13 @@
         .small-text {
             font-size: 60%;
         }
+        
+        @media only screen and (min-width: 450px) {
+            #img-browser {
+                height: auto;
+                width: 50%;
+            }
+        }
 
         .browser #law-list>li>expandable-item-no-icon,
         .android #law-list>li>expandable-item-no-icon {
@@ -122,6 +129,9 @@
             padding-left: 8px;
         }
 
+        expandable-item { 
+            width: 100%;
+        }
 
         td {
             vertical-align: top;
@@ -149,17 +159,13 @@
         }
 
         .verite {
-            height: auto;
-            width: 35%;
-            max-height: 120px;
-            max-width: 112px;
+            height: 120px;
+            width: 112px;
         }
         .flag {
-            margin-bottom: 5%;
-            height: auto;
-            width: 50%;
-            max-height: 82px;
-            max-width: 156px;
+            margin-bottom:30px; 
+            height: 59px;
+            width: 112px;
         }
         #content {
             display: inline;

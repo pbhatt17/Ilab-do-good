@@ -591,7 +591,9 @@
                     "Understand the nature and scope of the information that should be reported.",
                     "Get a sense of the work involved in preparing and issuing public reports."
                 ],
-                "keyTerms": [],
+                "keyTerms": [{
+                        "termName": "Public Reporting",
+                        "termDefinition": "Communication that is made available to the public, through a variety of channels, about all elements of a company’s social compliance system."}],
                 "extraInfo": "/topics/step8/extraInfo.html",
                 "topics": [
 
