@@ -32637,7 +32637,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             width: 100%;
         }
         .main > div {
-            width: 100%;
         }
 
         .topics {
@@ -33031,7 +33030,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <p class="link-label">What are Child Labor and Forced Labor?</p>
                     </app-link>
                     <border-separator></border-separator>
-                    <div id="step-list-scroll" aria-live="polite"> 
+                    <div id="step-list-scroll" aria-live="polite">
                         <iron-pages selected="[[menuState]]" attr-for-selected="state" fallback-selection="none" role="secondary">
                             <div class="layout horizontal" state="none">
                                 <app-link class="flex" href="/steps-landing">Steps</app-link>
@@ -33350,26 +33349,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             super.connectedCallback();
             this.root.querySelector('my-home').addEventListener('link-followed', event => {
                 console.log(event.detail.target);
-                if (event.detail.id !== null) {
+                this.root.querySelector('bread-crumbs').scrollIntoView();
+                this.$['app-header'].scroll(0, 0);
+                setTimeout(() => {
                     this.root.querySelector('bread-crumbs').scrollIntoView();
-                    this.$['app-header'].scroll(0, 0); 
-                    setTimeout(() => {
-                        this.$['app-header'].scroll(0, 0); 
-                    }, 16);
-                }
+                    this.$['app-header'].scroll(0, 0);
+                }, 16);
                 //this.root.querySelector('bread-crumbs').scrollIntoView()
                 this.set('route.path', event.detail.target);
                 this.set('targetId', event.detail.id);
             });
             this.root.addEventListener('link-followed', event => {
                 console.log(event.detail.target);
-                if (event.detail.id !== null) {
+                this.root.querySelector('bread-crumbs').scrollIntoView();
+                this.$['app-header'].scroll(0, 0);
+                setTimeout(() => {
                     this.root.querySelector('bread-crumbs').scrollIntoView();
                     this.$['app-header'].scroll(0, 0);
-                    setTimeout(() => {
-                        this.$['app-header'].scroll(0, 0); 
-                    }, 16);
-                }
+                }, 16);
                 this.set('route.path', event.detail.target);
                 this.set('targetId', event.detail.id);
             });
