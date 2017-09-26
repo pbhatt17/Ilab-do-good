@@ -1,0 +1,103 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<dom-module id="expandable-item">
+    <template>
+        <custom-style>
+            <style include="iron-flex iron-flex-alignment"></style>
+        </custom-style>
+        <style>
+         
+        :host {
+            display: block;
+            width: 100%;
+        }
+
+        .icon {
+            margin-left: 20px;
+        }
+
+        paper-button {
+            width: 100%;
+        }
+
+         :host(.open) {
+            /*outline: none;*/
+        }
+        </style>
+        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation></iron-a11y-keys>
+        <div class="layout horizontal label">
+            <paper-button toggles aria-label="Expand Content">
+                <div class="layout horizontal flex">
+                    <div class="layout vertical center-justified flex">
+                        <slot name="label"></slot>
+                    </div>
+                    <div class="icon layout vertical center-justified">
+                        <div hidden$="[[isOpened]]">
+                            <iron-icon icon="expand-more"></iron-icon>
+                        </div>
+                        <div hidden$="[[!isOpened]]">
+                            <iron-icon icon="expand-less"></iron-icon>
+                        </div>
+                    </div>
+                </div>
+            </paper-button>
+        </div>
+        <iron-collapse id="collapse">
+            <slot name="items"></slot>
+        </iron-collapse>
+    </template>
+    <script>
+    class ExpandableItem extends Polymer.Element {
+        static get is() {
+            return 'expandable-item';
+        }
+
+
+        static get properties() {
+            return {
+                isOpened: {
+                    type: Boolean,
+                    value: false,
+                },
+                
+                target: {
+                    type: Object
+                }
+            };
+        }
+
+        constructor() {
+            super();
+        }
+
+        toggleOpen() {
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+
+                    this.isOpened = !this.isOpened;
+                    this.$.collapse.toggle();
+                });
+
+        }
+
+
+        ready() {
+            super.ready();
+            this.root.querySelector('paper-button').addEventListener('click', event => {
+                this.toggleOpen();
+            });
+            this.root.querySelector('paper-button').addEventListener('tap', event => {
+                this.toggleOpen();
+            });
+            this.target = this;
+            if(this.isOpened) {
+                this.$.collapse.show();
+            }
+        }
+    }
+
+    customElements.define(ExpandableItem.is, ExpandableItem);
+    </script>
+</dom-module>
