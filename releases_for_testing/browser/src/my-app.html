@@ -207,7 +207,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <p class="link-label">What are Child Labor and Forced Labor?</p>
                     </app-link>
                     <border-separator></border-separator>
-                    <div id="step-list-scroll" aria-live="polite"> 
+                    <div id="step-list-scroll" aria-live="polite">
                         <iron-pages selected="[[menuState]]" attr-for-selected="state" fallback-selection="none" role="secondary">
                             <div class="layout horizontal" state="none">
                                 <app-link class="flex" href="/steps-landing">Steps</app-link>
@@ -541,26 +541,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             babelHelpers.get(MyApp.prototype.__proto__ || Object.getPrototypeOf(MyApp.prototype), 'connectedCallback', this).call(this);
             this.root.querySelector('my-home').addEventListener('link-followed', function (event) {
                 console.log(event.detail.target);
-                if (event.detail.id !== null) {
+                _this4.root.querySelector('bread-crumbs').scrollIntoView();
+                _this4.$['app-header'].scroll(0, 0);
+                setTimeout(function () {
                     _this4.root.querySelector('bread-crumbs').scrollIntoView();
                     _this4.$['app-header'].scroll(0, 0);
-                    setTimeout(function () {
-                        _this4.$['app-header'].scroll(0, 0);
-                    }, 16);
-                }
+                }, 16);
                 //this.root.querySelector('bread-crumbs').scrollIntoView()
                 _this4.set('route.path', event.detail.target);
                 _this4.set('targetId', event.detail.id);
             });
             this.root.addEventListener('link-followed', function (event) {
                 console.log(event.detail.target);
-                if (event.detail.id !== null) {
+                _this4.root.querySelector('bread-crumbs').scrollIntoView();
+                _this4.$['app-header'].scroll(0, 0);
+                setTimeout(function () {
                     _this4.root.querySelector('bread-crumbs').scrollIntoView();
                     _this4.$['app-header'].scroll(0, 0);
-                    setTimeout(function () {
-                        _this4.$['app-header'].scroll(0, 0);
-                    }, 16);
-                }
+                }, 16);
                 _this4.set('route.path', event.detail.target);
                 _this4.set('targetId', event.detail.id);
             });
