@@ -30935,38 +30935,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
         <div class="outside layout vertical center-justified">
             <div id="slotted" class="inside layout horizontal center-justified">
-                
                 <slot></slot>
             </div>
         </div>
-        <!--div class="sr-only">
-            <ul>
-                <li>
-                    <app-link href="/step/1">Step 1: Engage Stakeholders and Partners</app-link>
-                </li>
-                <li>
-                    <app-link href="/step/2">Step 2: Assess Risks and Impacts</app-link>
-                </li>
-                <li>
-                    <app-link href="/step/3">Step 3: Develop a Code of Conduct</app-link>
-                </li>
-                <li>
-                    <app-link href="/step/4">Step 4: Communicate and Train Across your Supply Chain</app-link>
-                </li>
-                <li>
-                    <app-link href="/step/5">Step 5: Monitor Compliance</app-link>
-                </li>
-                <li>
-                    <app-link href="/step/6">Step 6: Remediate Violations</app-link>
-                </li>
-                <li>
-                    <app-link href="/step/7">Step 7: Review Review</app-link>
-                </li>
-                <li>
-                    <app-link href="/step/8">Step 8: Report Performance</app-link>
-                </li>
-            </ul>
-        </div-->
+        <platform-switch>
+            <div slot="ios" class="sr-only">
+                <ul>
+                    <li>
+                        <app-link href="/step/1">Step 1: Engage Stakeholders and Partners</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/2">Step 2: Assess Risks and Impacts</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/3">Step 3: Develop a Code of Conduct</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/4">Step 4: Communicate and Train Across your Supply Chain</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/5">Step 5: Monitor Compliance</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/6">Step 6: Remediate Violations</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/7">Step 7: Review Review</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/8">Step 8: Report Performance</app-link>
+                    </li>
+                </ul>
+            </div>
+        </platform-switch>
     </template>
     <script>
     class ChainAnchorLink extends Polymer.Element {
@@ -31029,11 +31030,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             var areas = map.querySelectorAll('area');
             console.log(window.innerWidth);
             console.log(window.innerHeight);
-            
+
             var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight - 110));
 
 
-            var isFirefox = typeof InstallTrigger !== 'undefined'; 
+            var isFirefox = typeof InstallTrigger !== 'undefined';
 
             setTimeout(() => {
                 if (!isFirefox) {
@@ -31080,7 +31081,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
         <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
         <div class="layout horizontal label">
-            <paper-button toggles="" aria-label="Expand Content for [[contentLabel]]">
+            <paper-button toggles="" aria-label$="[[contentLabel]].  Click to [[labelText]] content">
                 <div class="layout horizontal flex">
                     <div class="layout vertical center-justified flex">
                         <slot name="label"></slot>
@@ -31113,6 +31114,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     type: Boolean,
                     value: false,
                 },
+                labelText: {
+                    type: String,
+                    computed: '_labelText(isOpened)'
+                },
                 contentLabel: {
                     type: String,
                     value: ""
@@ -31121,6 +31126,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     type: Object
                 }
             };
+        }
+
+        _labelText(open) {
+            if(open) {
+                return "collapse";
+            } else {
+                return "expand";
+            }
         }
 
         constructor() {
@@ -32162,6 +32175,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     },
                     bubbles: true
                 }));
+            })
+
+            this.$['info-btn'].addEventListener('tap', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/info-about-page"
+                    },
+                    bubbles: true
+                }));
             });
         }
     }
@@ -32263,14 +32285,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             background-color: #DDD;
         }
 
-        ul {
+        p, ul {
             list-style-type: none;
             padding-right: 10px;
             padding-left: 10px;
             margin-top: 0px;
         }
+        #pageTop:focus { 
+            outline: none;
+        }
         </style>
-        <div aria-live="polite">
+        <div id="pageTop" aria-live="polite" tabindex="-1">
+            <dom-if if="[[hasResults]]"> 
+                <p>
+                    [[hasResults]]
+                    No results found.
+                </p>
+            </dom-if>
             <ul>
                 <dom-repeat items="[[results]]" as="result">
                     <template>
@@ -32278,17 +32309,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <iron-pages selected="[[result.type]]" attr-for-selected="type" role="main">
                                 <div class="link" type="step">
                                     <app-link href$="/step/[[result.index]]">
-                                       <u> [[result.title]] </u>
+                                        <u> [[result.title]] </u>
                                     </app-link>
                                 </div>
                                 <div class="link" type="topic">
                                     <app-link href$="/topic/[[result.stepIndex]]/[[result.index]]">
-                                      <u> [[result.title]] </u>
+                                        <u> [[result.title]] </u>
                                     </app-link>
                                 </div>
                                 <div type="info">
                                     <app-link class="link" href$="/[[result.id]]">
-                                      <u>  [[result.title]] </u>
+                                        <u>  [[result.title]] </u>
                                     </app-link>
                                 </div>
                             </iron-pages>
@@ -32317,9 +32348,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 },
                 results: {
                     type: Array,
-                    computed: '_search(stepData, infoData, searchTerm)',
+                    value: [],
+                },
+                hasResults: {
+                    type: Boolean,
+                    computed: '_hasResults(results)',
                 }
             };
+        }
+
+        _hasResults(target) {
+            return target.length !== 0;
+        }
+
+        initiateSearch() {
+            this.results = this._search(this.stepData, this.infoData, this.searchTerm);
+            setTimeout(() => {
+
+               this.$.pageTop.focus();
+            }, 16);
         }
 
         _search(stepData, infoData, searchTerm) {
@@ -32429,11 +32476,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         .main {
             max-width: 900px;
         }
+
+        #pageTop:focus { 
+            outline: none;
+        }
+        paper-button {
+            margin-top: 10px
+        }
         </style>
         <app-route route="{{route}}" pattern="/:stepId/:topicId" data="{{routeData}}"></app-route>
         <div class="layout horizontal center-justified">
-            <div class="main">
-                <render-raw html-data="[[data.rawData]]" target="{{targetId}}" aria-live="polite"></render-raw>
+            <div class="main" aria-live="polite" tabindex="-1" id="pageTop">
+                <render-raw html-data="[[data.rawData]]" target="{{targetId}}"></render-raw>
                 <paper-button id="prev" hidden$="[[!hasPrevious]]" raised="">Previous Topic</paper-button>
                 <paper-button id="prevStep" hidden$="[[!showPreviousStep]]" raised="">Previous Step</paper-button>
                 <paper-button id="next" hidden$="[[!hasNext]]" raised="">Next Topic</paper-button>
@@ -32531,6 +32585,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             return stepId > 1;
         }
+
+        refocusTop() {
+            this.$.pageTop.focus();
+        }
+
         ready() {
             super.ready();
             this.$.next.addEventListener('click', event => {
@@ -32984,6 +33043,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             position: absolute;
             margin: 5px;
         }
+        #pageContent:focus { 
+            outline: none;
+        }
         </style>
         <global-data locale="{{lang}}"></global-data>
         <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
@@ -33036,7 +33098,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                             <app-link class="flex" href="/step/[[item.index]]">
                                                 <localized-data value="stepPrefix"></localized-data> [[item.index]]
                                             </app-link>
-                                            <paper-icon-button icon="expand-more" step-target="[[item]]" data-index$="[[item.index]]" data-test-index="[[item.index]]" on-click="gotoStep" aria-label="Expand list of topics for Step [[item.index]]"></paper-icon-button>
+                                            <paper-icon-button icon="expand-more" step-target="[[item]]" data-index$="[[item.index]]" data-test-index="[[item.index]]" on-click="gotoStep" aria-label$="Expand to list of topics for Step [[item.index]]"></paper-icon-button>
                                         </div>
                                     </template>
                                 </dom-repeat>
@@ -33103,7 +33165,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <div name="home"></div>
                         </iron-pages>
                     </div>
-                    <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="home" role="main">
+                    <iron-pages selected="[[page]]" id="pageContent" tabindex="-1" attr-for-selected="name" fallback-selection="home" role="main">
                         <div name="home">
                             <my-home route="[[subroute]]">
                                 <div slot="append" class="layout horizontal">
@@ -33117,7 +33179,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             </my-home>
                         </div>
                         <my-step-splash name="step" route="[[subroute]]" step-data="[[stepData]]"></my-step-splash>
-                        <my-topic target-id="{{targetId}}" name="topic" route="[[subroute]]" step-data="[[stepData]]"></my-topic>
+                        <my-topic target-id="{{targetId}}" name="topic" route="[[subroute]]" step-data="[[stepData]]" id="topic"></my-topic>
                         <info-page target-id="{{targetId}}" name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
                         <search-results id="search" aria-live="polite" name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
                         <steps-landing id="landing" name="steps-landing" route="[[subroute]]">
@@ -33236,6 +33298,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         onSearch() {
             this.set('route.path', '/search-results');
+            this.$.search.initiateSearch();
             setTimeout(() => {
                 window.scrollTo(0, 0);
                 this.root.querySelector('bread-crumbs').scrollIntoView();
@@ -33273,6 +33336,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             // Close a non-persistent drawer when the page & route are changed. 
             if (!this.$.drawer.persistent) {
                 this.$.drawer.close();
+            }
+            if (this.page === "topic") {
+                this.$.topic.refocusTop();
             }
             if (this.page !== 'search-results') {
                 this.isSearching = false;
@@ -33347,6 +33413,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 //this.root.querySelector('bread-crumbs').scrollIntoView()
                 this.set('route.path', event.detail.target);
                 this.set('targetId', event.detail.id);
+                if (!this.$.drawer.persistent) {
+                    this.$.drawer.close();
+                }
             });
             this.root.addEventListener('link-followed', event => {
                 console.log(event.detail.target);
@@ -33358,6 +33427,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }, 16);
                 this.set('route.path', event.detail.target);
                 this.set('targetId', event.detail.id);
+                if (!this.$.drawer.persistent) {
+                    this.$.drawer.close();
+                }
             });
             this.$.icon.addEventListener('click', event => {
                 if (this.isSearching) {
@@ -33372,6 +33444,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.$['close-menu-btn'].addEventListener('click', event => {
                 if (!this.$.drawer.persistent) {
                     this.$.drawer.close();
+                    this.$.pageContent.focus();
                 }
             });
         }

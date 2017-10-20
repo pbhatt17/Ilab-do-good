@@ -127,6 +127,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     },
                     bubbles: true
                 }));
+            })
+
+            this.$['info-btn'].addEventListener('tap', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/info-about-page"
+                    },
+                    bubbles: true
+                }));
             });
         }
     }

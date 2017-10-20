@@ -23,23 +23,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     attributeChanged: true,
     // meta objects
     behaviors: true
-  };
 
-  /**
-   * Applies a "legacy" behavior or array of behaviors to the provided class.
-   *
-   * Note: this method will automatically also apply the `Polymer.LegacyElementMixin`
-   * to ensure that any legacy behaviors can rely on legacy Polymer API on
-   * the underlying element.
-   *
-   * @param {!(Object|Array)} behaviors Behavior object or array of behaviors.
-   * @param {!HTMLElement|function(new:HTMLElement)} klass Element class.
-   * @return {function(new:HTMLElement)} Returns a new Element class extended by the
-   * passed in `behaviors` and also by `Polymer.LegacyElementMixin`.
-   * @memberof Polymer
-   * @suppress {invalidCasts, checkTypes}
-   */
-  function mixinBehaviors(behaviors, klass) {
+    /**
+     * Applies a "legacy" behavior or array of behaviors to the provided class.
+     *
+     * Note: this method will automatically also apply the `Polymer.LegacyElementMixin`
+     * to ensure that any legacy behaviors can rely on legacy Polymer API on
+     * the underlying element.
+     *
+     * @param {!(Object|Array)} behaviors Behavior object or array of behaviors.
+     * @param {!HTMLElement|function(new:HTMLElement)} klass Element class.
+     * @return {function(new:HTMLElement)} Returns a new Element class extended by the
+     * passed in `behaviors` and also by `Polymer.LegacyElementMixin`.
+     * @memberof Polymer
+     * @suppress {invalidCasts, checkTypes}
+     */
+  };function mixinBehaviors(behaviors, klass) {
     if (!behaviors) {
       return (/** @type {HTMLElement} */klass
       );

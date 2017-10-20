@@ -20,11 +20,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         .main {
             max-width: 900px;
         }
+
+        #pageTop:focus { 
+            outline: none;
+        }
+        paper-button {
+            margin-top: 10px
+        }
         </style>
         <app-route route="{{route}}" pattern="/:stepId/:topicId" data="{{routeData}}"></app-route>
         <div class="layout horizontal center-justified">
-            <div class="main">
-                <render-raw html-data="[[data.rawData]]" target="{{targetId}}" aria-live="polite"></render-raw>
+            <div class="main" aria-live="polite" tabindex="-1" id="pageTop">
+                <render-raw html-data="[[data.rawData]]" target="{{targetId}}"></render-raw>
                 <paper-button id="prev" hidden$="[[!hasPrevious]]" raised>Previous Topic</paper-button>
                 <paper-button id="prevStep" hidden$="[[!showPreviousStep]]" raised>Previous Step</paper-button>
                 <paper-button id="next" hidden$="[[!hasNext]]" raised>Next Topic</paper-button>
@@ -122,6 +129,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             return stepId > 1;
         }
+
+        refocusTop() {
+            this.$.pageTop.focus();
+        }
+
         ready() {
             super.ready();
             this.$.next.addEventListener('click', event => {

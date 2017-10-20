@@ -453,7 +453,7 @@
             {
                 "index": 6,
                 "type": "splash",
-                "stepTitle": "STEP 6:  Remediate Violations",
+                "stepTitle": "Step 6:  Remediate Violations",
                 "preview": "This is a sample preview for Step 4",
                 "keywords": ["Violation", "Remediation", "Corrective Action Plan", "CAP"],
                 "learningObjectives": [

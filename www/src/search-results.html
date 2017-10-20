@@ -38,14 +38,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             background-color: #DDD;
         }
 
-        ul {
+        p, ul {
             list-style-type: none;
             padding-right: 10px;
             padding-left: 10px;
             margin-top: 0px;
         }
+        #pageTop:focus { 
+            outline: none;
+        }
         </style>
-        <div aria-live="polite">
+        <div id="pageTop" aria-live="polite" tabindex="-1">
+            <dom-if if="[[hasResults]]"> 
+                <p>
+                    [[hasResults]]
+                    No results found.
+                </p>
+            </dom-if>
             <ul>
                 <dom-repeat items="[[results]]" as="result">
                     <template>
@@ -53,17 +62,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <iron-pages selected="[[result.type]]" attr-for-selected="type" role="main">
                                 <div class="link" type="step">
                                     <app-link href$="/step/[[result.index]]">
-                                       <u> [[result.title]] </u>
+                                        <u> [[result.title]] </u>
                                     </app-link>
                                 </div>
                                 <div class="link" type="topic">
                                     <app-link href$="/topic/[[result.stepIndex]]/[[result.index]]">
-                                      <u> [[result.title]] </u>
+                                        <u> [[result.title]] </u>
                                     </app-link>
                                 </div>
                                 <div type="info">
                                     <app-link class="link" href$="/[[result.id]]">
-                                      <u>  [[result.title]] </u>
+                                        <u>  [[result.title]] </u>
                                     </app-link>
                                 </div>
                             </iron-pages>
@@ -92,9 +101,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 },
                 results: {
                     type: Array,
-                    computed: '_search(stepData, infoData, searchTerm)',
+                    value: [],
+                },
+                hasResults: {
+                    type: Boolean,
+                    computed: '_hasResults(results)',
                 }
             };
+        }
+
+        _hasResults(target) {
+            return target.length !== 0;
+        }
+
+        initiateSearch() {
+            this.results = this._search(this.stepData, this.infoData, this.searchTerm);
+            setTimeout(() => {
+
+               this.$.pageTop.focus();
+            }, 16);
         }
 
         _search(stepData, infoData, searchTerm) {

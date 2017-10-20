@@ -173,6 +173,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             position: absolute;
             margin: 5px;
         }
+        #pageContent:focus { 
+            outline: none;
+        }
         </style>
         <global-data locale="{{lang}}"></global-data>
         <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
@@ -225,7 +228,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                             <app-link class="flex" href="/step/[[item.index]]">
                                                 <localized-data value="stepPrefix"></localized-data> [[item.index]]
                                             </app-link>
-                                            <paper-icon-button icon="expand-more" step-target="[[item]]" data-index$="[[item.index]]" data-test-index="[[item.index]]" on-click="gotoStep" aria-label="Expand list of topics for Step [[item.index]]"></paper-icon-button>
+                                            <paper-icon-button icon="expand-more" step-target="[[item]]" data-index$="[[item.index]]" data-test-index="[[item.index]]" on-click="gotoStep" aria-label$="Expand to list of topics for Step [[item.index]]"></paper-icon-button>
                                         </div>
                                     </template>
                                 </dom-repeat>
@@ -292,7 +295,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <div name="home"></div>
                         </iron-pages>
                     </div>
-                    <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="home" role="main">
+                    <iron-pages selected="[[page]]" id="pageContent" tabindex="-1" attr-for-selected="name" fallback-selection="home" role="main">
                         <div name="home">
                             <my-home route="[[subroute]]">
                                 <div slot="append" class="layout horizontal">
@@ -306,7 +309,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             </my-home>
                         </div>
                         <my-step-splash name="step" route="[[subroute]]" step-data="[[stepData]]"></my-step-splash>
-                        <my-topic target-id="{{targetId}}" name="topic" route="[[subroute]]" step-data="[[stepData]]"></my-topic>
+                        <my-topic target-id="{{targetId}}" name="topic" route="[[subroute]]" step-data="[[stepData]]" id="topic"></my-topic>
                         <info-page target-id="{{targetId}}" name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
                         <search-results id="search" aria-live="polite" name="search-results" route="[[subroute]]" search-term="[[searchText]]" step-data="[[stepData]]" info-data="[[infoData]]"></search-results>
                         <steps-landing id="landing" name="steps-landing" route="[[subroute]]">
@@ -425,6 +428,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         onSearch() {
             this.set('route.path', '/search-results');
+            this.$.search.initiateSearch();
             setTimeout(() => {
                 window.scrollTo(0, 0);
                 this.root.querySelector('bread-crumbs').scrollIntoView();
@@ -462,6 +466,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             // Close a non-persistent drawer when the page & route are changed. 
             if (!this.$.drawer.persistent) {
                 this.$.drawer.close();
+            }
+            if (this.page === "topic") {
+                this.$.topic.refocusTop();
             }
             if (this.page !== 'search-results') {
                 this.isSearching = false;
@@ -536,6 +543,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 //this.root.querySelector('bread-crumbs').scrollIntoView()
                 this.set('route.path', event.detail.target);
                 this.set('targetId', event.detail.id);
+                if (!this.$.drawer.persistent) {
+                    this.$.drawer.close();
+                }
             });
             this.root.addEventListener('link-followed', event => {
                 console.log(event.detail.target);
@@ -547,6 +557,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }, 16);
                 this.set('route.path', event.detail.target);
                 this.set('targetId', event.detail.id);
+                if (!this.$.drawer.persistent) {
+                    this.$.drawer.close();
+                }
             });
             this.$.icon.addEventListener('click', event => {
                 if (this.isSearching) {
@@ -561,6 +574,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.$['close-menu-btn'].addEventListener('click', event => {
                 if (!this.$.drawer.persistent) {
                     this.$.drawer.close();
+                    this.$.pageContent.focus();
                 }
             });
         }
