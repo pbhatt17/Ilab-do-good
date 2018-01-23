@@ -74,7 +74,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <h1>[[data.stepTitle]]</h1>
                 </div>
                 <expandable-item content-label="Learning Objectives">
-                    <h2 slot="label">Learning Objectives</h2>
+                    <h2 slot="label"><localized-data value="learning_objectives"></localized-data></h2>
                     <ul slot="items">
                         <dom-repeat items="[[data.learningObjectives]]">
                             <template>
@@ -87,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </expandable-item>
                 <border-separator></border-separator>
                 <expandable-item content-label="Key Terms">
-                    <h2 slot="label">Key Terms</h2>
+                    <h2 slot="label"><localized-data value="key_terms"></localized-data></h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.keyTerms]]">
@@ -107,7 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <border-separator></border-separator>
                 <!--expandable-item is-opened="true"-->
                 <div class="topics">
-                    <h2 slot="label">TOPICS</h2>
+                    <h2 slot="label"><localized-data value="topics"></localized-data></h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.topics]]">

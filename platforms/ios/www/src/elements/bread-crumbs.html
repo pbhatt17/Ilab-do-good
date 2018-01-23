@@ -22,38 +22,38 @@
                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                     <div class="inline" page-name="default">
                         <app-link href="/home">
-                            <div class="link inline">Home</div>
+                            <div class="link inline"><localized-data value="home"></localized-data></div>
                         </app-link>
                         <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                             <div class="inline" page-name="default">
-                                <span aria-hidden="true">></span> <app-link href="/steps-landing"><div class="link inline">Steps</div></app-link>
+                                <span aria-hidden="true">></span> <app-link href="/steps-landing"><div class="link inline"><localized-data value="steps"></localized-data></div></app-link>
                                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                                     <div class="inline" page-name="step">
-                                        <span aria-hidden="true">></span> Step [[step.index]]
+                                        <span aria-hidden="true">></span> <localized-data value="step"></localized-data> [[step.index]]
                                     </div>
                                     <div class="inline" page-name="topic">
                                         >
                                         <app-link href="/step/[[step.index]]">
-                                            <div class="link inline">Step [[step.index]]
+                                            <div class="link inline"><localized-data value="step"></localized-data> [[step.index]]
                                                 <!--[[step.stepTitle]]-->
                                             </div>
                                         </app-link> 
-                                        <span aria-hidden="true">></span> Topic [[topic.index]] / [[step.topics.length]]
+                                        <span aria-hidden="true">></span> <localized-data value="topic"></localized-data> [[topic.index]] / [[step.topics.length]]
                                         <!--[[topic.title]]-->
                                     </div>
                                 </iron-pages>
                             </div>
                             <div class="inline" page-name="info-why-develop-page">
-                                <span aria-hidden="true">></span> Why Develop a Social Compliance System
+                                <span aria-hidden="true">></span> <localized-data value="why_develop"></localized-data>
                             </div>
                             <div class="inline" page-name="info-basics-page">
-                                <span aria-hidden="true">></span> Basics of a Social Compliance System
+                                <span aria-hidden="true">></span> <localized-data value="basics_of"></localized-data>
                             </div>
                             <div class="inline" page-name="info-about-page">
-                                <span aria-hidden="true">></span> About this App
+                                <span aria-hidden="true">></span> <localized-data value="about_this_app"></localized-data>
                             </div>
                             <div class="inline" page-name="info-what-are-page">
-                                <span aria-hidden="true">></span> What are Child Labor and Forced Labor
+                                <span aria-hidden="true">></span> <localized-data value="what_are"></localized-data>
                             </div>
                             <div class="inline" page-name="info-root-causes-page">
                                 <span aria-hidden="true">></span> Addressing Root Causes
@@ -65,7 +65,7 @@
                                 <span aria-hidden="true">></span> More Info
                             </div>
                             <div class="inline" page-name="steps-landing">
-                                <span aria-hidden="true">></span> Steps
+                                <span aria-hidden="true">></span> <localized-data value="steps"></localized-data>
                             </div>
                             <div class="inline" page-name="search-results">
                                 <span aria-hidden="true">></span> Search Results

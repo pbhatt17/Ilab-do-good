@@ -195,31 +195,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
-                    <!--paper-dropdown-menu hidden label="Language">
-                        <paper-listbox attr-for-selected="lang" selected="{{lang}}">
+                    <paper-dropdown-menu hidden label="Language">
+                        <paper-listbox attr-for-selected="lang" slot="dropdown-content" selected="{{lang}}">
                             <paper-item lang="en">English</paper-item>
                             <paper-item lang="es">Espanol</paper-item>
+                            <paper-item lang="fr">French</paper-item>
                         </paper-listbox>
-                    </paper-dropdown-menu-->
+                    </paper-dropdown-menu>
                     <app-link name="home" href="/home">
                         <localized-data value="home"></localized-data>
                     </app-link>
                     <app-link name="index-info" href="/info-about-page">
-                        About this App
+                        <localized-data value="about_this_app"></localized-data>
                     </app-link>
                     <app-link name="what-are-cl-fl" href="/info-what-are-page">
-                        <p class="link-label">What are Child Labor and Forced Labor?</p>
+                        <localized-data value="what_are"></localized-data>
                     </app-link>
                     <border-separator></border-separator>
                     <div id="step-list-scroll" aria-live="polite">
                         <iron-pages selected="[[menuState]]" attr-for-selected="state" fallback-selection="none" role="secondary">
                             <div class="layout horizontal" state="none">
-                                <app-link class="flex" href="/steps-landing">Steps</app-link>
+                                <app-link class="flex" href="/steps-landing"><localized-data value="steps"></localized-data></app-link>
                                 <paper-icon-button icon="expand-more" on-click="showSteps" aria-label="Expand list of Steps"></paper-icon-button>
                             </div>
                             <div state="listSteps">
                                 <div class="layout horizontal">
-                                    <app-link class="flex" href="/steps-landing"><strong>Steps</strong></app-link>
+                                    <app-link class="flex" href="/steps-landing"><strong><localized-data value="steps"></localized-data></strong></app-link>
                                     <paper-icon-button icon="expand-less" on-click="menuBack" aria-label="Collapse list of steps"></paper-icon-button>
                                 </div>
                                 <dom-repeat items="[[stepData]]">
@@ -254,9 +255,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                     <border-separator></border-separator>
                     <app-link name="key-resources" href="/info-key-resources">
-                        Key Resources
+                        <localized-data value="key_r"></localized-data>
                     </app-link>
-                    <a href="mailto:GlobalKids@dol.gov?subject=Comments on Comply Chain App" target="_top">Contact Us</a>
+                    <a href="mailto:GlobalKids@dol.gov?subject=Comments on Comply Chain App" target="_top"><localized-data value="contact_us"></localized-data></a>
                 </iron-selector>
             </app-drawer>
             <!-- Main content -->

@@ -8,9 +8,10 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../../../polymer/polymer.html">
-<link rel="import" href="../../../paper-styles/typography.html">
 <link rel="import" href="../../../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../neon-shared-element-animatable-behavior.html">
+<link rel="import" href="../../../paper-styles/typography.html">
+<link rel="import" href="../../../paper-styles/color.html">
 <link rel="import" href="../shared-styles.html">
 
 <dom-module id="animated-grid">
@@ -69,6 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: calc(100% / 6);
         height: calc(100% / 3);
       }
+
     </style>
 
     <template is="dom-repeat" items="[[config]]">
@@ -78,6 +80,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
 
   </template>
+
 </dom-module>
 
 <script>
@@ -149,8 +152,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         'ripple': target
       };
       this.animationConfig['exit'][0].gesture = {
-        x: event.x || event.pageX,
-        y: event.y || event.pageY
+        x: event.x,
+        y: event.y
       };
 
       this.fire('tile-click', {
