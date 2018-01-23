@@ -1,0 +1,82 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<dom-module id="expandable-item-no-icon">
+    <template>
+        <custom-style>
+            <style include="iron-flex iron-flex-alignment"></style>
+        </custom-style>
+        <style>
+         :host {
+            display: block;
+        }
+
+        button {
+            border: none;
+            background-color: #ececec;
+            text-align: left;
+        }
+        </style>
+        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation></iron-a11y-keys>
+        <div class="layout vertical">
+            <button class="label" toggles aria-label$="[[contentLabel]]. Expand Content">
+                <slot name="label"></slot>
+            </button>
+        </div>
+        <iron-collapse id="collapse">
+            <slot name="items"></slot>
+        </iron-collapse>
+    </template>
+    <script>
+    class ExpandableItemNoIcon extends Polymer.Element {
+        static get is() {
+            return 'expandable-item-no-icon';
+        }
+
+
+        static get properties() {
+            return {
+                isOpened: {
+                    type: Boolean,
+                    value: false,
+                },
+                contentLabel: {
+                    type: String,
+                    value: ""
+                },
+                target: {
+                    type: Object
+                }
+            };
+        }
+
+        constructor() {
+            super();
+        }
+
+        toggleOpen() {
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+                    this.isOpened = !this.isOpened;
+                    this.$.collapse.toggle();
+                });
+
+        }
+
+
+        ready() {
+            super.ready();
+            this.root.querySelector('button').addEventListener('click', event => {
+                this.toggleOpen();
+            });
+            if (this.isOpened) {
+                this.$.collapse.show();
+            }
+            this.target = this;
+        }
+    }
+
+    customElements.define(ExpandableItemNoIcon.is, ExpandableItemNoIcon);
+    </script>
+</dom-module>

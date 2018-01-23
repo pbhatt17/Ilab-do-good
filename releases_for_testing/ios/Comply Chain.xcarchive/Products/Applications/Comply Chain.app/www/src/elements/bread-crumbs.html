@@ -1,0 +1,173 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="./app-link.html">
+<dom-module id="bread-crumbs">
+    <template>
+        <style include="iron-flex"></style>
+        <style>
+        .inline {
+            display: inline;
+        }
+        
+        app-link .link {
+            color: #1a0dab;
+            text-decoration: underline;
+        }
+        </style>
+        <app-route route="[[route]]" pattern="/:page" data="{{routeData}}"></app-route>
+        <app-route route="[[route]]" pattern="/:page/:stepId" data="{{routeData}}"></app-route>
+        <app-route route="[[route]]" pattern="/:page/:stepId/:topicId" data="{{routeData}}"></app-route>
+        <app-route route="[[route]]" pattern="/info-:page" data="{{routeData}}"></app-route>
+        <div class="layout horizontal">
+            <div class="flex">
+                <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
+                    <div class="inline" page-name="default">
+                        <app-link href="/home">
+                            <div class="link inline">Home</div>
+                        </app-link>
+                        <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
+                            <div class="inline" page-name="default">
+                                <span aria-hidden="true">&gt;</span> <app-link href="/steps-landing"><div class="link inline">Steps</div></app-link>
+                                <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
+                                    <div class="inline" page-name="step">
+                                        <span aria-hidden="true">&gt;</span> Step [[step.index]]
+                                    </div>
+                                    <div class="inline" page-name="topic">
+                                        &gt;
+                                        <app-link href="/step/[[step.index]]">
+                                            <div class="link inline">Step [[step.index]]
+                                                <!--[[step.stepTitle]]-->
+                                            </div>
+                                        </app-link> 
+                                        <span aria-hidden="true">&gt;</span> Topic [[topic.index]] / [[step.topics.length]]
+                                        <!--[[topic.title]]-->
+                                    </div>
+                                </iron-pages>
+                            </div>
+                            <div class="inline" page-name="info-why-develop-page">
+                                <span aria-hidden="true">&gt;</span> Why Develop a Social Compliance System
+                            </div>
+                            <div class="inline" page-name="info-basics-page">
+                                <span aria-hidden="true">&gt;</span> Basics of a Social Compliance System
+                            </div>
+                            <div class="inline" page-name="info-about-page">
+                                <span aria-hidden="true">&gt;</span> About this App
+                            </div>
+                            <div class="inline" page-name="info-what-are-page">
+                                <span aria-hidden="true">&gt;</span> What are Child Labor and Forced Labor
+                            </div>
+                            <div class="inline" page-name="info-root-causes-page">
+                                <span aria-hidden="true">&gt;</span> Addressing Root Causes
+                            </div>
+                            <div class="inline" page-name="info-key-resources">
+                                <span aria-hidden="true">&gt;</span> Key Resources
+                            </div>
+                            <div class="inline" page-name="index-info">
+                                <span aria-hidden="true">&gt;</span> More Info
+                            </div>
+                            <div class="inline" page-name="steps-landing">
+                                <span aria-hidden="true">&gt;</span> Steps
+                            </div>
+                            <div class="inline" page-name="search-results">
+                                <span aria-hidden="true">&gt;</span> Search Results
+                            </div>
+                            <div class="inline" page-name="info">
+                                <span aria-hidden="true">&gt;</span> Info
+                            </div>
+                        </iron-pages>
+                    </div>
+                    <div page-name="home">
+                    </div>
+                </iron-pages>
+            </div>
+        </div>
+    </template>
+    <script>var BreadCrumbs = function (_Polymer$Element) {
+    babelHelpers.inherits(BreadCrumbs, _Polymer$Element);
+    babelHelpers.createClass(BreadCrumbs, [{
+        key: 'getStep',
+        value: function getStep(id) {
+            if (id === null || id === undefined) {
+                return null;
+            }
+            console.log(this.routeData);
+            return this.stepData[Number.parseInt(id) - 1];
+        }
+    }, {
+        key: 'getTopic',
+        value: function getTopic(step, id) {
+            if (!step) {
+                return null;
+            } else if (id === null || id === undefined) {
+                return null;
+            } else {
+                return step.topics[Number.parseInt(id) - 1];
+            }
+        }
+    }], [{
+        key: 'is',
+        get: function get() {
+            return 'bread-crumbs';
+        }
+    }, {
+        key: 'properties',
+        get: function get() {
+            return {
+                stepData: {
+                    type: Array,
+                    value: null
+                },
+                route: {
+                    type: Object,
+                    value: null,
+                    reflectToAttribute: true
+                },
+                step: {
+                    type: Object,
+                    computed: 'getStep(routeData.stepId)'
+                },
+                topic: {
+                    type: Object,
+                    computed: 'getTopic(step, routeData.topicId)'
+                },
+                locale: {
+                    type: String
+                },
+                isSearching: {
+                    type: Boolean,
+                    notify: true
+                }
+            };
+        }
+    }, {
+        key: 'observers',
+        get: function get() {
+            return [];
+        }
+    }]);
+
+    function BreadCrumbs() {
+        babelHelpers.classCallCheck(this, BreadCrumbs);
+        return babelHelpers.possibleConstructorReturn(this, (BreadCrumbs.__proto__ || Object.getPrototypeOf(BreadCrumbs)).call(this));
+    }
+
+    babelHelpers.createClass(BreadCrumbs, [{
+        key: 'ready',
+        value: function ready() {
+            var _this2 = this;
+
+            babelHelpers.get(BreadCrumbs.prototype.__proto__ || Object.getPrototypeOf(BreadCrumbs.prototype), 'ready', this).call(this);
+            this.root.addEventListener('link-followed', function (event) {
+                _this2.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }]);
+    return BreadCrumbs;
+}(Polymer.Element);
+
+customElements.define(BreadCrumbs.is, BreadCrumbs);</script>
+</dom-module>

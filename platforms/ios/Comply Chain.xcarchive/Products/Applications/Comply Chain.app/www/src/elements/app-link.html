@@ -1,0 +1,104 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="app-link">
+    <template>
+        <custom-style>
+        </custom-style>
+        <style>
+         :host {
+            cursor: pointer
+        }
+        </style>
+        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter" on-keys-pressed="follow"></iron-a11y-keys>
+        <a id="link">
+            <slot></slot>
+        </a>
+    </template>
+    <script>var AppLink = function (_Polymer$Element) {
+    babelHelpers.inherits(AppLink, _Polymer$Element);
+    babelHelpers.createClass(AppLink, null, [{
+        key: "is",
+        get: function get() {
+            return 'app-link';
+        }
+    }, {
+        key: "properties",
+        get: function get() {
+            return {
+                href: {
+                    type: String,
+                    value: ""
+                },
+                targetId: {
+                    type: String,
+                    value: null
+                },
+                role: {
+                    type: String,
+                    value: "link",
+                    reflectToAttribute: true
+                },
+                tabindex: {
+                    type: Number,
+                    value: 0,
+                    reflectToAttribute: true
+                },
+                target: {
+                    type: Object
+                }
+            };
+        }
+    }]);
+
+    function AppLink() {
+        babelHelpers.classCallCheck(this, AppLink);
+        return babelHelpers.possibleConstructorReturn(this, (AppLink.__proto__ || Object.getPrototypeOf(AppLink)).call(this));
+    }
+
+    babelHelpers.createClass(AppLink, [{
+        key: "follow",
+        value: function follow() {
+            var _this2 = this;
+
+            this._debouncer = Polymer.Debouncer.debounce(this._debouncer, // initially undefined
+            Polymer.Async.timeOut.after(15), function () {
+                _this2.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: _this2.href,
+                        id: _this2.targetId
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }, {
+        key: "ready",
+        value: function ready() {
+            var _this3 = this;
+
+            babelHelpers.get(AppLink.prototype.__proto__ || Object.getPrototypeOf(AppLink.prototype), "ready", this).call(this);
+            this.target = this;
+            this.addEventListener('click', function () {
+                _this3.follow();
+            });
+            this.addEventListener('tap', function () {
+                _this3.follow();
+            });
+            this.root.querySelector('#link').addEventListener('click', function () {
+                _this3.follow();
+            });
+            this.root.querySelector('#link').addEventListener('tap', function () {
+                _this3.follow();
+            });
+            this.root.addEventListener('tap', function () {
+                _this3.follow();
+            });
+            this.root.addEventListener('click', function () {
+                _this3.follow();
+            });
+        }
+    }]);
+    return AppLink;
+}(Polymer.Element);
+
+customElements.define(AppLink.is, AppLink);</script>
+</dom-module>

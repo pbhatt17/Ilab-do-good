@@ -1,0 +1,115 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="shared-styles.html">
+<dom-module id="mockup-page">
+    <template>
+        <style include="iron-flex"></style>
+        <style include="shared-styles">
+        :host {
+            display: block;
+        }
+        
+        app-link {
+            color: #1a0dab;
+            text-decoration: underline;
+        }
+        
+        #data {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        
+        #eia {
+            background-color: beige;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        
+        #eia h1 {
+            text-align: center;
+            margin-left: 4px;
+            margin-right: 4px;
+        }
+        
+        #ow {
+            background-color: rgb(153, 195, 255);
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        
+        #ow h1 {
+            text-align: center;
+            margin-left: 4px;
+            margin-right: 4px;
+        }
+        
+        .red {
+            color: rgb(204, 36, 36);
+        }
+        
+        .blue {
+            color: rgb(0, 35, 165);
+        }
+        
+        .dashed-lines {
+            border-top: 1px solid black;
+            height: 5px;
+            margin-top: 28px;
+            border-bottom: 1px solid black;
+        }
+        </style>
+        <div id="data">
+            <paper-material id="eia" elevation="1">
+                <div class="layout horizontal">
+                    <div class="flex dashed-lines"></div>
+                    <h1>Title</h1>
+                    <div class="flex dashed-lines"></div>
+                </div>
+                <p>Content</p>
+            </paper-material>
+            <paper-material id="ow" elevation="1">
+                <div class="layout horizontal">
+                    <div class="flex dashed-lines"></div>
+                    <h1>Title <iron-icon icon="icons:error"></iron-icon></h1>
+                    <div class="flex dashed-lines"></div>
+                </div>
+                <p>Content</p>
+            </paper-material>
+            <p class="red">
+                Text
+            </p>
+            <p class="blue">
+                Text
+            </p>
+        </div>
+    </template>
+    <script>
+    class MockupPage extends Polymer.Element {
+        static get is() {
+            return 'mockup-page';
+        }
+        static get observers() {
+            return [];
+        }
+        static get properties() {
+            return {};
+        }
+
+
+        ready() {
+            super.ready();
+        }
+    }
+
+    window.customElements.define(MockupPage.is, MockupPage);
+    </script>
+</dom-module>

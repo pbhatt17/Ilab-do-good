@@ -1,0 +1,38 @@
+in step 2 
+a new subtopic
+
+page 23 to 34 -> to last subtopic of step 2
+remove learning objects
+keep keyterms
+//
+
+About this Toolkit -> Page 1-3 (goes in the info menu)
+
+What are Child Labor and Forced Labor -> Page 3-9 (goes in the info menu)
+
+Why Develop a Social Compliance system -> Page 9- (linked to on first page)
+
+Basics of a SCS -> Page 14- (same as above)
+
+
+Long: "Do Good: Business Tools "
+Short: "Do Good"
+
+New Gear Graphic
+
+(send screenshots of cover photo)
+
+give ed heads up for sweat & toil about database
+
+
+
+COPY 
+```
+<key>UIRequiresFullScreen</key>
+<true />
+<key>UIStatusBarHidden</key>
+<true />
+<key>UIViewControllerBasedStatusBarAppearance</key>
+<false />
+```
+into the plist file

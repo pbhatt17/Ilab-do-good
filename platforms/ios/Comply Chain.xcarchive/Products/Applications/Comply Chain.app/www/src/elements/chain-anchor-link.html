@@ -1,0 +1,163 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<style include="iron-flex iron-flex-alignment"></style>
+<dom-module id="chain-anchor-link">
+    <template>
+        <custom-style>
+            <style include="iron-flex iron-flex-alignment"></style>
+        </custom-style>
+        <style>
+         :host {
+            display: block;
+            max-height: 910px;
+            max-width: 910px;
+            width: 100%;
+        }
+
+        img {
+            /*height: auto;*/
+        }
+
+        .inside {
+            position: relative;
+        }
+
+        .outside {
+            height: 100%;
+        }
+
+        .sr-only {
+            position: absolute;
+            margin-left: -10000px;
+            margin-top: 110%
+        }
+        </style>
+        <div class="outside layout vertical center-justified">
+            <div id="slotted" class="inside layout horizontal center-justified">
+                <slot></slot>
+            </div>
+        </div>
+        <platform-switch>
+            <div slot="ios" class="sr-only">
+                <ul style="list-style: none;">
+                    <li>
+                        <app-link href="/step/1">Step 1: Engage Stakeholders and Partners</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/2">Step 2: Assess Risks and Impacts</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/3">Step 3: Develop a Code of Conduct</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/4">Step 4: Communicate and Train Across your Supply Chain</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/5">Step 5: Monitor Compliance</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/6">Step 6: Remediate Violations</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/7">Step 7: Independent Review</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/8">Step 8: Report Performance</app-link>
+                    </li>
+                </ul> 
+
+            </div>
+        </platform-switch>
+    </template>
+    <script>var ChainAnchorLink = function (_Polymer$Element) {
+    babelHelpers.inherits(ChainAnchorLink, _Polymer$Element);
+    babelHelpers.createClass(ChainAnchorLink, null, [{
+        key: 'is',
+        get: function get() {
+            return 'chain-anchor-link';
+        }
+    }, {
+        key: 'properties',
+        get: function get() {
+            return {};
+        }
+    }]);
+
+    function ChainAnchorLink() {
+        babelHelpers.classCallCheck(this, ChainAnchorLink);
+        return babelHelpers.possibleConstructorReturn(this, (ChainAnchorLink.__proto__ || Object.getPrototypeOf(ChainAnchorLink)).call(this));
+    }
+
+    babelHelpers.createClass(ChainAnchorLink, [{
+        key: 'connectedCallback',
+        value: function connectedCallback() {
+            var _this2 = this;
+
+            babelHelpers.get(ChainAnchorLink.prototype.__proto__ || Object.getPrototypeOf(ChainAnchorLink.prototype), 'connectedCallback', this).call(this);
+            var slot = Polymer.dom(this.querySelector('slot'));
+            var target = slot.queryDistributedElements('img')[0];
+            target.removeAttribute("hidden");
+            var map = slot.queryDistributedElements('map')[0];
+            var areas = map.querySelectorAll('area');
+
+            //var target = this.root.querySelector('img');
+            //var areas = [].slice.call(this.root.querySelectorAll('area'));
+            areas.forEach(function (area) {
+                area.addEventListener('mouseover', function () {
+                    target.src = "imgs/circle_nav_" + area.dataset.step + ".png";
+                });
+
+                area.addEventListener('mouseout', function () {
+                    target.src = "imgs/gear_demo_4.png";
+                });
+                area.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    _this2.dispatchEvent(new CustomEvent('link-followed', {
+                        detail: {
+                            step: area.dataset.step
+                        },
+                        bubbles: true
+                    }));
+                });
+            });
+
+            this.recalcMap();
+            window.addEventListener('resize', function (event) {
+                //img.style.height = img.offsetWidth + "px";
+                //imageMapResize(map, img);
+            });
+        }
+    }, {
+        key: 'recalcMap',
+        value: function recalcMap() {
+            var slot = Polymer.dom(this.querySelector('slot'));
+            var target = slot.queryDistributedElements('img')[0];
+            target.removeAttribute("hidden");
+            var map = slot.queryDistributedElements('map')[0];
+            var areas = map.querySelectorAll('area');
+            console.log(window.innerWidth);
+            console.log(window.innerHeight);
+
+            var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight - 110));
+
+            var isFirefox = typeof InstallTrigger !== 'undefined';
+
+            setTimeout(function () {
+                if (!isFirefox) {
+                    target.style.width = less + "px";
+                    target.style.height = less + "px";
+                }
+                imageMapResize(map, target);
+            }, 1);
+        }
+    }, {
+        key: 'ready',
+        value: function ready() {
+            babelHelpers.get(ChainAnchorLink.prototype.__proto__ || Object.getPrototypeOf(ChainAnchorLink.prototype), 'ready', this).call(this);
+        }
+    }]);
+    return ChainAnchorLink;
+}(Polymer.Element);
+
+customElements.define(ChainAnchorLink.is, ChainAnchorLink);</script>
+</dom-module>

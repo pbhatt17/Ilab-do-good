@@ -1,0 +1,73 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+--><link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<dom-module id="steps-landing">
+    <template>
+        <style include="shared-styles iron-flex iron-flex-alignment">
+        :host {
+            display: block;
+        }
+        
+        chain-anchor-link {
+            padding: 10px;
+            height: 80%;
+        }}
+        </style>
+        <div class="layout horizontal center-justified">
+        <chain-anchor-link id="cal">
+            <slot></slot>
+        </chain-anchor-link>         
+        </div>
+    </template>
+    <script>var StepsLanding = function (_Polymer$Element) {
+    babelHelpers.inherits(StepsLanding, _Polymer$Element);
+
+    function StepsLanding() {
+        babelHelpers.classCallCheck(this, StepsLanding);
+        return babelHelpers.possibleConstructorReturn(this, (StepsLanding.__proto__ || Object.getPrototypeOf(StepsLanding)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(StepsLanding, [{
+        key: 'recalcMap',
+        value: function recalcMap() {
+            this.$.cal.recalcMap();
+        }
+    }, {
+        key: 'ready',
+        value: function ready() {
+            var _this2 = this;
+
+            babelHelpers.get(StepsLanding.prototype.__proto__ || Object.getPrototypeOf(StepsLanding.prototype), 'ready', this).call(this);
+            this.root.addEventListener('link-followed', function (event) {
+                _this2.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/step/" + event.detail.step,
+                        id: event.detail.id
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }], [{
+        key: 'is',
+        get: function get() {
+            return 'steps-landing';
+        }
+    }, {
+        key: 'properties',
+        get: function get() {
+            return {};
+        }
+    }]);
+    return StepsLanding;
+}(Polymer.Element);
+
+window.customElements.define(StepsLanding.is, StepsLanding);</script>
+</dom-module>

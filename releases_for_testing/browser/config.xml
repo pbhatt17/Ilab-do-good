@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="gov.dol.complychain" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Comply Chain</name>
+    <description>
+        A sample DoL application describing things about dealing with Child Labor and Forced Labor.
+    </description>
+    <author email="julien.kilian@icfi.com" href="http://cordova.io">
+        ICF Dev
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <icon height="120" platform="ios" src="res/comply-chain-app-120.png" width="120" />
+    <icon height="180" platform="ios" src="res/comply-chain-app-180.png" width="180" />
+    <icon height="144" platform="ios" src="res/comply-chain-app-144.png" width="144" />
+    <icon height="72" platform="ios" src="res/comply-chain-app-72.png" width="72" />
+    <icon height="76" platform="ios" src="res/comply-chain-app-76.png" width="76" />
+    <icon height="152" platform="ios" src="res/comply-chain-app-152.png" width="152" />
+    <icon height="167" platform="ios" src="res/comply-chain-app-167.png" width="167" />
+    <icon height="20" platform="ios" src="res/comply-chain-app-20.png" width="20" />
+    <icon height="29" platform="ios" src="res/comply-chain-app-29.png" width="29" />
+    <icon height="40" platform="ios" src="res/comply-chain-app-40.png" width="40" />
+    <icon height="50" platform="ios" src="res/comply-chain-app-50.png" width="50" />
+    <icon height="57" platform="ios" src="res/comply-chain-app-57.png" width="57" />
+    <icon height="60" platform="ios" src="res/comply-chain-app-60.png" width="60" />
+    <icon height="100" platform="ios" src="res/comply-chain-app-100.png" width="100" />
+    <icon height="114" platform="ios" src="res/comply-chain-app-114.png" width="114" />
+    <icon height="1024" platform="ios" src="res/comply-chain-app-1024.jpg" width="1024" />
+    <icon height="72" platform="android" src="res/comply-chain-app-72.png" width="72" />
+    <preference name="SplashScreen" value="none" />
+    <preference name="ShowSplashScreen" value="false" />
+    <preference name="SplashScreenDelay" value="0" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#003354" />
+</widget>
