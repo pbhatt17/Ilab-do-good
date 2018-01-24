@@ -27094,7 +27094,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               if (cachedConfig) {
                 // merge configurations with the same id, making a clone lazily
                 if (!cachedConfig.isClone) {
-                  map[config.id] = this._cloneConfig(cachedConfig);
+                  map[config.id] = this._cloneConfig(cachedConfig)
                   cachedConfig = map[config.id];
                 }
                 this._copyProperties(cachedConfig, config);
@@ -27151,7 +27151,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             try {
               result = neonAnimation.configure(config);
               // Check if we have an Effect rather than an Animation
-              if (typeof result.cancel != 'function') {
+              if (typeof result.cancel != 'function') { 
                 result = document.timeline.play(result);
               }
             } catch (e) {
@@ -28005,13 +28005,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // configure: function(config) {
     // },
 
-    created: function() {
-      if (!document.body.animate) {
-        console.warn('No web animations detected. This element will not' +
-            ' function without a web animations polyfill.');
-      }
-    },
-
     /**
      * Returns the animation timing by mixing in properties from `config` to the defaults defined
      * by the animation.
@@ -28048,6 +28041,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   };
 
 </script>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<script src="bower_components/web-animations-js/web-animations-next-lite.min.js"></script>
 <!--
 `<fade-in-animation>` animates the opacity of an element from 0 to 1.
 
@@ -30776,38 +30780,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                     <div class="inline" page-name="default">
                         <app-link href="/home">
-                            <div class="link inline">Home</div>
+                            <div class="link inline"><localized-data value="home"></localized-data></div>
                         </app-link>
                         <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                             <div class="inline" page-name="default">
-                                <span aria-hidden="true">&gt;</span> <app-link href="/steps-landing"><div class="link inline">Steps</div></app-link>
+                                <span aria-hidden="true">&gt;</span> <app-link href="/steps-landing"><div class="link inline"><localized-data value="steps"></localized-data></div></app-link>
                                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                                     <div class="inline" page-name="step">
-                                        <span aria-hidden="true">&gt;</span> Step [[step.index]]
+                                        <span aria-hidden="true">&gt;</span> <localized-data value="step"></localized-data> [[step.index]]
                                     </div>
                                     <div class="inline" page-name="topic">
                                         &gt;
                                         <app-link href="/step/[[step.index]]">
-                                            <div class="link inline">Step [[step.index]]
+                                            <div class="link inline"><localized-data value="step"></localized-data> [[step.index]]
                                                 <!--[[step.stepTitle]]-->
                                             </div>
                                         </app-link> 
-                                        <span aria-hidden="true">&gt;</span> Topic [[topic.index]] / [[step.topics.length]]
+                                        <span aria-hidden="true">&gt;</span> <localized-data value="topic"></localized-data> [[topic.index]] / [[step.topics.length]]
                                         <!--[[topic.title]]-->
                                     </div>
                                 </iron-pages>
                             </div>
                             <div class="inline" page-name="info-why-develop-page">
-                                <span aria-hidden="true">&gt;</span> Why Develop a Social Compliance System
+                                <span aria-hidden="true">&gt;</span> <localized-data value="why_develop"></localized-data>
                             </div>
                             <div class="inline" page-name="info-basics-page">
-                                <span aria-hidden="true">&gt;</span> Basics of a Social Compliance System
+                                <span aria-hidden="true">&gt;</span> <localized-data value="basics_of"></localized-data>
                             </div>
                             <div class="inline" page-name="info-about-page">
-                                <span aria-hidden="true">&gt;</span> About this App
+                                <span aria-hidden="true">&gt;</span> <localized-data value="about_this_app"></localized-data>
                             </div>
                             <div class="inline" page-name="info-what-are-page">
-                                <span aria-hidden="true">&gt;</span> What are Child Labor and Forced Labor
+                                <span aria-hidden="true">&gt;</span> <localized-data value="what_are"></localized-data>
                             </div>
                             <div class="inline" page-name="info-root-causes-page">
                                 <span aria-hidden="true">&gt;</span> Addressing Root Causes
@@ -30819,7 +30823,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 <span aria-hidden="true">&gt;</span> More Info
                             </div>
                             <div class="inline" page-name="steps-landing">
-                                <span aria-hidden="true">&gt;</span> Steps
+                                <span aria-hidden="true">&gt;</span> <localized-data value="steps"></localized-data>
                             </div>
                             <div class="inline" page-name="search-results">
                                 <span aria-hidden="true">&gt;</span> Search Results
@@ -31560,13 +31564,59 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     appFullTitle: "Do Good",
                     stepPrefix: "Step",
                     info: "Info",
+                    about_this_app:"About this App",
+                    what_are:"What are Child Labor and Forced Labor?",
+                    contact_us:"Contact Us",
+                    key_r:"Key Resources",
+                    steps:"Steps",
+                    topic:"Topic",
+                    step:"Step",
+                    learning_objectives:"Learning Objectives",
+                    key_terms:"Key Terms",
+                    topics:"TOPICS",
+                    why_develop:"Why Develop a Social Compliance System",
+                    basics_of:"Basics of a Social Compliance System",
+                    steps_to_basic:"Steps to a social compliance system",
                 },
                 es: {
                     home: "Inicio",
-                    menu: "Menu (ES)",
+                    menu: "Menú",
                     appFullTitle: "Do Good",
-                    stepPrefix: "Step (ES)",
+                    stepPrefix: "Paso",
                     info: "Info",
+                    about_this_app:"Acerca de esta aplicación",
+                    what_are:"Qué es el trabajo infantil y el trabajo forzoso?",
+                    contact_us:"Contáctenos",
+                    key_r:"Recursos clave",
+                    steps:"Pasos",
+                    topic:"Tema",
+                    step:"Paso",
+                    learning_objectives:"Objetivos de aprendizaje",
+                    key_terms:"Términos clave",
+                    topics:"TEMAS",
+                    why_develop:"Por qué desarrollar un sistema de cumplimiento social",
+                    basics_of:"Conceptos básicos de un sistema de cumplimiento social",
+                    steps_to_basic:"Pasos hacia un sistema de cumplimiento social",
+                },
+                fr: {
+                    home: "Maison",
+                    menu: "Menu",
+                    appFullTitle: "Do Good",
+                    stepPrefix: "Étape",
+                    info: "Info",
+                    about_this_app:"A propos de cette application",
+                    what_are:"Qu'est-ce que le travail des enfants et le travail forcé?",
+                    contact_us:"Contactez nous",
+                    key_r:"Ressources clés",
+                    steps:"Pas",
+                    topic:"Sujet",
+                    step:"Étape",
+                    learning_objectives:"Objectifs d'apprentissage",
+                    key_terms:"Mots clés",
+                    topics:"LES SUJETS",
+                    why_develop:"Pourquoi développer un système de conformité sociale",
+                    basics_of:"Bases d'un système de conformité sociale",
+                    steps_to_basic:"Étapes vers un système de conformité sociale",
                 },
             }
             return data[locale][value];
@@ -32153,11 +32203,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         </style>
         <div id="top">
-            <app-link href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"> Why develop a social compliance system?</app-link>
+            <app-link href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"> <localized-data value="why_develop"></localized-data></app-link>
             <border-separator></border-separator>
-            <app-link href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"> Basics of a social compliance system</app-link>
+            <app-link href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"> <localized-data value="basics_of"></localized-data></app-link>
             <border-separator></border-separator>
-            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"> Steps to a social compliance system</app-link>
+            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"> <localized-data value="steps_to_basic"></localized-data></app-link>
         </div>
         <slot name="append"></slot>
         <div class="bottom">
@@ -32732,7 +32782,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <h1>[[data.stepTitle]]</h1>
                 </div>
                 <expandable-item content-label="Learning Objectives">
-                    <h2 slot="label">Learning Objectives</h2>
+                    <h2 slot="label"><localized-data value="learning_objectives"></localized-data></h2>
                     <ul slot="items">
                         <dom-repeat items="[[data.learningObjectives]]">
                             <template>
@@ -32745,7 +32795,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </expandable-item>
                 <border-separator></border-separator>
                 <expandable-item content-label="Key Terms">
-                    <h2 slot="label">Key Terms</h2>
+                    <h2 slot="label"><localized-data value="key_terms"></localized-data></h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.keyTerms]]">
@@ -32765,7 +32815,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <border-separator></border-separator>
                 <!--expandable-item is-opened="true"-->
                 <div class="topics">
-                    <h2 slot="label">TOPICS</h2>
+                    <h2 slot="label"><localized-data value="topics"></localized-data></h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.topics]]">
@@ -33091,31 +33141,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
-                    <!--paper-dropdown-menu hidden label="Language">
-                        <paper-listbox attr-for-selected="lang" selected="{{lang}}">
+                    <paper-dropdown-menu hidden="" label="Language">
+                        <paper-listbox attr-for-selected="lang" slot="dropdown-content" selected="{{lang}}">
                             <paper-item lang="en">English</paper-item>
                             <paper-item lang="es">Espanol</paper-item>
+                            <paper-item lang="fr">French</paper-item>
                         </paper-listbox>
-                    </paper-dropdown-menu-->
+                    </paper-dropdown-menu>
                     <app-link name="home" href="/home">
                         <localized-data value="home"></localized-data>
                     </app-link>
                     <app-link name="index-info" href="/info-about-page">
-                        About this App
+                        <localized-data value="about_this_app"></localized-data>
                     </app-link>
                     <app-link name="what-are-cl-fl" href="/info-what-are-page">
-                        <p class="link-label">What are Child Labor and Forced Labor?</p>
+                        <localized-data value="what_are"></localized-data>
                     </app-link>
                     <border-separator></border-separator>
                     <div id="step-list-scroll" aria-live="polite">
                         <iron-pages selected="[[menuState]]" attr-for-selected="state" fallback-selection="none" role="secondary">
                             <div class="layout horizontal" state="none">
-                                <app-link class="flex" href="/steps-landing">Steps</app-link>
+                                <app-link class="flex" href="/steps-landing"><localized-data value="steps"></localized-data></app-link>
                                 <paper-icon-button icon="expand-more" on-click="showSteps" aria-label="Expand list of Steps"></paper-icon-button>
                             </div>
                             <div state="listSteps">
                                 <div class="layout horizontal">
-                                    <app-link class="flex" href="/steps-landing"><strong>Steps</strong></app-link>
+                                    <app-link class="flex" href="/steps-landing"><strong><localized-data value="steps"></localized-data></strong></app-link>
                                     <paper-icon-button icon="expand-less" on-click="menuBack" aria-label="Collapse list of steps"></paper-icon-button>
                                 </div>
                                 <dom-repeat items="[[stepData]]">
@@ -33150,9 +33201,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                     <border-separator></border-separator>
                     <app-link name="key-resources" href="/info-key-resources">
-                        Key Resources
+                        <localized-data value="key_r"></localized-data>
                     </app-link>
-                    <a href="mailto:GlobalKids@dol.gov?subject=Comments on Comply Chain App" target="_top">Contact Us</a>
+                    <a href="mailto:GlobalKids@dol.gov?subject=Comments on Comply Chain App" target="_top"><localized-data value="contact_us"></localized-data></a>
                 </iron-selector>
             </app-drawer>
             <!-- Main content -->
