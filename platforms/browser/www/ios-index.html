@@ -31537,7 +31537,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 },
                 locale: {
                     type: String,
-                    value: 'en'
+                    value: window.localStorage.getItem("lang"),
+                    
                 },
                 renderedValue: {
                     type: String,
@@ -31557,6 +31558,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         _render(value, locale) {
+            
+			if(locale == null)
+                locale = window.localStorage.getItem("lang")
+            
             var data = {
                 en: {
                     home: "Home",
@@ -31640,7 +31645,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div></div>
     <script>
     var __globalRef = {
-        locale: "en",
+        locale: null,
         device: null,
         update: function() {
             this.__listeners.forEach(item => item.update());
@@ -31648,6 +31653,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         __listeners: [],
     };
     document.addEventListener('deviceready', () => {
+
+        if( window.localStorage.getItem("lang") == null)
+            {
+             window.localStorage.setItem("lang", "en" );
+            }
+        
+        console.log(window.localStorage.getItem("lang"));
         __globalRef.device = cordova.platformId;
         console.log(cordova.platformId);
         __globalRef.update();
@@ -31688,6 +31700,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         update() {
             this.locale = this.globalRef.locale;
             this.device = this.globalRef.device;
+            if (this.locale != null) {
+                window.localStorage.setItem("lang", this.globalRef.locale);
+            }
         }
 
         setLocale(newLocale, oldLocale) {
@@ -33527,7 +33542,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         ready() {
             super.ready();
-            this.lang = 'en';
+            this.lang = window.localStorage.getItem("lang");
             this.searchInputTarget = this.$['search-input'];
 
             this.page = "home";
