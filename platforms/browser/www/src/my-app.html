@@ -581,7 +581,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         ready() {
             super.ready();
-            this.lang = 'en';
+            this.lang = window.localStorage.getItem("lang");
             this.searchInputTarget = this.$['search-input'];
 
             this.page = "home";

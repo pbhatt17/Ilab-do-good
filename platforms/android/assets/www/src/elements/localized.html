@@ -24,7 +24,8 @@
                 },
                 locale: {
                     type: String,
-                    value: 'en'
+                    value: window.localStorage.getItem("lang"),
+                    
                 },
                 renderedValue: {
                     type: String,
@@ -44,6 +45,10 @@
         }
 
         _render(value, locale) {
+            
+			if(locale == null)
+                locale = window.localStorage.getItem("lang")
+            
             var data = {
                 en: {
                     home: "Home",

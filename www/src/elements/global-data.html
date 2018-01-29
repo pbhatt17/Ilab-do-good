@@ -10,7 +10,7 @@
     <div></div>
     <script>
     var __globalRef = {
-        locale: "en",
+        locale: null,
         device: null,
         update: function() {
             this.__listeners.forEach(item => item.update());
@@ -18,6 +18,13 @@
         __listeners: [],
     };
     document.addEventListener('deviceready', () => {
+
+        if( window.localStorage.getItem("lang") == null)
+            {
+             window.localStorage.setItem("lang", "en" );
+            }
+        
+        console.log(window.localStorage.getItem("lang"));
         __globalRef.device = cordova.platformId;
         console.log(cordova.platformId);
         __globalRef.update();
@@ -58,6 +65,9 @@
         update() {
             this.locale = this.globalRef.locale;
             this.device = this.globalRef.device;
+            if (this.locale != null) {
+                window.localStorage.setItem("lang", this.globalRef.locale);
+            }
         }
 
         setLocale(newLocale, oldLocale) {
