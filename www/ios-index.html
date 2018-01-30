@@ -31512,7 +31512,110 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     customElements.define(RenderRaw.is, RenderRaw);
     </script>
-</dom-module><dom-module id="localized-data" assetpath="src/elements/">
+</dom-module><dom-module id="global-data" assetpath="src/elements/">
+    <template>
+        <custom-style>
+        </custom-style>
+        <style>
+
+        </style>
+    </template>
+    <div></div>
+    <script>
+    var __globalRef = {
+        locale: null,
+        device: null,
+        update: function() {
+            this.__listeners.forEach(item => item.update());
+        },
+        __listeners: [],
+    };
+    document.addEventListener('deviceready', () => {
+
+        if( window.localStorage.getItem("lang") == null)
+            {
+             window.localStorage.setItem("lang", "en" );
+            }
+        
+        console.log(window.localStorage.getItem("lang"));
+        __globalRef.device = cordova.platformId;
+        console.log(cordova.platformId);
+        __globalRef.update();
+    }, false);
+    class GlobalData extends Polymer.Element {
+        static get is() {
+            return 'global-data';
+        }
+
+
+        static get properties() {
+            return {
+                locale: {
+                    type: String,
+                    reflectToAttribute: true,
+                    notify: true,
+                    observer: 'setLocale',
+                },
+                device: {
+                    type: String,
+                    reflectToAttribute: true,
+                    notify: true,
+                    observer: 'setDevice',
+                },
+                globalRef: {
+                    type: Object,
+                    value: __globalRef,
+                }
+
+            };
+        }
+
+        static get observers() {
+            return [
+            ];
+        }
+
+        update() {
+            this.locale = this.globalRef.locale;
+            this.device = this.globalRef.device;
+            if (this.locale != null) {
+                window.localStorage.setItem("lang", this.globalRef.locale);
+            }
+        }
+
+        setLocale(newLocale, oldLocale) {
+            this.locale = newLocale;
+            this.globalRef.locale = newLocale;
+            this.globalRef.update();
+        }
+
+        setDevice(newDevice, oldDevice) {
+            this.device = newDevice;
+            this.globalRef.device = newDevice;
+            this.globalRef.update();
+        }
+        _getLocale(ref) {
+            return ref.locale;
+        }
+        _getDevice(ref) {
+            return ref.device;
+        }
+        constructor() {
+            super();
+            __globalRef.__listeners.push(this);
+        }
+
+
+        ready() { 
+            super.ready();
+            this.update();
+        }
+    }
+
+    customElements.define(GlobalData.is, GlobalData);
+    </script>
+</dom-module>
+<dom-module id="localized-data" assetpath="src/elements/">
     <template>
         <custom-style>
         </custom-style>
@@ -31650,109 +31753,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     customElements.define(Localized.is, Localized);
-    </script>
-</dom-module>
-<dom-module id="global-data" assetpath="src/elements/">
-    <template>
-        <custom-style>
-        </custom-style>
-        <style>
-
-        </style>
-    </template>
-    <div></div>
-    <script>
-    var __globalRef = {
-        locale: null,
-        device: null,
-        update: function() {
-            this.__listeners.forEach(item => item.update());
-        },
-        __listeners: [],
-    };
-    document.addEventListener('deviceready', () => {
-
-        if( window.localStorage.getItem("lang") == null)
-            {
-             window.localStorage.setItem("lang", "en" );
-            }
-        
-        console.log(window.localStorage.getItem("lang"));
-        __globalRef.device = cordova.platformId;
-        console.log(cordova.platformId);
-        __globalRef.update();
-    }, false);
-    class GlobalData extends Polymer.Element {
-        static get is() {
-            return 'global-data';
-        }
-
-
-        static get properties() {
-            return {
-                locale: {
-                    type: String,
-                    reflectToAttribute: true,
-                    notify: true,
-                    observer: 'setLocale',
-                },
-                device: {
-                    type: String,
-                    reflectToAttribute: true,
-                    notify: true,
-                    observer: 'setDevice',
-                },
-                globalRef: {
-                    type: Object,
-                    value: __globalRef,
-                }
-
-            };
-        }
-
-        static get observers() {
-            return [
-            ];
-        }
-
-        update() {
-            this.locale = this.globalRef.locale;
-            this.device = this.globalRef.device;
-            if (this.locale != null) {
-                window.localStorage.setItem("lang", this.globalRef.locale);
-            }
-        }
-
-        setLocale(newLocale, oldLocale) {
-            this.locale = newLocale;
-            this.globalRef.locale = newLocale;
-            this.globalRef.update();
-        }
-
-        setDevice(newDevice, oldDevice) {
-            this.device = newDevice;
-            this.globalRef.device = newDevice;
-            this.globalRef.update();
-        }
-        _getLocale(ref) {
-            return ref.locale;
-        }
-        _getDevice(ref) {
-            return ref.device;
-        }
-        constructor() {
-            super();
-            __globalRef.__listeners.push(this);
-        }
-
-
-        ready() { 
-            super.ready();
-            this.update();
-        }
-    }
-
-    customElements.define(GlobalData.is, GlobalData);
     </script>
 </dom-module>
 <dom-module id="platform-switch" assetpath="src/elements/">
@@ -32236,11 +32236,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         </style>
         <div id="top">
-            <app-link href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"> <localized-data value="why_develop"></localized-data></app-link>
+            <app-link name="why_develop" href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"><localized-data value="why_develop"></localized-data></app-link>
             <border-separator></border-separator>
-            <app-link href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"> <localized-data value="basics_of"></localized-data></app-link>
+            <app-link name="basics_of" href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"><localized-data value="basics_of"></localized-data></app-link>
             <border-separator></border-separator>
-            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"> <localized-data value="steps_to_basic"></localized-data></app-link>
+            <app-link name="steps_to_basic" href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"><localized-data value="steps_to_basic"></localized-data></app-link>
         </div>
         <slot name="append"></slot>
         <div class="bottom">
