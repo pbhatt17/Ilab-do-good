@@ -9,9 +9,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
-<link rel="import" href="./elements/localized.html">
-<link rel="import" href="./elements/global-data.html">
-<link rel="import" href="./elements/app-link.html">
 <dom-module id="my-home">
     <template>
         <style include="shared-styles">
@@ -92,11 +89,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         </style>
         <div id="top">
-            <app-link name="why_develop" href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"><localized-data value="why_develop"></localized-data></app-link>
+            <app-link href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"><localized-data value="why_develop"></localized-data></app-link>
             <border-separator></border-separator>
-            <app-link name="basics_of" href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"><localized-data value="basics_of"></localized-data></app-link>
+            <app-link href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"><localized-data value="basics_of"></localized-data></app-link>
             <border-separator></border-separator>
-            <app-link name="steps_to_basic" href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"><localized-data value="steps_to_basic"></localized-data></app-link>
+            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"><localized-data value="steps_to_basic"></localized-data></app-link>
         </div>
         <slot name="append"></slot>
         <div class="bottom">
