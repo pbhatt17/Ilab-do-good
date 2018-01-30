@@ -30784,7 +30784,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </app-link>
                         <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                             <div class="inline" page-name="default">
-                                <span aria-hidden="true"></span> <app-link href="/steps-landing"><div class="link inline"><localized-data value="steps"></localized-data></div></app-link>
+                                <span aria-hidden="true">&gt;</span> <app-link href="/steps-landing"><div class="link inline"><localized-data value="steps"></localized-data></div></app-link>
                                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                                     <div class="inline" page-name="step">
                                         <span aria-hidden="true">&gt;</span> <localized-data value="step"></localized-data> [[step.index]]
@@ -31582,6 +31582,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     why_develop:"Why Develop a Social Compliance System",
                     basics_of:"Basics of a Social Compliance System",
                     steps_to_basic:"Steps to a social compliance system",
+                    prev_topic:"Previous Topic",
+                    prev_step:"Previous Step",
+                    next_topic:"Next Topic",
+                    next_step:"Next Step",
+                    further_resources:"Further Resources",
+                    training_materials:"Training Materials",
                 },
                 es: {
                     home: "Inicio",
@@ -31602,6 +31608,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     why_develop:"Por qué desarrollar un sistema de cumplimiento social",
                     basics_of:"Conceptos básicos de un sistema de cumplimiento social",
                     steps_to_basic:"Pasos hacia un sistema de cumplimiento social",
+                    prev_topic:"Tema anterior",
+                    prev_step:"Paso anterior",
+                    next_topic:"Siguiente tema",
+                    next_step:"Próximo paso",
+                    further_resources:"Recursos adicionales",
+                    training_materials:"Materiales de entrenamiento",
                 },
                 fr: {
                     home: "Maison",
@@ -31622,6 +31634,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     why_develop:"Pourquoi développer un système de conformité sociale",
                     basics_of:"Bases d'un système de conformité sociale",
                     steps_to_basic:"Étapes vers un système de conformité sociale",
+                    prev_topic:"Sujet précédent",
+                    prev_step:"Étape précédente",
+                    next_topic:"Sujet suivant",
+                    next_step:"L'étape suivante",
+                    further_resources:"Autres ressources",
+                    training_materials:"Matériel d'entraînement",
                 },
             }
             return data[locale][value];
@@ -32218,11 +32236,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         </style>
         <div id="top">
-            <app-link href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"> <localized-data value="why_develop"></localized-data></app-link>
+            <app-link href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"><localized-data value="why_develop"></localized-data></app-link>
             <border-separator></border-separator>
-            <app-link href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"> <localized-data value="basics_of"></localized-data></app-link>
+            <app-link href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"><localized-data value="basics_of"></localized-data></app-link>
             <border-separator></border-separator>
-            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"> <localized-data value="steps_to_basic"></localized-data></app-link>
+            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"><localized-data value="steps_to_basic"></localized-data></app-link>
         </div>
         <slot name="append"></slot>
         <div class="bottom">
@@ -32569,10 +32587,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="layout horizontal center-justified">
             <div class="main" aria-live="polite" tabindex="-1" id="pageTop">
                 <render-raw html-data="[[data.rawData]]" target="{{targetId}}"></render-raw>
-                <paper-button id="prev" hidden$="[[!hasPrevious]]" raised="">Previous Topic</paper-button>
-                <paper-button id="prevStep" hidden$="[[!showPreviousStep]]" raised="">Previous Step</paper-button>
-                <paper-button id="next" hidden$="[[!hasNext]]" raised="">Next Topic</paper-button>
-                <paper-button id="nextStep" hidden$="[[!showNextStep]]" raised="">Next Step</paper-button>
+                <paper-button id="prev" hidden$="[[!hasPrevious]]" raised=""><localized-data value="prev_topic"></localized-data></paper-button>
+                <paper-button id="prevStep" hidden$="[[!showPreviousStep]]" raised=""><localized-data value="prev_step"></localized-data></paper-button>
+                <paper-button id="next" hidden$="[[!hasNext]]" raised=""><localized-data value="next_topic"></localized-data></paper-button>
+                <paper-button id="nextStep" hidden$="[[!showNextStep]]" raised=""><localized-data value="next_step"></localized-data></paper-button>
             </div>
         </div>
     </template>
@@ -32850,7 +32868,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div hidden$="[[!_hasFurtherResources(data)]]">
                     <border-separator></border-separator>
                     <expandable-item content-label="Further Resources">
-                        <h2 slot="label">Further Resources</h2>
+                        <h2 slot="label"><localized-data value="further_resources"></localized-data></h2>
                         <div slot="items">
                             <render-raw html-data="[[data.furtherResources]]"></render-raw>
                         </div>
@@ -32859,7 +32877,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div hidden$="[[!_hasTrainingMats(data)]]">
                     <border-separator></border-separator>
                     <expandable-item content-label="Training Materials">
-                        <h2 slot="label">Training Materials</h2>
+                        <h2 slot="label"><localized-data value="training_materials"></localized-data></h2>
                         <div slot="items">
                             <render-raw html-data="[[data.trainingMats]]"></render-raw>
                         </div>
