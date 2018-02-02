@@ -33215,7 +33215,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             </div>
                             <div state="listTopics">
                                 <div class="layout horizontal">
-                                    <app-link class="flex" href="/step/[[currentMenuStep.index]]"><strong>Step [[currentMenuStep.index]]</strong></app-link>
+                                    <app-link class="flex" href="/step/[[currentMenuStep.index]]"><strong><localized-data value="step"></localized-data> [[currentMenuStep.index]]</strong></app-link>
                                     <paper-icon-button icon="expand-less" on-click="menuBack" aria-label="Collapse list of topics"></paper-icon-button>
                                 </div>
                                 <dom-repeat items="[[currentMenuStep.topics]]">
@@ -33481,6 +33481,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         _stepData(baseData, lang) {
             if (baseData === null) {
                 return null;
+            }
+            if (lang == null) {
+                this.lang = 'en';
+                lang = 'en';
             }
             return baseData[lang].steps;
         }
