@@ -32236,9 +32236,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         </style>
         <div id="top">
-            <app-link href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"><localized-data value="why_develop" id="why_develop"></localized-data></app-link>
+            <app-link href="/info-why-develop-page">
+            	<img class="link-icon" alt="Question Mark" src="imgs/question mark.png">
+            	<localized-data value="why_develop"></localized-data>
+            </app-link>
             <border-separator></border-separator>
-            <app-link href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"><localized-data value="basics_of"></localized-data></app-link>
+            <app-link href="/info-basics-page">
+            	<localized-data value="basics_of"></localized-data>
+            </app-link>
             <border-separator></border-separator>
             <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"><localized-data value="steps_to_basic"></localized-data></app-link>
         </div>
@@ -32258,25 +32263,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         ready() {
             super.ready();
-            this.$['why_develop'].addEventListener('click', event => {
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: "/info-why-develop-page"
-                    },
-                    bubbles: true
-                }));
-            })
-
-            this.$['why_develop'].addEventListener('tap', event => {
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: "/info-why-develop-page"
-                    },
-                    bubbles: true
-                }));
-            });
-
-            
+                        
             this.root.addEventListener('link-followed', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
