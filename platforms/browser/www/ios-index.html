@@ -32236,10 +32236,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         </style>
         <div id="top">
-            <app-link href="/info-why-develop-page">
-            	<img class="link-icon" alt="Question Mark" src="imgs/question mark.png">
+            <div id="why_develop1">
             	<localized-data value="why_develop"></localized-data>
-            </app-link>
+            </div>
             <border-separator></border-separator>
             <app-link href="/info-basics-page">
             	<localized-data value="basics_of"></localized-data>
@@ -32263,6 +32262,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         ready() {
             super.ready();
+
+            this.$['why_develop1'].addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/info-why-develop-page"
+                    },
+                    bubbles: true
+                }));
+            })
+
+            this.$['why_develop1'].addEventListener('tap', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/info-why-develop-page"
+                    },
+                    bubbles: true
+                }));
+            });
                         
             this.root.addEventListener('link-followed', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
