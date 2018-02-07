@@ -117,8 +117,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         ready() {
             super.ready();
-                        
-            
+
             this.$['check'].addEventListener('click', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
@@ -136,17 +135,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     bubbles: true
                 }));
             });
-
-            this.root.addEventListener('link-followed', event => {
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: event.detail.target,
-                    },
-                    bubbles: true
-                }));
-            });
-
             
+            // this.root.addEventListener('link-followed', event => {
+            //     this.dispatchEvent(new CustomEvent('link-followed', {
+            //         detail: {
+            //             target: event.detail.target,
+            //         },
+            //         bubbles: true
+            //     }));
+            // });
+
+
             this.$['info-btn'].addEventListener('click', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
