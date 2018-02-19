@@ -32236,9 +32236,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         </style>
         <div id="top">
-            <app-link href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"><localized-data value="why_develop"></localized-data></app-link>
+            <app-link href="/info-why-develop-page">
+            	<img class="link-icon" alt="Question Mark" src="imgs/question mark.png">
+            	<localized-data value="why_develop"></localized-data>
+            </app-link>
             <border-separator></border-separator>
-            <app-link href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"><localized-data value="basics_of"></localized-data></app-link>
+            <app-link href="/info-basics-page">
+            	<img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png">
+            	<localized-data value="basics_of"></localized-data>
+            </app-link>
             <border-separator></border-separator>
             <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"><localized-data value="steps_to_basic"></localized-data></app-link>
         </div>
@@ -32258,6 +32264,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         ready() {
             super.ready();
+
             this.root.addEventListener('link-followed', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
@@ -32266,6 +32273,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     bubbles: true
                 }));
             });
+
 
             this.$['info-btn'].addEventListener('click', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
@@ -33248,7 +33256,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="ILAB - The Bureau of International Labor Affairs" class="logo-img-small" src="imgs/ilab.png"></a></div>
                             <div class="flex layout horizontal center-justified">
                                 <div class="layout vertical title-bar-text">
-                                    <div class="flex layout horizontal center-justified">
+                                    <div class="flex layout horizontal center-justified" style="margin-bottom: 50%">
                                         <p><strong>Comply Chain</strong></p>
                                     </div>
                                 </div>
