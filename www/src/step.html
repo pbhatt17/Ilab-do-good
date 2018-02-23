@@ -73,7 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div class="title-bar">
                     <h1>[[data.stepTitle]]</h1>
                 </div>
-                <expandable-item content-label="Learning Objectives">
+                <expandable-item content-label="Heading level two Learning Objectives">
                     <h2 slot="label"><localized-data value="learning_objectives"></localized-data></h2>
                     <ul slot="items">
                         <dom-repeat items="[[data.learningObjectives]]">
@@ -86,7 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </ul>
                 </expandable-item>
                 <border-separator></border-separator>
-                <expandable-item content-label="Key Terms">
+                <expandable-item content-label="Heading level two Key Terms">
                     <h2 slot="label"><localized-data value="key_terms"></localized-data></h2>
                     <div slot="items">
                         <ul>
@@ -126,7 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <!--/expandable-item-->
                 <div hidden$="[[!_hasFurtherResources(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item content-label="Further Resources">
+                    <expandable-item content-label="Heading level two Further Resources">
                         <h2 slot="label"><localized-data value="further_resources"></localized-data></h2>
                         <div slot="items">
                             <render-raw html-data="[[data.furtherResources]]"></render-raw>
@@ -135,7 +135,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
                 <div hidden$="[[!_hasTrainingMats(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item content-label="Training Materials">
+                    <expandable-item content-label="Heading level two Training Materials">
                         <h2 slot="label"><localized-data value="training_materials"></localized-data></h2>
                         <div slot="items">
                             <render-raw html-data="[[data.trainingMats]]"></render-raw>
