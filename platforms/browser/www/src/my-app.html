@@ -6,8 +6,7 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
+--><link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
@@ -183,9 +182,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
         <app-route route="[[route]]" pattern="/:page/:stepId" data="{{routeData}}"></app-route>
         <app-route route="[[route]]" pattern="/:page/:stepId/:topicId" data="{{routeData}}"></app-route>
-        <app-drawer-layout class="temp-width" fullbleed force-narrow>
+        <app-drawer-layout class="temp-width" fullbleed="" force-narrow="">
             <!-- Drawer content -->
-            <app-drawer id="drawer" slot="drawer" persistent>
+            <app-drawer id="drawer" slot="drawer" persistent="">
                 <app-toolbar>
                     <div class="layout horizontal flex">
                         <p class="flex">
@@ -198,7 +197,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
-                    <paper-dropdown-menu hidden label="Language" on-iron-select="_itemSelected">
+                    <paper-dropdown-menu hidden="" label="Language" on-iron-select="_itemSelected">
                         <paper-listbox attr-for-selected="lang" slot="dropdown-content" selected="{{lang}}">
                             <paper-item lang="en">English</paper-item>
                             <paper-item lang="es">Espanol</paper-item>
@@ -264,12 +263,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </iron-selector>
             </app-drawer>
             <!-- Main content -->
-            <app-header-layout id="scrollingRegion" has-scrolling-region>
-                <app-header slot="header" id="app-header" fixed scroll-target="scrollingRegion">
+            <app-header-layout id="scrollingRegion" has-scrolling-region="">
+                <app-header slot="header" id="app-header" fixed="" scroll-target="scrollingRegion">
                     <app-toolbar>
-                        <paper-icon-button icon="my-icons:menu" drawer-toggle aria-label="Menu"></paper-icon-button>
-                        <div main-title class="layout horizontal">
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="ILAB - The Bureau of International Labor Affairs" class="logo-img-small" src="imgs/ilab.png"  /></a></div>
+                        <paper-icon-button icon="my-icons:menu" drawer-toggle="" aria-label="Menu"></paper-icon-button>
+                        <div main-title="" class="layout horizontal">
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="ILAB - The Bureau of International Labor Affairs" class="logo-img-small" src="imgs/ilab.png"></a></div>
                             <div class="flex layout horizontal center-justified">
                                 <div class="layout vertical title-bar-text">
                                     <div class="flex layout horizontal center-justified" style="margin-bottom: 50%">
@@ -277,7 +276,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="United States Department of Labor" class="logo-img" src="imgs/dol.png" /></a></div>
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="United States Department of Labor" class="logo-img" src="imgs/dol.png"></a></div>
                         </div>
                     </app-toolbar>
                 </app-header>
@@ -293,7 +292,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <div name="default" class="layout horizontal">
                                 <bread-crumbs name="default" class="flex" route="[[route]]" step-data="[[stepData]]" is-searching="{{isSearching}}"></bread-crumbs>
                                 <div>
-                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles aria-label="Search" id="bread-crumbs-search"></paper-icon-button>
+                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search" id="bread-crumbs-search"></paper-icon-button>
                                 </div>
                             </div>
                             <div name="home"></div>
@@ -309,7 +308,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="Search"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home>
@@ -321,7 +320,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="Search"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home-fr>
@@ -333,7 +332,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="Search"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home-es>
@@ -358,71 +357,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </app-header-layout>
         </app-drawer-layout>
     </template>
-    <script>
-    class MyApp extends Polymer.Element {
-
-        static get is() {
-            return 'my-app';
-        }
-
-        static get properties() {
-            return {
-                page: {
-                    type: String,
-                    reflectToAttribute: true,
-                    observer: '_pageChanged',
-                },
-                baseStepData: {
-                    type: Object,
-                    value: null,
-                },
-                stepData: {
-                    type: Array,
-                    computed: '_stepData(baseStepData, lang)',
-                },
-                infoData: {
-                    type: Object,
-                    computed: '_infoData(baseStepData, lang)',
-                },
-                infoDataVisible: {
-                    type: Object,
-                    computed: '_infoDataVisible(baseStepData, lang)',
-                },
-                lang: {
-                    type: String,
-                    value: "en",
-                },
-                isSearching: {
-                    type: Boolean,
-                    observer: '_searchChange',
-                },
-                target: {
-                    type: Object,
-                },
-                route: {
-                    type: Object,
-                    value: {
-                        path: "/home"
-                    }
-                },
-                menuState: {
-                    type: String,
-                    value: "none"
-                },
-                currentMenuStep: {
-                    type: Object,
-                    value: null
-                }
-            };
-        }
-
-        static get observers() {
-            return [
-                '_routePageChanged(routeData.page)',
-            ];
-        }
-
-        menuBack() {
+    <script>var MyApp = function (_Polymer$Element) {
+    babelHelpers.inherits(MyApp, _Polymer$Element);
+    babelHelpers.createClass(MyApp, [{
+        key: 'menuBack',
+        value: function menuBack() {
             if (this.menuState === "listTopics") {
                 this.menuState = "listSteps";
             } else if (this.menuState === "listSteps") {
@@ -430,13 +369,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
             console.log("menuBack:" + this.menuState);
         }
-
-        showSteps() {
+    }, {
+        key: 'showSteps',
+        value: function showSteps() {
             this.menuState = "listSteps";
             console.log("showSteps:" + this.menuState);
         }
-
-        gotoStep(e) {
+    }, {
+        key: 'gotoStep',
+        value: function gotoStep(e) {
             this.currentMenuStep = e.target.stepTarget;
             this.menuState = "listTopics";
             console.log("gotoStep:" + this.menuState);
@@ -445,41 +386,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             console.log("stepid:" + e.target.dataset.testIndex);
             console.log("stepid:" + e.target.index);
             console.log("stepid:" + e.target.testIndex);
-
         }
-
-
-        _searchChange(isSearching) {
+    }, {
+        key: '_searchChange',
+        value: function _searchChange(isSearching) {
             if (isSearching) {
                 //this.$['search-input'].focus();
 
             }
         }
+    }, {
+        key: 'onSearch',
+        value: function onSearch() {
+            var _this2 = this;
 
-
-        onSearch() {
             this.set('route.path', '/search-results');
             this.$.search.initiateSearch();
-            setTimeout(() => {
+            setTimeout(function () {
                 window.scrollTo(0, 0);
-                this.root.querySelector('bread-crumbs').scrollIntoView();
-                if (this.$.search.results.length === 1) {
-                    var item = this.$.search.results[0];
+                _this2.root.querySelector('bread-crumbs').scrollIntoView();
+                if (_this2.$.search.results.length === 1) {
+                    var item = _this2.$.search.results[0];
                     if (item.type === "step") {
-                        this.set('route.path', '/step/' + item.index);
+                        _this2.set('route.path', '/step/' + item.index);
                     }
                     if (item.type === "info") {
-                        this.set('route.path', '/' + item.id);
+                        _this2.set('route.path', '/' + item.id);
                     }
                     if (item.type === "topic") {
-                        this.set('route.path', '/topic/' + item.stepIndex + '/' + item.index);
+                        _this2.set('route.path', '/topic/' + item.stepIndex + '/' + item.index);
                     }
-
                 }
             }, 15);
         }
-
-        _routePageChanged(page) {
+    }, {
+        key: '_routePageChanged',
+        value: function _routePageChanged(page) {
             // Polymer 2.0 will call with `undefined` on initialization.
             // Ignore until we are properly called with a string.
             if (page === undefined) {
@@ -513,40 +455,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.searchText = "";
             }
         }
+    }, {
+        key: '_pageChanged',
+        value: function _pageChanged(page) {
+            var _this3 = this;
 
-        _pageChanged(page) {
             // Load page import on demand. Show 404 page if fails
             var resolvedPageUrl = this.resolveUrl(page + '.html');
             if (/info.+/.exec(page)) {
                 //resolvedPageUrl = this.resolveUrl('info-sub-page.html');
             } else {
                 resolvedPageUrl = this.resolveUrl(page + '.html');
-                app.deviceReadyPromise.then(() => {
-                    Polymer.importHref(
-                        resolvedPageUrl,
-                        null,
-                        null,
-                        true);
+                app.deviceReadyPromise.then(function () {
+                    Polymer.importHref(resolvedPageUrl, null, null, true);
                     if (page === "steps-landing") {
-                        this.$.landing.recalcMap();
+                        _this3.$.landing.recalcMap();
                     }
                 });
             }
-
         }
+    }, {
+        key: '_itemSelected',
+        value: function _itemSelected(e) {
+            var selectedItem = e.target.selectedItem;
 
-        _itemSelected(e) {
-	        var selectedItem = e.target.selectedItem;
-	       
-	        var homepages = ["home","home-es", "home-fr"] ;
-	        if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
-	       // if (e.target.selectedItem.lang != localStorage.lang){    
-	            location.reload();
-	        }
-	      }
-
-
-        _stepData(baseData, lang) {
+            var homepages = ["home", "home-es", "home-fr"];
+            if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
+                // if (e.target.selectedItem.lang != localStorage.lang){    
+                location.reload();
+            }
+        }
+    }, {
+        key: '_stepData',
+        value: function _stepData(baseData, lang) {
             if (baseData === null) {
                 return null;
             }
@@ -556,157 +497,234 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
             return baseData[lang].steps;
         }
-
-        _infoData(baseData, lang) {
+    }, {
+        key: '_infoData',
+        value: function _infoData(baseData, lang) {
             if (baseData === null) {
                 return null;
             }
             return baseData[lang].info;
         }
-        _infoDataVisible(baseData, lang) {
+    }, {
+        key: '_infoDataVisible',
+        value: function _infoDataVisible(baseData, lang) {
             if (baseData === null) {
                 return null;
             }
-            return baseData[lang].info.filter(item => !item.hidden);
+            return baseData[lang].info.filter(function (item) {
+                return !item.hidden;
+            });
         }
-
-
-        infoFor(target, id) {
+    }, {
+        key: 'infoFor',
+        value: function infoFor(target, id) {
             if (target === null || target === undefined) {
                 return null;
             }
-            return target.filter(item => item.id === id)[0];
+            return target.filter(function (item) {
+                return item.id === id;
+            })[0];
         }
-
-        constructor() {
-            super();
+    }], [{
+        key: 'is',
+        get: function get() {
+            return 'my-app';
         }
+    }, {
+        key: 'properties',
+        get: function get() {
+            return {
+                page: {
+                    type: String,
+                    reflectToAttribute: true,
+                    observer: '_pageChanged'
+                },
+                baseStepData: {
+                    type: Object,
+                    value: null
+                },
+                stepData: {
+                    type: Array,
+                    computed: '_stepData(baseStepData, lang)'
+                },
+                infoData: {
+                    type: Object,
+                    computed: '_infoData(baseStepData, lang)'
+                },
+                infoDataVisible: {
+                    type: Object,
+                    computed: '_infoDataVisible(baseStepData, lang)'
+                },
+                lang: {
+                    type: String,
+                    value: "en"
+                },
+                isSearching: {
+                    type: Boolean,
+                    observer: '_searchChange'
+                },
+                target: {
+                    type: Object
+                },
+                route: {
+                    type: Object,
+                    value: {
+                        path: "/home"
+                    }
+                },
+                menuState: {
+                    type: String,
+                    value: "none"
+                },
+                currentMenuStep: {
+                    type: Object,
+                    value: null
+                }
+            };
+        }
+    }, {
+        key: 'observers',
+        get: function get() {
+            return ['_routePageChanged(routeData.page)'];
+        }
+    }]);
 
-        connectedCallback() {
-            super.connectedCallback();
-           
-            this.root.querySelector('my-home').addEventListener('link-followed', event => {
+    function MyApp() {
+        babelHelpers.classCallCheck(this, MyApp);
+        return babelHelpers.possibleConstructorReturn(this, (MyApp.__proto__ || Object.getPrototypeOf(MyApp)).call(this));
+    }
+
+    babelHelpers.createClass(MyApp, [{
+        key: 'connectedCallback',
+        value: function connectedCallback() {
+            var _this4 = this;
+
+            babelHelpers.get(MyApp.prototype.__proto__ || Object.getPrototypeOf(MyApp.prototype), 'connectedCallback', this).call(this);
+
+            this.root.querySelector('my-home').addEventListener('link-followed', function (event) {
                 console.log(event.detail.target);
-                this.root.querySelector('bread-crumbs').scrollIntoView();
-                this.$['app-header'].scroll(0, 0);
-                setTimeout(() => {
-                    this.root.querySelector('bread-crumbs').scrollIntoView();
-                    this.$['app-header'].scroll(0, 0);
+                _this4.root.querySelector('bread-crumbs').scrollIntoView();
+                _this4.$['app-header'].scroll(0, 0);
+                setTimeout(function () {
+                    _this4.root.querySelector('bread-crumbs').scrollIntoView();
+                    _this4.$['app-header'].scroll(0, 0);
                 }, 16);
                 //this.root.querySelector('bread-crumbs').scrollIntoView()
-                this.set('route.path', event.detail.target);
-                this.set('targetId', event.detail.id);
-                if (!this.$.drawer.persistent) {
-                    this.$.drawer.close();
+                _this4.set('route.path', event.detail.target);
+                _this4.set('targetId', event.detail.id);
+                if (!_this4.$.drawer.persistent) {
+                    _this4.$.drawer.close();
                 }
             });
-            this.root.addEventListener('link-followed', event => {
+            this.root.addEventListener('link-followed', function (event) {
                 console.log(event.detail.target);
-                this.root.querySelector('bread-crumbs').scrollIntoView();
-                this.$['app-header'].scroll(0, 0);
-                setTimeout(() => {
-                    this.root.querySelector('bread-crumbs').scrollIntoView();
-                    this.$['app-header'].scroll(0, 0);
+                _this4.root.querySelector('bread-crumbs').scrollIntoView();
+                _this4.$['app-header'].scroll(0, 0);
+                setTimeout(function () {
+                    _this4.root.querySelector('bread-crumbs').scrollIntoView();
+                    _this4.$['app-header'].scroll(0, 0);
                 }, 16);
-                this.set('route.path', event.detail.target);
-                this.set('targetId', event.detail.id);
-                if (!this.$.drawer.persistent) {
-                    this.$.drawer.close();
+                _this4.set('route.path', event.detail.target);
+                _this4.set('targetId', event.detail.id);
+                if (!_this4.$.drawer.persistent) {
+                    _this4.$.drawer.close();
                 }
             });
-            this.$.icon.addEventListener('click', event => {
-                if (this.isSearching) {
-                    this.$['search-input'].focus();
+            this.$.icon.addEventListener('click', function (event) {
+                if (_this4.isSearching) {
+                    _this4.$['search-input'].focus();
                 }
             });
-            this.$['bread-crumbs-search'].addEventListener('click', event => {
-                if (this.isSearching) {
-                    this.$['search-input'].focus();
+            this.$['bread-crumbs-search'].addEventListener('click', function (event) {
+                if (_this4.isSearching) {
+                    _this4.$['search-input'].focus();
                 }
             });
-            this.$['close-menu-btn'].addEventListener('click', event => {
-                if (!this.$.drawer.persistent) {
-                    this.$.drawer.close();
-                    this.$.pageContent.focus();
+            this.$['close-menu-btn'].addEventListener('click', function (event) {
+                if (!_this4.$.drawer.persistent) {
+                    _this4.$.drawer.close();
+                    _this4.$.pageContent.focus();
                 }
             });
         }
-        ready() {
-            super.ready();
+    }, {
+        key: 'ready',
+        value: function ready() {
+            var _this5 = this;
+
+            babelHelpers.get(MyApp.prototype.__proto__ || Object.getPrototypeOf(MyApp.prototype), 'ready', this).call(this);
             this.lang = window.localStorage.getItem("lang");
             this.searchInputTarget = this.$['search-input'];
             if (this.lang == 'en') {
                 this.page = "home";
-            }
-            else if (this.lang == 'fr') {
+            } else if (this.lang == 'fr') {
                 this.page = "home-fr";
-            }
-
-            else if (this.lang == 'es') {
+            } else if (this.lang == 'es') {
                 this.page = "home-es";
             }
-            app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
-                .then(response => {
-                    console.log("got step data");
-                    this.baseStepData = JSON.parse(response);
-                    for (var lang in this.baseStepData) {
-                        this.baseStepData[lang].steps.forEach(step => {
-                            if (!!step.furtherResources) {
-                                if (step.furtherResources[0] == "/") {
-                                    step.furtherResources = step.furtherResources.substr(1);
-                                }
-                                ajax('GET', step.furtherResources).then(result => {
-                                    console.log("found " + step.furtherResources)
-                                    step.furtherResources = result;
-                                }).catch(error => {
-                                    console.log("didn't find bib.");
-                                });
+            app.deviceReadyPromise.then(function () {
+                return ajax('GET', "data.json");
+            }).then(function (response) {
+                console.log("got step data");
+                _this5.baseStepData = JSON.parse(response);
+                for (var lang in _this5.baseStepData) {
+                    _this5.baseStepData[lang].steps.forEach(function (step) {
+                        if (!!step.furtherResources) {
+                            if (step.furtherResources[0] == "/") {
+                                step.furtherResources = step.furtherResources.substr(1);
                             }
-                            if (!!step.extraInfo) {
-                                if (step.extraInfo[0] == "/") {
-                                    step.extraInfo = step.extraInfo.substr(1);
-                                }
-                                ajax('GET', step.extraInfo).then(result => {
-                                    console.log("found " + step.extraInfo)
-                                    step.extraInfo = result;
-                                }).catch(error => {
-                                    console.log("didn't find extraInfo.");
-                                });
-                            }
-                            if (!!step.trainingMats) {
-                                if (step.trainingMats[0] == "/") {
-                                    step.trainingMats = step.trainingMats.substr(1);
-                                }
-                                ajax('GET', step.trainingMats).then(result => {
-                                    console.log("found " + step.trainingMats)
-                                    step.trainingMats = result;
-                                }).catch(error => {
-                                    console.log("didn't find trainingMats.");
-                                });
-                            }
-                            step.topics.forEach(topic => {
-                                if (!!topic.url) {
-                                    if (topic.url[0] == "/") {
-                                        topic.url = topic.url.substr(1);
-                                        console.log(topic.url);
-                                    }
-                                    ajax('GET', topic.url).then(result => {
-                                        console.log("found " + topic.url)
-                                        topic.rawData = result;
-                                    }).catch(error => {
-                                        console.log("didn't find topic.");
-                                    });
-                                }
+                            ajax('GET', step.furtherResources).then(function (result) {
+                                console.log("found " + step.furtherResources);
+                                step.furtherResources = result;
+                            }).catch(function (error) {
+                                console.log("didn't find bib.");
                             });
+                        }
+                        if (!!step.extraInfo) {
+                            if (step.extraInfo[0] == "/") {
+                                step.extraInfo = step.extraInfo.substr(1);
+                            }
+                            ajax('GET', step.extraInfo).then(function (result) {
+                                console.log("found " + step.extraInfo);
+                                step.extraInfo = result;
+                            }).catch(function (error) {
+                                console.log("didn't find extraInfo.");
+                            });
+                        }
+                        if (!!step.trainingMats) {
+                            if (step.trainingMats[0] == "/") {
+                                step.trainingMats = step.trainingMats.substr(1);
+                            }
+                            ajax('GET', step.trainingMats).then(function (result) {
+                                console.log("found " + step.trainingMats);
+                                step.trainingMats = result;
+                            }).catch(function (error) {
+                                console.log("didn't find trainingMats.");
+                            });
+                        }
+                        step.topics.forEach(function (topic) {
+                            if (!!topic.url) {
+                                if (topic.url[0] == "/") {
+                                    topic.url = topic.url.substr(1);
+                                    console.log(topic.url);
+                                }
+                                ajax('GET', topic.url).then(function (result) {
+                                    console.log("found " + topic.url);
+                                    topic.rawData = result;
+                                }).catch(function (error) {
+                                    console.log("didn't find topic.");
+                                });
+                            }
                         });
-                    }
-                })
-                .catch(error => {
-                    console.log("error loading step data: " + error);
-                });
+                    });
+                }
+            }).catch(function (error) {
+                console.log("error loading step data: " + error);
+            });
         }
-    }
+    }]);
+    return MyApp;
+}(Polymer.Element);
 
-    window.customElements.define(MyApp.is, MyApp);
-    </script>
+window.customElements.define(MyApp.is, MyApp);</script>
 </dom-module>

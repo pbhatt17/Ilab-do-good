@@ -9,23 +9,25 @@
         [[renderedValue]]
         <global-data locale="{{locale}}"></global-data>
     </template>
-    <script>
-    class Localized extends Polymer.Element {
-        static get is() {
+    <script>var Localized = function (_Polymer$Element) {
+    babelHelpers.inherits(Localized, _Polymer$Element);
+    babelHelpers.createClass(Localized, null, [{
+        key: 'is',
+        get: function get() {
             return 'localized-data';
         }
-
-
-        static get properties() {
+    }, {
+        key: 'properties',
+        get: function get() {
             return {
                 value: {
                     type: String,
-                    value: '',
+                    value: ''
                 },
                 locale: {
                     type: String,
-                    value: window.localStorage.getItem("lang"),
-                    
+                    value: window.localStorage.getItem("lang")
+
                 },
                 renderedValue: {
                     type: String,
@@ -33,22 +35,24 @@
                 }
             };
         }
-
-        static get observers() {
-            return [
-                'htmlChanged(htmlData)'
-            ];
+    }, {
+        key: 'observers',
+        get: function get() {
+            return ['htmlChanged(htmlData)'];
         }
+    }]);
 
-        constructor() {
-            super();
-        }
+    function Localized() {
+        babelHelpers.classCallCheck(this, Localized);
+        return babelHelpers.possibleConstructorReturn(this, (Localized.__proto__ || Object.getPrototypeOf(Localized)).call(this));
+    }
 
-        _render(value, locale) {
-            
-			if(locale == null)
-                locale = window.localStorage.getItem("lang")
-            
+    babelHelpers.createClass(Localized, [{
+        key: '_render',
+        value: function _render(value, locale) {
+
+            if (locale == null) locale = window.localStorage.getItem("lang");
+
             var data = {
                 en: {
                     home: "Home",
@@ -56,25 +60,25 @@
                     appFullTitle: "Do Good",
                     stepPrefix: "Step",
                     info: "Info",
-                    about_this_app:"About this App",
-                    what_are:"What are Child Labor and Forced Labor?",
-                    contact_us:"Contact Us",
-                    key_r:"Key Resources",
-                    steps:"Steps",
-                    topic:"Topic",
-                    step:"Step",
-                    learning_objectives:"Learning Objectives",
-                    key_terms:"Key Terms",
-                    topics:"TOPICS",
-                    why_develop:"Why Develop a Social Compliance System",
-                    basics_of:"Basics of a Social Compliance System",
-                    steps_to_basic:"Steps to a social compliance system",
-                    prev_topic:"Previous Topic",
-                    prev_step:"Previous Step",
-                    next_topic:"Next Topic",
-                    next_step:"Next Step",
-                    further_resources:"Further Resources",
-                    training_materials:"Training Materials",
+                    about_this_app: "About this App",
+                    what_are: "What are Child Labor and Forced Labor?",
+                    contact_us: "Contact Us",
+                    key_r: "Key Resources",
+                    steps: "Steps",
+                    topic: "Topic",
+                    step: "Step",
+                    learning_objectives: "Learning Objectives",
+                    key_terms: "Key Terms",
+                    topics: "TOPICS",
+                    why_develop: "Why Develop a Social Compliance System",
+                    basics_of: "Basics of a Social Compliance System",
+                    steps_to_basic: "Steps to a social compliance system",
+                    prev_topic: "Previous Topic",
+                    prev_step: "Previous Step",
+                    next_topic: "Next Topic",
+                    next_step: "Next Step",
+                    further_resources: "Further Resources",
+                    training_materials: "Training Materials"
                 },
                 es: {
                     home: "Inicio",
@@ -82,25 +86,25 @@
                     appFullTitle: "Do Good",
                     stepPrefix: "Paso",
                     info: "Info",
-                    about_this_app:"Acerca de esta aplicación",
-                    what_are:"¿Qué son el trabajo infantil y el trabajo forzoso?",
-                    contact_us:"Contáctenos",
-                    key_r:"Recursos clave",
-                    steps:"Pasos",
-                    topic:"Tema",
-                    step:"Paso",
-                    learning_objectives:"Objetivos de aprendizaje",
-                    key_terms:"Términos clave",
-                    topics:"TEMAS",
-                    why_develop:"¿Por qué crear un sistema de cumplimiento social?",
-                    basics_of:"Aspectos básicos de un sistema de cumplimiento social",
-                    steps_to_basic:"Pasos hacia un sistema de cumplimiento social",
-                    prev_topic:"Tema anterior",
-                    prev_step:"Paso anterior",
-                    next_topic:"Siguiente tema",
-                    next_step:"Próximo paso",
-                    further_resources:"Recursos adicionales",
-                    training_materials:"Materiales de capacitación",
+                    about_this_app: "Acerca de esta aplicación",
+                    what_are: "¿Qué son el trabajo infantil y el trabajo forzoso?",
+                    contact_us: "Contáctenos",
+                    key_r: "Recursos clave",
+                    steps: "Pasos",
+                    topic: "Tema",
+                    step: "Paso",
+                    learning_objectives: "Objetivos de aprendizaje",
+                    key_terms: "Términos clave",
+                    topics: "TEMAS",
+                    why_develop: "¿Por qué crear un sistema de cumplimiento social?",
+                    basics_of: "Aspectos básicos de un sistema de cumplimiento social",
+                    steps_to_basic: "Pasos hacia un sistema de cumplimiento social",
+                    prev_topic: "Tema anterior",
+                    prev_step: "Paso anterior",
+                    next_topic: "Siguiente tema",
+                    next_step: "Próximo paso",
+                    further_resources: "Recursos adicionales",
+                    training_materials: "Materiales de capacitación"
                 },
                 fr: {
                     home: "Accueil",
@@ -108,34 +112,37 @@
                     appFullTitle: "Do Good",
                     stepPrefix: "Étape",
                     info: "Info",
-                    about_this_app:"A propos de cette application",
-                    what_are:"Qu'est-ce que le travail des enfants et le travail forcé?",
-                    contact_us:"Nous contacter",
-                    key_r:"Ressources clés",
-                    steps:"Pas",
-                    topic:"Sujet",
-                    step:"Étape",
-                    learning_objectives:"Objectifs d'apprentissage",
-                    key_terms:"Termes clés",
-                    topics:"SUJETS",
-                    why_develop:"Pourquoi élaborer un système de conformité sociale?",
-                    basics_of:"Notions de système de conformité sociale",
-                    steps_to_basic:"Étapes vers un système de conformité sociale",
-                    prev_topic:"Sujet précédent",
-                    prev_step:"Étape précédente",
-                    next_topic:"Sujet suivant",
-                    next_step:"étape suivante",
-                    further_resources:"Autres ressources",
-                    training_materials:"Documents de formation",
-                },
-            }
+                    about_this_app: "A propos de cette application",
+                    what_are: "Qu'est-ce que le travail des enfants et le travail forcé?",
+                    contact_us: "Nous contacter",
+                    key_r: "Ressources clés",
+                    steps: "Pas",
+                    topic: "Sujet",
+                    step: "Étape",
+                    learning_objectives: "Objectifs d'apprentissage",
+                    key_terms: "Termes clés",
+                    topics: "SUJETS",
+                    why_develop: "Pourquoi élaborer un système de conformité sociale?",
+                    basics_of: "Notions de système de conformité sociale",
+                    steps_to_basic: "Étapes vers un système de conformité sociale",
+                    prev_topic: "Sujet précédent",
+                    prev_step: "Étape précédente",
+                    next_topic: "Sujet suivant",
+                    next_step: "étape suivante",
+                    further_resources: "Autres ressources",
+                    training_materials: "Documents de formation"
+                }
+            };
             return data[locale][value];
         }
-        ready() {
-            super.ready();
+    }, {
+        key: 'ready',
+        value: function ready() {
+            babelHelpers.get(Localized.prototype.__proto__ || Object.getPrototypeOf(Localized.prototype), 'ready', this).call(this);
         }
-    }
+    }]);
+    return Localized;
+}(Polymer.Element);
 
-    customElements.define(Localized.is, Localized);
-    </script>
+customElements.define(Localized.is, Localized);</script>
 </dom-module>

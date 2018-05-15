@@ -10,7 +10,7 @@
     <div></div>
     <script>
 var __globalRef = {
-    locale: "en",
+    locale: null,
     device: null,
     update: function update() {
         this.__listeners.forEach(function (item) {
@@ -20,6 +20,12 @@ var __globalRef = {
     __listeners: []
 };
 document.addEventListener('deviceready', function () {
+
+    if (window.localStorage.getItem("lang") == null) {
+        window.localStorage.setItem("lang", "en");
+    }
+
+    console.log(window.localStorage.getItem("lang"));
     __globalRef.device = cordova.platformId;
     console.log(cordova.platformId);
     __globalRef.update();
@@ -28,42 +34,45 @@ document.addEventListener('deviceready', function () {
 var GlobalData = function (_Polymer$Element) {
     babelHelpers.inherits(GlobalData, _Polymer$Element);
     babelHelpers.createClass(GlobalData, [{
-        key: 'update',
+        key: "update",
         value: function update() {
             this.locale = this.globalRef.locale;
             this.device = this.globalRef.device;
+            if (this.locale != null) {
+                window.localStorage.setItem("lang", this.globalRef.locale);
+            }
         }
     }, {
-        key: 'setLocale',
+        key: "setLocale",
         value: function setLocale(newLocale, oldLocale) {
             this.locale = newLocale;
             this.globalRef.locale = newLocale;
             this.globalRef.update();
         }
     }, {
-        key: 'setDevice',
+        key: "setDevice",
         value: function setDevice(newDevice, oldDevice) {
             this.device = newDevice;
             this.globalRef.device = newDevice;
             this.globalRef.update();
         }
     }, {
-        key: '_getLocale',
+        key: "_getLocale",
         value: function _getLocale(ref) {
             return ref.locale;
         }
     }, {
-        key: '_getDevice',
+        key: "_getDevice",
         value: function _getDevice(ref) {
             return ref.device;
         }
     }], [{
-        key: 'is',
+        key: "is",
         get: function get() {
             return 'global-data';
         }
     }, {
-        key: 'properties',
+        key: "properties",
         get: function get() {
             return {
                 locale: {
@@ -86,7 +95,7 @@ var GlobalData = function (_Polymer$Element) {
             };
         }
     }, {
-        key: 'observers',
+        key: "observers",
         get: function get() {
             return [];
         }
@@ -102,9 +111,9 @@ var GlobalData = function (_Polymer$Element) {
     }
 
     babelHelpers.createClass(GlobalData, [{
-        key: 'ready',
+        key: "ready",
         value: function ready() {
-            babelHelpers.get(GlobalData.prototype.__proto__ || Object.getPrototypeOf(GlobalData.prototype), 'ready', this).call(this);
+            babelHelpers.get(GlobalData.prototype.__proto__ || Object.getPrototypeOf(GlobalData.prototype), "ready", this).call(this);
             this.update();
         }
     }]);

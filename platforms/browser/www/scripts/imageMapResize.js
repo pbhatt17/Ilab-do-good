@@ -5,7 +5,7 @@
  *  Modified by Julien Kilian on 4/3/2017. (Now takes an img param in case using shadow dom)
  */
 
-(function() {
+(function () {
     'use strict';
 
     function scaleImageMap(img) {
@@ -13,7 +13,7 @@
         function resizeMap() {
             function resizeAreaTag(cachedAreaCoords, idx) {
                 function scale(coord) {
-                    var dimension = (1 === (isWidth = 1 - isWidth) ? 'width' : 'height');
+                    var dimension = 1 === (isWidth = 1 - isWidth) ? 'width' : 'height';
                     return Math.floor(Number(coord) * scallingFactor[dimension]);
                 }
 
@@ -41,14 +41,14 @@
         }
 
         function start() {
-            if ((image.width !== image.naturalWidth) || (image.height !== image.naturalHeight)) {
+            if (image.width !== image.naturalWidth || image.height !== image.naturalHeight) {
                 resizeMap();
             }
         }
 
         function addEventListeners() {
             var loaded = false;
-            image.addEventListener('load', function() {
+            image.addEventListener('load', function () {
                 if (!loaded) {
                     resizeMap();
                     loaded = true;
@@ -62,7 +62,7 @@
         }
 
         function beenHere() {
-            return ('function' === typeof map._resize);
+            return 'function' === typeof map._resize;
         }
 
         function setup() {
@@ -74,7 +74,7 @@
 
         var
         /*jshint validthis:true */
-            map = this,
+        map = this,
             areas = null,
             cachedAreaCoordsArray = null,
             image = null,
@@ -88,8 +88,6 @@
             map._resize(); //Already setup, so just resize map
         }
     }
-
-
 
     function factory() {
         function chkMap(element) {
@@ -113,7 +111,7 @@
         return function imageMapResizeF(target, img) {
             maps = []; // Only return maps from this call
 
-            switch (typeof(target)) {
+            switch (typeof target === 'undefined' ? 'undefined' : babelHelpers.typeof(target)) {
                 case 'undefined':
                 case 'string':
                     Array.prototype.forEach.call(document.querySelectorAll(target || 'map'), init);
@@ -122,27 +120,24 @@
                     init(target, img);
                     break;
                 default:
-                    throw new TypeError('Unexpected data type (' + typeof target + ').');
+                    throw new TypeError('Unexpected data type (' + (typeof target === 'undefined' ? 'undefined' : babelHelpers.typeof(target)) + ').');
             }
 
             return maps;
         };
     }
 
-
     if (typeof define === 'function' && define.amd) {
         define([], factory);
-    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+    } else if ((typeof module === 'undefined' ? 'undefined' : babelHelpers.typeof(module)) === 'object' && babelHelpers.typeof(module.exports) === 'object') {
         module.exports = factory(); //Node for browserfy
     } else {
         window.imageMapResize = factory();
     }
-
 
     if ('jQuery' in window) {
         jQuery.fn.imageMapResize = function $imageMapResizeF() {
             return this.filter('map').each(scaleImageMap).end();
         };
     }
-
 })();

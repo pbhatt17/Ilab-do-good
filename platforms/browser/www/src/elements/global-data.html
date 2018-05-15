@@ -9,96 +9,116 @@
     </template>
     <div></div>
     <script>
-    var __globalRef = {
-        locale: null,
-        device: null,
-        update: function() {
-            this.__listeners.forEach(item => item.update());
-        },
-        __listeners: [],
-    };
-    document.addEventListener('deviceready', () => {
+var __globalRef = {
+    locale: null,
+    device: null,
+    update: function update() {
+        this.__listeners.forEach(function (item) {
+            return item.update();
+        });
+    },
+    __listeners: []
+};
+document.addEventListener('deviceready', function () {
 
-        if( window.localStorage.getItem("lang") == null)
-            {
-             window.localStorage.setItem("lang", "en" );
-            }
-        
-        console.log(window.localStorage.getItem("lang"));
-        __globalRef.device = cordova.platformId;
-        console.log(cordova.platformId);
-        __globalRef.update();
-    }, false);
-    class GlobalData extends Polymer.Element {
-        static get is() {
-            return 'global-data';
-        }
+    if (window.localStorage.getItem("lang") == null) {
+        window.localStorage.setItem("lang", "en");
+    }
 
+    console.log(window.localStorage.getItem("lang"));
+    __globalRef.device = cordova.platformId;
+    console.log(cordova.platformId);
+    __globalRef.update();
+}, false);
 
-        static get properties() {
-            return {
-                locale: {
-                    type: String,
-                    reflectToAttribute: true,
-                    notify: true,
-                    observer: 'setLocale',
-                },
-                device: {
-                    type: String,
-                    reflectToAttribute: true,
-                    notify: true,
-                    observer: 'setDevice',
-                },
-                globalRef: {
-                    type: Object,
-                    value: __globalRef,
-                }
-
-            };
-        }
-
-        static get observers() {
-            return [
-            ];
-        }
-
-        update() {
+var GlobalData = function (_Polymer$Element) {
+    babelHelpers.inherits(GlobalData, _Polymer$Element);
+    babelHelpers.createClass(GlobalData, [{
+        key: "update",
+        value: function update() {
             this.locale = this.globalRef.locale;
             this.device = this.globalRef.device;
             if (this.locale != null) {
                 window.localStorage.setItem("lang", this.globalRef.locale);
             }
         }
-
-        setLocale(newLocale, oldLocale) {
+    }, {
+        key: "setLocale",
+        value: function setLocale(newLocale, oldLocale) {
             this.locale = newLocale;
             this.globalRef.locale = newLocale;
             this.globalRef.update();
         }
-
-        setDevice(newDevice, oldDevice) {
+    }, {
+        key: "setDevice",
+        value: function setDevice(newDevice, oldDevice) {
             this.device = newDevice;
             this.globalRef.device = newDevice;
             this.globalRef.update();
         }
-        _getLocale(ref) {
+    }, {
+        key: "_getLocale",
+        value: function _getLocale(ref) {
             return ref.locale;
         }
-        _getDevice(ref) {
+    }, {
+        key: "_getDevice",
+        value: function _getDevice(ref) {
             return ref.device;
         }
-        constructor() {
-            super();
-            __globalRef.__listeners.push(this);
+    }], [{
+        key: "is",
+        get: function get() {
+            return 'global-data';
         }
+    }, {
+        key: "properties",
+        get: function get() {
+            return {
+                locale: {
+                    type: String,
+                    reflectToAttribute: true,
+                    notify: true,
+                    observer: 'setLocale'
+                },
+                device: {
+                    type: String,
+                    reflectToAttribute: true,
+                    notify: true,
+                    observer: 'setDevice'
+                },
+                globalRef: {
+                    type: Object,
+                    value: __globalRef
+                }
 
-
-        ready() { 
-            super.ready();
-            this.update();
+            };
         }
+    }, {
+        key: "observers",
+        get: function get() {
+            return [];
+        }
+    }]);
+
+    function GlobalData() {
+        babelHelpers.classCallCheck(this, GlobalData);
+
+        var _this = babelHelpers.possibleConstructorReturn(this, (GlobalData.__proto__ || Object.getPrototypeOf(GlobalData)).call(this));
+
+        __globalRef.__listeners.push(_this);
+        return _this;
     }
 
-    customElements.define(GlobalData.is, GlobalData);
-    </script>
+    babelHelpers.createClass(GlobalData, [{
+        key: "ready",
+        value: function ready() {
+            babelHelpers.get(GlobalData.prototype.__proto__ || Object.getPrototypeOf(GlobalData.prototype), "ready", this).call(this);
+            this.update();
+        }
+    }]);
+    return GlobalData;
+}(Polymer.Element);
+
+customElements.define(GlobalData.is, GlobalData);</script>
 </dom-module>

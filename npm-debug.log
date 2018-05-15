@@ -1,0 +1,225 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@1.3.21
+3 info using node@v6.11.1
+4 warn package.json io.cordova.hellocordova@1.0.0 No description
+5 warn package.json io.cordova.hellocordova@1.0.0 No repository field.
+6 warn package.json io.cordova.hellocordova@1.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose install where, deps [ 'C:\\Users\\39683\\Desktop\\Ilab-do-good',
+8 verbose install   [ 'cordova-android',
+8 verbose install     'cordova-browser',
+8 verbose install     'cordova-ios',
+8 verbose install     'cordova-plugin-inappbrowser',
+8 verbose install     'cordova-plugin-statusbar',
+8 verbose install     'cordova-plugin-whitelist',
+8 verbose install     'cordova-plugin-wkwebview-engine',
+8 verbose install     'cordova-plugin-wkwebview-file-xhr' ] ]
+9 info preinstall io.cordova.hellocordova@1.0.0
+10 verbose readDependencies using package.json deps
+11 verbose already installed skipping cordova-browser@^5.0.3 C:\Users\39683\Desktop\Ilab-do-good
+12 verbose already installed skipping cordova-ios@^4.5.4 C:\Users\39683\Desktop\Ilab-do-good
+13 verbose cache add [ 'cordova-plugin-inappbrowser@^1.7.1', null ]
+14 verbose cache add name=undefined spec="cordova-plugin-inappbrowser@^1.7.1" args=["cordova-plugin-inappbrowser@^1.7.1",null]
+15 verbose parsed url Url {
+15 verbose parsed url   protocol: null,
+15 verbose parsed url   slashes: null,
+15 verbose parsed url   auth: null,
+15 verbose parsed url   host: null,
+15 verbose parsed url   port: null,
+15 verbose parsed url   hostname: null,
+15 verbose parsed url   hash: null,
+15 verbose parsed url   search: null,
+15 verbose parsed url   query: null,
+15 verbose parsed url   pathname: 'cordova-plugin-inappbrowser@%5E1.7.1',
+15 verbose parsed url   path: 'cordova-plugin-inappbrowser@%5E1.7.1',
+15 verbose parsed url   href: 'cordova-plugin-inappbrowser@%5E1.7.1' }
+16 verbose cache add name="cordova-plugin-inappbrowser" spec="^1.7.1" args=["cordova-plugin-inappbrowser","^1.7.1"]
+17 verbose parsed url Url {
+17 verbose parsed url   protocol: null,
+17 verbose parsed url   slashes: null,
+17 verbose parsed url   auth: null,
+17 verbose parsed url   host: null,
+17 verbose parsed url   port: null,
+17 verbose parsed url   hostname: null,
+17 verbose parsed url   hash: null,
+17 verbose parsed url   search: null,
+17 verbose parsed url   query: null,
+17 verbose parsed url   pathname: '%5E1.7.1',
+17 verbose parsed url   path: '%5E1.7.1',
+17 verbose parsed url   href: '%5E1.7.1' }
+18 verbose addNamed [ 'cordova-plugin-inappbrowser', '^1.7.1' ]
+19 verbose addNamed [ null, '>=1.7.1-0 <2.0.0-0' ]
+20 verbose cache add [ 'cordova-plugin-statusbar@^2.2.3', null ]
+21 verbose cache add name=undefined spec="cordova-plugin-statusbar@^2.2.3" args=["cordova-plugin-statusbar@^2.2.3",null]
+22 verbose parsed url Url {
+22 verbose parsed url   protocol: null,
+22 verbose parsed url   slashes: null,
+22 verbose parsed url   auth: null,
+22 verbose parsed url   host: null,
+22 verbose parsed url   port: null,
+22 verbose parsed url   hostname: null,
+22 verbose parsed url   hash: null,
+22 verbose parsed url   search: null,
+22 verbose parsed url   query: null,
+22 verbose parsed url   pathname: 'cordova-plugin-statusbar@%5E2.2.3',
+22 verbose parsed url   path: 'cordova-plugin-statusbar@%5E2.2.3',
+22 verbose parsed url   href: 'cordova-plugin-statusbar@%5E2.2.3' }
+23 verbose cache add name="cordova-plugin-statusbar" spec="^2.2.3" args=["cordova-plugin-statusbar","^2.2.3"]
+24 verbose parsed url Url {
+24 verbose parsed url   protocol: null,
+24 verbose parsed url   slashes: null,
+24 verbose parsed url   auth: null,
+24 verbose parsed url   host: null,
+24 verbose parsed url   port: null,
+24 verbose parsed url   hostname: null,
+24 verbose parsed url   hash: null,
+24 verbose parsed url   search: null,
+24 verbose parsed url   query: null,
+24 verbose parsed url   pathname: '%5E2.2.3',
+24 verbose parsed url   path: '%5E2.2.3',
+24 verbose parsed url   href: '%5E2.2.3' }
+25 verbose addNamed [ 'cordova-plugin-statusbar', '^2.2.3' ]
+26 verbose addNamed [ null, '>=2.2.3-0 <3.0.0-0' ]
+27 verbose cache add [ 'cordova-plugin-whitelist@^1.3.2', null ]
+28 verbose cache add name=undefined spec="cordova-plugin-whitelist@^1.3.2" args=["cordova-plugin-whitelist@^1.3.2",null]
+29 verbose parsed url Url {
+29 verbose parsed url   protocol: null,
+29 verbose parsed url   slashes: null,
+29 verbose parsed url   auth: null,
+29 verbose parsed url   host: null,
+29 verbose parsed url   port: null,
+29 verbose parsed url   hostname: null,
+29 verbose parsed url   hash: null,
+29 verbose parsed url   search: null,
+29 verbose parsed url   query: null,
+29 verbose parsed url   pathname: 'cordova-plugin-whitelist@%5E1.3.2',
+29 verbose parsed url   path: 'cordova-plugin-whitelist@%5E1.3.2',
+29 verbose parsed url   href: 'cordova-plugin-whitelist@%5E1.3.2' }
+30 verbose cache add name="cordova-plugin-whitelist" spec="^1.3.2" args=["cordova-plugin-whitelist","^1.3.2"]
+31 verbose parsed url Url {
+31 verbose parsed url   protocol: null,
+31 verbose parsed url   slashes: null,
+31 verbose parsed url   auth: null,
+31 verbose parsed url   host: null,
+31 verbose parsed url   port: null,
+31 verbose parsed url   hostname: null,
+31 verbose parsed url   hash: null,
+31 verbose parsed url   search: null,
+31 verbose parsed url   query: null,
+31 verbose parsed url   pathname: '%5E1.3.2',
+31 verbose parsed url   path: '%5E1.3.2',
+31 verbose parsed url   href: '%5E1.3.2' }
+32 verbose addNamed [ 'cordova-plugin-whitelist', '^1.3.2' ]
+33 verbose addNamed [ null, '>=1.3.2-0 <2.0.0-0' ]
+34 verbose cache add [ 'cordova-plugin-wkwebview-engine@^1.1.3', null ]
+35 verbose cache add name=undefined spec="cordova-plugin-wkwebview-engine@^1.1.3" args=["cordova-plugin-wkwebview-engine@^1.1.3",null]
+36 verbose parsed url Url {
+36 verbose parsed url   protocol: null,
+36 verbose parsed url   slashes: null,
+36 verbose parsed url   auth: null,
+36 verbose parsed url   host: null,
+36 verbose parsed url   port: null,
+36 verbose parsed url   hostname: null,
+36 verbose parsed url   hash: null,
+36 verbose parsed url   search: null,
+36 verbose parsed url   query: null,
+36 verbose parsed url   pathname: 'cordova-plugin-wkwebview-engine@%5E1.1.3',
+36 verbose parsed url   path: 'cordova-plugin-wkwebview-engine@%5E1.1.3',
+36 verbose parsed url   href: 'cordova-plugin-wkwebview-engine@%5E1.1.3' }
+37 verbose cache add name="cordova-plugin-wkwebview-engine" spec="^1.1.3" args=["cordova-plugin-wkwebview-engine","^1.1.3"]
+38 verbose parsed url Url {
+38 verbose parsed url   protocol: null,
+38 verbose parsed url   slashes: null,
+38 verbose parsed url   auth: null,
+38 verbose parsed url   host: null,
+38 verbose parsed url   port: null,
+38 verbose parsed url   hostname: null,
+38 verbose parsed url   hash: null,
+38 verbose parsed url   search: null,
+38 verbose parsed url   query: null,
+38 verbose parsed url   pathname: '%5E1.1.3',
+38 verbose parsed url   path: '%5E1.1.3',
+38 verbose parsed url   href: '%5E1.1.3' }
+39 verbose addNamed [ 'cordova-plugin-wkwebview-engine', '^1.1.3' ]
+40 verbose addNamed [ null, '>=1.1.3-0 <2.0.0-0' ]
+41 verbose cache add [ 'cordova-plugin-wkwebview-file-xhr@^1.0.0', null ]
+42 verbose cache add name=undefined spec="cordova-plugin-wkwebview-file-xhr@^1.0.0" args=["cordova-plugin-wkwebview-file-xhr@^1.0.0",null]
+43 verbose parsed url Url {
+43 verbose parsed url   protocol: null,
+43 verbose parsed url   slashes: null,
+43 verbose parsed url   auth: null,
+43 verbose parsed url   host: null,
+43 verbose parsed url   port: null,
+43 verbose parsed url   hostname: null,
+43 verbose parsed url   hash: null,
+43 verbose parsed url   search: null,
+43 verbose parsed url   query: null,
+43 verbose parsed url   pathname: 'cordova-plugin-wkwebview-file-xhr@%5E1.0.0',
+43 verbose parsed url   path: 'cordova-plugin-wkwebview-file-xhr@%5E1.0.0',
+43 verbose parsed url   href: 'cordova-plugin-wkwebview-file-xhr@%5E1.0.0' }
+44 verbose cache add name="cordova-plugin-wkwebview-file-xhr" spec="^1.0.0" args=["cordova-plugin-wkwebview-file-xhr","^1.0.0"]
+45 verbose parsed url Url {
+45 verbose parsed url   protocol: null,
+45 verbose parsed url   slashes: null,
+45 verbose parsed url   auth: null,
+45 verbose parsed url   host: null,
+45 verbose parsed url   port: null,
+45 verbose parsed url   hostname: null,
+45 verbose parsed url   hash: null,
+45 verbose parsed url   search: null,
+45 verbose parsed url   query: null,
+45 verbose parsed url   pathname: '%5E1.0.0',
+45 verbose parsed url   path: '%5E1.0.0',
+45 verbose parsed url   href: '%5E1.0.0' }
+46 verbose addNamed [ 'cordova-plugin-wkwebview-file-xhr', '^1.0.0' ]
+47 verbose addNamed [ null, '>=1.0.0-0 <2.0.0-0' ]
+48 verbose already installed skipping cordova-android@^6.2.3 C:\Users\39683\Desktop\Ilab-do-good
+49 silly lockFile c9c8a284-ordova-plugin-inappbrowser-1-7-1 cordova-plugin-inappbrowser@^1.7.1
+50 verbose lock cordova-plugin-inappbrowser@^1.7.1 C:\Users\39683\AppData\Roaming\npm-cache\c9c8a284-ordova-plugin-inappbrowser-1-7-1.lock
+51 silly lockFile 99060d04-cordova-plugin-statusbar-2-2-3 cordova-plugin-statusbar@^2.2.3
+52 verbose lock cordova-plugin-statusbar@^2.2.3 C:\Users\39683\AppData\Roaming\npm-cache\99060d04-cordova-plugin-statusbar-2-2-3.lock
+53 silly lockFile eac635b9-cordova-plugin-whitelist-1-3-2 cordova-plugin-whitelist@^1.3.2
+54 verbose lock cordova-plugin-whitelist@^1.3.2 C:\Users\39683\AppData\Roaming\npm-cache\eac635b9-cordova-plugin-whitelist-1-3-2.lock
+55 silly lockFile e97f3800-va-plugin-wkwebview-engine-1-1-3 cordova-plugin-wkwebview-engine@^1.1.3
+56 verbose lock cordova-plugin-wkwebview-engine@^1.1.3 C:\Users\39683\AppData\Roaming\npm-cache\e97f3800-va-plugin-wkwebview-engine-1-1-3.lock
+57 silly lockFile 1c0fc9ac--plugin-wkwebview-file-xhr-1-0-0 cordova-plugin-wkwebview-file-xhr@^1.0.0
+58 verbose lock cordova-plugin-wkwebview-file-xhr@^1.0.0 C:\Users\39683\AppData\Roaming\npm-cache\1c0fc9ac--plugin-wkwebview-file-xhr-1-0-0.lock
+59 silly addNameRange { name: 'cordova-plugin-inappbrowser',
+59 silly addNameRange   range: '>=1.7.1-0 <2.0.0-0',
+59 silly addNameRange   hasData: false }
+60 silly addNameRange { name: 'cordova-plugin-statusbar',
+60 silly addNameRange   range: '>=2.2.3-0 <3.0.0-0',
+60 silly addNameRange   hasData: false }
+61 silly addNameRange { name: 'cordova-plugin-whitelist',
+61 silly addNameRange   range: '>=1.3.2-0 <2.0.0-0',
+61 silly addNameRange   hasData: false }
+62 silly addNameRange { name: 'cordova-plugin-wkwebview-engine',
+62 silly addNameRange   range: '>=1.1.3-0 <2.0.0-0',
+62 silly addNameRange   hasData: false }
+63 silly addNameRange { name: 'cordova-plugin-wkwebview-file-xhr',
+63 silly addNameRange   range: '>=1.0.0-0 <2.0.0-0',
+63 silly addNameRange   hasData: false }
+64 silly lockFile c9c8a284-ordova-plugin-inappbrowser-1-7-1 cordova-plugin-inappbrowser@^1.7.1
+65 silly lockFile c9c8a284-ordova-plugin-inappbrowser-1-7-1 cordova-plugin-inappbrowser@^1.7.1
+66 silly lockFile 99060d04-cordova-plugin-statusbar-2-2-3 cordova-plugin-statusbar@^2.2.3
+67 silly lockFile 99060d04-cordova-plugin-statusbar-2-2-3 cordova-plugin-statusbar@^2.2.3
+68 error Error: unable to get local issuer certificate
+68 error     at Error (native)
+68 error     at TLSSocket.<anonymous> (_tls_wrap.js:1092:38)
+68 error     at emitNone (events.js:86:13)
+68 error     at TLSSocket.emit (events.js:185:7)
+68 error     at TLSSocket._finishInit (_tls_wrap.js:610:8)
+68 error     at TLSWrap.ssl.onhandshakedone (_tls_wrap.js:440:38)
+69 error If you need help, you may report this *entire* log,
+69 error including the npm and node versions, at:
+69 error     <http://github.com/isaacs/npm/issues>
+70 error System Windows_NT 6.3.9600
+71 error command "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+72 error cwd C:\Users\39683\Desktop\Ilab-do-good
+73 error node -v v6.11.1
+74 error npm -v 1.3.21
+75 error code UNABLE_TO_GET_ISSUER_CERT_LOCALLY
+76 verbose exit [ 1, true ]

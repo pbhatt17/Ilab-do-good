@@ -88,11 +88,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         </style>
         <div id="top">
-            <app-link href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"> Why develop a social compliance system?</app-link>
+            <app-link href="/info-why-develop-page">
+            	<img class="link-icon" alt="Question Mark" src="imgs/question mark.png">
+            	Why develop a Social Compliance System
+            </app-link>
             <border-separator></border-separator>
-            <app-link href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"> Basics of a social compliance system</app-link>
+            <app-link href="/info-basics-page">
+            	<img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png">
+            	Basics of a Social Compliance System
+            </app-link>
             <border-separator></border-separator>
-            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"> Steps to a social compliance system</app-link>
+            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"> Steps to a Social Compliance System</app-link>
         </div>
         <slot name="append"></slot>
         <div class="bottom">
@@ -113,6 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             var _this2 = this;
 
             babelHelpers.get(MyHome.prototype.__proto__ || Object.getPrototypeOf(MyHome.prototype), 'ready', this).call(this);
+
             this.root.addEventListener('link-followed', function (event) {
                 _this2.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
