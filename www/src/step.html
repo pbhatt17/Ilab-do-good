@@ -121,6 +121,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             </dom-repeat>
                         </ul>
                         <paper-button id="next" hidden$="[[!hasNext]]" raised>Continue to Step [[nextStepId]]</paper-button>
+                        <paper-button id="next_fr" hidden$="[[!hasNext_fr]]" raised>Continuez à l'étape [[nextStepId]]</paper-button>
+                        <paper-button id="next_es" hidden$="[[!hasNext_es]]" raised>Continúa con el paso [[nextStepId]]</paper-button>
                     </div>
                 </div>
                 <!--/expandable-item-->
@@ -163,6 +165,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     type: Boolean,
                     computed: '_hasNext(stepData, routeData.stepId)'
                 },
+                hasNext_es: {
+                    type: Boolean,
+                    computed: '_hasNext_es(stepData, routeData.stepId)'
+                },
+                hasNext_fr: {
+                    type: Boolean,
+                    computed: '_hasNext_fr(stepData, routeData.stepId)'
+                },
                 nextStepId: {
                     type: Number,
                     computed: '_nextId(routeData.stepId)'
@@ -200,8 +210,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             if (data === null || stepId === null) {
                 return false
             }
+            if (window.localStorage.lang != 'en') {
+                return false
+            }
             return Number.parseInt(stepId) < data.length;
         }
+
+        _hasNext_fr(data, stepId) {
+            if (data === null || stepId === null) {
+                return false
+            }
+            if (window.localStorage.lang != 'fr') {
+                return false
+            }
+            return Number.parseInt(stepId) < data.length;
+        }
+
+        _hasNext_es(data, stepId) {
+            if (data === null || stepId === null) {
+                return false
+            }
+            if (window.localStorage.lang != 'es') {
+                return false
+            }
+            return Number.parseInt(stepId) < data.length;
+        }
+
 
         _withIndex(id, stepData) {
             if (!id || !stepData) {
@@ -221,6 +255,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }));
             });
             this.$.next.addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+             this.$.next_es.addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+              this.$.next_fr.addEventListener('click', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
                         target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),

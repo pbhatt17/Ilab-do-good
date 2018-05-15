@@ -1,28 +1,28 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "gov.dol.complychain"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "gov.dol.complychain"
     },
-    "installed_plugins": {
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "gov.dol.complychain"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "gov.dol.complychain"
-        },
-        "cordova-plugin-wkwebview-file-xhr": {
-            "PACKAGE_NAME": "gov.dol.complychain"
-        }
-    },
-    "dependent_plugins": {
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "gov.dol.complychain"
-        },
-        "cordova-plugin-wkwebview-engine": {
-            "PACKAGE_NAME": "gov.dol.complychain"
-        }
+    "cordova-plugin-wkwebview-file-xhr": {
+      "PACKAGE_NAME": "gov.dol.complychain"
     }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "gov.dol.complychain"
+    },
+    "cordova-plugin-wkwebview-engine": {
+      "PACKAGE_NAME": "gov.dol.complychain"
+    }
+  }
 }

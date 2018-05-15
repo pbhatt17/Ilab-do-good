@@ -47,6 +47,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="./info-sub-page.html">
 <link rel="import" href="./index-info.html">
 <link rel="import" href="./home.html">
+<link rel="import" href="./home-fr.html">
+<link rel="import" href="./home-es.html">
 <link rel="import" href="./info.html">
 <link rel="import" href="./search-results.html">
 <link rel="import" href="./topic.html">
@@ -189,37 +191,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <p class="flex">
                             <localized-data value="menu"></localized-data>
                         </p>
+
                         <p>
                             <paper-icon-button icon="icons:close" id="close-menu-btn" aria-label="Close Menu"></paper-icon-button>
                         </p>
                     </div>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
-                    <!--paper-dropdown-menu hidden label="Language">
-                        <paper-listbox attr-for-selected="lang" selected="{{lang}}">
+                    <paper-dropdown-menu hidden label="Language" on-iron-select="_itemSelected">
+                        <paper-listbox attr-for-selected="lang" slot="dropdown-content" selected="{{lang}}">
                             <paper-item lang="en">English</paper-item>
                             <paper-item lang="es">Espanol</paper-item>
+                            <paper-item lang="fr">French</paper-item>
                         </paper-listbox>
-                    </paper-dropdown-menu-->
+                    </paper-dropdown-menu>
                     <app-link name="home" href="/home">
                         <localized-data value="home"></localized-data>
                     </app-link>
                     <app-link name="index-info" href="/info-about-page">
-                        About this App
+                        <localized-data value="about_this_app"></localized-data>
                     </app-link>
                     <app-link name="what-are-cl-fl" href="/info-what-are-page">
-                        <p class="link-label">What are Child Labor and Forced Labor?</p>
+                        <localized-data value="what_are"></localized-data>
                     </app-link>
                     <border-separator></border-separator>
                     <div id="step-list-scroll" aria-live="polite">
                         <iron-pages selected="[[menuState]]" attr-for-selected="state" fallback-selection="none" role="secondary">
                             <div class="layout horizontal" state="none">
-                                <app-link class="flex" href="/steps-landing">Steps</app-link>
+                                <app-link class="flex" href="/steps-landing"><localized-data value="steps"></localized-data></app-link>
                                 <paper-icon-button icon="expand-more" on-click="showSteps" aria-label="Expand list of Steps"></paper-icon-button>
                             </div>
                             <div state="listSteps">
                                 <div class="layout horizontal">
-                                    <app-link class="flex" href="/steps-landing"><strong>Steps</strong></app-link>
+                                    <app-link class="flex" href="/steps-landing"><strong><localized-data value="steps"></localized-data></strong></app-link>
                                     <paper-icon-button icon="expand-less" on-click="menuBack" aria-label="Collapse list of steps"></paper-icon-button>
                                 </div>
                                 <dom-repeat items="[[stepData]]">
@@ -235,7 +239,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             </div>
                             <div state="listTopics">
                                 <div class="layout horizontal">
-                                    <app-link class="flex" href="/step/[[currentMenuStep.index]]"><strong>Step [[currentMenuStep.index]]</strong></app-link>
+                                    <app-link class="flex" href="/step/[[currentMenuStep.index]]"><strong><localized-data value="step"></localized-data> [[currentMenuStep.index]]</strong></app-link>
                                     <paper-icon-button icon="expand-less" on-click="menuBack" aria-label="Collapse list of topics"></paper-icon-button>
                                 </div>
                                 <dom-repeat items="[[currentMenuStep.topics]]">
@@ -254,9 +258,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                     <border-separator></border-separator>
                     <app-link name="key-resources" href="/info-key-resources">
-                        Key Resources
+                        <localized-data value="key_r"></localized-data>
                     </app-link>
-                    <a href="mailto:GlobalKids@dol.gov?subject=Comments on Comply Chain App" target="_top">Contact Us</a>
+                    <a href="mailto:GlobalKids@dol.gov?subject=Comments on Comply Chain App" target="_top"><localized-data value="contact_us"></localized-data></a>
                 </iron-selector>
             </app-drawer>
             <!-- Main content -->
@@ -268,7 +272,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="ILAB - The Bureau of International Labor Affairs" class="logo-img-small" src="imgs/ilab.png"  /></a></div>
                             <div class="flex layout horizontal center-justified">
                                 <div class="layout vertical title-bar-text">
-                                    <div class="flex layout horizontal center-justified">
+                                    <div class="flex layout horizontal center-justified" style="margin-bottom: 50%">
                                         <p><strong>Comply Chain</strong></p>
                                     </div>
                                 </div>
@@ -293,6 +297,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 </div>
                             </div>
                             <div name="home"></div>
+                            <div name="home-fr"></div>
+                            <div name="home-es"></div>
                         </iron-pages>
                     </div>
                     <iron-pages selected="[[page]]" id="pageContent" tabindex="-1" attr-for-selected="name" fallback-selection="home" role="main">
@@ -308,6 +314,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 </div>
                             </my-home>
                         </div>
+                        <div name="home-fr">
+                            <my-home-fr route="[[subroute]]">
+                                <div slot="append" class="layout horizontal">
+                                    <div class="flex">
+                                    </div>
+                                    <div>
+                                        <div id="icon-background"></div>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="Search"></paper-icon-button>
+                                    </div>
+                                </div>
+                            </my-home-fr>
+                        </div>
+                        <div name="home-es">
+                            <my-home-es route="[[subroute]]">
+                                <div slot="append" class="layout horizontal">
+                                    <div class="flex">
+                                    </div>
+                                    <div>
+                                        <div id="icon-background"></div>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="Search"></paper-icon-button>
+                                    </div>
+                                </div>
+                            </my-home-es>
+                        </div>
+
                         <my-step-splash name="step" route="[[subroute]]" step-data="[[stepData]]"></my-step-splash>
                         <my-topic target-id="{{targetId}}" name="topic" route="[[subroute]]" step-data="[[stepData]]" id="topic"></my-topic>
                         <info-page target-id="{{targetId}}" name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
@@ -462,6 +493,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.page = "home";
             }
 
+            if (this.page == 'home' && localStorage.lang == 'fr') {
+                this.page = "home-fr";
+            }
+
+            if (this.page == 'home' && localStorage.lang == 'es') {
+                this.page = "home-es";
+            }
 
             // Close a non-persistent drawer when the page & route are changed. 
             if (!this.$.drawer.persistent) {
@@ -497,10 +535,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         }
 
+        _itemSelected(e) {
+	        var selectedItem = e.target.selectedItem;
+	       
+	        var homepages = ["home","home-es", "home-fr"] ;
+	        if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
+	       // if (e.target.selectedItem.lang != localStorage.lang){    
+	            location.reload();
+	        }
+	      }
+
 
         _stepData(baseData, lang) {
             if (baseData === null) {
                 return null;
+            }
+            if (lang == null) {
+                this.lang = 'en';
+                lang = 'en';
             }
             return baseData[lang].steps;
         }
@@ -532,6 +584,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         connectedCallback() {
             super.connectedCallback();
+           
             this.root.querySelector('my-home').addEventListener('link-followed', event => {
                 console.log(event.detail.target);
                 this.root.querySelector('bread-crumbs').scrollIntoView();
@@ -580,11 +633,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         ready() {
             super.ready();
-            this.lang = 'en';
+            this.lang = window.localStorage.getItem("lang");
             this.searchInputTarget = this.$['search-input'];
+            if (this.lang == 'en') {
+                this.page = "home";
+            }
+            else if (this.lang == 'fr') {
+                this.page = "home-fr";
+            }
 
-            this.page = "home";
-
+            else if (this.lang == 'es') {
+                this.page = "home-es";
+            }
             app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
                     console.log("got step data");

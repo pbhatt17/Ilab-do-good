@@ -73,8 +73,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div class="title-bar">
                     <h1>[[data.stepTitle]]</h1>
                 </div>
-                <expandable-item content-label="Learning Objectives">
-                    <h2 slot="label">Learning Objectives</h2>
+                <expandable-item content-label="Heading level two Learning Objectives">
+                    <h2 slot="label"><localized-data value="learning_objectives"></localized-data></h2>
                     <ul slot="items">
                         <dom-repeat items="[[data.learningObjectives]]">
                             <template>
@@ -86,8 +86,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </ul>
                 </expandable-item>
                 <border-separator></border-separator>
-                <expandable-item content-label="Key Terms">
-                    <h2 slot="label">Key Terms</h2>
+                <expandable-item content-label="Heading level two Key Terms">
+                    <h2 slot="label"><localized-data value="key_terms"></localized-data></h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.keyTerms]]">
@@ -107,7 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <border-separator></border-separator>
                 <!--expandable-item is-opened="true"-->
                 <div class="topics">
-                    <h2 slot="label">TOPICS</h2>
+                    <h2 slot="label"><localized-data value="topics"></localized-data></h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.topics]]">
@@ -121,13 +121,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             </dom-repeat>
                         </ul>
                         <paper-button id="next" hidden$="[[!hasNext]]" raised>Continue to Step [[nextStepId]]</paper-button>
+                        <paper-button id="next_fr" hidden$="[[!hasNext_fr]]" raised>Continuez à l'étape [[nextStepId]]</paper-button>
+                        <paper-button id="next_es" hidden$="[[!hasNext_es]]" raised>Continúa con el paso [[nextStepId]]</paper-button>
                     </div>
                 </div>
                 <!--/expandable-item-->
                 <div hidden$="[[!_hasFurtherResources(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item content-label="Further Resources">
-                        <h2 slot="label">Further Resources</h2>
+                    <expandable-item content-label="Heading level two Further Resources">
+                        <h2 slot="label"><localized-data value="further_resources"></localized-data></h2>
                         <div slot="items">
                             <render-raw html-data="[[data.furtherResources]]"></render-raw>
                         </div>
@@ -135,8 +137,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
                 <div hidden$="[[!_hasTrainingMats(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item content-label="Training Materials">
-                        <h2 slot="label">Training Materials</h2>
+                    <expandable-item content-label="Heading level two Training Materials">
+                        <h2 slot="label"><localized-data value="training_materials"></localized-data></h2>
                         <div slot="items">
                             <render-raw html-data="[[data.trainingMats]]"></render-raw>
                         </div>
@@ -162,6 +164,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 hasNext: {
                     type: Boolean,
                     computed: '_hasNext(stepData, routeData.stepId)'
+                },
+                hasNext_es: {
+                    type: Boolean,
+                    computed: '_hasNext_es(stepData, routeData.stepId)'
+                },
+                hasNext_fr: {
+                    type: Boolean,
+                    computed: '_hasNext_fr(stepData, routeData.stepId)'
                 },
                 nextStepId: {
                     type: Number,
@@ -200,8 +210,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             if (data === null || stepId === null) {
                 return false
             }
+            if (window.localStorage.lang != 'en') {
+                return false
+            }
             return Number.parseInt(stepId) < data.length;
         }
+
+        _hasNext_fr(data, stepId) {
+            if (data === null || stepId === null) {
+                return false
+            }
+            if (window.localStorage.lang != 'fr') {
+                return false
+            }
+            return Number.parseInt(stepId) < data.length;
+        }
+
+        _hasNext_es(data, stepId) {
+            if (data === null || stepId === null) {
+                return false
+            }
+            if (window.localStorage.lang != 'es') {
+                return false
+            }
+            return Number.parseInt(stepId) < data.length;
+        }
+
 
         _withIndex(id, stepData) {
             if (!id || !stepData) {
@@ -221,6 +255,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }));
             });
             this.$.next.addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+             this.$.next_es.addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+              this.$.next_fr.addEventListener('click', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
                         target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),

@@ -27094,7 +27094,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               if (cachedConfig) {
                 // merge configurations with the same id, making a clone lazily
                 if (!cachedConfig.isClone) {
-                  map[config.id] = this._cloneConfig(cachedConfig);
+                  map[config.id] = this._cloneConfig(cachedConfig)
                   cachedConfig = map[config.id];
                 }
                 this._copyProperties(cachedConfig, config);
@@ -27151,7 +27151,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             try {
               result = neonAnimation.configure(config);
               // Check if we have an Effect rather than an Animation
-              if (typeof result.cancel != 'function') {
+              if (typeof result.cancel != 'function') { 
                 result = document.timeline.play(result);
               }
             } catch (e) {
@@ -28005,13 +28005,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // configure: function(config) {
     // },
 
-    created: function() {
-      if (!document.body.animate) {
-        console.warn('No web animations detected. This element will not' +
-            ' function without a web animations polyfill.');
-      }
-    },
-
     /**
      * Returns the animation timing by mixing in properties from `config` to the defaults defined
      * by the animation.
@@ -28048,6 +28041,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   };
 
 </script>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<script src="bower_components/web-animations-js/web-animations-next-lite.min.js"></script>
 <!--
 `<fade-in-animation>` animates the opacity of an element from 0 to 1.
 
@@ -30775,51 +30779,73 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class="flex">
                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                     <div class="inline" page-name="default">
-                        <app-link href="/home">
+                        <app-link href="/home" hidden$="[[!isEnglish]]">
                             <div class="link inline">Home</div>
+                        </app-link>
+                        <app-link href="/home" hidden$="[[!isFrench]]">
+                            <div class="link inline">Accueil</div>
+                        </app-link>
+                        <app-link href="/home" hidden$="[[!isSpanish]]">
+                            <div class="link inline">Inicio</div>
                         </app-link>
                         <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                             <div class="inline" page-name="default">
-                                <span aria-hidden="true">&gt;</span> <app-link href="/steps-landing"><div class="link inline">Steps</div></app-link>
+                                <span aria-hidden="true">&gt;</span> 
+                                <app-link href="/steps-landing" hidden$="[[!isEnglish]]"><div class="link inline">Steps</div></app-link>
+                                <app-link href="/steps-landing" hidden$="[[!isFrench]]"><div class="link inline">Étapes</div></app-link>
+                                <app-link href="/steps-landing" hidden$="[[!isSpanish]]"><div class="link inline">Pasos</div></app-link>
                                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                                     <div class="inline" page-name="step">
-                                        <span aria-hidden="true">&gt;</span> Step [[step.index]]
+                                        <span aria-hidden="true">&gt;</span> <localized-data value="step"></localized-data> [[step.index]]
                                     </div>
                                     <div class="inline" page-name="topic">
                                         &gt;
-                                        <app-link href="/step/[[step.index]]">
+                                        <app-link href="/step/[[step.index]]" hidden$="[[!isEnglish]]">
                                             <div class="link inline">Step [[step.index]]
                                                 <!--[[step.stepTitle]]-->
                                             </div>
-                                        </app-link> 
-                                        <span aria-hidden="true">&gt;</span> Topic [[topic.index]] / [[step.topics.length]]
+                                        </app-link>
+
+                                        <app-link href="/step/[[step.index]]" hidden$="[[!isFrench]]">
+                                            <div class="link inline">Étape [[step.index]]
+                                                <!--[[step.stepTitle]]-->
+                                            </div>
+                                        </app-link>
+
+                                        <app-link href="/step/[[step.index]]" hidden$="[[!isSpanish]]">
+                                            <div class="link inline">Paso [[step.index]]
+                                                <!--[[step.stepTitle]]-->
+                                            </div>
+                                        </app-link>
+
+                                        <span aria-hidden="true">&gt;</span> <localized-data value="topic"></localized-data> [[topic.index]] / [[step.topics.length]]
                                         <!--[[topic.title]]-->
                                     </div>
                                 </iron-pages>
                             </div>
                             <div class="inline" page-name="info-why-develop-page">
-                                <span aria-hidden="true">&gt;</span> Why Develop a Social Compliance System
+                                <span aria-hidden="true">&gt;</span> <localized-data value="why_develop"></localized-data>
                             </div>
                             <div class="inline" page-name="info-basics-page">
-                                <span aria-hidden="true">&gt;</span> Basics of a Social Compliance System
+                                <span aria-hidden="true">&gt;</span> <localized-data value="basics_of"></localized-data>
                             </div>
                             <div class="inline" page-name="info-about-page">
-                                <span aria-hidden="true">&gt;</span> About this App
+                                <span aria-hidden="true">&gt;</span> <localized-data value="about_this_app"></localized-data>
                             </div>
                             <div class="inline" page-name="info-what-are-page">
-                                <span aria-hidden="true">&gt;</span> What are Child Labor and Forced Labor
+                                <span aria-hidden="true">&gt;</span> <localized-data value="what_are"></localized-data>
                             </div>
                             <div class="inline" page-name="info-root-causes-page">
                                 <span aria-hidden="true">&gt;</span> Addressing Root Causes
                             </div>
                             <div class="inline" page-name="info-key-resources">
-                                <span aria-hidden="true">&gt;</span> Key Resources
+                                <span aria-hidden="true">&gt;</span> <localized-data value="key_r"></localized-data>
                             </div>
                             <div class="inline" page-name="index-info">
                                 <span aria-hidden="true">&gt;</span> More Info
                             </div>
                             <div class="inline" page-name="steps-landing">
-                                <span aria-hidden="true">&gt;</span> Steps
+                                <span aria-hidden="true">&gt;</span> <localized-data value="steps"></localized-data>
                             </div>
                             <div class="inline" page-name="search-results">
                                 <span aria-hidden="true">&gt;</span> Search Results
@@ -30867,6 +30893,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 isSearching: {
                     type: Boolean,
                     notify: true,
+                },
+                isEnglish: {
+                    type: Boolean,
+                    computed: '_isEnglish(routeData.stepId, stepData)',
+                },
+                isFrench: {
+                    type: Boolean,
+                    computed: '_isFrench(routeData.stepId, stepData)',
+                },
+                isSpanish: {
+                    type: Boolean,
+                    computed: '_isSpanish(routeData.stepId, stepData)',
                 }
             };
         }
@@ -30888,6 +30926,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 return step.topics[Number.parseInt(id) - 1];
             }
         }
+
+        _isEnglish()
+        {
+            if (window.localStorage.lang == 'en') {
+                return true;
+            }
+
+            return false;
+        }
+
+        _isFrench()
+        {
+            if (window.localStorage.lang == 'fr') {
+                return true;
+            }
+
+            return false;
+        }
+
+        _isSpanish()
+        {
+            if (window.localStorage.lang == 'es') {
+                return true;
+            }
+
+            return false;
+        }
+
 
         static get observers() {
             return [];
@@ -31533,7 +31599,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 },
                 locale: {
                     type: String,
-                    value: 'en'
+                    value: window.localStorage.getItem("lang"),
+                    
                 },
                 renderedValue: {
                     type: String,
@@ -31553,6 +31620,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         _render(value, locale) {
+            
+			if(locale == null)
+                locale = window.localStorage.getItem("lang")
+            
             var data = {
                 en: {
                     home: "Home",
@@ -31560,13 +31631,77 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     appFullTitle: "Do Good",
                     stepPrefix: "Step",
                     info: "Info",
+                    about_this_app:"About this App",
+                    what_are:"What are Child Labor and Forced Labor?",
+                    contact_us:"Contact Us",
+                    key_r:"Key Resources",
+                    steps:"Steps",
+                    topic:"Topic",
+                    step:"Step",
+                    learning_objectives:"Learning Objectives",
+                    key_terms:"Key Terms",
+                    topics:"TOPICS",
+                    why_develop:"Why Develop a Social Compliance System",
+                    basics_of:"Basics of a Social Compliance System",
+                    steps_to_basic:"Steps to a social compliance system",
+                    prev_topic:"Previous Topic",
+                    prev_step:"Previous Step",
+                    next_topic:"Next Topic",
+                    next_step:"Next Step",
+                    further_resources:"Further Resources",
+                    training_materials:"Training Materials",
                 },
                 es: {
                     home: "Inicio",
-                    menu: "Menu (ES)",
+                    menu: "Menú",
                     appFullTitle: "Do Good",
-                    stepPrefix: "Step (ES)",
+                    stepPrefix: "Paso",
                     info: "Info",
+                    about_this_app:"Acerca de esta aplicación",
+                    what_are:"¿Qué son el trabajo infantil y el trabajo forzoso?",
+                    contact_us:"Contáctenos",
+                    key_r:"Recursos clave",
+                    steps:"Pasos",
+                    topic:"Tema",
+                    step:"Paso",
+                    learning_objectives:"Objetivos de aprendizaje",
+                    key_terms:"Términos clave",
+                    topics:"TEMAS",
+                    why_develop:"¿Por qué crear un sistema de cumplimiento social?",
+                    basics_of:"Aspectos básicos de un sistema de cumplimiento social",
+                    steps_to_basic:"Pasos hacia un sistema de cumplimiento social",
+                    prev_topic:"Tema anterior",
+                    prev_step:"Paso anterior",
+                    next_topic:"Siguiente tema",
+                    next_step:"Próximo paso",
+                    further_resources:"Recursos adicionales",
+                    training_materials:"Materiales de capacitación",
+                },
+                fr: {
+                    home: "Accueil",
+                    menu: "Menu",
+                    appFullTitle: "Do Good",
+                    stepPrefix: "Étape",
+                    info: "Info",
+                    about_this_app:"A propos de cette application",
+                    what_are:"Qu'est-ce que le travail des enfants et le travail forcé?",
+                    contact_us:"Nous contacter",
+                    key_r:"Ressources clés",
+                    steps:"Pas",
+                    topic:"Sujet",
+                    step:"Étape",
+                    learning_objectives:"Objectifs d'apprentissage",
+                    key_terms:"Termes clés",
+                    topics:"SUJETS",
+                    why_develop:"Pourquoi élaborer un système de conformité sociale?",
+                    basics_of:"Notions de système de conformité sociale",
+                    steps_to_basic:"Étapes vers un système de conformité sociale",
+                    prev_topic:"Sujet précédent",
+                    prev_step:"Étape précédente",
+                    next_topic:"Sujet suivant",
+                    next_step:"étape suivante",
+                    further_resources:"Autres ressources",
+                    training_materials:"Documents de formation",
                 },
             }
             return data[locale][value];
@@ -31590,7 +31725,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div></div>
     <script>
     var __globalRef = {
-        locale: "en",
+        locale: null,
         device: null,
         update: function() {
             this.__listeners.forEach(item => item.update());
@@ -31598,6 +31733,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         __listeners: [],
     };
     document.addEventListener('deviceready', () => {
+
+        if( window.localStorage.getItem("lang") == null)
+            {
+             window.localStorage.setItem("lang", "en" );
+            }
+        
+        console.log(window.localStorage.getItem("lang"));
         __globalRef.device = cordova.platformId;
         console.log(cordova.platformId);
         __globalRef.update();
@@ -31638,6 +31780,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         update() {
             this.locale = this.globalRef.locale;
             this.device = this.globalRef.device;
+            if (this.locale != null) {
+                window.localStorage.setItem("lang", this.globalRef.locale);
+            }
         }
 
         setLocale(newLocale, oldLocale) {
@@ -32153,11 +32298,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         </style>
         <div id="top">
-            <app-link href="/info-why-develop-page"><img class="link-icon" alt="Question Mark" src="imgs/question mark.png"> Why develop a social compliance system?</app-link>
+            <app-link href="/info-why-develop-page">
+            	<img class="link-icon" alt="Question Mark" src="imgs/question mark.png">
+            	Why develop a Social Compliance System
+            </app-link>
             <border-separator></border-separator>
-            <app-link href="/info-basics-page"><img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png"> Basics of a social compliance system</app-link>
+            <app-link href="/info-basics-page">
+            	<img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png">
+            	Basics of a Social Compliance System
+            </app-link>
             <border-separator></border-separator>
-            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"> Steps to a social compliance system</app-link>
+            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"> Steps to a Social Compliance System</app-link>
         </div>
         <slot name="append"></slot>
         <div class="bottom">
@@ -32175,6 +32326,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         ready() {
             super.ready();
+
             this.root.addEventListener('link-followed', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
@@ -32183,6 +32335,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     bubbles: true
                 }));
             });
+
 
             this.$['info-btn'].addEventListener('click', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
@@ -32205,6 +32358,306 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     window.customElements.define(MyHome.is, MyHome);
+    </script>
+</dom-module><!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<dom-module id="my-home-fr" assetpath="src/">
+    <template>
+        <style include="shared-styles">
+         :host {
+            display: block;
+        }
+
+        chain-anchor-link {
+            padding: 10px;
+        }
+
+        #background {
+            width: 100%;
+            position: relative;
+            bottom: -7px;
+        }
+
+        .bottom {
+            z-index: -1;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            overflow-y: hidden;
+
+            height: 100%;
+            background-position: 50% 50%;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        @media (max-aspect-ratio:10/16) {
+            .bottom {
+                background-image: url("../imgs/test_bg.jpg");
+            }
+        }
+        @media (max-aspect-ratio:11/10) and (min-aspect-ratio: 10/16) {
+            .bottom {
+                background-image: url("../imgs/one_bg.jpg");
+            }
+        }
+        @media (min-aspect-ratio:11/10) {
+            .bottom {
+                background-image: url("../imgs/og_bg.jpg");
+            }
+        }
+
+        #info-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            color: white;
+        }
+
+        #icon {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            color: white;
+        }
+
+        #top {
+            background-color: white;
+            padding-left: 10px;
+            padding-bottom: 4px;
+        }
+
+        .link-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            top: 6px;
+        }
+
+        app-link {
+            display: block;
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+        </style>
+        <div id="top">
+            <app-link href="/info-why-develop-page">
+            	<img class="link-icon" alt="Question Mark" src="imgs/question mark.png">
+            	Pourquoi élaborer un système de conformité sociale ?
+            </app-link>
+            <border-separator></border-separator>
+            <app-link href="/info-basics-page">
+            	<img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png">
+            	Bases d'un système de conformité sociale
+            </app-link>
+            <border-separator></border-separator>
+            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"> Étapes vers un système de conformité sociale</app-link>
+        </div>
+        <slot name="append"></slot>
+        <div class="bottom">
+            <paper-icon-button id="info-btn" icon="icons:info" aria-label="Info" role="link"></paper-icon-button>
+        </div>
+    </template>
+    <script>
+    class MyHomeFr extends Polymer.Element {
+        static get is() {
+            return 'my-home-fr';
+        }
+        static get properties() {
+            return {};
+        }
+
+        ready() {
+            super.ready();
+
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+
+
+            this.$['info-btn'].addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/info-about-page"
+                    },
+                    bubbles: true
+                }));
+            })
+
+            this.$['info-btn'].addEventListener('tap', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/info-about-page"
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(MyHomeFr.is, MyHomeFr);
+    </script>
+</dom-module><!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<dom-module id="my-home-es" assetpath="src/">
+    <template>
+        <style include="shared-styles">
+         :host {
+            display: block;
+        }
+
+        chain-anchor-link {
+            padding: 10px;
+        }
+
+        #background {
+            width: 100%;
+            position: relative;
+            bottom: -7px;
+        }
+
+        .bottom {
+            z-index: -1;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            overflow-y: hidden;
+
+            height: 100%;
+            background-position: 50% 50%;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        @media (max-aspect-ratio:10/16) {
+            .bottom {
+                background-image: url("../imgs/test_bg.jpg");
+            }
+        }
+        @media (max-aspect-ratio:11/10) and (min-aspect-ratio: 10/16) {
+            .bottom {
+                background-image: url("../imgs/one_bg.jpg");
+            }
+        }
+        @media (min-aspect-ratio:11/10) {
+            .bottom {
+                background-image: url("../imgs/og_bg.jpg");
+            }
+        }
+
+        #info-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            color: white;
+        }
+
+        #icon {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            color: white;
+        }
+
+        #top {
+            background-color: white;
+            padding-left: 10px;
+            padding-bottom: 4px;
+        }
+
+        .link-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            top: 6px;
+        }
+
+        app-link {
+            display: block;
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+        </style>
+        <div id="top">
+            <app-link href="/info-why-develop-page">
+            	<img class="link-icon" alt="Question Mark" src="imgs/question mark.png">
+            	¿Por qué crear un sistema de cumplimiento social?
+            </app-link>
+            <border-separator></border-separator>
+            <app-link href="/info-basics-page">
+            	<img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png">
+            	Aspectos básicos de un sistema de cumplimiento social
+            </app-link>
+            <border-separator></border-separator>
+            <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"> Pasos para sistema de cumplimiento social</app-link>
+        </div>
+        <slot name="append"></slot>
+        <div class="bottom">
+            <paper-icon-button id="info-btn" icon="icons:info" aria-label="Info" role="link"></paper-icon-button>
+        </div>
+    </template>
+    <script>
+    class MyHomeEs extends Polymer.Element {
+        static get is() {
+            return 'my-home-es';
+        }
+        static get properties() {
+            return {};
+        }
+
+        ready() {
+            super.ready();
+
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+
+
+            this.$['info-btn'].addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/info-about-page"
+                    },
+                    bubbles: true
+                }));
+            })
+
+            this.$['info-btn'].addEventListener('tap', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/info-about-page"
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(MyHomeEs.is, MyHomeEs);
     </script>
 </dom-module><!--
 @license
@@ -32504,10 +32957,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="layout horizontal center-justified">
             <div class="main" aria-live="polite" tabindex="-1" id="pageTop">
                 <render-raw html-data="[[data.rawData]]" target="{{targetId}}"></render-raw>
-                <paper-button id="prev" hidden$="[[!hasPrevious]]" raised="">Previous Topic</paper-button>
-                <paper-button id="prevStep" hidden$="[[!showPreviousStep]]" raised="">Previous Step</paper-button>
-                <paper-button id="next" hidden$="[[!hasNext]]" raised="">Next Topic</paper-button>
+                <paper-button id="prev" hidden$="[[!hasPrevious]]" raised="">previous topic</paper-button>
+                <paper-button id="prevfr" hidden$="[[!hasPreviousfr]]" raised="">Sujet précédent</paper-button>
+                <paper-button id="preves" hidden$="[[!hasPreviouses]]" raised="">Tema anterior</paper-button>
+
+                <paper-button id="prevStep" hidden$="[[!showPreviousStep]]" raised="">previous step</paper-button>
+                <paper-button id="prevStepfr" hidden$="[[!showPreviousStepfr]]" raised="">Étape précédente</paper-button>
+                <paper-button id="prevStepes" hidden$="[[!showPreviousStepes]]" raised="">Paso anterior</paper-button>
+                
+                <paper-button id="next" hidden$="[[!hasNext]]" raised="">next topic</paper-button>
+                <paper-button id="nextfr" hidden$="[[!hasNextfr]]" raised="">Sujet suivant</paper-button>
+                <paper-button id="nextes" hidden$="[[!hasNextes]]" raised="">Próximo tema</paper-button>
+
                 <paper-button id="nextStep" hidden$="[[!showNextStep]]" raised="">Next Step</paper-button>
+                <paper-button id="nextStepfr" hidden$="[[!showNextStepfr]]" raised="">Étape suivante</paper-button>
+                <paper-button id="nextStepes" hidden$="[[!showNextStepes]]" raised="">Próximo paso</paper-button>
             </div>
         </div>
     </template>
@@ -32527,24 +32991,69 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     value: null
                 },
 
+
+
                 hasNext: {
                     type: Boolean,
                     computed: '_hasNext(routeData.stepId, routeData.topicId, stepData)',
                 },
+                hasNextes: {
+                    type: Boolean,
+                    computed: '_hasNextes(routeData.stepId, routeData.topicId, stepData)',
+                },
+                hasNextfr: {
+                    type: Boolean,
+                    computed: '_hasNextfr(routeData.stepId, routeData.topicId, stepData)',
+                },
+
+
+
                 showNextStep: {
                     type: Boolean,
                     computed: '_showNextStep(routeData.stepId, hasNext, stepData)',
                 },
+
+                showNextStepes: {
+                    type: Boolean,
+                    computed: '_showNextStepes(routeData.stepId, hasNextes, stepData)',
+                },
+
+                showNextStepfr: {
+                    type: Boolean,
+                    computed: '_showNextStepfr(routeData.stepId, hasNextfr, stepData)',
+                },
+
 
 
                 hasPrevious: {
                     type: Boolean,
                     computed: '_hasPrevious(routeData.stepId, routeData.topicId, stepData)',
                 },
+                hasPreviousfr: {
+                    type: Boolean,
+                    computed: '_hasPreviousfr(routeData.stepId, routeData.topicId, stepData)',
+                },
+                hasPreviouses: {
+                    type: Boolean,
+                    computed: '_hasPreviouses(routeData.stepId, routeData.topicId, stepData)',
+                },
+
+
+
                 showPreviousStep: {
                     type: Boolean,
                     computed: '_showPreviousStep(routeData.stepId, hasPrevious, stepData)',
                 },
+                showPreviousStepfr: {
+                    type: Boolean,
+                    computed: '_showPreviousStepfr(routeData.stepId, hasPreviousfr, stepData)',
+                },
+                showPreviousStepes: {
+                    type: Boolean,
+                    computed: '_showPreviousStepes(routeData.stepId, hasPreviouses, stepData)',
+                },
+
+
                 stepData: {
                     type: Object,
                 }
@@ -32558,12 +33067,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             return stepData[Number.parseInt(stepId) - 1].topics[Number.parseInt(topicId) - 1];
         }
 
+
+
+
+
         _hasNext(stepId, topicId, stepData) {
             if (!stepId || !topicId || !stepData) {
                 return null;
             }
+
+            if (window.localStorage.lang != 'en') {
+                return null;
+            }
             return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
         }
+
+        _hasNextes(stepId, topicId, stepData) {
+            if (!stepId || !topicId || !stepData) {
+                return null;
+            }
+
+            if (window.localStorage.lang != 'es') {
+                return null;
+            }
+            return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
+        }
+
+        _hasNextfr(stepId, topicId, stepData) {
+            if (!stepId || !topicId || !stepData) {
+                return null;
+            }
+
+            if (window.localStorage.lang != 'fr') {
+                return null;
+            }
+            return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
+        }
+
+
+
+
 
         _showNextStep(stepId, hasNextTopic, stepData) {
             if (!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
@@ -32574,18 +33117,94 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 return false;
             }
 
+            if (window.localStorage.lang != "en") {
+                return false;
+            }
+
             console.log(stepId, stepData.length)
 
 
             return Number.parseInt(stepId) < stepData.length;
         }
 
+        _showNextStepfr(stepId, hasNextTopic, stepData) {
+            if (!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasNextTopic) {
+                return false;
+            }
+
+            if (window.localStorage.lang != "fr") {
+                return false;
+            }
+            console.log(stepId, stepData.length)
+
+
+            return Number.parseInt(stepId) < stepData.length;
+        }
+
+        _showNextStepes(stepId, hasNextTopic, stepData) {
+            if (!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasNextTopic) {
+                return false;
+            }
+
+            if (window.localStorage.lang != "es") {
+                return false;
+            }
+            console.log(stepId, stepData.length)
+
+
+            return Number.parseInt(stepId) < stepData.length;
+        }
+
+
+
+
         _hasPrevious(stepId, topicId, stepData) {
             if (!stepId || !topicId || !stepData) {
                 return null;
             }
+
+            if (window.localStorage.lang != 'en') {
+                return null;
+            }
             return Number.parseInt(topicId) > 1;
         }
+
+        _hasPreviouses(stepId, topicId, stepData) {
+            if (!stepId || !topicId || !stepData) {
+                return null;
+            }
+
+            if (window.localStorage.lang != 'es') {
+                return null;
+            }
+
+
+            return Number.parseInt(topicId) > 1;
+        }
+
+        _hasPreviousfr(stepId, topicId, stepData) {
+            if (!stepId || !topicId || !stepData) {
+                return null;
+            }
+
+            if (window.localStorage.lang != 'fr') {
+                return null;
+            }
+            return Number.parseInt(topicId) > 1;
+        }
+
+
+
+
+
 
         _showPreviousStep(stepId, hasPerviousTopic, stepData) {
             if (!stepId || hasPerviousTopic === null || hasPerviousTopic === undefined || !stepData) {
@@ -32596,11 +33215,52 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 return false;
             }
 
+            if (window.localStorage.lang != 'en') {
+                return false;
+            }
             console.log(stepId, stepData.length)
 
 
             return stepId > 1;
         }
+
+        _showPreviousStepes(stepId, hasPerviousTopic, stepData) {
+            if (!stepId || hasPerviousTopic === null || hasPerviousTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasPerviousTopic) {
+                return false;
+            }
+
+            if (window.localStorage.lang != 'es') {
+                return false;
+            }
+            console.log(stepId, stepData.length)
+
+
+            return stepId > 1;
+        }
+
+        _showPreviousStepfr(stepId, hasPerviousTopic, stepData) {
+            if (!stepId || hasPerviousTopic === null || hasPerviousTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasPerviousTopic) {
+                return false;
+            }
+
+            if (window.localStorage.lang != 'fr') {
+                return false;
+            }
+            console.log(stepId, stepData.length)
+
+
+            return stepId > 1;
+        }
+
+
 
         refocusTop() {
             this.$.pageTop.focus();
@@ -32617,6 +33277,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     bubbles: true
                 }));
             });
+            this.$.nextes.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.nextfr.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+
+
+
             this.$.nextStep.addEventListener('click', event => {
 
                 this.dispatchEvent(new CustomEvent('link-followed', {
@@ -32626,6 +33307,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     bubbles: true
                 }));
             });
+            this.$.nextStepfr.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.nextStepes.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+
+
             this.$.prev.addEventListener('click', event => {
 
                 this.dispatchEvent(new CustomEvent('link-followed', {
@@ -32635,6 +33336,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     bubbles: true
                 }));
             });
+            this.$.preves.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.prevfr.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+
+
+
             this.$.prevStep.addEventListener('click', event => {
 
                 this.dispatchEvent(new CustomEvent('link-followed', {
@@ -32644,6 +33366,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     bubbles: true
                 }));
             });
+            this.$.prevStepes.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.prevStepfr.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+
+
             this.root.addEventListener('link-followed', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
@@ -32731,8 +33473,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div class="title-bar">
                     <h1>[[data.stepTitle]]</h1>
                 </div>
-                <expandable-item content-label="Learning Objectives">
-                    <h2 slot="label">Learning Objectives</h2>
+                <expandable-item content-label="Heading level two Learning Objectives">
+                    <h2 slot="label"><localized-data value="learning_objectives"></localized-data></h2>
                     <ul slot="items">
                         <dom-repeat items="[[data.learningObjectives]]">
                             <template>
@@ -32744,8 +33486,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </ul>
                 </expandable-item>
                 <border-separator></border-separator>
-                <expandable-item content-label="Key Terms">
-                    <h2 slot="label">Key Terms</h2>
+                <expandable-item content-label="Heading level two Key Terms">
+                    <h2 slot="label"><localized-data value="key_terms"></localized-data></h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.keyTerms]]">
@@ -32765,7 +33507,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <border-separator></border-separator>
                 <!--expandable-item is-opened="true"-->
                 <div class="topics">
-                    <h2 slot="label">TOPICS</h2>
+                    <h2 slot="label"><localized-data value="topics"></localized-data></h2>
                     <div slot="items">
                         <ul>
                             <dom-repeat items="[[data.topics]]">
@@ -32779,13 +33521,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             </dom-repeat>
                         </ul>
                         <paper-button id="next" hidden$="[[!hasNext]]" raised="">Continue to Step [[nextStepId]]</paper-button>
+                        <paper-button id="next_fr" hidden$="[[!hasNext_fr]]" raised="">Continuez à l'étape [[nextStepId]]</paper-button>
+                        <paper-button id="next_es" hidden$="[[!hasNext_es]]" raised="">Continúa con el paso [[nextStepId]]</paper-button>
                     </div>
                 </div>
                 <!--/expandable-item-->
                 <div hidden$="[[!_hasFurtherResources(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item content-label="Further Resources">
-                        <h2 slot="label">Further Resources</h2>
+                    <expandable-item content-label="Heading level two Further Resources">
+                        <h2 slot="label"><localized-data value="further_resources"></localized-data></h2>
                         <div slot="items">
                             <render-raw html-data="[[data.furtherResources]]"></render-raw>
                         </div>
@@ -32793,8 +33537,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
                 <div hidden$="[[!_hasTrainingMats(data)]]">
                     <border-separator></border-separator>
-                    <expandable-item content-label="Training Materials">
-                        <h2 slot="label">Training Materials</h2>
+                    <expandable-item content-label="Heading level two Training Materials">
+                        <h2 slot="label"><localized-data value="training_materials"></localized-data></h2>
                         <div slot="items">
                             <render-raw html-data="[[data.trainingMats]]"></render-raw>
                         </div>
@@ -32820,6 +33564,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 hasNext: {
                     type: Boolean,
                     computed: '_hasNext(stepData, routeData.stepId)'
+                },
+                hasNext_es: {
+                    type: Boolean,
+                    computed: '_hasNext_es(stepData, routeData.stepId)'
+                },
+                hasNext_fr: {
+                    type: Boolean,
+                    computed: '_hasNext_fr(stepData, routeData.stepId)'
                 },
                 nextStepId: {
                     type: Number,
@@ -32858,8 +33610,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             if (data === null || stepId === null) {
                 return false
             }
+            if (window.localStorage.lang != 'en') {
+                return false
+            }
             return Number.parseInt(stepId) < data.length;
         }
+
+        _hasNext_fr(data, stepId) {
+            if (data === null || stepId === null) {
+                return false
+            }
+            if (window.localStorage.lang != 'fr') {
+                return false
+            }
+            return Number.parseInt(stepId) < data.length;
+        }
+
+        _hasNext_es(data, stepId) {
+            if (data === null || stepId === null) {
+                return false
+            }
+            if (window.localStorage.lang != 'es') {
+                return false
+            }
+            return Number.parseInt(stepId) < data.length;
+        }
+
 
         _withIndex(id, stepData) {
             if (!id || !stepData) {
@@ -32879,6 +33655,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }));
             });
             this.$.next.addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+             this.$.next_es.addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+              this.$.next_fr.addEventListener('click', event => {
                 this.dispatchEvent(new CustomEvent('link-followed', {
                     detail: {
                         target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
@@ -33085,37 +33877,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <p class="flex">
                             <localized-data value="menu"></localized-data>
                         </p>
+
                         <p>
                             <paper-icon-button icon="icons:close" id="close-menu-btn" aria-label="Close Menu"></paper-icon-button>
                         </p>
                     </div>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
-                    <!--paper-dropdown-menu hidden label="Language">
-                        <paper-listbox attr-for-selected="lang" selected="{{lang}}">
+                    <paper-dropdown-menu hidden="" label="Language" on-iron-select="_itemSelected">
+                        <paper-listbox attr-for-selected="lang" slot="dropdown-content" selected="{{lang}}">
                             <paper-item lang="en">English</paper-item>
                             <paper-item lang="es">Espanol</paper-item>
+                            <paper-item lang="fr">French</paper-item>
                         </paper-listbox>
-                    </paper-dropdown-menu-->
+                    </paper-dropdown-menu>
                     <app-link name="home" href="/home">
                         <localized-data value="home"></localized-data>
                     </app-link>
                     <app-link name="index-info" href="/info-about-page">
-                        About this App
+                        <localized-data value="about_this_app"></localized-data>
                     </app-link>
                     <app-link name="what-are-cl-fl" href="/info-what-are-page">
-                        <p class="link-label">What are Child Labor and Forced Labor?</p>
+                        <localized-data value="what_are"></localized-data>
                     </app-link>
                     <border-separator></border-separator>
                     <div id="step-list-scroll" aria-live="polite">
                         <iron-pages selected="[[menuState]]" attr-for-selected="state" fallback-selection="none" role="secondary">
                             <div class="layout horizontal" state="none">
-                                <app-link class="flex" href="/steps-landing">Steps</app-link>
+                                <app-link class="flex" href="/steps-landing"><localized-data value="steps"></localized-data></app-link>
                                 <paper-icon-button icon="expand-more" on-click="showSteps" aria-label="Expand list of Steps"></paper-icon-button>
                             </div>
                             <div state="listSteps">
                                 <div class="layout horizontal">
-                                    <app-link class="flex" href="/steps-landing"><strong>Steps</strong></app-link>
+                                    <app-link class="flex" href="/steps-landing"><strong><localized-data value="steps"></localized-data></strong></app-link>
                                     <paper-icon-button icon="expand-less" on-click="menuBack" aria-label="Collapse list of steps"></paper-icon-button>
                                 </div>
                                 <dom-repeat items="[[stepData]]">
@@ -33131,7 +33925,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             </div>
                             <div state="listTopics">
                                 <div class="layout horizontal">
-                                    <app-link class="flex" href="/step/[[currentMenuStep.index]]"><strong>Step [[currentMenuStep.index]]</strong></app-link>
+                                    <app-link class="flex" href="/step/[[currentMenuStep.index]]"><strong><localized-data value="step"></localized-data> [[currentMenuStep.index]]</strong></app-link>
                                     <paper-icon-button icon="expand-less" on-click="menuBack" aria-label="Collapse list of topics"></paper-icon-button>
                                 </div>
                                 <dom-repeat items="[[currentMenuStep.topics]]">
@@ -33150,9 +33944,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                     <border-separator></border-separator>
                     <app-link name="key-resources" href="/info-key-resources">
-                        Key Resources
+                        <localized-data value="key_r"></localized-data>
                     </app-link>
-                    <a href="mailto:GlobalKids@dol.gov?subject=Comments on Comply Chain App" target="_top">Contact Us</a>
+                    <a href="mailto:GlobalKids@dol.gov?subject=Comments on Comply Chain App" target="_top"><localized-data value="contact_us"></localized-data></a>
                 </iron-selector>
             </app-drawer>
             <!-- Main content -->
@@ -33164,7 +33958,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="ILAB - The Bureau of International Labor Affairs" class="logo-img-small" src="imgs/ilab.png"></a></div>
                             <div class="flex layout horizontal center-justified">
                                 <div class="layout vertical title-bar-text">
-                                    <div class="flex layout horizontal center-justified">
+                                    <div class="flex layout horizontal center-justified" style="margin-bottom: 50%">
                                         <p><strong>Comply Chain</strong></p>
                                     </div>
                                 </div>
@@ -33189,6 +33983,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 </div>
                             </div>
                             <div name="home"></div>
+                            <div name="home-fr"></div>
+                            <div name="home-es"></div>
                         </iron-pages>
                     </div>
                     <iron-pages selected="[[page]]" id="pageContent" tabindex="-1" attr-for-selected="name" fallback-selection="home" role="main">
@@ -33204,6 +34000,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 </div>
                             </my-home>
                         </div>
+                        <div name="home-fr">
+                            <my-home-fr route="[[subroute]]">
+                                <div slot="append" class="layout horizontal">
+                                    <div class="flex">
+                                    </div>
+                                    <div>
+                                        <div id="icon-background"></div>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search"></paper-icon-button>
+                                    </div>
+                                </div>
+                            </my-home-fr>
+                        </div>
+                        <div name="home-es">
+                            <my-home-es route="[[subroute]]">
+                                <div slot="append" class="layout horizontal">
+                                    <div class="flex">
+                                    </div>
+                                    <div>
+                                        <div id="icon-background"></div>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search"></paper-icon-button>
+                                    </div>
+                                </div>
+                            </my-home-es>
+                        </div>
+
                         <my-step-splash name="step" route="[[subroute]]" step-data="[[stepData]]"></my-step-splash>
                         <my-topic target-id="{{targetId}}" name="topic" route="[[subroute]]" step-data="[[stepData]]" id="topic"></my-topic>
                         <info-page target-id="{{targetId}}" name="info" info-data="[[infoDataVisible]]" route="[[subroute]]"></info-page>
@@ -33358,6 +34179,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.page = "home";
             }
 
+            if (this.page == 'home' && localStorage.lang == 'fr') {
+                this.page = "home-fr";
+            }
+
+            if (this.page == 'home' && localStorage.lang == 'es') {
+                this.page = "home-es";
+            }
 
             // Close a non-persistent drawer when the page & route are changed. 
             if (!this.$.drawer.persistent) {
@@ -33393,10 +34221,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         }
 
+        _itemSelected(e) {
+	        var selectedItem = e.target.selectedItem;
+	       
+	        var homepages = ["home","home-es", "home-fr"] ;
+	        if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
+	       // if (e.target.selectedItem.lang != localStorage.lang){    
+	            location.reload();
+	        }
+	      }
+
 
         _stepData(baseData, lang) {
             if (baseData === null) {
                 return null;
+            }
+            if (lang == null) {
+                this.lang = 'en';
+                lang = 'en';
             }
             return baseData[lang].steps;
         }
@@ -33428,6 +34270,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         connectedCallback() {
             super.connectedCallback();
+           
             this.root.querySelector('my-home').addEventListener('link-followed', event => {
                 console.log(event.detail.target);
                 this.root.querySelector('bread-crumbs').scrollIntoView();
@@ -33476,11 +34319,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         ready() {
             super.ready();
-            this.lang = 'en';
+            this.lang = window.localStorage.getItem("lang");
             this.searchInputTarget = this.$['search-input'];
+            if (this.lang == 'en') {
+                this.page = "home";
+            }
+            else if (this.lang == 'fr') {
+                this.page = "home-fr";
+            }
 
-            this.page = "home";
-
+            else if (this.lang == 'es') {
+                this.page = "home-es";
+            }
             app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
                     console.log("got step data");

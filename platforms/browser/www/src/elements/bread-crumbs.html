@@ -21,23 +21,45 @@
             <div class="flex">
                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                     <div class="inline" page-name="default">
-                        <app-link href="/home">
-                            <div class="link inline"><localized-data value="home"></localized-data></div>
+                        <app-link href="/home" hidden$="[[!isEnglish]]">
+                            <div class="link inline">Home</div>
+                        </app-link>
+                        <app-link href="/home" hidden$="[[!isFrench]]">
+                            <div class="link inline">Accueil</div>
+                        </app-link>
+                        <app-link href="/home" hidden$="[[!isSpanish]]">
+                            <div class="link inline">Inicio</div>
                         </app-link>
                         <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                             <div class="inline" page-name="default">
-                                <span aria-hidden="true">></span> <app-link href="/steps-landing"><div class="link inline"><localized-data value="steps"></localized-data></div></app-link>
+                                <span aria-hidden="true">></span> 
+                                <app-link href="/steps-landing" hidden$="[[!isEnglish]]"><div class="link inline">Steps</div></app-link>
+                                <app-link href="/steps-landing" hidden$="[[!isFrench]]"><div class="link inline">Étapes</div></app-link>
+                                <app-link href="/steps-landing" hidden$="[[!isSpanish]]"><div class="link inline">Pasos</div></app-link>
                                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                                     <div class="inline" page-name="step">
                                         <span aria-hidden="true">></span> <localized-data value="step"></localized-data> [[step.index]]
                                     </div>
                                     <div class="inline" page-name="topic">
                                         >
-                                        <app-link href="/step/[[step.index]]">
-                                            <div class="link inline"><localized-data value="step"></localized-data> [[step.index]]
+                                        <app-link href="/step/[[step.index]]" hidden$="[[!isEnglish]]">
+                                            <div class="link inline">Step [[step.index]]
                                                 <!--[[step.stepTitle]]-->
                                             </div>
-                                        </app-link> 
+                                        </app-link>
+
+                                        <app-link href="/step/[[step.index]]" hidden$="[[!isFrench]]">
+                                            <div class="link inline">Étape [[step.index]]
+                                                <!--[[step.stepTitle]]-->
+                                            </div>
+                                        </app-link>
+
+                                        <app-link href="/step/[[step.index]]" hidden$="[[!isSpanish]]">
+                                            <div class="link inline">Paso [[step.index]]
+                                                <!--[[step.stepTitle]]-->
+                                            </div>
+                                        </app-link>
+
                                         <span aria-hidden="true">></span> <localized-data value="topic"></localized-data> [[topic.index]] / [[step.topics.length]]
                                         <!--[[topic.title]]-->
                                     </div>
@@ -59,7 +81,7 @@
                                 <span aria-hidden="true">></span> Addressing Root Causes
                             </div>
                             <div class="inline" page-name="info-key-resources">
-                                <span aria-hidden="true">></span> Key Resources
+                                <span aria-hidden="true">></span> <localized-data value="key_r"></localized-data>
                             </div>
                             <div class="inline" page-name="index-info">
                                 <span aria-hidden="true">></span> More Info
@@ -113,6 +135,18 @@
                 isSearching: {
                     type: Boolean,
                     notify: true,
+                },
+                isEnglish: {
+                    type: Boolean,
+                    computed: '_isEnglish(routeData.stepId, stepData)',
+                },
+                isFrench: {
+                    type: Boolean,
+                    computed: '_isFrench(routeData.stepId, stepData)',
+                },
+                isSpanish: {
+                    type: Boolean,
+                    computed: '_isSpanish(routeData.stepId, stepData)',
                 }
             };
         }
@@ -134,6 +168,34 @@
                 return step.topics[Number.parseInt(id) - 1];
             }
         }
+
+        _isEnglish()
+        {
+            if (window.localStorage.lang == 'en') {
+                return true;
+            }
+
+            return false;
+        }
+
+        _isFrench()
+        {
+            if (window.localStorage.lang == 'fr') {
+                return true;
+            }
+
+            return false;
+        }
+
+        _isSpanish()
+        {
+            if (window.localStorage.lang == 'es') {
+                return true;
+            }
+
+            return false;
+        }
+
 
         static get observers() {
             return [];
