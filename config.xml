@@ -17,6 +17,7 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <preference name="loadUrlTimeoutValue" value="700000" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -29,7 +30,6 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#003354" />
-    <preference name="loadUrlTimeoutValue" value="700000" />
     <icon height="120" platform="ios" src="res/comply-chain-app-120.png" width="120" />
     <icon height="180" platform="ios" src="res/comply-chain-app-180.png" width="180" />
     <icon height="144" platform="ios" src="res/comply-chain-app-144.png" width="144" />
