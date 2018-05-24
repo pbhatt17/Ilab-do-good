@@ -52,5 +52,4 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#003354" />
-    <preference name="loadUrlTimeoutValue" value="700000" />
 </widget>
