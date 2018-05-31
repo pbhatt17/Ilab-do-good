@@ -13,12 +13,12 @@
             outline: none;
         }
         </style>
-        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation></iron-a11y-keys>
+        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
         <div class="layout horizontal label">
             <div class="layout vertical center-justified flex" id="link-label">
                 <slot name="label"></slot>
             </div>
-            <paper-button toggles tabindex="-1" aria-labelledby="link-label">
+            <paper-button toggles="" tabindex="-1" aria-labelledby="link-label">
                 <div class="layout vertical center-justified">
                     <div hidden$="[[isOpened]]">
                         <iron-icon icon="expand-more"></iron-icon>

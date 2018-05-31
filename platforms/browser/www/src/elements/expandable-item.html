@@ -24,9 +24,9 @@
             /*outline: none;*/
         }
         </style>
-        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation></iron-a11y-keys>
+        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
         <div class="layout horizontal label">
-            <paper-button toggles aria-label$="[[contentLabel]].  Click to [[labelText]] content">
+            <paper-button toggles="" aria-label$="[[contentLabel]].  Click to [[labelText]] content">
                 <div class="layout horizontal flex">
                     <div class="layout vertical center-justified flex">
                         <slot name="label"></slot>

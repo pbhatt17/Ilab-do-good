@@ -18,12 +18,12 @@
  */
 var app = {
     // Application Constructor
-    initialize: function initialize() {
+    initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-        this.deviceReadyPromise = new Promise(function (resolve, reject) {
-            document.addEventListener('deviceready', function () {
+        this.deviceReadyPromise = new Promise((resolve, reject) => {
+            document.addEventListener('deviceready', () => {
                 resolve("done");
-            }, false);
+            }, false); 
         });
     },
 
@@ -31,7 +31,7 @@ var app = {
     //
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
-    onDeviceReady: function onDeviceReady() {
+    onDeviceReady: function() {
         this.receivedEvent('deviceready');
         console.log(window.open);
         window.open = cordova.InAppBrowser.open;
@@ -39,9 +39,10 @@ var app = {
     },
 
     // Update DOM on a Received Event
-    receivedEvent: function receivedEvent(id) {
+    receivedEvent: function(id) {
 
         console.log('Received Event: ' + id);
+
     }
 };
 

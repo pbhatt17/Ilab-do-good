@@ -46,29 +46,18 @@
             <slot name="items"></slot>
         </iron-collapse>
     </template>
-    <script>var ExpandableItem = function (_Polymer$Element) {
-    babelHelpers.inherits(ExpandableItem, _Polymer$Element);
-    babelHelpers.createClass(ExpandableItem, [{
-        key: '_labelText',
-        value: function _labelText(open) {
-            if (open) {
-                return "collapse";
-            } else {
-                return "expand";
-            }
-        }
-    }], [{
-        key: 'is',
-        get: function get() {
+    <script>
+    class ExpandableItem extends Polymer.Element {
+        static get is() {
             return 'expandable-item';
         }
-    }, {
-        key: 'properties',
-        get: function get() {
+
+
+        static get properties() {
             return {
                 isOpened: {
                     type: Boolean,
-                    value: false
+                    value: false,
                 },
                 labelText: {
                     type: String,
@@ -83,45 +72,47 @@
                 }
             };
         }
-    }]);
 
-    function ExpandableItem() {
-        babelHelpers.classCallCheck(this, ExpandableItem);
-        return babelHelpers.possibleConstructorReturn(this, (ExpandableItem.__proto__ || Object.getPrototypeOf(ExpandableItem)).call(this));
-    }
-
-    babelHelpers.createClass(ExpandableItem, [{
-        key: 'toggleOpen',
-        value: function toggleOpen() {
-            var _this2 = this;
-
-            this._debouncer = Polymer.Debouncer.debounce(this._debouncer, // initially undefined
-            Polymer.Async.timeOut.after(15), function () {
-
-                _this2.isOpened = !_this2.isOpened;
-                _this2.$.collapse.toggle();
-            });
+        _labelText(open) {
+            if(open) {
+                return "collapse";
+            } else {
+                return "expand";
+            }
         }
-    }, {
-        key: 'ready',
-        value: function ready() {
-            var _this3 = this;
 
-            babelHelpers.get(ExpandableItem.prototype.__proto__ || Object.getPrototypeOf(ExpandableItem.prototype), 'ready', this).call(this);
-            this.root.querySelector('paper-button').addEventListener('click', function (event) {
-                _this3.toggleOpen();
+        constructor() {
+            super();
+        }
+
+        toggleOpen() {
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+
+                    this.isOpened = !this.isOpened;
+                    this.$.collapse.toggle();
+                });
+
+        }
+
+
+        ready() {
+            super.ready();
+            this.root.querySelector('paper-button').addEventListener('click', event => {
+                this.toggleOpen();
             });
-            this.root.querySelector('paper-button').addEventListener('tap', function (event) {
-                _this3.toggleOpen();
+            this.root.querySelector('paper-button').addEventListener('tap', event => {
+                this.toggleOpen();
             });
             this.target = this;
-            if (this.isOpened) {
+            if(this.isOpened) {
                 this.$.collapse.show();
             }
         }
-    }]);
-    return ExpandableItem;
-}(Polymer.Element);
+    }
 
-customElements.define(ExpandableItem.is, ExpandableItem);</script>
+    customElements.define(ExpandableItem.is, ExpandableItem);
+    </script>
 </dom-module>
