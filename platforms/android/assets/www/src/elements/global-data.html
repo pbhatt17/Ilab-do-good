@@ -12,9 +12,9 @@
     var __globalRef = {
         locale: null,
         device: null,
-        update: function() {
-            this.__listeners.forEach(item => item.update());
-        },
+        // update: function() {
+        //    // this.__listeners.forEach(item => item.update());
+        // },
         __listeners: [],
     };
     document.addEventListener('deviceready', () => {
@@ -27,7 +27,7 @@
         console.log(window.localStorage.getItem("lang"));
         __globalRef.device = cordova.platformId;
         console.log(cordova.platformId);
-        __globalRef.update();
+       // __globalRef.update();
     }, false);
     class GlobalData extends Polymer.Element {
         static get is() {
@@ -65,21 +65,24 @@
         update() {
             this.locale = this.globalRef.locale;
             this.device = this.globalRef.device;
-            if (this.locale != null) {
-                window.localStorage.setItem("lang", this.globalRef.locale);
-            }
+            
         }
 
         setLocale(newLocale, oldLocale) {
             this.locale = newLocale;
             this.globalRef.locale = newLocale;
-            this.globalRef.update();
+            //made the change in my-app so that there is no constant writing in loop
+            // if (this.locale != null) {
+            //     window.localStorage.setItem("lang", this.globalRef.locale);
+            // }
+
+           // this.globalRef.update();
         }
 
         setDevice(newDevice, oldDevice) {
             this.device = newDevice;
             this.globalRef.device = newDevice;
-            this.globalRef.update();
+          //  this.globalRef.update();
         }
         _getLocale(ref) {
             return ref.locale;
@@ -89,13 +92,13 @@
         }
         constructor() {
             super();
-            __globalRef.__listeners.push(this);
+           // __globalRef.__listeners.push(this);
         }
 
 
         ready() { 
             super.ready();
-            this.update();
+            //this.update();
         }
     }
 

@@ -537,10 +537,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         _itemSelected(e) {
 	        var selectedItem = e.target.selectedItem;
+             
 	       
 	        var homepages = ["home","home-es", "home-fr"] ;
-	        if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
-	       // if (e.target.selectedItem.lang != localStorage.lang){    
+	       // if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
+	        if (e.target.selectedItem.lang != localStorage.lang){  
+                window.localStorage.setItem("lang", e.target.selectedItem.lang);  
 	            location.reload();
 	        }
 	      }
@@ -650,6 +652,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     console.log("got step data");
                     this.baseStepData = JSON.parse(response);
                     for (var lang in this.baseStepData) {
+
+                    	if (lang != this.lang) { continue; }
+
                         this.baseStepData[lang].steps.forEach(step => {
                             if (!!step.furtherResources) {
                                 if (step.furtherResources[0] == "/") {
