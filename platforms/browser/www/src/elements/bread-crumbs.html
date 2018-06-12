@@ -32,16 +32,16 @@
                         </app-link>
                         <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                             <div class="inline" page-name="default">
-                                <span aria-hidden="true">&gt;</span> 
+                                <span aria-hidden="true">></span> 
                                 <app-link href="/steps-landing" hidden$="[[!isEnglish]]"><div class="link inline">Steps</div></app-link>
                                 <app-link href="/steps-landing" hidden$="[[!isFrench]]"><div class="link inline">Étapes</div></app-link>
                                 <app-link href="/steps-landing" hidden$="[[!isSpanish]]"><div class="link inline">Pasos</div></app-link>
                                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                                     <div class="inline" page-name="step">
-                                        <span aria-hidden="true">&gt;</span> <localized-data value="step"></localized-data> [[step.index]]
+                                        <span aria-hidden="true">></span> <localized-data value="step"></localized-data> [[step.index]]
                                     </div>
                                     <div class="inline" page-name="topic">
-                                        &gt;
+                                        >
                                         <app-link href="/step/[[step.index]]" hidden$="[[!isEnglish]]">
                                             <div class="link inline">Step [[step.index]]
                                                 <!--[[step.stepTitle]]-->
@@ -60,40 +60,40 @@
                                             </div>
                                         </app-link>
 
-                                        <span aria-hidden="true">&gt;</span> <localized-data value="topic"></localized-data> [[topic.index]] / [[step.topics.length]]
+                                        <span aria-hidden="true">></span> <localized-data value="topic"></localized-data> [[topic.index]] / [[step.topics.length]]
                                         <!--[[topic.title]]-->
                                     </div>
                                 </iron-pages>
                             </div>
                             <div class="inline" page-name="info-why-develop-page">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="why_develop"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="why_develop"></localized-data>
                             </div>
                             <div class="inline" page-name="info-basics-page">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="basics_of"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="basics_of"></localized-data>
                             </div>
                             <div class="inline" page-name="info-about-page">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="about_this_app"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="about_this_app"></localized-data>
                             </div>
                             <div class="inline" page-name="info-what-are-page">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="what_are"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="what_are"></localized-data>
                             </div>
                             <div class="inline" page-name="info-root-causes-page">
-                                <span aria-hidden="true">&gt;</span> Addressing Root Causes
+                                <span aria-hidden="true">></span> Addressing Root Causes
                             </div>
                             <div class="inline" page-name="info-key-resources">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="key_r"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="key_r"></localized-data>
                             </div>
                             <div class="inline" page-name="index-info">
-                                <span aria-hidden="true">&gt;</span> More Info
+                                <span aria-hidden="true">></span> More Info
                             </div>
                             <div class="inline" page-name="steps-landing">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="steps"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="steps"></localized-data>
                             </div>
                             <div class="inline" page-name="search-results">
-                                <span aria-hidden="true">&gt;</span> Search Results
+                                <span aria-hidden="true">></span> Search Results
                             </div>
                             <div class="inline" page-name="info">
-                                <span aria-hidden="true">&gt;</span> Info
+                                <span aria-hidden="true">></span> Info
                             </div>
                         </iron-pages>
                     </div>
