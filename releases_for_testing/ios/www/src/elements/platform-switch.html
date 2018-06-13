@@ -8,7 +8,11 @@
         </style>
         <global-data id="data" device="{{device}}"></global-data>
         <iron-pages class="inline" attr-for-selected="page-name" selected="[[device]]" fallback-selection="error">
-            
+            <!--<div page-name="error">
+                ERROR
+            </div> 
+            Uncomment the above lines if there is a problem 
+        -->
             <div page-name="browser">
                 <slot name="browser"></slot>
             </div> 

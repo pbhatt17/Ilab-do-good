@@ -1,0 +1,1928 @@
+{
+    "en": {
+        "info": [{
+                "id": "info-about-page",
+                "title": "About this Toolkit",
+                "url": "/info-pages/about-page.html",
+                "preview": "About This Toolkit",
+                "keywords": ["Child Labor", "Forced Labor"]
+            },
+            {
+                "id": "info-what-are-page",
+                "title": "What are Child Labor and Forced Labor?",
+                "url": "/info-pages/what-are.html",
+                "preview": "What are Child Labor and Forced Labor?",
+                "keywords": ["Child Labor", "Forced Labor"]
+            },
+            {
+                "id": "info-why-develop-page",
+                "title": "Why Develop a Social Compliance System?",
+                "url": "/info-pages/why-develop.html",
+                "hidden": true,
+                "preview": "Why Develop a Social Compliance System?",
+                "keywords": ["Laws"]
+            },
+            {
+                "id": "info-basics-page",
+                "title": "Basics of a Social Compliance System",
+                "url": "/info-pages/basics.html",
+                "hidden": true,
+                "preview": "Basics of a Social Compliance System",
+                "keywords": ["Management systems"]
+            },
+            {
+                "id": "info-key-resources",
+                "title": "Key Resources",
+                "url": "/info-pages/key-resources.html",
+                "hidden": true,
+                "preview": "Key Resources",
+                "keywords": []
+            }
+        ],
+        "steps": [{
+                "index": 1,
+                "type": "splash",
+                "stepTitle": "Step 1: Engage Stakeholders and Partners",
+                "preview": "This is a sample preview for Step 1",
+                "keywords": ["Stakeholder", "Community"],
+                "learningObjectives": [
+                    "Understand the importance of getting external entities involved in your social compliance system.",
+                    "Become familiar with the various forms that engagement can take, including specific examples of partnerships and other collaboration.",
+                    "Identify and engage with your stakeholders."
+                ],
+                "keyTerms": [{
+                        "termName": "Stakeholder",
+                        "termDefinition": "A person or group directly or indirectly affected by, or otherwise having an interest in, your company’s policies and/or actions.  The term stakeholder is widely used in government, business, and civil society organizations, not solely in relation to social compliance.  However, a company’s social compliance program may have a subset of stakeholders that is distinct from those of the company as a whole."
+                    },
+                    {
+                        "termName": "Community",
+                        "termDefinition": "For purposes of this toolkit, a community is comprised of the people in a geographic area (neighborhood, village, town, region) located at some point along your company’s supply chain. The communities in your company’s supply chains are among your stakeholders. "
+                    }
+                ],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'Why Seek Stakeholder Engagement?'",
+                        "keywords": [],
+                        "title": "Why Seek Stakeholder Engagement?",
+                        "url": "/topics/step1/topic1.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "What Can Stakeholders Do?",
+                        "url": "/topics/step1/topic2.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Engaging Your Stakeholders",
+                        "url": "/topics/step1/topic3.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Multi-Stakeholder Groups",
+                        "url": "/topics/step1/topic4.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Industry Associations and Initiatives",
+                        "url": "/topics/step1/topic5.html"
+                    },
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Certification Programs",
+                        "url": "/topics/step1/topic6.html"
+                    }
+                ],
+                "furtherResources": "/topics/step1/bib.html"
+            },
+            {
+                "index": 2,
+                "type": "splash",
+                "stepTitle": "Step 2:  Assess Risks And Impacts",
+                "preview": "This is a sample preview for Step 2",
+                "keywords": ["Due diligence", "Risk", "Impact"],
+                "learningObjectives": [
+                    "Understand the importance of risk and impact assessment as part of an overall due diligence approach.",
+                    "Understand supply chain mapping as a critical step in assessing risks and impacts of labor abuse.",
+                    "Learn the steps involved in risk and impact assessment and what resources are available.",
+                    "Know how to use your assessment information and available resources."
+                ],
+                "keyTerms": [{
+                        "termName": "Due Diligence",
+                        "termDefinition": "As defined by the United Nations Guiding Principles on Business and Human Rights, a process that includes assessing actual and potential human rights impacts (including fundamental labor rights such as child labor and forced labor), integrating and acting upon the findings, tracking responses and communicating how impacts are addressed.  Due diligence should cover assessment of the adverse impacts that a business may cause or contribute to through its own activities, as well as those that may be directly linked to its operations, products or services through business relationships.  Due diligence varies in complexity with the size of a business enterprise, the risk of severe human rights impacts and the nature and context of a business’s operations. "
+                    },
+                    {
+                        "termName": "Risk",
+                        "termDefinition": "A situation that increases the potential for damage to your company, such as reputational damage or legal liability, or damage to individuals or entities affected by your company’s activities or linked to your company’s operations, products or services through business relationships.  "
+                    },
+                    {
+                        "termName": "Impact",
+                        "termDefinition": "A situation in which damage has been done to your company, such as reputational damage or legal liability, or to individuals or entities affected by your company’s activities or linked to your company’s operations, products or services through business relationships. "
+                    }
+                ],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'Why Seek Stakeholder Engagement?'",
+                        "keywords": [],
+                        "title": "Why Conduct Risk and Impact Assessments?",
+                        "url": "/topics/step2/topic1.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Assessing Internal Impacts and Risk Factors",
+                        "url": "/topics/step2/topic2.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 3",
+                        "keywords": [],
+                        "title": "Assessing External Impacts and Risk Factors",
+                        "url": "/topics/step2/topic3.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 3",
+                        "keywords": [],
+                        "title": "Supply Chain Mapping",
+                        "url": "/topics/step2/topic4.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Risk and Impact Information Gathering",
+                        "url": "/topics/step2/topic5.html"
+                    },
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Assessing and Addressing Root Causes",
+                        "url": "/topics/step2/topic6.html"
+                    },
+                    {
+                        "index": 7,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Using Risk and Impact Assessment Information",
+                        "url": "/topics/step2/topic7.html"
+                    },
+                    {
+                        "index": 8,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Social Compliance Data Management",
+                        "url": "/topics/step2/topic8.html"
+                    }
+                ],
+                "furtherResources": "/topics/step2/bib.html"
+            },
+            {
+                "index": 3,
+                "type": "splash",
+                "stepTitle": "Step 3:  Develop a Code of Conduct",
+                "preview": "This is a sample preview for Step 3",
+                "keywords": ["Code of conduct", "Code"],
+                "learningObjectives": [
+                    "Know the main standards that should be included in a good code of conduct.",
+                    "Understand the basic steps involved in developing and revising a code.",
+                    "Become familiar with industry or cross-sector codes that may be relevant to you."
+                ],
+                "keyTerms": [{
+                    "termName": "Code of Conduct (\"Code\")",
+                    "termDefinition": "<p>The foundation of a social compliance program, a code of conduct is a document that sets out the social (and often, environmental) standards and policies with which a company and its suppliers are expected to comply.  Many companies refer to their codes by a name other than “code of conduct,” such as “terms of engagement,” “supplier expectations,” and many others, but the term is used throughout this App for consistency and clarity.</p><p>A code is a set of voluntary standards; in this respect it differs from law—although relevant laws (both U.S. and source country) must be taken into account, as should collective bargaining agreements and international framework agreements (IFAs) with union federations, which are enforceable contracts.  A code is not a substitute for any of these instruments.</p>"
+                }],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'International Framework Agreements (IFAs)'",
+                        "keywords": [],
+                        "title": "International Framework Agreements (IFAs)",
+                        "url": "/topics/step3/topic1.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "What Makes a Good Code of Conduct?",
+                        "url": "/topics/step3/topic2.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Standards on Child Labor and Forced Labor",
+                        "url": "/topics/step3/topic3.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Addressing the Vulnerability of Migrants in Codes of Conduct",
+                        "url": "/topics/step3/topic4.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "How to Develop a Code",
+                        "url": "/topics/step3/topic5.html"
+                    },
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Joining an Existing Code",
+                        "url": "/topics/step3/topic6.html"
+                    },
+                    {
+                        "index": 7,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Communicating the Code",
+                        "url": "/topics/step3/topic7.html"
+                    }
+                ],
+                "furtherResources": "/topics/step3/bib.html"
+            },
+            {
+                "index": 4,
+                "type": "splash",
+                "stepTitle": "Step 4:  Communicate and Train across your Supply Chain",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Grievance", "Grievance Mechanism", "Training", "Worker Voice"],
+                "learningObjectives": [
+                    "Identify the people and groups to whom you should communicate and provide training.",
+                    "Define the topics that should be covered in communication and training activities for each group.",
+                    "Learn about appropriate communication channels and training formats for different audiences.",
+                    "Understand how to put effective grievance mechanisms in place."
+                ],
+                "keyTerms": [{
+                    "termName": "Grievance",
+                    "termDefinition": "A concern or complaint raised by an individual or a group within a community affected by company operations."
+                }],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'Communicating, Not Policing'",
+                        "keywords": [],
+                        "title": "Communicating, Not Policing",
+                        "url": "/topics/step4/topic1.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Who Should be Trained?",
+                        "url": "/topics/step4/topic2.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "What Topics Should Training and Capacity-Building Cover?",
+                        "url": "/topics/step4/topic3.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Where, When and How Should Training be Conducted?",
+                        "url": "/topics/step4/topic4.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Grievance Mechanisms",
+                        "url": "/topics/step4/topic5.html"
+                    }
+                ],
+                "furtherResources": "/topics/step4/bib.html",
+                "trainingMats": "/topics/step4/training.html"
+            },
+            {
+                "index": 5,
+                "type": "splash",
+                "stepTitle": "Step 5:  Monitor Compliance",
+                "preview": "This is a sample preview for Step 5",
+                "keywords": ["Social Audit", "Auditing", "Monitoring"],
+                "learningObjectives": [
+                    "Understand the personnel requirements for your auditing activities.",
+                    "Know what tools your auditors need to do their job.",
+                    "Decide how you will schedule audits.",
+                    "Understand the components and flow of a typical audit.",
+                    "Learn good practices for managing, analyzing and using audit data."
+                ],
+                "keyTerms": [{
+                        "termName": "Social Audit (“Audit”)",
+                        "termDefinition": "The process of examining a specific worksite’s compliance with the standards set in the company’s code of conduct. The term “audit” is used throughout the App to refer to social auditing, but should not be confused with financial and other types of auditing undertaken by companies."
+
+                    },
+
+                    {
+                        "termName": "Monitoring",
+                        "termDefinition": "For the purposes of this App, synonymous with auditing."
+                    }
+                ],
+                "extraInfo": "/topics/step5/extraInfo.html",
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Auditing: Getting Started ",
+                        "url": "/topics/step5/topic1.html"
+                    },
+
+
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "The Audit Team",
+                        "url": "/topics/step5/topic2.html"
+                    },
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Audit Tools",
+                        "url": "/topics/step5/topic3.html"
+                    },
+
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Scheduling Audits",
+                        "url": "/topics/step5/topic4.html"
+                    },
+
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Steps in an Audit",
+                        "url": "/topics/step5/topic5.html"
+                    },
+
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "How to Interview a Child",
+                        "url": "/topics/step5/topic6.html"
+                    },
+
+                    {
+                        "index": 7,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Special Topic: Informal Subcontracting and “Homework”",
+                        "url": "/topics/step5/topic7.html"
+                    },
+
+                    {
+                        "index": 8,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Special Topic: Community-Based Child Labor Monitoring Systems",
+                        "url": "/topics/step5/topic8.html"
+                    },
+
+                    {
+                        "index": 9,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Managing Audit Data",
+                        "url": "/topics/step5/topic9.html"
+                    }
+
+                ],
+                "furtherResources": "/topics/step5/bib.html"
+            },
+
+
+
+
+            {
+                "index": 6,
+                "type": "splash",
+                "stepTitle": "Step 6:  Remediate Violations",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Violation", "Remediation", "Corrective Action Plan", "CAP"],
+                "learningObjectives": [
+                    "Understand the distinction between correcting a violation and implementing systems to prevent it from recurring.",
+                    "Learn about specific actions you can take to correct child labor and forced labor violations and prevent them from recurring.",
+                    "Understand the basic structure of a Corrective Action Plan (CAP) as well as options for developing and implementing one."
+                ],
+                "keyTerms": [{
+                        "termName": "Violation",
+                        "termDefinition": "A situation identified through an audit that is in breach of the code of conduct."
+                    },
+                    {
+                        "termName": "Remediation",
+                        "termDefinition": "The actions taken in response to a code of conduct violation identified in an audit. Remediation actions should both fix the problem and prevent it from recurring."
+                    },
+                    {
+                        "termName": "Corrective Action Plan (CAP)",
+                        "termDefinition": "A plan of action for remediation of all violations found in a particular audit. "
+                    }                
+                ],
+                "extraInfo": "/topics/step6/extraInfo.html",
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Improving Victim Situations",
+                        "url": "/topics/step6/topic1.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Preventing Recurrence",
+                        "url": "/topics/step6/topic2.html"
+                    },
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Corrective Action Plan",
+                        "url": "/topics/step6/topic3.html"
+                    },
+
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Communication About Remediation",
+                        "url": "/topics/step6/topic4.html"
+                    }
+
+
+                ]
+            },
+            {
+                "index": 7,
+                "type": "splash",
+                "stepTitle": "Step 7: Independent Review",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Independent review", "Independent monitoring", "Independent verification", "Certification body", "CB", "Impact Evaluation"],
+                "learningObjectives": [
+                    "Understand the difference between auditing and independent review, and understand the importance of independent review as a critical step in the social compliance process.",
+                    "Learn how impact evaluation may benefit your program."
+                ],
+                "keyTerms": [{
+                        "termName": "Independent Review",
+                        "termDefinition": "Independent review consists of independent monitoring (auditing) and independent verification.  Independence in the social compliance context is defined by a lack of a direct financial transaction between the company and external entity."
+                    },
+
+                    {
+                        "termName": "Independent Monitoring (Auditing)",
+                        "termDefinition": "Monitoring/auditing carried out by audit professionals accredited by institutions or mechanisms; their role is to ensure that auditing takes place while eliminating any direct financial transaction between the company and the auditor. Typically, a company pays a separate, independent institution for auditing services, and/or for membership in that body. The institution accredits auditors under its established standards and is responsible for scheduling and oversight of all audits.  While this is designed to increase the credibility of the audit, in some sectors or geographic locations, this arrangement may not be available.  In addition, even without a direct financial transaction, some stakeholders may still have concerns about the degree of an auditor’s independence from the audited entity. Varying degrees of independence exist, and independence ultimately needs to be judged on a case-by-case basis."
+                    },
+                    {
+                        "termName": "Independent Verification",
+                        "termDefinition": "Independent third-party review of the implementation and effectiveness of the other activities of the social compliance system, usually carried out by a Certification Body."
+                    },
+                    {
+                        "termName": "Certification Body (CB)",
+                        "termDefinition": "An organization accredited to certify or verify another entity’s compliance with a specified standard or set of standards."
+                    },
+
+                    {
+                        "termName": "Impact Evaluation",
+                        "termDefinition": "A method that establishes, with statistical rigor, a causal linkage and quantifiable impact of a specific intervention."
+                    }
+
+                ],
+                "extraInfo": "/topics/step7/extraInfo.html",
+                "topics": [
+
+                    {
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Independent Monitoring (Auditing)",
+                        "url": "/topics/step7/topic1.html"
+                    },
+
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Independent Verification",
+                        "url": "/topics/step7/topic2.html"
+                    },
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Impact Evaluation",
+                        "url": "/topics/step7/topic3.html"
+                    }
+
+                ],
+                "furtherResources": "/topics/step7/bib.html"
+            },
+            {
+                "index": 8,
+                "type": "splash",
+                "stepTitle": "Step 8: Report Performance",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Public reporting"],
+                "learningObjectives": [
+                    "Understand the reasons for reporting publicly on social compliance programs, and the benefits for companies.",
+                    "Understand the nature and scope of the information that should be reported.",
+                    "Get a sense of the work involved in preparing and issuing public reports."
+                ],
+                "keyTerms": [{
+                        "termName": "Public Reporting",
+                        "termDefinition": "Communication that is made available to the public, through a variety of channels, about all elements of a company’s social compliance system."}],
+                "extraInfo": "/topics/step8/extraInfo.html",
+                "topics": [
+
+
+                    {
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Forms of Public Reporting",
+                        "url": "/topics/step8/topic1.html"
+                    },
+
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Why Produce Public Reporting?",
+                        "url": "/topics/step8/topic2.html"
+                    },
+
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "What to Include in Public Reporting",
+                        "url": "/topics/step8/topic3.html"
+                    },
+
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "The Reporting Team",
+                        "url": "/topics/step8/topic4.html"
+                    }
+
+                ],
+                "furtherResources": "/topics/step8/bib.html"
+            }
+        ]
+    },
+
+
+    "es": {
+        "info": [{
+                "id": "info-about-page",
+                "title": "Acerca de este kit de herramientas",
+                "url": "/info-pages/about-page_es.html",
+                "preview": "About This Toolkit",
+                "keywords": ["Child Labor", "Forced Labor"]
+            },
+            {
+                "id": "info-what-are-page",
+                "title": "Qué es el trabajo infantil y el trabajo forzoso?",
+                "url": "/info-pages/what-are_es.html",
+                "preview": "What are Child Labor and Forced Labor?",
+                "keywords": ["Child Labor", "Forced Labor"]
+            },
+            {
+                "id": "info-why-develop-page",
+                "title": "Por qué desarrollar un sistema de cumplimiento social?",
+                "url": "/info-pages/why-develop_es.html",
+                "hidden": true,
+                "preview": "Why Develop a Social Compliance System?",
+                "keywords": ["Laws"]
+            },
+            {
+                "id": "info-basics-page",
+                "title": "Conceptos básicos de un sistema de cumplimiento social",
+                "url": "/info-pages/basics_es.html",
+                "hidden": true,
+                "preview": "Basics of a Social Compliance System",
+                "keywords": ["Management systems"]
+            },
+            {
+                "id": "info-key-resources",
+                "title": "Recursos clave",
+                "url": "/info-pages/key-resources_es.html",
+                "hidden": true,
+                "preview": "Key Resources",
+                "keywords": []
+            }
+        ],
+        "steps": [{
+                "index": 1,
+                "type": "splash",
+                "stepTitle": "Paso 1: Involucrar a los interesados ​​y socios",
+                "preview": "This is a sample preview for Step 1",
+                "keywords": ["Stakeholder", "Community"],
+                "learningObjectives": [
+                    "Comprenda la importancia de involucrar a las entidades externas en su sistema de cumplimiento social.",
+                    "Familiarícese con las diversas formas que puede tomar el compromiso, incluidos ejemplos específicos de asociaciones y otras colaboraciones.",
+                    "Identifique y comprométase con sus partes interesadas."
+                ],
+                "keyTerms": [{
+                        "termName": "Stakeholder",
+                        "termDefinition": "A person or group directly or indirectly affected by, or otherwise having an interest in, your company’s policies and/or actions.  The term stakeholder is widely used in government, business, and civil society organizations, not solely in relation to social compliance.  However, a company’s social compliance program may have a subset of stakeholders that is distinct from those of the company as a whole."
+                    },
+                    {
+                        "termName": "Community",
+                        "termDefinition": "For purposes of this toolkit, a community is comprised of the people in a geographic area (neighborhood, village, town, region) located at some point along your company’s supply chain. The communities in your company’s supply chains are among your stakeholders. "
+                    }
+                ],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'Why Seek Stakeholder Engagement?'",
+                        "keywords": [],
+                        "title": "Por qué buscar el compromiso de las partes interesadas?",
+                        "url": "/topics/step1/topic1_es.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Qué pueden hacer los interesados?",
+                        "url": "/topics/step1/topic2_es.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Involucrar a sus grupos de interés",
+                        "url": "/topics/step1/topic3_es.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Grupos de múltiples partes interesadas",
+                        "url": "/topics/step1/topic4_es.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Asociaciones e iniciativas industriales",
+                        "url": "/topics/step1/topic5_es.html"
+                    },
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Programas de certificación",
+                        "url": "/topics/step1/topic6_es.html"
+                    }
+                ],
+                "furtherResources": "/topics/step1/bib_es.html"
+            },
+            {
+                "index": 2,
+                "type": "splash",
+                "stepTitle": "Step 2:  Assess Risks And Impacts",
+                "preview": "This is a sample preview for Step 2",
+                "keywords": ["Due diligence", "Risk", "Impact"],
+                "learningObjectives": [
+                    "Understand the importance of risk and impact assessment as part of an overall due diligence approach.",
+                    "Understand supply chain mapping as a critical step in assessing risks and impacts of labor abuse.",
+                    "Learn the steps involved in risk and impact assessment and what resources are available.",
+                    "Know how to use your assessment information and available resources."
+                ],
+                "keyTerms": [{
+                        "termName": "Due Diligence",
+                        "termDefinition": "As defined by the United Nations Guiding Principles on Business and Human Rights, a process that includes assessing actual and potential human rights impacts (including fundamental labor rights such as child labor and forced labor), integrating and acting upon the findings, tracking responses and communicating how impacts are addressed.  Due diligence should cover assessment of the adverse impacts that a business may cause or contribute to through its own activities, as well as those that may be directly linked to its operations, products or services through business relationships.  Due diligence varies in complexity with the size of a business enterprise, the risk of severe human rights impacts and the nature and context of a business’s operations. "
+                    },
+                    {
+                        "termName": "Risk",
+                        "termDefinition": "A situation that increases the potential for damage to your company, such as reputational damage or legal liability, or damage to individuals or entities affected by your company’s activities or linked to your company’s operations, products or services through business relationships.  "
+                    },
+                    {
+                        "termName": "Impact",
+                        "termDefinition": "A situation in which damage has been done to your company, such as reputational damage or legal liability, or to individuals or entities affected by your company’s activities or linked to your company’s operations, products or services through business relationships. "
+                    }
+                ],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'Why Seek Stakeholder Engagement?'",
+                        "keywords": [],
+                        "title": "Pourquoi mener des évaluations des risques et des impacts?",
+                        "url": "/topics/step2/topic1_es.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Évaluer les impacts internes et les facteurs de risque",
+                        "url": "/topics/step2/topic2_es.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 3",
+                        "keywords": [],
+                        "title": "Évaluation des impacts externes et des facteurs de risque",
+                        "url": "/topics/step2/topic3_es.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 3",
+                        "keywords": [],
+                        "title": "Cartographie de la chaîne d'approvisionnement",
+                        "url": "/topics/step2/topic4_es.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Rassemblement d'informations sur les risques et les impacts",
+                        "url": "/topics/step2/topic5_es.html"
+                    },
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Évaluation et traitement des causes profondes",
+                        "url": "/topics/step2/topic6_es.html"
+                    },
+                    {
+                        "index": 7,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Utilisation des informations d'évaluation des risques et des impacts",
+                        "url": "/topics/step2/topic7_es.html"
+                    },
+                    {
+                        "index": 8,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Gestion des données de conformité sociale",
+                        "url": "/topics/step2/topic8_es.html"
+                    }
+                ],
+                "furtherResources": "/topics/step2/bib_es.html"
+            },
+            {
+                "index": 3,
+                "type": "splash",
+                "stepTitle": "Paso 3: Desarrollar un Código de Conducta",
+                "preview": "This is a sample preview for Step 3",
+                "keywords": ["Code of conduct", "Code"],
+                "learningObjectives": [
+                    "Know the main standards that should be included in a good code of conduct.",
+                    "Understand the basic steps involved in developing and revising a code.",
+                    "Become familiar with industry or cross-sector codes that may be relevant to you."
+                ],
+                "keyTerms": [{
+                    "termName": "Code of Conduct (\"Code\")",
+                    "termDefinition": "<p>The foundation of a social compliance program, a code of conduct is a document that sets out the social (and often, environmental) standards and policies with which a company and its suppliers are expected to comply.  Many companies refer to their codes by a name other than “code of conduct,” such as “terms of engagement,” “supplier expectations,” and many others, but the term is used throughout this App for consistency and clarity.</p><p>A code is a set of voluntary standards; in this respect it differs from law—although relevant laws (both U.S. and source country) must be taken into account, as should collective bargaining agreements and international framework agreements (IFAs) with union federations, which are enforceable contracts.  A code is not a substitute for any of these instruments.</p>"
+                }],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'International Framework Agreements (IFAs)'",
+                        "keywords": [],
+                        "title": "International Framework Agreements (IFAs)",
+                        "url": "/topics/step3/topic1_es.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "¿Qué hace un buen código de conducta?",
+                        "url": "/topics/step3/topic2_es.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Normas sobre el trabajo infantil y el trabajo forzoso",
+                        "url": "/topics/step3/topic3_es.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Abordar la vulnerabilidad de los migrantes en los códigos de conducta",
+                        "url": "/topics/step3/topic4_es.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Cómo desarrollar un código",
+                        "url": "/topics/step3/topic5_es.html"
+                    },
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Unirse a un código existente",
+                        "url": "/topics/step3/topic6_es.html"
+                    },
+                    {
+                        "index": 7,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Comunicando el código",
+                        "url": "/topics/step3/topic7_es.html"
+                    }
+                ],
+                "furtherResources": "/topics/step3/bib_es.html"
+            },
+            {
+                "index": 4,
+                "type": "splash",
+                "stepTitle": "Paso 4: comunícate y entrena a través de tu cadena de suministro",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Grievance", "Grievance Mechanism", "Training", "Worker Voice"],
+                "learningObjectives": [
+                    "Identify the people and groups to whom you should communicate and provide training.",
+                    "Define the topics that should be covered in communication and training activities for each group.",
+                    "Learn about appropriate communication channels and training formats for different audiences.",
+                    "Understand how to put effective grievance mechanisms in place."
+                ],
+                "keyTerms": [{
+                    "termName": "Grievance",
+                    "termDefinition": "A concern or complaint raised by an individual or a group within a community affected by company operations."
+                }],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'Communicating, Not Policing'",
+                        "keywords": [],
+                        "title": "Comunicando, no haciendo política",
+                        "url": "/topics/step4/topic1_es.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "¿Quién debe ser entrenado?",
+                        "url": "/topics/step4/topic2_es.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "¿Qué temas debe cubrir la capacitación y la creación de capacidad?",
+                        "url": "/topics/step4/topic3_es.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "¿Dónde, cuándo y cómo se debe llevar a cabo la capacitación?",
+                        "url": "/topics/step4/topic4_es.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Mecanismos de quejas",
+                        "url": "/topics/step4/topic5.html"
+                    }
+                ],
+                "furtherResources": "/topics/step4/bib_es.html",
+                "trainingMats": "/topics/step4/training_es.html"
+            },
+            {
+                "index": 5,
+                "type": "splash",
+                "stepTitle": "Step 5:  Monitor Compliance",
+                "preview": "This is a sample preview for Step 5",
+                "keywords": ["Social Audit", "Auditing", "Monitoring"],
+                "learningObjectives": [
+                    "Understand the personnel requirements for your auditing activities.",
+                    "Know what tools your auditors need to do their job.",
+                    "Decide how you will schedule audits.",
+                    "Understand the components and flow of a typical audit.",
+                    "Learn good practices for managing, analyzing and using audit data."
+                ],
+                "keyTerms": [{
+                        "termName": "Social Audit (“Audit”)",
+                        "termDefinition": "The process of examining a specific worksite’s compliance with the standards set in the company’s code of conduct. The term “audit” is used throughout the App to refer to social auditing, but should not be confused with financial and other types of auditing undertaken by companies."
+
+                    },
+
+                    {
+                        "termName": "Monitoring",
+                        "termDefinition": "For the purposes of this App, synonymous with auditing."
+                    }
+                ],
+                "extraInfo": "/topics/step5/extraInfo_es.html",
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Auditing: Getting Started ",
+                        "url": "/topics/step5/topic1_es.html"
+                    },
+
+
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "The Audit Team",
+                        "url": "/topics/step5/topic2_es.html"
+                    },
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Audit Tools",
+                        "url": "/topics/step5/topic3_es.html"
+                    },
+
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Scheduling Audits",
+                        "url": "/topics/step5/topic4_es.html"
+                    },
+
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Steps in an Audit",
+                        "url": "/topics/step5/topic5_es.html"
+                    },
+
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "How to Interview a Child",
+                        "url": "/topics/step5/topic6_es.html"
+                    },
+
+                    {
+                        "index": 7,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Special Topic: Informal Subcontracting and “Homework”",
+                        "url": "/topics/step5/topic7_es.html"
+                    },
+
+                    {
+                        "index": 8,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Special Topic: Community-Based Child Labor Monitoring Systems",
+                        "url": "/topics/step5/topic8_es.html"
+                    },
+
+                    {
+                        "index": 9,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Managing Audit Data",
+                        "url": "/topics/step5/topic9_es.html"
+                    }
+
+                ],
+                "furtherResources": "/topics/step5/bib_es.html"
+            },
+
+
+
+
+            {
+                "index": 6,
+                "type": "splash",
+                "stepTitle": "Step 6:  Remediate Violations",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Violation", "Remediation", "Corrective Action Plan", "CAP"],
+                "learningObjectives": [
+                    "Understand the distinction between correcting a violation and implementing systems to prevent it from recurring.",
+                    "Learn about specific actions you can take to correct child labor and forced labor violations and prevent them from recurring.",
+                    "Understand the basic structure of a Corrective Action Plan (CAP) as well as options for developing and implementing one."
+                ],
+                "keyTerms": [{
+                        "termName": "Violation",
+                        "termDefinition": "A situation identified through an audit that is in breach of the code of conduct."
+                    },
+                    {
+                        "termName": "Remediation",
+                        "termDefinition": "The actions taken in response to a code of conduct violation identified in an audit. Remediation actions should both fix the problem and prevent it from recurring."
+                    },
+                    {
+                        "termName": "Corrective Action Plan (CAP)",
+                        "termDefinition": "A plan of action for remediation of all violations found in a particular audit. "
+                    }                
+                ],
+                "extraInfo": "/topics/step6/extraInfo_es.html",
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Improving Victim Situations",
+                        "url": "/topics/step6/topic1_es.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Preventing Recurrence",
+                        "url": "/topics/step6/topic2_es.html"
+                    },
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Corrective Action Plan",
+                        "url": "/topics/step6/topic3_es.html"
+                    },
+
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Communication About Remediation",
+                        "url": "/topics/step6/topic4_es.html"
+                    }
+
+
+                ]
+            },
+            {
+                "index": 7,
+                "type": "splash",
+                "stepTitle": "Step 7: Independent Review",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Independent review", "Independent monitoring", "Independent verification", "Certification body", "CB", "Impact Evaluation"],
+                "learningObjectives": [
+                    "Understand the difference between auditing and independent review, and understand the importance of independent review as a critical step in the social compliance process.",
+                    "Learn how impact evaluation may benefit your program."
+                ],
+                "keyTerms": [{
+                        "termName": "Independent Review",
+                        "termDefinition": "Independent review consists of independent monitoring (auditing) and independent verification.  Independence in the social compliance context is defined by a lack of a direct financial transaction between the company and external entity."
+                    },
+
+                    {
+                        "termName": "Independent Monitoring (Auditing)",
+                        "termDefinition": "Monitoring/auditing carried out by audit professionals accredited by institutions or mechanisms; their role is to ensure that auditing takes place while eliminating any direct financial transaction between the company and the auditor. Typically, a company pays a separate, independent institution for auditing services, and/or for membership in that body. The institution accredits auditors under its established standards and is responsible for scheduling and oversight of all audits.  While this is designed to increase the credibility of the audit, in some sectors or geographic locations, this arrangement may not be available.  In addition, even without a direct financial transaction, some stakeholders may still have concerns about the degree of an auditor’s independence from the audited entity. Varying degrees of independence exist, and independence ultimately needs to be judged on a case-by-case basis."
+                    },
+                    {
+                        "termName": "Independent Verification",
+                        "termDefinition": "Independent third-party review of the implementation and effectiveness of the other activities of the social compliance system, usually carried out by a Certification Body."
+                    },
+                    {
+                        "termName": "Certification Body (CB)",
+                        "termDefinition": "An organization accredited to certify or verify another entity’s compliance with a specified standard or set of standards."
+                    },
+
+                    {
+                        "termName": "Impact Evaluation",
+                        "termDefinition": "A method that establishes, with statistical rigor, a causal linkage and quantifiable impact of a specific intervention."
+                    }
+
+                ],
+                "extraInfo": "/topics/step7/extraInfo_es.html",
+                "topics": [
+
+                    {
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Independent Monitoring (Auditing)",
+                        "url": "/topics/step7/topic1_es.html"
+                    },
+
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Independent Verification",
+                        "url": "/topics/step7/topic2_es.html"
+                    },
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Impact Evaluation",
+                        "url": "/topics/step7/topic3_es.html"
+                    }
+
+                ],
+                "furtherResources": "/topics/step7/bib_es.html"
+            },
+            {
+                "index": 8,
+                "type": "splash",
+                "stepTitle": "Step 8: Report Performance",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Public reporting"],
+                "learningObjectives": [
+                    "Understand the reasons for reporting publicly on social compliance programs, and the benefits for companies.",
+                    "Understand the nature and scope of the information that should be reported.",
+                    "Get a sense of the work involved in preparing and issuing public reports."
+                ],
+                "keyTerms": [{
+                        "termName": "Public Reporting",
+                        "termDefinition": "Communication that is made available to the public, through a variety of channels, about all elements of a company’s social compliance system."}],
+                "extraInfo": "/topics/step8/extraInfo_es.html",
+                "topics": [
+
+
+                    {
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Forms of Public Reporting",
+                        "url": "/topics/step8/topic1_es.html"
+                    },
+
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Why Produce Public Reporting?",
+                        "url": "/topics/step8/topic2_es.html"
+                    },
+
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "What to Include in Public Reporting",
+                        "url": "/topics/step8/topic3_es.html"
+                    },
+
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "The Reporting Team",
+                        "url": "/topics/step8/topic4_es.html"
+                    }
+
+                ],
+                "furtherResources": "/topics/step8/bib_es.html"
+            }
+        ]
+    },
+
+    "fr": {
+        "info": [{
+                "id": "info-about-page",
+                "title": "À propos de cette boîte à outils",
+                "url": "/info-pages/about-page_fr.html",
+                "preview": "About This Toolkit",
+                "keywords": ["Child Labor", "Forced Labor"]
+            },
+            {
+                "id": "info-what-are-page",
+                "title": "Qu'est-ce que le travail des enfants et le travail forcé?",
+                "url": "/info-pages/what-are_fr.html",
+                "preview": "What are Child Labor and Forced Labor?",
+                "keywords": ["Child Labor", "Forced Labor"]
+            },
+            {
+                "id": "info-why-develop-page",
+                "title": "Pourquoi développer un système de conformité sociale?",
+                "url": "/info-pages/why-develop_fr.html",
+                "hidden": true,
+                "preview": "Why Develop a Social Compliance System?",
+                "keywords": ["Laws"]
+            },
+            {
+                "id": "info-basics-page",
+                "title": "Bases d'un système de conformité sociale",
+                "url": "/info-pages/basics_fr.html",
+                "hidden": true,
+                "preview": "Basics of a Social Compliance System",
+                "keywords": ["Management systems"]
+            },
+            {
+                "id": "info-key-resources",
+                "title": "Key Resources",
+                "url": "/info-pages/key-resources_fr.html",
+                "hidden": true,
+                "preview": "Key Resources",
+                "keywords": []
+            }
+        ],
+        "steps": [{
+                "index": 1,
+                "type": "splash",
+                "stepTitle": "Étape 1: Engager les parties prenantes et les partenaires",
+                "preview": "This is a sample preview for Step 1",
+                "keywords": ["Stakeholder", "Community"],
+                "learningObjectives": [
+                    "Understand the importance of getting external entities involved in your social compliance system.",
+                    "Become familiar with the various forms that engagement can take, including specific examples of partnerships and other collaboration.",
+                    "Identify and engage with your stakeholders."
+                ],
+                "keyTerms": [{
+                        "termName": "Stakeholder",
+                        "termDefinition": "A person or group directly or indirectly affected by, or otherwise having an interest in, your company’s policies and/or actions.  The term stakeholder is widely used in government, business, and civil society organizations, not solely in relation to social compliance.  However, a company’s social compliance program may have a subset of stakeholders that is distinct from those of the company as a whole."
+                    },
+                    {
+                        "termName": "Community",
+                        "termDefinition": "For purposes of this toolkit, a community is comprised of the people in a geographic area (neighborhood, village, town, region) located at some point along your company’s supply chain. The communities in your company’s supply chains are among your stakeholders. "
+                    }
+                ],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'Why Seek Stakeholder Engagement?'",
+                        "keywords": [],
+                        "title": "Pourquoi chercher l'engagement des parties prenantes?",
+                        "url": "/topics/step1/topic1_fr.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Que peuvent faire les intervenants?",
+                        "url": "/topics/step1/topic2_fr.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Engager vos parties prenantes",
+                        "url": "/topics/step1/topic3_fr.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Groupes multi-parties prenantes",
+                        "url": "/topics/step1/topic4_fr.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Associations industrielles et initiatives",
+                        "url": "/topics/step1/topic5_fr.html"
+                    },
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Programmes de certification",
+                        "url": "/topics/step1/topic6_fr.html"
+                    }
+                ],
+                "furtherResources": "/topics/step1/bib_fr.html"
+            },
+            {
+                "index": 2,
+                "type": "splash",
+                "stepTitle": "Étape 2: Évaluer les risques et les répercussions",
+                "preview": "This is a sample preview for Step 2",
+                "keywords": ["Due diligence", "Risk", "Impact"],
+                "learningObjectives": [
+                    "Understand the importance of risk and impact assessment as part of an overall due diligence approach.",
+                    "Understand supply chain mapping as a critical step in assessing risks and impacts of labor abuse.",
+                    "Learn the steps involved in risk and impact assessment and what resources are available.",
+                    "Know how to use your assessment information and available resources."
+                ],
+                "keyTerms": [{
+                        "termName": "Due Diligence",
+                        "termDefinition": "As defined by the United Nations Guiding Principles on Business and Human Rights, a process that includes assessing actual and potential human rights impacts (including fundamental labor rights such as child labor and forced labor), integrating and acting upon the findings, tracking responses and communicating how impacts are addressed.  Due diligence should cover assessment of the adverse impacts that a business may cause or contribute to through its own activities, as well as those that may be directly linked to its operations, products or services through business relationships.  Due diligence varies in complexity with the size of a business enterprise, the risk of severe human rights impacts and the nature and context of a business’s operations. "
+                    },
+                    {
+                        "termName": "Risk",
+                        "termDefinition": "A situation that increases the potential for damage to your company, such as reputational damage or legal liability, or damage to individuals or entities affected by your company’s activities or linked to your company’s operations, products or services through business relationships.  "
+                    },
+                    {
+                        "termName": "Impact",
+                        "termDefinition": "A situation in which damage has been done to your company, such as reputational damage or legal liability, or to individuals or entities affected by your company’s activities or linked to your company’s operations, products or services through business relationships. "
+                    }
+                ],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'Why Seek Stakeholder Engagement?'",
+                        "keywords": [],
+                        "title": "Pourquoi mener des évaluations des risques et des impacts?",
+                        "url": "/topics/step2/topic1_fr.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Évaluer les impacts internes et les facteurs de risque",
+                        "url": "/topics/step2/topic2_fr.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 3",
+                        "keywords": [],
+                        "title": "Évaluation des impacts externes et des facteurs de risque",
+                        "url": "/topics/step2/topic3_fr.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 3",
+                        "keywords": [],
+                        "title": "Cartographie de la chaîne d'approvisionnement",
+                        "url": "/topics/step2/topic4_fr.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Rassemblement d'informations sur les risques et les impacts",
+                        "url": "/topics/step2/topic5_fr.html"
+                    },
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Évaluation et traitement des causes profondes",
+                        "url": "/topics/step2/topic6_fr.html"
+                    },
+                    {
+                        "index": 7,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Utilisation des informations d'évaluation des risques et des impacts",
+                        "url": "/topics/step2/topic7_fr.html"
+                    },
+                    {
+                        "index": 8,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 2 Topic 2",
+                        "keywords": [],
+                        "title": "Gestion des données de conformité sociale",
+                        "url": "/topics/step2/topic8_fr.html"
+                    }
+                ],
+                "furtherResources": "/topics/step2/bib_fr.html"
+            },
+            {
+                "index": 3,
+                "type": "splash",
+                "stepTitle": "Étape 3: Élaborer un code de conduite",
+                "preview": "This is a sample preview for Step 3",
+                "keywords": ["Code of conduct", "Code"],
+                "learningObjectives": [
+                    "Know the main standards that should be included in a good code of conduct.",
+                    "Understand the basic steps involved in developing and revising a code.",
+                    "Become familiar with industry or cross-sector codes that may be relevant to you."
+                ],
+                "keyTerms": [{
+                    "termName": "Code of Conduct (\"Code\")",
+                    "termDefinition": "<p>The foundation of a social compliance program, a code of conduct is a document that sets out the social (and often, environmental) standards and policies with which a company and its suppliers are expected to comply.  Many companies refer to their codes by a name other than “code of conduct,” such as “terms of engagement,” “supplier expectations,” and many others, but the term is used throughout this App for consistency and clarity.</p><p>A code is a set of voluntary standards; in this respect it differs from law—although relevant laws (both U.S. and source country) must be taken into account, as should collective bargaining agreements and international framework agreements (IFAs) with union federations, which are enforceable contracts.  A code is not a substitute for any of these instruments.</p>"
+                }],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'International Framework Agreements (IFAs)'",
+                        "keywords": [],
+                        "title": "International Framework Agreements (IFAs)",
+                        "url": "/topics/step3/topic1_fr.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Qu'est-ce qui fait un bon code de conduite?",
+                        "url": "/topics/step3/topic2_fr.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Normes sur le travail des enfants et le travail forcé",
+                        "url": "/topics/step3/topic3_fr.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Aborder la vulnérabilité des migrants dans les codes de conduite",
+                        "url": "/topics/step3/topic4_fr.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Comment développer un code",
+                        "url": "/topics/step3/topic5_fr.html"
+                    },
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Rejoindre un code existant",
+                        "url": "/topics/step3/topic6_fr.html"
+                    },
+                    {
+                        "index": 7,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Communiquer le code",
+                        "url": "/topics/step3/topic7_fr.html"
+                    }
+                ],
+                "furtherResources": "/topics/step3/bib_fr.html"
+            },
+            {
+                "index": 4,
+                "type": "splash",
+                "stepTitle": "Étape 4: Communiquer et former à travers votre chaîne d'approvisionnement",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Grievance", "Grievance Mechanism", "Training", "Worker Voice"],
+                "learningObjectives": [
+                    "Identify the people and groups to whom you should communicate and provide training.",
+                    "Define the topics that should be covered in communication and training activities for each group.",
+                    "Learn about appropriate communication channels and training formats for different audiences.",
+                    "Understand how to put effective grievance mechanisms in place."
+                ],
+                "keyTerms": [{
+                    "termName": "Grievance",
+                    "termDefinition": "A concern or complaint raised by an individual or a group within a community affected by company operations."
+                }],
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for 'Communicating, Not Policing'",
+                        "keywords": [],
+                        "title": "Communiquer, pas faire la police",
+                        "url": "/topics/step4/topic1_fr.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Qui devrait être formé?",
+                        "url": "/topics/step4/topic2_fr.html"
+                    },
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Quels sujets devraient couvrir la formation et le renforcement des capacités?",
+                        "url": "/topics/step4/topic3_fr.html"
+                    },
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Où, quand et comment la formation devrait-elle être dispensée?",
+                        "url": "/topics/step4/topic4_fr.html"
+                    },
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 2",
+                        "keywords": [],
+                        "title": "Mécanismes de griefs",
+                        "url": "/topics/step4/topic5_fr.html"
+                    }
+                ],
+                "furtherResources": "/topics/step4/bib_fr.html",
+                "trainingMats": "/topics/step4/training_fr.html"
+            },
+            {
+                "index": 5,
+                "type": "splash",
+                "stepTitle": "Step 5:  Monitor Compliance",
+                "preview": "This is a sample preview for Step 5",
+                "keywords": ["Social Audit", "Auditing", "Monitoring"],
+                "learningObjectives": [
+                    "Understand the personnel requirements for your auditing activities.",
+                    "Know what tools your auditors need to do their job.",
+                    "Decide how you will schedule audits.",
+                    "Understand the components and flow of a typical audit.",
+                    "Learn good practices for managing, analyzing and using audit data."
+                ],
+                "keyTerms": [{
+                        "termName": "Social Audit (“Audit”)",
+                        "termDefinition": "The process of examining a specific worksite’s compliance with the standards set in the company’s code of conduct. The term “audit” is used throughout the App to refer to social auditing, but should not be confused with financial and other types of auditing undertaken by companies."
+
+                    },
+
+                    {
+                        "termName": "Monitoring",
+                        "termDefinition": "For the purposes of this App, synonymous with auditing."
+                    }
+                ],
+                "extraInfo": "/topics/step5/extraInfo_fr.html",
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Auditing: Getting Started ",
+                        "url": "/topics/step5/topic1_fr.html"
+                    },
+
+
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "The Audit Team",
+                        "url": "/topics/step5/topic2_fr.html"
+                    },
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Audit Tools",
+                        "url": "/topics/step5/topic3_fr.html"
+                    },
+
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Scheduling Audits",
+                        "url": "/topics/step5/topic4_fr.html"
+                    },
+
+                    {
+                        "index": 5,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Steps in an Audit",
+                        "url": "/topics/step5/topic5_fr.html"
+                    },
+
+                    {
+                        "index": 6,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "How to Interview a Child",
+                        "url": "/topics/step5/topic6_fr.html"
+                    },
+
+                    {
+                        "index": 7,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Special Topic: Informal Subcontracting and “Homework”",
+                        "url": "/topics/step5/topic7_fr.html"
+                    },
+
+                    {
+                        "index": 8,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Special Topic: Community-Based Child Labor Monitoring Systems",
+                        "url": "/topics/step5/topic8_fr.html"
+                    },
+
+                    {
+                        "index": 9,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Managing Audit Data",
+                        "url": "/topics/step5/topic9_fr.html"
+                    }
+
+                ],
+                "furtherResources": "/topics/step5/bib_fr.html"
+            },
+
+
+
+
+            {
+                "index": 6,
+                "type": "splash",
+                "stepTitle": "Step 6:  Remediate Violations",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Violation", "Remediation", "Corrective Action Plan", "CAP"],
+                "learningObjectives": [
+                    "Understand the distinction between correcting a violation and implementing systems to prevent it from recurring.",
+                    "Learn about specific actions you can take to correct child labor and forced labor violations and prevent them from recurring.",
+                    "Understand the basic structure of a Corrective Action Plan (CAP) as well as options for developing and implementing one."
+                ],
+                "keyTerms": [{
+                        "termName": "Violation",
+                        "termDefinition": "A situation identified through an audit that is in breach of the code of conduct."
+                    },
+                    {
+                        "termName": "Remediation",
+                        "termDefinition": "The actions taken in response to a code of conduct violation identified in an audit. Remediation actions should both fix the problem and prevent it from recurring."
+                    },
+                    {
+                        "termName": "Corrective Action Plan (CAP)",
+                        "termDefinition": "A plan of action for remediation of all violations found in a particular audit. "
+                    }                
+                ],
+                "extraInfo": "/topics/step6/extraInfo_fr.html",
+                "topics": [{
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Improving Victim Situations",
+                        "url": "/topics/step6/topic1_fr.html"
+                    },
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Preventing Recurrence",
+                        "url": "/topics/step6/topic2_fr.html"
+                    },
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Corrective Action Plan",
+                        "url": "/topics/step6/topic3_fr.html"
+                    },
+
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Communication About Remediation",
+                        "url": "/topics/step6/topic4_fr.html"
+                    }
+
+
+                ]
+            },
+            {
+                "index": 7,
+                "type": "splash",
+                "stepTitle": "Step 7: Independent Review",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Independent review", "Independent monitoring", "Independent verification", "Certification body", "CB", "Impact Evaluation"],
+                "learningObjectives": [
+                    "Understand the difference between auditing and independent review, and understand the importance of independent review as a critical step in the social compliance process.",
+                    "Learn how impact evaluation may benefit your program."
+                ],
+                "keyTerms": [{
+                        "termName": "Independent Review",
+                        "termDefinition": "Independent review consists of independent monitoring (auditing) and independent verification.  Independence in the social compliance context is defined by a lack of a direct financial transaction between the company and external entity."
+                    },
+
+                    {
+                        "termName": "Independent Monitoring (Auditing)",
+                        "termDefinition": "Monitoring/auditing carried out by audit professionals accredited by institutions or mechanisms; their role is to ensure that auditing takes place while eliminating any direct financial transaction between the company and the auditor. Typically, a company pays a separate, independent institution for auditing services, and/or for membership in that body. The institution accredits auditors under its established standards and is responsible for scheduling and oversight of all audits.  While this is designed to increase the credibility of the audit, in some sectors or geographic locations, this arrangement may not be available.  In addition, even without a direct financial transaction, some stakeholders may still have concerns about the degree of an auditor’s independence from the audited entity. Varying degrees of independence exist, and independence ultimately needs to be judged on a case-by-case basis."
+                    },
+                    {
+                        "termName": "Independent Verification",
+                        "termDefinition": "Independent third-party review of the implementation and effectiveness of the other activities of the social compliance system, usually carried out by a Certification Body."
+                    },
+                    {
+                        "termName": "Certification Body (CB)",
+                        "termDefinition": "An organization accredited to certify or verify another entity’s compliance with a specified standard or set of standards."
+                    },
+
+                    {
+                        "termName": "Impact Evaluation",
+                        "termDefinition": "A method that establishes, with statistical rigor, a causal linkage and quantifiable impact of a specific intervention."
+                    }
+
+                ],
+                "extraInfo": "/topics/step7/extraInfo_fr.html",
+                "topics": [
+
+                    {
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Independent Monitoring (Auditing)",
+                        "url": "/topics/step7/topic1_fr.html"
+                    },
+
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Independent Verification",
+                        "url": "/topics/step7/topic2_fr.html"
+                    },
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Impact Evaluation",
+                        "url": "/topics/step7/topic3_fr.html"
+                    }
+
+                ],
+                "furtherResources": "/topics/step7/bib_fr.html"
+            },
+            {
+                "index": 8,
+                "type": "splash",
+                "stepTitle": "Step 8: Report Performance",
+                "preview": "This is a sample preview for Step 4",
+                "keywords": ["Public reporting"],
+                "learningObjectives": [
+                    "Understand the reasons for reporting publicly on social compliance programs, and the benefits for companies.",
+                    "Understand the nature and scope of the information that should be reported.",
+                    "Get a sense of the work involved in preparing and issuing public reports."
+                ],
+                "keyTerms": [{
+                        "termName": "Public Reporting",
+                        "termDefinition": "Communication that is made available to the public, through a variety of channels, about all elements of a company’s social compliance system."}],
+                "extraInfo": "/topics/step8/extraInfo_fr.html",
+                "topics": [
+
+
+                    {
+                        "index": 1,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Forms of Public Reporting",
+                        "url": "/topics/step8/topic1_fr.html"
+                    },
+
+                    {
+                        "index": 2,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "Why Produce Public Reporting?",
+                        "url": "/topics/step8/topic2_fr.html"
+                    },
+
+
+                    {
+                        "index": 3,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "What to Include in Public Reporting",
+                        "url": "/topics/step8/topic3_fr.html"
+                    },
+
+                    {
+                        "index": 4,
+                        "type": "other",
+                        "preview": "This is a sample preview for Step 1 Topic 3",
+                        "keywords": [],
+                        "title": "The Reporting Team",
+                        "url": "/topics/step8/topic4_fr.html"
+                    }
+
+                ],
+                "furtherResources": "/topics/step8/bib_fr.html"
+            }
+        ]
+    }
+}

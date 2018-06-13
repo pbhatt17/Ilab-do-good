@@ -31687,7 +31687,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     what_are:"Qu'est-ce que le travail des enfants et le travail forcé?",
                     contact_us:"Nous contacter",
                     key_r:"Ressources clés",
-                    steps:"Pas",
+                    steps:"Étapes",
                     topic:"Sujet",
                     step:"Étape",
                     learning_objectives:"Objectifs d'apprentissage",
@@ -31829,7 +31829,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
         <global-data id="data" device="{{device}}"></global-data>
         <iron-pages class="inline" attr-for-selected="page-name" selected="[[device]]" fallback-selection="error">
-            
+            <!--<div page-name="error">
+                ERROR
+            </div> 
+            Uncomment the above lines if there is a problem 
+        -->
             <div page-name="browser">
                 <slot name="browser"></slot>
             </div> 
@@ -32456,7 +32460,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <border-separator></border-separator>
             <app-link href="/info-basics-page">
             	<img class="link-icon" alt="Building Blocks" src="imgs/building blocks.png">
-            	Bases d'un système de conformité sociale
+            	Notions fondamentales d’un système de conformité sociale
             </app-link>
             <border-separator></border-separator>
             <app-link href="/steps-landing"><img class="link-icon" alt="Gear" src="imgs/gear.png"> Étapes vers un système de conformité sociale</app-link>
