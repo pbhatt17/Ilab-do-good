@@ -46,18 +46,29 @@
             <slot name="items"></slot>
         </iron-collapse>
     </template>
-    <script>
-    class ExpandableItem extends Polymer.Element {
-        static get is() {
+    <script>var ExpandableItem = function (_Polymer$Element) {
+    babelHelpers.inherits(ExpandableItem, _Polymer$Element);
+    babelHelpers.createClass(ExpandableItem, [{
+        key: '_labelText',
+        value: function _labelText(open) {
+            if (open) {
+                return "collapse";
+            } else {
+                return "expand";
+            }
+        }
+    }], [{
+        key: 'is',
+        get: function get() {
             return 'expandable-item';
         }
-
-
-        static get properties() {
+    }, {
+        key: 'properties',
+        get: function get() {
             return {
                 isOpened: {
                     type: Boolean,
-                    value: false,
+                    value: false
                 },
                 labelText: {
                     type: String,
@@ -72,47 +83,45 @@
                 }
             };
         }
+    }]);
 
-        _labelText(open) {
-            if(open) {
-                return "collapse";
-            } else {
-                return "expand";
-            }
-        }
+    function ExpandableItem() {
+        babelHelpers.classCallCheck(this, ExpandableItem);
+        return babelHelpers.possibleConstructorReturn(this, (ExpandableItem.__proto__ || Object.getPrototypeOf(ExpandableItem)).call(this));
+    }
 
-        constructor() {
-            super();
-        }
+    babelHelpers.createClass(ExpandableItem, [{
+        key: 'toggleOpen',
+        value: function toggleOpen() {
+            var _this2 = this;
 
-        toggleOpen() {
-            this._debouncer = Polymer.Debouncer.debounce(
-                this._debouncer, // initially undefined
-                Polymer.Async.timeOut.after(15),
-                () => {
+            this._debouncer = Polymer.Debouncer.debounce(this._debouncer, // initially undefined
+            Polymer.Async.timeOut.after(15), function () {
 
-                    this.isOpened = !this.isOpened;
-                    this.$.collapse.toggle();
-                });
-
-        }
-
-
-        ready() {
-            super.ready();
-            this.root.querySelector('paper-button').addEventListener('click', event => {
-                this.toggleOpen();
+                _this2.isOpened = !_this2.isOpened;
+                _this2.$.collapse.toggle();
             });
-            this.root.querySelector('paper-button').addEventListener('tap', event => {
-                this.toggleOpen();
+        }
+    }, {
+        key: 'ready',
+        value: function ready() {
+            var _this3 = this;
+
+            babelHelpers.get(ExpandableItem.prototype.__proto__ || Object.getPrototypeOf(ExpandableItem.prototype), 'ready', this).call(this);
+            this.root.querySelector('paper-button').addEventListener('click', function (event) {
+                _this3.toggleOpen();
+            });
+            this.root.querySelector('paper-button').addEventListener('tap', function (event) {
+                _this3.toggleOpen();
             });
             this.target = this;
-            if(this.isOpened) {
+            if (this.isOpened) {
                 this.$.collapse.show();
             }
         }
-    }
+    }]);
+    return ExpandableItem;
+}(Polymer.Element);
 
-    customElements.define(ExpandableItem.is, ExpandableItem);
-    </script>
+customElements.define(ExpandableItem.is, ExpandableItem);</script>
 </dom-module>

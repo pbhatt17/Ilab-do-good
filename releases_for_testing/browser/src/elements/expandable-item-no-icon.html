@@ -26,18 +26,20 @@
             <slot name="items"></slot>
         </iron-collapse>
     </template>
-    <script>
-    class ExpandableItemNoIcon extends Polymer.Element {
-        static get is() {
+    <script>var ExpandableItemNoIcon = function (_Polymer$Element) {
+    babelHelpers.inherits(ExpandableItemNoIcon, _Polymer$Element);
+    babelHelpers.createClass(ExpandableItemNoIcon, null, [{
+        key: 'is',
+        get: function get() {
             return 'expandable-item-no-icon';
         }
-
-
-        static get properties() {
+    }, {
+        key: 'properties',
+        get: function get() {
             return {
                 isOpened: {
                     type: Boolean,
-                    value: false,
+                    value: false
                 },
                 contentLabel: {
                     type: String,
@@ -48,35 +50,41 @@
                 }
             };
         }
+    }]);
 
-        constructor() {
-            super();
+    function ExpandableItemNoIcon() {
+        babelHelpers.classCallCheck(this, ExpandableItemNoIcon);
+        return babelHelpers.possibleConstructorReturn(this, (ExpandableItemNoIcon.__proto__ || Object.getPrototypeOf(ExpandableItemNoIcon)).call(this));
+    }
+
+    babelHelpers.createClass(ExpandableItemNoIcon, [{
+        key: 'toggleOpen',
+        value: function toggleOpen() {
+            var _this2 = this;
+
+            this._debouncer = Polymer.Debouncer.debounce(this._debouncer, // initially undefined
+            Polymer.Async.timeOut.after(15), function () {
+                _this2.isOpened = !_this2.isOpened;
+                _this2.$.collapse.toggle();
+            });
         }
+    }, {
+        key: 'ready',
+        value: function ready() {
+            var _this3 = this;
 
-        toggleOpen() {
-            this._debouncer = Polymer.Debouncer.debounce(
-                this._debouncer, // initially undefined
-                Polymer.Async.timeOut.after(15),
-                () => {
-                    this.isOpened = !this.isOpened;
-                    this.$.collapse.toggle();
-                });
-
-        }
-
-
-        ready() {
-            super.ready();
-            this.root.querySelector('button').addEventListener('click', event => {
-                this.toggleOpen();
+            babelHelpers.get(ExpandableItemNoIcon.prototype.__proto__ || Object.getPrototypeOf(ExpandableItemNoIcon.prototype), 'ready', this).call(this);
+            this.root.querySelector('button').addEventListener('click', function (event) {
+                _this3.toggleOpen();
             });
             if (this.isOpened) {
                 this.$.collapse.show();
             }
             this.target = this;
         }
-    }
+    }]);
+    return ExpandableItemNoIcon;
+}(Polymer.Element);
 
-    customElements.define(ExpandableItemNoIcon.is, ExpandableItemNoIcon);
-    </script>
+customElements.define(ExpandableItemNoIcon.is, ExpandableItemNoIcon);</script>
 </dom-module>

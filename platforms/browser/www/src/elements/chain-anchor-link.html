@@ -69,43 +69,50 @@
             </div>
         </platform-switch>
     </template>
-    <script>
-    class ChainAnchorLink extends Polymer.Element {
-        static get is() {
+    <script>var ChainAnchorLink = function (_Polymer$Element) {
+    babelHelpers.inherits(ChainAnchorLink, _Polymer$Element);
+    babelHelpers.createClass(ChainAnchorLink, null, [{
+        key: 'is',
+        get: function get() {
             return 'chain-anchor-link';
         }
-
-
-        static get properties() {
+    }, {
+        key: 'properties',
+        get: function get() {
             return {};
         }
+    }]);
 
-        constructor() {
-            super();
-        }
+    function ChainAnchorLink() {
+        babelHelpers.classCallCheck(this, ChainAnchorLink);
+        return babelHelpers.possibleConstructorReturn(this, (ChainAnchorLink.__proto__ || Object.getPrototypeOf(ChainAnchorLink)).call(this));
+    }
 
-        connectedCallback() {
-            super.connectedCallback();
+    babelHelpers.createClass(ChainAnchorLink, [{
+        key: 'connectedCallback',
+        value: function connectedCallback() {
+            var _this2 = this;
+
+            babelHelpers.get(ChainAnchorLink.prototype.__proto__ || Object.getPrototypeOf(ChainAnchorLink.prototype), 'connectedCallback', this).call(this);
             var slot = Polymer.dom(this.querySelector('slot'));
             var target = slot.queryDistributedElements('img')[0];
             target.removeAttribute("hidden");
             var map = slot.queryDistributedElements('map')[0];
             var areas = map.querySelectorAll('area');
 
-
             //var target = this.root.querySelector('img');
             //var areas = [].slice.call(this.root.querySelectorAll('area'));
-            areas.forEach(area => {
-                area.addEventListener('mouseover', () => {
+            areas.forEach(function (area) {
+                area.addEventListener('mouseover', function () {
                     target.src = "imgs/circle_nav_" + area.dataset.step + ".png";
                 });
 
-                area.addEventListener('mouseout', () => {
+                area.addEventListener('mouseout', function () {
                     target.src = "imgs/gear_demo_4.png";
                 });
-                area.addEventListener('click', (e) => {
+                area.addEventListener('click', function (e) {
                     e.preventDefault();
-                    this.dispatchEvent(new CustomEvent('link-followed', {
+                    _this2.dispatchEvent(new CustomEvent('link-followed', {
                         detail: {
                             step: area.dataset.step
                         },
@@ -115,14 +122,14 @@
             });
 
             this.recalcMap();
-            window.addEventListener('resize', (event) => {
+            window.addEventListener('resize', function (event) {
                 //img.style.height = img.offsetWidth + "px";
                 //imageMapResize(map, img);
             });
-
         }
-
-        recalcMap() {
+    }, {
+        key: 'recalcMap',
+        value: function recalcMap() {
             var slot = Polymer.dom(this.querySelector('slot'));
             var target = slot.queryDistributedElements('img')[0];
             target.removeAttribute("hidden");
@@ -133,26 +140,24 @@
 
             var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight - 110));
 
-
             var isFirefox = typeof InstallTrigger !== 'undefined';
 
-            setTimeout(() => {
+            setTimeout(function () {
                 if (!isFirefox) {
                     target.style.width = less + "px";
                     target.style.height = less + "px";
                 }
                 imageMapResize(map, target);
             }, 1);
-
         }
-
-
-        ready() {
-            super.ready();
-
+    }, {
+        key: 'ready',
+        value: function ready() {
+            babelHelpers.get(ChainAnchorLink.prototype.__proto__ || Object.getPrototypeOf(ChainAnchorLink.prototype), 'ready', this).call(this);
         }
-    }
+    }]);
+    return ChainAnchorLink;
+}(Polymer.Element);
 
-    customElements.define(ChainAnchorLink.is, ChainAnchorLink);
-    </script>
+customElements.define(ChainAnchorLink.is, ChainAnchorLink);</script>
 </dom-module>

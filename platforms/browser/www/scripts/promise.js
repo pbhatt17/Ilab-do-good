@@ -1,5 +1,5 @@
 if (window.Promise === undefined) {
-    (function(root) {
+    (function (root) {
 
         // Store setTimeout reference so promise-polyfill will be unaffected by
         // other code modifying setTimeout (like sinon.useFakeTimers())
@@ -9,13 +9,13 @@ if (window.Promise === undefined) {
 
         // Polyfill for Function.prototype.bind
         function bind(fn, thisArg) {
-            return function() {
+            return function () {
                 fn.apply(thisArg, arguments);
             };
         }
 
         function Promise(fn) {
-            if (typeof this !== 'object') throw new TypeError('Promises must be constructed via new');
+            if (babelHelpers.typeof(this) !== 'object') throw new TypeError('Promises must be constructed via new');
             if (typeof fn !== 'function') throw new TypeError('not a function');
             this._state = 0;
             this._handled = false;
@@ -34,7 +34,7 @@ if (window.Promise === undefined) {
                 return;
             }
             self._handled = true;
-            Promise._immediateFn(function() {
+            Promise._immediateFn(function () {
                 var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;
                 if (cb === null) {
                     (self._state === 1 ? resolve : reject)(deferred.promise, self._value);
@@ -55,7 +55,7 @@ if (window.Promise === undefined) {
             try {
                 // Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
                 if (newValue === self) throw new TypeError('A promise cannot be resolved with itself.');
-                if (newValue && (typeof newValue === 'object' || typeof newValue === 'function')) {
+                if (newValue && ((typeof newValue === 'undefined' ? 'undefined' : babelHelpers.typeof(newValue)) === 'object' || typeof newValue === 'function')) {
                     var then = newValue.then;
                     if (newValue instanceof Promise) {
                         self._state = 3;
@@ -83,7 +83,7 @@ if (window.Promise === undefined) {
 
         function finale(self) {
             if (self._state === 2 && self._deferreds.length === 0) {
-                Promise._immediateFn(function() {
+                Promise._immediateFn(function () {
                     if (!self._handled) {
                         Promise._unhandledRejectionFn(self._value);
                     }
@@ -111,11 +111,11 @@ if (window.Promise === undefined) {
         function doResolve(fn, self) {
             var done = false;
             try {
-                fn(function(value) {
+                fn(function (value) {
                     if (done) return;
                     done = true;
                     resolve(self, value);
-                }, function(reason) {
+                }, function (reason) {
                     if (done) return;
                     done = true;
                     reject(self, reason);
@@ -127,30 +127,30 @@ if (window.Promise === undefined) {
             }
         }
 
-        Promise.prototype['catch'] = function(onRejected) {
+        Promise.prototype['catch'] = function (onRejected) {
             return this.then(null, onRejected);
         };
 
-        Promise.prototype.then = function(onFulfilled, onRejected) {
-            var prom = new(this.constructor)(noop);
+        Promise.prototype.then = function (onFulfilled, onRejected) {
+            var prom = new this.constructor(noop);
 
             handle(this, new Handler(onFulfilled, onRejected, prom));
             return prom;
         };
 
-        Promise.all = function(arr) {
+        Promise.all = function (arr) {
             var args = Array.prototype.slice.call(arr);
 
-            return new Promise(function(resolve, reject) {
+            return new Promise(function (resolve, reject) {
                 if (args.length === 0) return resolve([]);
                 var remaining = args.length;
 
                 function res(i, val) {
                     try {
-                        if (val && (typeof val === 'object' || typeof val === 'function')) {
+                        if (val && ((typeof val === 'undefined' ? 'undefined' : babelHelpers.typeof(val)) === 'object' || typeof val === 'function')) {
                             var then = val.then;
                             if (typeof then === 'function') {
-                                then.call(val, function(val) {
+                                then.call(val, function (val) {
                                     res(i, val);
                                 }, reject);
                                 return;
@@ -171,24 +171,24 @@ if (window.Promise === undefined) {
             });
         };
 
-        Promise.resolve = function(value) {
-            if (value && typeof value === 'object' && value.constructor === Promise) {
+        Promise.resolve = function (value) {
+            if (value && (typeof value === 'undefined' ? 'undefined' : babelHelpers.typeof(value)) === 'object' && value.constructor === Promise) {
                 return value;
             }
 
-            return new Promise(function(resolve) {
+            return new Promise(function (resolve) {
                 resolve(value);
             });
         };
 
-        Promise.reject = function(value) {
-            return new Promise(function(resolve, reject) {
+        Promise.reject = function (value) {
+            return new Promise(function (resolve, reject) {
                 reject(value);
             });
         };
 
-        Promise.race = function(values) {
-            return new Promise(function(resolve, reject) {
+        Promise.race = function (values) {
+            return new Promise(function (resolve, reject) {
                 for (var i = 0, len = values.length; i < len; i++) {
                     values[i].then(resolve, reject);
                 }
@@ -196,10 +196,11 @@ if (window.Promise === undefined) {
         };
 
         // Use polyfill for setImmediate for performance gains
-        Promise._immediateFn = (typeof setImmediate === 'function' && function(fn) { setImmediate(fn); }) ||
-            function(fn) {
-                setTimeoutFunc(fn, 0);
-            };
+        Promise._immediateFn = typeof setImmediate === 'function' && function (fn) {
+            setImmediate(fn);
+        } || function (fn) {
+            setTimeoutFunc(fn, 0);
+        };
 
         Promise._unhandledRejectionFn = function _unhandledRejectionFn(err) {
             if (typeof console !== 'undefined' && console) {
@@ -230,6 +231,5 @@ if (window.Promise === undefined) {
         } else if (!root.Promise) {
             root.Promise = Promise;
         }
-
     })(this);
 }

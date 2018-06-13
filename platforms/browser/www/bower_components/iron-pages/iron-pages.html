@@ -6,9 +6,7 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<link rel="import" href="../polymer/polymer.html">
+--><link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../iron-selector/iron-selectable.html">
 
@@ -53,36 +51,29 @@ Example:
   </template>
 
   <script>
-    Polymer({
+Polymer({
 
-      is: 'iron-pages',
+  is: 'iron-pages',
 
-      behaviors: [
-        Polymer.IronResizableBehavior,
-        Polymer.IronSelectableBehavior
-      ],
+  behaviors: [Polymer.IronResizableBehavior, Polymer.IronSelectableBehavior],
 
-      properties: {
+  properties: {
 
-        // as the selected page is the only one visible, activateEvent
-        // is both non-sensical and problematic; e.g. in cases where a user
-        // handler attempts to change the page and the activateEvent
-        // handler immediately changes it back
-        activateEvent: {
-          type: String,
-          value: null
-        }
+    // as the selected page is the only one visible, activateEvent
+    // is both non-sensical and problematic; e.g. in cases where a user
+    // handler attempts to change the page and the activateEvent
+    // handler immediately changes it back
+    activateEvent: {
+      type: String,
+      value: null
+    }
 
-      },
+  },
 
-      observers: [
-        '_selectedPageChanged(selected)'
-      ],
+  observers: ['_selectedPageChanged(selected)'],
 
-      _selectedPageChanged: function(selected, old) {
-        this.async(this.notifyResize);
-      }
-    });
-
-  </script>
+  _selectedPageChanged: function _selectedPageChanged(selected, old) {
+    this.async(this.notifyResize);
+  }
+});</script>
 </dom-module>
