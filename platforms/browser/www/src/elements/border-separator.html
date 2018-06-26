@@ -19,33 +19,27 @@
         </style>
         <div class="line"></div>
     </template>
-    <script>var BorderSeparator = function (_Polymer$Element) {
-    babelHelpers.inherits(BorderSeparator, _Polymer$Element);
-    babelHelpers.createClass(BorderSeparator, null, [{
-        key: 'is',
-        get: function get() {
+    <script>
+    class BorderSeparator extends Polymer.Element {
+        static get is() {
             return 'border-separator';
         }
-    }, {
-        key: 'properties',
-        get: function get() {
+
+
+        static get properties() {
             return {};
         }
-    }]);
 
-    function BorderSeparator() {
-        babelHelpers.classCallCheck(this, BorderSeparator);
-        return babelHelpers.possibleConstructorReturn(this, (BorderSeparator.__proto__ || Object.getPrototypeOf(BorderSeparator)).call(this));
+
+        constructor() {
+            super();
+        }
+
+        ready() {
+            super.ready();
+        }
     }
 
-    babelHelpers.createClass(BorderSeparator, [{
-        key: 'ready',
-        value: function ready() {
-            babelHelpers.get(BorderSeparator.prototype.__proto__ || Object.getPrototypeOf(BorderSeparator.prototype), 'ready', this).call(this);
-        }
-    }]);
-    return BorderSeparator;
-}(Polymer.Element);
-
-customElements.define(BorderSeparator.is, BorderSeparator);</script>
+    customElements.define(BorderSeparator.is, BorderSeparator);
+    </script>
 </dom-module>

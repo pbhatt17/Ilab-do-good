@@ -6,17 +6,18 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="boot.html">
+-->
+
+<link rel="import" href="boot.html">
 
 <script>
 
-(function () {
+(function() {
 
   'use strict';
 
   // run a callback when HTMLImports are ready or immediately if
   // this api is not available.
-
   function whenImportsReady(cb) {
     if (window.HTMLImports) {
       HTMLImports.whenReady(cb);
@@ -43,11 +44,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    *   Defaults to `false`.
    * @return {HTMLLinkElement} The link element for the URL to be loaded.
    */
-  Polymer.importHref = function (href, onload, onerror, optAsync) {
-    var link = /** @type {HTMLLinkElement} */
-    document.head.querySelector('link[href="' + href + '"][import-href]');
+  Polymer.importHref = function(href, onload, onerror, optAsync) {
+    let link = /** @type {HTMLLinkElement} */
+      (document.head.querySelector('link[href="' + href + '"][import-href]'));
     if (!link) {
-      link = /** @type {HTMLLinkElement} */document.createElement('link');
+      link = /** @type {HTMLLinkElement} */ (document.createElement('link'));
       link.rel = 'import';
       link.href = href;
       link.setAttribute('import-href', '');
@@ -60,23 +61,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // NOTE: the link may now be in 3 states: (1) pending insertion,
     // (2) inflight, (3) already laoded. In each case, we need to add
     // event listeners to process callbacks.
-    var cleanup = function cleanup() {
+    let cleanup = function() {
       link.removeEventListener('load', loadListener);
       link.removeEventListener('error', errorListener);
-    };
-    var loadListener = function loadListener(event) {
+    }
+    let loadListener = function(event) {
       cleanup();
       // In case of a successful load, cache the load event on the link so
       // that it can be used to short-circuit this method in the future when
       // it is called with the same href param.
       link.__dynamicImportLoaded = true;
       if (onload) {
-        whenImportsReady(function () {
+        whenImportsReady(() => {
           onload(event);
         });
       }
     };
-    var errorListener = function errorListener(event) {
+    let errorListener = function(event) {
       cleanup();
       // In case of an error, remove the link from the document so that it
       // will be automatically created again the next time `importHref` is
@@ -85,7 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         link.parentNode.removeChild(link);
       }
       if (onerror) {
-        whenImportsReady(function () {
+        whenImportsReady(() => {
           onerror(event);
         });
       }
@@ -94,11 +95,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     link.addEventListener('error', errorListener);
     if (link.parentNode == null) {
       document.head.appendChild(link);
-      // if the link already loaded, dispatch a fake load event
-      // so that listeners are called and get a proper event argument.
+    // if the link already loaded, dispatch a fake load event
+    // so that listeners are called and get a proper event argument.
     } else if (link.__dynamicImportLoaded) {
       link.dispatchEvent(new Event('load'));
     }
     return link;
   };
-})();</script>
+
+})();
+</script>

@@ -691,7 +691,7 @@
 				"keywords": ["Parte interesada", "Comunidad"],
 				"learningObjectives": [
 					"Comprender la importancia de que las entidades externas participen del sistema de cumplimiento social.",
-					"FaFamiliarizarse con las distintas formas de participación, como ejemplos específicos de alianzas y otros tipos de colaboración.",
+					"Familiarizarse con las distintas formas de participación, como ejemplos específicos de alianzas y otros tipos de colaboración.",
 					"Identificar a las partes interesadas y hacerlas participar."
 				],
 				"keyTerms": [{
@@ -928,7 +928,7 @@
 				"keywords": ["Presentación de reclamaciones", "Mecanismo de presentación de reclamaciones", "Capacitación", "La voz de los trabajadores"],
 				"learningObjectives": [
 					"Identificar a las personas y grupos con quienes se debe estar en comunicación y a quienes se debe capacitar.",
-					"DDefinir los temas que deben incluirse en las actividades de comunicación y capacitación para cada grupo.",
+					"Definir los temas que deben incluirse en las actividades de comunicación y capacitación para cada grupo.",
 					"Averiguar cuáles son los canales de comunicación adecuados y los formatos de capacitación según el público.",
 					"Saber cuál es la manera de ofrecer mecanismos eficaces de presentación de reclamaciones."
 				],
@@ -974,7 +974,7 @@
 						"preview": "This is a sample preview for Step 1 Topic 2",
 						"keywords": [],
 						"title": "Mecanismos de presentación de reclamaciones",
-						"url": "/topics/step4/topic5.html"
+						"url": "/topics/step4/topic5_es.html"
 					}
 				],
 				"furtherResources": "/topics/step4/bib_es.html",

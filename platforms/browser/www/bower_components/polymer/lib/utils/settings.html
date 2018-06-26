@@ -6,12 +6,14 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../utils/boot.html">
+-->
+
+<link rel="import" href="../utils/boot.html">
 <link rel="import" href="../utils/resolve-url.html">
 
 <script>
 /** @suppress {deprecated} */
-(function () {
+(function() {
   'use strict';
 
   /**
@@ -19,11 +21,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @namespace
    * @memberof Polymer
    */
-
-  var settings = Polymer.Settings || {};
-  settings.useShadow = !window.ShadyDOM;
-  settings.useNativeCSSProperties = Boolean(!window.ShadyCSS || window.ShadyCSS.nativeCss);
-  settings.useNativeCustomElements = !window.customElements.polyfillWrapFlushCallback;
+  const settings = Polymer.Settings || {};
+  settings.useShadow = !(window.ShadyDOM);
+  settings.useNativeCSSProperties =
+    Boolean(!window.ShadyCSS || window.ShadyCSS.nativeCss);
+  settings.useNativeCustomElements =
+    !(window.customElements.polyfillWrapFlushCallback);
 
   /**
    * Sets the global, legacy settings.
@@ -43,7 +46,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    *
    * @memberof Polymer
    */
-  var rootPath = Polymer.rootPath || Polymer.ResolveUrl.pathFromUrl(document.baseURI || window.location.href);
+  let rootPath = Polymer.rootPath ||
+    Polymer.ResolveUrl.pathFromUrl(document.baseURI || window.location.href);
 
   Polymer.rootPath = rootPath;
 
@@ -54,7 +58,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @memberof Polymer
    * @param {string} path The new root path
    */
-  Polymer.setRootPath = function (path) {
+  Polymer.setRootPath = function(path) {
     Polymer.rootPath = path;
-  };
-})();</script>
+  }
+})();
+</script>
