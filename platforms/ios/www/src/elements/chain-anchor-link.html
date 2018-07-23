@@ -1,5 +1,10 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<link href="../../css/bootstrap.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
 <style include="iron-flex iron-flex-alignment"></style>
 <dom-module id="chain-anchor-link">
     <template>
@@ -92,16 +97,32 @@
             var map = slot.queryDistributedElements('map')[0];
             var areas = map.querySelectorAll('area');
 
+            
+            if (window.localStorage.lang =='fr') {
+                var image= "imgs/gear_demo_4_fr.png";
+            }
+            else if (window.localStorage.lang =='es') {
+                var image= "imgs/gear_demo_4_es.png";
+            }
+
+            else {
+                var image= "imgs/gear_demo_4.png";
+            }
 
             //var target = this.root.querySelector('img');
             //var areas = [].slice.call(this.root.querySelectorAll('area'));
             areas.forEach(area => {
                 area.addEventListener('mouseover', () => {
-                    target.src = "imgs/gear_demo_4.png";
+                    target.src = image;
+                    //target.src = "imgs/gear_demo_off.png";
+                    
                 });
 
                 area.addEventListener('mouseout', () => {
-                    target.src = "imgs/gear_demo_4.png";
+
+                   target.src = image;
+                   // target.src = "imgs/circle_nav_" + area.dataset.step + ".png";
+                   
                 });
                 area.addEventListener('click', (e) => {
                     e.preventDefault();

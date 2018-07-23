@@ -193,12 +193,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </p>
 
                         <p>
-                            <paper-icon-button icon="icons:close" id="close-menu-btn" aria-label="Close Menu"></paper-icon-button>
+                            <paper-icon-button icon="icons:close" id="close-menu-btn" aria-label="close_menu"></paper-icon-button>
                         </p>
                     </div>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
-                    <paper-dropdown-menu hidden label="Language" on-iron-select="_itemSelected">
+                    <paper-dropdown-menu hidden label="{{language}}" on-iron-select="_itemSelected">
                         <paper-listbox attr-for-selected="lang" slot="dropdown-content" selected="{{lang}}">
                             <paper-item lang="en">English</paper-item>
                             <paper-item lang="es">Espanol</paper-item>
@@ -269,7 +269,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <app-toolbar>
                         <paper-icon-button icon="my-icons:menu" drawer-toggle aria-label="Menu"></paper-icon-button>
                         <div main-title class="layout horizontal">
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="ILAB - The Bureau of International Labor Affairs" class="logo-img-small" src="imgs/ilab.png"  /></a></div>
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="{{ilab}}" class="logo-img-small" src="imgs/ilab.png"  /></a></div>
                             <div class="flex layout horizontal center-justified">
                                 <div class="layout vertical title-bar-text">
                                     <div class="flex layout horizontal center-justified" style="margin-bottom: 50%">
@@ -277,7 +277,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="United States Department of Labor" class="logo-img" src="imgs/dol.png" /></a></div>
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="{{usdol}}" class="logo-img" src="imgs/dol.png" /></a></div>
                         </div>
                     </app-toolbar>
                 </app-header>
@@ -286,14 +286,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <div hidden$="[[!isSearching]]">
                             <div id="search-bar">
                                 <iron-a11y-keys id="a11y" keys="enter" on-keys-pressed="onSearch" target="[[searchInputTarget]]"></iron-a11y-keys>
-                                <paper-input id="search-input" value="{{searchText}}" placeholder="Search..."></paper-input>
+                                <paper-input id="search-input" value="{{searchText}}" placeholder="{{search_placeholder}}"></paper-input>
                             </div>
                         </div>
                         <iron-pages id="bread-crumbs-container" selected="[[page]]" attr-for-selected="name" fallback-selection="default" role="secondary">
                             <div name="default" class="layout horizontal">
                                 <bread-crumbs name="default" class="flex" route="[[route]]" step-data="[[stepData]]" is-searching="{{isSearching}}"></bread-crumbs>
                                 <div>
-                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles aria-label="Search" id="bread-crumbs-search"></paper-icon-button>
+                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}" id="bread-crumbs-search"></paper-icon-button>
                                 </div>
                             </div>
                             <div name="home"></div>
@@ -309,7 +309,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="Search"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home>
@@ -321,7 +321,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="Search"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home-fr>
@@ -333,7 +333,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="Search"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home-es>
@@ -412,6 +412,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 currentMenuStep: {
                     type: Object,
                     value: null
+                },
+
+                //language specific text for 508 compliance 
+                language:{
+                    type: String,
+                    value: "Language"
+                },
+                close_menu:{
+                    type: String,
+                    value: "Close Menu"
+                },
+                ilab:{
+                    type: String,
+                    value: "ILAB - The Bureau of International Labor Affairs"
+                },
+                usdol:{
+                    type: String,
+                    value:"United States Department of Labor"
+                },
+                search_aria:{
+                    type: String,
+                    value : "Search"
+                },
+                search_placeholder:{
+                    type: String,
+                    value: "Search..."
                 }
             };
         }
@@ -637,16 +663,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             super.ready();
             this.lang = window.localStorage.getItem("lang");
             this.searchInputTarget = this.$['search-input'];
+
+
             if (this.lang == 'en') {
                 this.page = "home";
+
+                this.language = "Language";
+                this.close_menu = "Close Menu";
+                this.ilab = "ILAB - The Bureau of International Labor Affairs";
+                this.usdol = "United States Department of Labor"
+                this.search_aria = "Search";
+                this.search_placeholder = "Search...";
             }
+
+
             else if (this.lang == 'fr') {
                 this.page = "home-fr";
+
+                this.language = "Langue";
+                this.close_menu= "Fermer";
+                this.ilab = "Bureau des Affaires Internationales du Travail";
+                this.usdol = "Département du travail des États-Unis";
+                this.search_aria = "Rechercher";
+                this.search_placeholder = "Rechercher...";
             }
 
             else if (this.lang == 'es') {
                 this.page = "home-es";
+
+                this.language = "Idioma";
+                this.close_menu = "Cerrar el menú";
+                this.ilab = "Dirección de Asuntos Internacionales de Trabajo";
+                this.dol = "Departamento de Trabajo de los Estados Unidos";
+                this.search_aria = "Buscar";
+                this.search_placeholder = "Buscar...";
             }
+
+
+
+
             app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
                     console.log("got step data");

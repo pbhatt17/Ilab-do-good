@@ -38,11 +38,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="msapplication-TileImage" content="/images/manifest/icon-144x144.png">
     <meta name="msapplication-TileColor" content="#3f51b5">
     <meta name="msapplication-tap-highlight" content="no">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/promise.js"></script>
     <script type="text/javascript" src="scripts/polyfills.js"></script>
     <script type="text/javascript" src="scripts/imageMapResize.js">
     </script>
+
+
+
     <script type="text/javascript" src="scripts/ajax.js"></script>
     <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
     <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
@@ -30979,6 +30988,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     customElements.define(BreadCrumbs.is, BreadCrumbs);
     </script>
 </dom-module>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<link href="css/bootstrap.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <style include="iron-flex iron-flex-alignment"></style>
 <dom-module id="chain-anchor-link" assetpath="src/elements/">
     <template>
@@ -31071,16 +31084,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             var map = slot.queryDistributedElements('map')[0];
             var areas = map.querySelectorAll('area');
 
+            
+            if (window.localStorage.lang =='fr') {
+                var image= "imgs/gear_demo_4_fr.png";
+            }
+            else if (window.localStorage.lang =='es') {
+                var image= "imgs/gear_demo_4_es.png";
+            }
+
+            else {
+                var image= "imgs/gear_demo_4.png";
+            }
 
             //var target = this.root.querySelector('img');
             //var areas = [].slice.call(this.root.querySelectorAll('area'));
             areas.forEach(area => {
                 area.addEventListener('mouseover', () => {
-                    target.src = "imgs/gear_demo_4.png";
+                    target.src = image;
+                    //target.src = "imgs/gear_demo_off.png";
+                    
                 });
 
                 area.addEventListener('mouseout', () => {
-                    target.src = "imgs/gear_demo_4.png";
+
+                   target.src = image;
+                   // target.src = "imgs/circle_nav_" + area.dataset.step + ".png";
+                   
                 });
                 area.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -32467,7 +32496,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
         <slot name="append"></slot>
         <div class="bottom">
-            <paper-icon-button id="info-btn" icon="icons:info" aria-label="Info" role="link"></paper-icon-button>
+            <paper-icon-button id="info-btn" icon="icons:info" aria-label="Information" role="link"></paper-icon-button>
         </div>
     </template>
     <script>
@@ -32617,7 +32646,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
         <slot name="append"></slot>
         <div class="bottom">
-            <paper-icon-button id="info-btn" icon="icons:info" aria-label="Info" role="link"></paper-icon-button>
+            <paper-icon-button id="info-btn" icon="icons:info" aria-label="Información sobre esta aplicacion" role="link"></paper-icon-button>
         </div>
     </template>
     <script>
@@ -33884,12 +33913,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </p>
 
                         <p>
-                            <paper-icon-button icon="icons:close" id="close-menu-btn" aria-label="Close Menu"></paper-icon-button>
+                            <paper-icon-button icon="icons:close" id="close-menu-btn" aria-label="close_menu"></paper-icon-button>
                         </p>
                     </div>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
-                    <paper-dropdown-menu hidden="" label="Language" on-iron-select="_itemSelected">
+                    <paper-dropdown-menu hidden="" label="{{language}}" on-iron-select="_itemSelected">
                         <paper-listbox attr-for-selected="lang" slot="dropdown-content" selected="{{lang}}">
                             <paper-item lang="en">English</paper-item>
                             <paper-item lang="es">Espanol</paper-item>
@@ -33960,7 +33989,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <app-toolbar>
                         <paper-icon-button icon="my-icons:menu" drawer-toggle="" aria-label="Menu"></paper-icon-button>
                         <div main-title="" class="layout horizontal">
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="ILAB - The Bureau of International Labor Affairs" class="logo-img-small" src="imgs/ilab.png"></a></div>
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="{{ilab}}" class="logo-img-small" src="imgs/ilab.png"></a></div>
                             <div class="flex layout horizontal center-justified">
                                 <div class="layout vertical title-bar-text">
                                     <div class="flex layout horizontal center-justified" style="margin-bottom: 50%">
@@ -33968,7 +33997,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="United States Department of Labor" class="logo-img" src="imgs/dol.png"></a></div>
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="{{usdol}}" class="logo-img" src="imgs/dol.png"></a></div>
                         </div>
                     </app-toolbar>
                 </app-header>
@@ -33977,14 +34006,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <div hidden$="[[!isSearching]]">
                             <div id="search-bar">
                                 <iron-a11y-keys id="a11y" keys="enter" on-keys-pressed="onSearch" target="[[searchInputTarget]]"></iron-a11y-keys>
-                                <paper-input id="search-input" value="{{searchText}}" placeholder="Search..."></paper-input>
+                                <paper-input id="search-input" value="{{searchText}}" placeholder="{{search_placeholder}}"></paper-input>
                             </div>
                         </div>
                         <iron-pages id="bread-crumbs-container" selected="[[page]]" attr-for-selected="name" fallback-selection="default" role="secondary">
                             <div name="default" class="layout horizontal">
                                 <bread-crumbs name="default" class="flex" route="[[route]]" step-data="[[stepData]]" is-searching="{{isSearching}}"></bread-crumbs>
                                 <div>
-                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search" id="bread-crumbs-search"></paper-icon-button>
+                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}" id="bread-crumbs-search"></paper-icon-button>
                                 </div>
                             </div>
                             <div name="home"></div>
@@ -34000,7 +34029,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home>
@@ -34012,7 +34041,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home-fr>
@@ -34024,7 +34053,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="Search"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home-es>
@@ -34103,6 +34132,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 currentMenuStep: {
                     type: Object,
                     value: null
+                },
+
+                //language specific text for 508 compliance 
+                language:{
+                    type: String,
+                    value: "Language"
+                },
+                close_menu:{
+                    type: String,
+                    value: "Close Menu"
+                },
+                ilab:{
+                    type: String,
+                    value: "ILAB - The Bureau of International Labor Affairs"
+                },
+                usdol:{
+                    type: String,
+                    value:"United States Department of Labor"
+                },
+                search_aria:{
+                    type: String,
+                    value : "Search"
+                },
+                search_placeholder:{
+                    type: String,
+                    value: "Search..."
                 }
             };
         }
@@ -34328,16 +34383,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             super.ready();
             this.lang = window.localStorage.getItem("lang");
             this.searchInputTarget = this.$['search-input'];
+
+
             if (this.lang == 'en') {
                 this.page = "home";
+
+                this.language = "Language";
+                this.close_menu = "Close Menu";
+                this.ilab = "ILAB - The Bureau of International Labor Affairs";
+                this.usdol = "United States Department of Labor"
+                this.search_aria = "Search";
+                this.search_placeholder = "Search...";
             }
+
+
             else if (this.lang == 'fr') {
                 this.page = "home-fr";
+
+                this.language = "Langue";
+                this.close_menu= "Fermer";
+                this.ilab = "Bureau des Affaires Internationales du Travail";
+                this.usdol = "Département du travail des États-Unis";
+                this.search_aria = "Rechercher";
+                this.search_placeholder = "Rechercher...";
             }
 
             else if (this.lang == 'es') {
                 this.page = "home-es";
+
+                this.language = "Idioma";
+                this.close_menu = "Cerrar el menú";
+                this.ilab = "Dirección de Asuntos Internacionales de Trabajo";
+                this.dol = "Departamento de Trabajo de los Estados Unidos";
+                this.search_aria = "Buscar";
+                this.search_placeholder = "Buscar...";
             }
+
+
+
+
             app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
                     console.log("got step data");
@@ -34416,21 +34500,184 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         min-height: 100vh;
         /*background-color: #eeeeee;*/
     }
+
+    .popover {
+        /*left: 37% !important;
+        top: 50% !important;*/
+        /*max-width: 25% !important;*/
+        width: 28%;
+        padding: 0px !important;
+    }
+    .arrow {
+        display: none !important;
+    }
+
+    .s1 { 
+        left: 53% !important;
+        top: 8% !important;
+    }
+    
+    .s2 {
+        left: 68% !important;
+        top: 25% !important;
+    }
+
+    .s3 {
+        left: 75% !important;
+        top: 48% !important;
+    }
+
+    .s4 {
+        left: 72% !important;
+        top: 72% !important;
+    }
+
+    .s5 {
+        left: 53% !important;
+        top: 93% !important;
+    }
+
+    .s6 {
+        left: -1% !important;
+        top: 75% !important;
+    }
+
+    .s7 {
+        left: -7% !important;
+        top: 52% !important;
+    }
+
+    .s8 {
+        left: -2% !important;
+        top: 28% !important;
+    }
+
+    
     </style></div>
     <my-app>
-        <img hidden="" src="imgs/gear_demo_4.png" alt="Steps to a Social Compliance System" usemap="#map">
+        <img hidden="" src="imgs/gear_demo_4.png" id="chainImg" alt="Steps to a Social Compliance System" usemap="#map">
         <map name="map">
-            <area shape="circle" style="outline: none;" coords="442,175,74" alt="Step 1: Engage Stakeholders and Partners" role="link" data-step="1" href="#">
-            <area shape="circle" style="outline: none;" coords="643,261,74" alt="Step 2: Assess Risks and Impacts" role="link" data-step="2" href="#">
-            <area shape="circle" style="outline: none;" coords="723,445,74" alt="Step 3: Develop a Code of Conduct" role="link" data-step="3" href="#">
-            <area shape="circle" style="outline: none;" coords="646,629,74" alt="Step 4: Communicate and Train Across your Supply Chain" role="link" data-step="4" href="#">
-            <area shape="circle" style="outline: none;" coords="442,719,74" alt="Step 5: Monitor Compliance" role="link" data-step="5" href="#">
-            <area shape="circle" style="outline: none;" coords="245,628,74" alt="Step 6: Remediate Violations" role="link" data-step="6" href="#">
-            <area shape="circle" style="outline: none;" coords="174,444,74" alt="Step 7: Independent Review " role="link" data-step="7" href="#">
-            <area shape="circle" style="outline: none;" coords="245,264,74" alt="Step 8: Report Performance" role="link" data-step="8" href="#">
+            
+
+            <area shape="circle" coords="442,175,74" id="step1" data-toggle="popover1" data-content="Step 1: Engage Stakeholders and Partners" alt="Step 1: Engage Stakeholders and Partners" role="link" data-step="1" href="#">
+            <area shape="circle" coords="643,261,74" id="step2" data-toggle="popover2" data-content="Step 2: Assess Risks and Impacts" alt="Step 2: Assess Risks and Impacts" role="link" data-step="2" href="#">
+            <area shape="circle" coords="723,445,74" id="step3" data-toggle="popover3" data-content="Step 3: Develop a Code of Conduct" alt="Step 3: Develop a Code of Conduct" role="link" data-step="3" href="#">
+            <area shape="circle" coords="646,629,74" id="step4" data-toggle="popover4" data-content="Step 4: Communicate and Train Across your Supply Chain" alt="Step 4: Communicate and Train Across your Supply Chain" role="link" data-step="4" href="#">
+            <area shape="circle" coords="442,719,74" id="step5" data-toggle="popover5" data-content="Step 5: Monitor Compliance" alt="Step 5: Monitor Compliance" role="link" data-step="5" href="#">
+            <area shape="circle" coords="245,628,74" id="step6" data-toggle="popover6" data-content="Step 6: Remediate Violations" alt="Step 6: Remediate Violations" role="link" data-step="6" href="#">
+            <area shape="circle" coords="174,444,74" id="step7" data-toggle="popover7" data-content="Step 7: Independent Review" alt="Step 7: Independent Review " role="link" data-step="7" href="#">
+            <area shape="circle" coords="245,264,74" id="step8" data-toggle="popover8" data-content="Step 8: Report Performance" alt="Step 8: Report Performance" role="link" data-step="8" href="#">
         </map>
     </my-app>
     <!-- Built with love using Polymer Starter Kit -->
+
+
+
+    <script type="text/javascript">
+
+            document.addEventListener('deviceready', () => {
+ 
+                var lang = document.getElementsByTagName('html')[0];
+ 
+                if( window.localStorage.getItem("lang") == null)
+                {
+                 lang.setAttribute('lang', 'en');
+                }
+               
+               else
+               {
+                lang.setAttribute('lang', window.localStorage.getItem("lang"));
+
+                if (window.localStorage.lang == 'fr') {
+
+                    document.getElementById("chainImg").src = "imgs/gear_demo_4_fr.png"
+                    document.getElementById("chainImg").alt = "French Steps to a Social Compliance System"
+                    document.getElementById("step1").dataset.content = document.getElementById("step1").alt = "Première étape: Faire participer les parties prenantes et les partenaires"
+                    document.getElementById("step2").dataset.content = document.getElementById("step2").alt = "Deuxième étape: Évaluer les risques et les incidences"
+                    document.getElementById("step3").dataset.content = document.getElementById("step3").alt = "Troisième étape: élaborer un code de conduite"
+                    document.getElementById("step4").dataset.content = document.getElementById("step4").alt = "Quatrième étape: communiquer et former dans l'ensemble de votre chaîne d'approvisionnement"
+                    document.getElementById("step5").dataset.content = document.getElementById("step5").alt = "Cinquième étape:  Surveiller la conformité"
+                    document.getElementById("step6").dataset.content= document.getElementById("step6").alt = "Sixième étape:  Réparer les infractions"
+                    document.getElementById("step7").dataset.content = document.getElementById("step7").alt = "Septième étape: Examen indépendant"
+                    document.getElementById("step8").dataset.content = document.getElementById("step8").alt = "Huitième étape: Rendre compte des résultats"
+
+                }
+
+                else if (window.localStorage.lang == 'es') {
+
+                    document.getElementById("chainImg").src = "imgs/gear_demo_4_es.png"
+                    document.getElementById("chainImg").alt = "Spanish Steps to a Social Compliance System"
+                    document.getElementById("step1").dataset.content = document.getElementById("step1").alt = "Primer paso: Participación de las partes interesadas y los socios"
+                    document.getElementById("step2").dataset.content = document.getElementById("step2").alt = "Segundo paso:  Evaluación de riesgos e impacto"
+                    document.getElementById("step3").dataset.content = document.getElementById("step3").alt = "Tercer paso:  Formulación de un código de conducta"
+                    document.getElementById("step4").dataset.content = document.getElementById("step4").alt = "Cuarto paso:  Comunicación y capacitación en la cadena de suministro"
+                    document.getElementById("step5").dataset.content = document.getElementById("step5").alt = "Quinto paso:  Vigilancia y seguimiento del cumplimiento"
+                    document.getElementById("step6").dataset.content = document.getElementById("step6").alt = "Sexto paso:  Remediación de infracciones"
+                    document.getElementById("step7").dataset.content = document.getElementById("step7").alt = "Séptimo paso: Examen independiente"
+                    document.getElementById("step8").dataset.content = document.getElementById("step8").alt = "Octavo paso: Notificación del desempeño"
+
+                }
+
+                else{
+                    document.getElementById("chainImg").src = "imgs/gear_demo_4.png";
+                    document.getElementById("chainImg").alt = "Steps to a Social Compliance System"
+                    document.getElementById("step1").dataset.content = document.getElementById("step1").alt = "Step 1: Engage Stakeholders and Partners"
+                    document.getElementById("step2").dataset.content = document.getElementById("step2").alt = "Step 2: Assess Risks and Impacts"
+                    document.getElementById("step3").dataset.content = document.getElementById("step3").alt = "Step 3: Develop a Code of Conduct"
+                    document.getElementById("step4").dataset.content = document.getElementById("step4").alt = "Step 4: Communicate and Train Across your Supply Chain"
+                    document.getElementById("step5").dataset.content = document.getElementById("step5").alt = "Step 5: Monitor Compliance"
+                    document.getElementById("step6").dataset.content = document.getElementById("step6").alt = "Step 6: Remediate Violations"
+                    document.getElementById("step7").dataset.content = document.getElementById("step7").alt = "Step 7: Independent Review"
+                    document.getElementById("step8").dataset.content = document.getElementById("step8").alt = "Step 8: Report Performance"
+                    
+                }
+
+
+               }
+ 
+            }, false);
+
+          
+
+            $(document).ready(function(){
+
+                $('[data-toggle="popover1"]').popover({
+                        trigger: 'hover focus',
+                         template: '<div class="popover s1"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
+                    });   
+                $('[data-toggle="popover2"]').popover({
+                       trigger: 'hover focus',
+                         template: '<div class="popover s2"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
+                    });
+                $('[data-toggle="popover3"]').popover({
+                       trigger: 'hover focus',
+                         template: '<div class="popover s3"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
+                    });
+                $('[data-toggle="popover4"]').popover({
+                       trigger: 'hover focus',
+                         template: '<div class="popover s4"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
+                    });
+                $('[data-toggle="popover5"]').popover({
+                       trigger: 'hover focus',
+                         template: '<div class="popover s5"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
+                    });
+                $('[data-toggle="popover6"]').popover({
+                       trigger: 'hover focus',
+                         template: '<div class="popover s6"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
+                    });
+                $('[data-toggle="popover7"]').popover({
+                        trigger: 'hover focus',
+                        template: '<div class="popover s7"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
+
+                    });
+                $('[data-toggle="popover8"]').popover({
+                        trigger: 'hover focus',
+                        template: '<div class="popover s8"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
+                    });
+            });
+ 
+    </script>
+
 
 
 </body>

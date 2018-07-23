@@ -1,0 +1,159 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<style include="iron-flex iron-flex-alignment"></style>
+<dom-module id="chain-anchor-link">
+    <template>
+        <custom-style>
+            <style include="iron-flex iron-flex-alignment"></style>
+        </custom-style>
+        <style>
+         :host {
+            display: block;
+            max-height: 910px;
+            max-width: 910px;
+            width: 100%;
+        }
+
+        img {
+            /*height: auto;*/
+        }
+
+        .inside {
+            position: relative;
+        }
+
+        .outside {
+            height: 100%;
+        }
+
+        .sr-only {
+            position: absolute;
+            margin-left: -10000px;
+            margin-top: 110%
+        }
+        </style>
+        <div class="outside layout vertical center-justified">
+            <div id="slotted" class="inside layout horizontal center-justified">
+                <slot></slot>
+            </div>
+        </div>
+        <platform-switch>
+            <div slot="ios" class="sr-only">
+                <ul style="list-style: none;">
+                    <li>
+                        <app-link href="/step/1">Step 1: Engage Stakeholders and Partners</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/2">Step 2: Assess Risks and Impacts</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/3">Step 3: Develop a Code of Conduct</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/4">Step 4: Communicate and Train Across your Supply Chain</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/5">Step 5: Monitor Compliance</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/6">Step 6: Remediate Violations</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/7">Step 7: Independent Review</app-link>
+                    </li>
+                    <li>
+                        <app-link href="/step/8">Step 8: Report Performance</app-link>
+                    </li>
+                </ul> 
+
+            </div>
+        </platform-switch>
+    </template>
+    <script>
+    class ChainAnchorLink extends Polymer.Element {
+        static get is() {
+            return 'chain-anchor-link';
+        }
+
+
+        static get properties() {
+            return {};
+        }
+
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            super.connectedCallback();
+            var slot = Polymer.dom(this.querySelector('slot'));
+            var target = slot.queryDistributedElements('img')[0];
+            target.removeAttribute("hidden");
+            var map = slot.queryDistributedElements('map')[0];
+            var areas = map.querySelectorAll('area');
+
+
+            //var target = this.root.querySelector('img');
+            //var areas = [].slice.call(this.root.querySelectorAll('area'));
+            areas.forEach(area => {
+                area.addEventListener('mouseover', () => {
+                    target.src = "imgs/gear_demo_4.png";
+                });
+
+                area.addEventListener('mouseout', () => {
+                   // target.src = "imgs/gear_demo_4.png";
+                   target.src = "imgs/circle_nav_" + area.dataset.step + ".png";
+                });
+                area.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.dispatchEvent(new CustomEvent('link-followed', {
+                        detail: {
+                            step: area.dataset.step
+                        },
+                        bubbles: true
+                    }));
+                });
+            });
+
+            this.recalcMap();
+            window.addEventListener('resize', (event) => {
+                //img.style.height = img.offsetWidth + "px";
+                //imageMapResize(map, img);
+            });
+
+        }
+
+        recalcMap() {
+            var slot = Polymer.dom(this.querySelector('slot'));
+            var target = slot.queryDistributedElements('img')[0];
+            target.removeAttribute("hidden");
+            var map = slot.queryDistributedElements('map')[0];
+            var areas = map.querySelectorAll('area');
+            console.log(window.innerWidth);
+            console.log(window.innerHeight);
+
+            var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight - 110));
+
+
+            var isFirefox = typeof InstallTrigger !== 'undefined';
+
+            setTimeout(() => {
+                if (!isFirefox) {
+                    target.style.width = less + "px";
+                    target.style.height = less + "px";
+                }
+                imageMapResize(map, target);
+            }, 1);
+
+        }
+
+
+        ready() {
+            super.ready();
+
+        }
+    }
+
+    customElements.define(ChainAnchorLink.is, ChainAnchorLink);
+    </script>
+</dom-module>
