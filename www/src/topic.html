@@ -6,7 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../bower_components/polymer/polymer-element.html">
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <dom-module id="my-topic">
     <template>
@@ -31,21 +32,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="layout horizontal center-justified">
             <div class="main" aria-live="polite" tabindex="-1" id="pageTop">
                 <render-raw html-data="[[data.rawData]]" target="{{targetId}}"></render-raw>
-                <paper-button id="prev" hidden$="[[!hasPrevious]]" raised="">previous topic</paper-button>
-                <paper-button id="prevfr" hidden$="[[!hasPreviousfr]]" raised="">Sujet précédent</paper-button>
-                <paper-button id="preves" hidden$="[[!hasPreviouses]]" raised="">Tema anterior</paper-button>
+                <paper-button id="prev" hidden$="[[!hasPrevious]]" raised>previous topic</paper-button>
+                <paper-button id="prevfr" hidden$="[[!hasPreviousfr]]" raised>Sujet précédent</paper-button>
+                <paper-button id="preves" hidden$="[[!hasPreviouses]]" raised>Tema anterior</paper-button>
 
-                <paper-button id="prevStep" hidden$="[[!showPreviousStep]]" raised="">previous step</paper-button>
-                <paper-button id="prevStepfr" hidden$="[[!showPreviousStepfr]]" raised="">Étape précédente</paper-button>
-                <paper-button id="prevStepes" hidden$="[[!showPreviousStepes]]" raised="">Paso anterior</paper-button>
+                <paper-button id="prevStep" hidden$="[[!showPreviousStep]]" raised>previous step</paper-button>
+                <paper-button id="prevStepfr" hidden$="[[!showPreviousStepfr]]" raised>Étape précédente</paper-button>
+                <paper-button id="prevStepes" hidden$="[[!showPreviousStepes]]" raised>Paso anterior</paper-button>
                 
-                <paper-button id="next" hidden$="[[!hasNext]]" raised="">next topic</paper-button>
-                <paper-button id="nextfr" hidden$="[[!hasNextfr]]" raised="">Sujet suivant</paper-button>
-                <paper-button id="nextes" hidden$="[[!hasNextes]]" raised="">Próximo tema</paper-button>
+                <paper-button id="next" hidden$="[[!hasNext]]" raised>next topic</paper-button>
+                <paper-button id="nextfr" hidden$="[[!hasNextfr]]" raised>Sujet suivant</paper-button>
+                <paper-button id="nextes" hidden$="[[!hasNextes]]" raised>Próximo tema</paper-button>
 
-                <paper-button id="nextStep" hidden$="[[!showNextStep]]" raised="">Next Step</paper-button>
-                <paper-button id="nextStepfr" hidden$="[[!showNextStepfr]]" raised="">Étape suivante</paper-button>
-                <paper-button id="nextStepes" hidden$="[[!showNextStepes]]" raised="">Próximo paso</paper-button>
+                <paper-button id="nextStep" hidden$="[[!showNextStep]]" raised>Next Step</paper-button>
+                <paper-button id="nextStepfr" hidden$="[[!showNextStepfr]]" raised>Étape suivante</paper-button>
+                <paper-button id="nextStepes" hidden$="[[!showNextStepes]]" raised>Próximo paso</paper-button>
             </div>
         </div>
     </template>
