@@ -91,37 +91,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </p>
         </div>
     </template>
-    <script>var MockupPage = function (_Polymer$Element) {
-    babelHelpers.inherits(MockupPage, _Polymer$Element);
-
-    function MockupPage() {
-        babelHelpers.classCallCheck(this, MockupPage);
-        return babelHelpers.possibleConstructorReturn(this, (MockupPage.__proto__ || Object.getPrototypeOf(MockupPage)).apply(this, arguments));
-    }
-
-    babelHelpers.createClass(MockupPage, [{
-        key: 'ready',
-        value: function ready() {
-            babelHelpers.get(MockupPage.prototype.__proto__ || Object.getPrototypeOf(MockupPage.prototype), 'ready', this).call(this);
-        }
-    }], [{
-        key: 'is',
-        get: function get() {
+    <script>
+    class MockupPage extends Polymer.Element {
+        static get is() {
             return 'mockup-page';
         }
-    }, {
-        key: 'observers',
-        get: function get() {
+        static get observers() {
             return [];
         }
-    }, {
-        key: 'properties',
-        get: function get() {
+        static get properties() {
             return {};
         }
-    }]);
-    return MockupPage;
-}(Polymer.Element);
 
-window.customElements.define(MockupPage.is, MockupPage);</script>
+
+        ready() {
+            super.ready();
+        }
+    }
+
+    window.customElements.define(MockupPage.is, MockupPage);
+    </script>
 </dom-module>

@@ -6,8 +6,7 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
+--><link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
@@ -183,9 +182,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
         <app-route route="[[route]]" pattern="/:page/:stepId" data="{{routeData}}"></app-route>
         <app-route route="[[route]]" pattern="/:page/:stepId/:topicId" data="{{routeData}}"></app-route>
-        <app-drawer-layout class="temp-width" fullbleed force-narrow>
+        <app-drawer-layout class="temp-width" fullbleed="" force-narrow="">
             <!-- Drawer content -->
-            <app-drawer id="drawer" slot="drawer" persistent>
+            <app-drawer id="drawer" slot="drawer" persistent="">
                 <app-toolbar>
                     <div class="layout horizontal flex">
                         <p class="flex">
@@ -198,7 +197,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
-                    <paper-dropdown-menu hidden label="{{language}}" on-iron-select="_itemSelected">
+                    <paper-dropdown-menu hidden="" label="{{language}}" on-iron-select="_itemSelected">
                         <paper-listbox attr-for-selected="lang" slot="dropdown-content" selected="{{lang}}">
                             <paper-item lang="en">English</paper-item>
                             <paper-item lang="es">Espanol</paper-item>
@@ -264,12 +263,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </iron-selector>
             </app-drawer>
             <!-- Main content -->
-            <app-header-layout id="scrollingRegion" has-scrolling-region>
-                <app-header slot="header" id="app-header" fixed scroll-target="scrollingRegion">
+            <app-header-layout id="scrollingRegion" has-scrolling-region="">
+                <app-header slot="header" id="app-header" fixed="" scroll-target="scrollingRegion">
                     <app-toolbar>
-                        <paper-icon-button icon="my-icons:menu" drawer-toggle aria-label="Menu"></paper-icon-button>
-                        <div main-title class="layout horizontal">
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="{{ilab}}" class="logo-img-small" src="imgs/ilab.png"  /></a></div>
+                        <paper-icon-button icon="my-icons:menu" drawer-toggle="" aria-label="Menu"></paper-icon-button>
+                        <div main-title="" class="layout horizontal">
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="{{ilab}}" class="logo-img-small" src="imgs/ilab.png"></a></div>
                             <div class="flex layout horizontal center-justified">
                                 <div class="layout vertical title-bar-text">
                                     <div class="flex layout horizontal center-justified" style="margin-bottom: 50%">
@@ -277,7 +276,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="{{usdol}}" class="logo-img" src="imgs/dol.png" /></a></div>
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="{{usdol}}" class="logo-img" src="imgs/dol.png"></a></div>
                         </div>
                     </app-toolbar>
                 </app-header>
@@ -293,7 +292,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <div name="default" class="layout horizontal">
                                 <bread-crumbs name="default" class="flex" route="[[route]]" step-data="[[stepData]]" is-searching="{{isSearching}}"></bread-crumbs>
                                 <div>
-                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}" id="bread-crumbs-search"></paper-icon-button>
+                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}" id="bread-crumbs-search"></paper-icon-button>
                                 </div>
                             </div>
                             <div name="home"></div>
@@ -309,7 +308,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home>
@@ -321,7 +320,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home-fr>
@@ -333,7 +332,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home-es>
