@@ -647,7 +647,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             super.connectedCallback();
            
             this.root.querySelector('my-home').addEventListener('link-followed', event => {
-                if (this.route.path=='/home') {
+                if (event.detail.target=='/home') {
                     this.$['bread-crumbs-container'].style.display = 'none';
                 }
                 else {
@@ -668,7 +668,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
             });
             this.root.addEventListener('link-followed', event => {
-                if (this.route.path=='/home') {
+                if (event.detail.target=='/home') {
                     this.$['bread-crumbs-container'].style.display = 'none';
                 }
                 else {

@@ -670,7 +670,7 @@ function (_Polymer$Element) {
 
       babelHelpers.get(MyApp.prototype.__proto__ || Object.getPrototypeOf(MyApp.prototype), "connectedCallback", this).call(this);
       this.root.querySelector('my-home').addEventListener('link-followed', function (event) {
-        if (_this3.route.path == '/home') {
+        if (event.detail.target == '/home') {
           _this3.$['bread-crumbs-container'].style.display = 'none';
         } else {
           _this3.$['bread-crumbs-container'].style.display = 'block';
@@ -697,7 +697,7 @@ function (_Polymer$Element) {
         }
       });
       this.root.addEventListener('link-followed', function (event) {
-        if (_this3.route.path == '/home') {
+        if (event.detail.target == '/home') {
           _this3.$['bread-crumbs-container'].style.display = 'none';
         } else {
           _this3.$['bread-crumbs-container'].style.display = 'block';
