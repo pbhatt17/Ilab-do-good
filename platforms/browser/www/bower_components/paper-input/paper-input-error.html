@@ -55,38 +55,32 @@ Custom property | Description | Default
   </template>
 </dom-module>
 
-<script>
-  Polymer({
-    is: 'paper-input-error',
-
-    behaviors: [
-      Polymer.PaperInputAddonBehavior
-    ],
-
-    properties: {
-      /**
-       * True if the error is showing.
-       */
-      invalid: {
-        readOnly: true,
-        reflectToAttribute: true,
-        type: Boolean
-      }
-    },
-
+<script>Polymer({
+  is: 'paper-input-error',
+  behaviors: [Polymer.PaperInputAddonBehavior],
+  properties: {
     /**
-     * This overrides the update function in PaperInputAddonBehavior.
-     * @param {{
-     *   inputElement: (Element|undefined),
-     *   value: (string|undefined),
-     *   invalid: boolean
-     * }} state -
-     *     inputElement: The input element.
-     *     value: The input value.
-     *     invalid: True if the input value is invalid.
+     * True if the error is showing.
      */
-    update: function(state) {
-      this._setInvalid(state.invalid);
+    invalid: {
+      readOnly: true,
+      reflectToAttribute: true,
+      type: Boolean
     }
-  });
-</script>
+  },
+
+  /**
+   * This overrides the update function in PaperInputAddonBehavior.
+   * @param {{
+   *   inputElement: (Element|undefined),
+   *   value: (string|undefined),
+   *   invalid: boolean
+   * }} state -
+   *     inputElement: The input element.
+   *     value: The input value.
+   *     invalid: True if the input value is invalid.
+   */
+  update: function update(state) {
+    this._setInvalid(state.invalid);
+  }
+});</script>

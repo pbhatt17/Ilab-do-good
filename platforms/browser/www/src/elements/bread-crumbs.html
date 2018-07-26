@@ -103,121 +103,135 @@
             </div>
         </div>
     </template>
-    <script>
-    class BreadCrumbs extends Polymer.Element {
-        static get is() {
-            return 'bread-crumbs';
-        }
+    <script>var BreadCrumbs =
+/*#__PURE__*/
+function (_Polymer$Element) {
+  babelHelpers.inherits(BreadCrumbs, _Polymer$Element);
+  babelHelpers.createClass(BreadCrumbs, [{
+    key: "getStep",
+    value: function getStep(id) {
+      if (id === null || id === undefined) {
+        return null;
+      }
 
-
-        static get properties() {
-            return {
-                stepData: {
-                    type: Array,
-                    value: null,
-                },
-                route: {
-                    type: Object,
-                    value: null,
-                    reflectToAttribute: true,
-                },
-                step: {
-                    type: Object,
-                    computed: 'getStep(routeData.stepId)',
-                },
-                topic: {
-                    type: Object,
-                    computed: 'getTopic(step, routeData.topicId)',
-                },
-                locale: {
-                    type: String,
-                },
-                isSearching: {
-                    type: Boolean,
-                    notify: true,
-                },
-                isEnglish: {
-                    type: Boolean,
-                    computed: '_isEnglish(routeData.stepId, stepData)',
-                },
-                isFrench: {
-                    type: Boolean,
-                    computed: '_isFrench(routeData.stepId, stepData)',
-                },
-                isSpanish: {
-                    type: Boolean,
-                    computed: '_isSpanish(routeData.stepId, stepData)',
-                }
-            };
-        }
-
-        getStep(id) {
-            if (id === null || id === undefined) {
-                return null;
-            }
-            console.log(this.routeData);
-            return this.stepData[Number.parseInt(id) - 1];
-        }
-
-        getTopic(step, id) {
-            if (!step) {
-                return null;
-            } else if (id === null || id === undefined) {
-                return null;
-            } else {
-                return step.topics[Number.parseInt(id) - 1];
-            }
-        }
-
-        _isEnglish()
-        {
-            if (window.localStorage.lang == 'en') {
-                return true;
-            }
-
-            return false;
-        }
-
-        _isFrench()
-        {
-            if (window.localStorage.lang == 'fr') {
-                return true;
-            }
-
-            return false;
-        }
-
-        _isSpanish()
-        {
-            if (window.localStorage.lang == 'es') {
-                return true;
-            }
-
-            return false;
-        }
-
-
-        static get observers() {
-            return [];
-        }
-
-        constructor() {
-            super();
-        }
-
-        ready() {
-            super.ready();
-            this.root.addEventListener('link-followed', event => {
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: event.detail.target,
-                    },
-                    bubbles: true
-                }));
-            });
-        }
+      console.log(this.routeData);
+      return this.stepData[Number.parseInt(id) - 1];
     }
+  }, {
+    key: "getTopic",
+    value: function getTopic(step, id) {
+      if (!step) {
+        return null;
+      } else if (id === null || id === undefined) {
+        return null;
+      } else {
+        return step.topics[Number.parseInt(id) - 1];
+      }
+    }
+  }, {
+    key: "_isEnglish",
+    value: function _isEnglish() {
+      if (window.localStorage.lang == 'en') {
+        return true;
+      }
 
-    customElements.define(BreadCrumbs.is, BreadCrumbs);
-    </script>
+      return false;
+    }
+  }, {
+    key: "_isFrench",
+    value: function _isFrench() {
+      if (window.localStorage.lang == 'fr') {
+        return true;
+      }
+
+      return false;
+    }
+  }, {
+    key: "_isSpanish",
+    value: function _isSpanish() {
+      if (window.localStorage.lang == 'es') {
+        return true;
+      }
+
+      return false;
+    }
+  }], [{
+    key: "is",
+    get: function get() {
+      return 'bread-crumbs';
+    }
+  }, {
+    key: "properties",
+    get: function get() {
+      return {
+        stepData: {
+          type: Array,
+          value: null
+        },
+        route: {
+          type: Object,
+          value: null,
+          reflectToAttribute: true
+        },
+        step: {
+          type: Object,
+          computed: 'getStep(routeData.stepId)'
+        },
+        topic: {
+          type: Object,
+          computed: 'getTopic(step, routeData.topicId)'
+        },
+        locale: {
+          type: String
+        },
+        isSearching: {
+          type: Boolean,
+          notify: true
+        },
+        isEnglish: {
+          type: Boolean,
+          computed: '_isEnglish(routeData.stepId, stepData)'
+        },
+        isFrench: {
+          type: Boolean,
+          computed: '_isFrench(routeData.stepId, stepData)'
+        },
+        isSpanish: {
+          type: Boolean,
+          computed: '_isSpanish(routeData.stepId, stepData)'
+        }
+      };
+    }
+  }, {
+    key: "observers",
+    get: function get() {
+      return [];
+    }
+  }]);
+
+  function BreadCrumbs() {
+    babelHelpers.classCallCheck(this, BreadCrumbs);
+    return babelHelpers.possibleConstructorReturn(this, (BreadCrumbs.__proto__ || Object.getPrototypeOf(BreadCrumbs)).call(this));
+  }
+
+  babelHelpers.createClass(BreadCrumbs, [{
+    key: "ready",
+    value: function ready() {
+      var _this = this;
+
+      babelHelpers.get(BreadCrumbs.prototype.__proto__ || Object.getPrototypeOf(BreadCrumbs.prototype), "ready", this).call(this);
+      this.root.addEventListener('link-followed', function (event) {
+        _this.dispatchEvent(new CustomEvent('link-followed', {
+          detail: {
+            target: event.detail.target
+          },
+          bubbles: true
+        }));
+      });
+    }
+  }]);
+  return BreadCrumbs;
+}(Polymer.Element);
+
+customElements.define(BreadCrumbs.is, BreadCrumbs);</script>
 </dom-module>

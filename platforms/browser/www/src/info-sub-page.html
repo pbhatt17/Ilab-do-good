@@ -34,61 +34,78 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
         </div>
     </template>
-    <script>
-    class InfoSubPage extends Polymer.Element {
-        static get is() {
-            return 'info-sub-page';
-        }
-        static get observers() {
-            return [
-                'loadHTML(targetData)'
-            ];
-        }
-        static get properties() {
-            return {
-                targetData: {
-                    type: Object,
-                },
-                targetId: {
-                    type: String,
-                },
-                htmlContent: {
-                    type: String,
-                    notify: true,
-                },
-            };
-        }
+    <script>var InfoSubPage =
+/*#__PURE__*/
+function (_Polymer$Element) {
+  babelHelpers.inherits(InfoSubPage, _Polymer$Element);
 
-        loadHTML(targetData) {
-            if (!targetData || !targetData.url) {
-                return;
-            }
-            if (targetData.url[0] === "/") {
-                targetData.url = targetData.url.substr(1);
-            }
-            ajax("GET", targetData.url)
-                .then(response => {
-                    this.htmlContent = response;
-                }).catch(error => {
-                    console.log("error while attempting to load info-sub-page: " + error);
-                });
-            this.root.addEventListener('link-followed', event => {
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: event.detail.target,
-                        id: event.detail.id,
-                    },
-                    bubbles: true
-                }));
-            });
+  function InfoSubPage() {
+    babelHelpers.classCallCheck(this, InfoSubPage);
+    return babelHelpers.possibleConstructorReturn(this, (InfoSubPage.__proto__ || Object.getPrototypeOf(InfoSubPage)).apply(this, arguments));
+  }
 
-        }
+  babelHelpers.createClass(InfoSubPage, [{
+    key: "loadHTML",
+    value: function loadHTML(targetData) {
+      var _this = this;
 
-        ready() {
-            super.ready();
-        }
+      if (!targetData || !targetData.url) {
+        return;
+      }
+
+      if (targetData.url[0] === "/") {
+        targetData.url = targetData.url.substr(1);
+      }
+
+      ajax("GET", targetData.url).then(function (response) {
+        _this.htmlContent = response;
+      }).catch(function (error) {
+        console.log("error while attempting to load info-sub-page: " + error);
+      });
+      this.root.addEventListener('link-followed', function (event) {
+        _this.dispatchEvent(new CustomEvent('link-followed', {
+          detail: {
+            target: event.detail.target,
+            id: event.detail.id
+          },
+          bubbles: true
+        }));
+      });
     }
+  }, {
+    key: "ready",
+    value: function ready() {
+      babelHelpers.get(InfoSubPage.prototype.__proto__ || Object.getPrototypeOf(InfoSubPage.prototype), "ready", this).call(this);
+    }
+  }], [{
+    key: "is",
+    get: function get() {
+      return 'info-sub-page';
+    }
+  }, {
+    key: "observers",
+    get: function get() {
+      return ['loadHTML(targetData)'];
+    }
+  }, {
+    key: "properties",
+    get: function get() {
+      return {
+        targetData: {
+          type: Object
+        },
+        targetId: {
+          type: String
+        },
+        htmlContent: {
+          type: String,
+          notify: true
+        }
+      };
+    }
+  }]);
+  return InfoSubPage;
+}(Polymer.Element);
 
-    window.customElements.define(InfoSubPage.is, InfoSubPage);
-    </script>
+window.customElements.define(InfoSubPage.is, InfoSubPage);</script>
 </dom-module>

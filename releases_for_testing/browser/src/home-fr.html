@@ -105,48 +105,60 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-icon-button id="info-btn" icon="icons:info" aria-label="Information" role="link"></paper-icon-button>
         </div>
     </template>
-    <script>
-    class MyHomeFr extends Polymer.Element {
-        static get is() {
-            return 'my-home-fr';
-        }
-        static get properties() {
-            return {};
-        }
+    <script>var MyHomeFr =
+/*#__PURE__*/
+function (_Polymer$Element) {
+  babelHelpers.inherits(MyHomeFr, _Polymer$Element);
 
-        ready() {
-            super.ready();
+  function MyHomeFr() {
+    babelHelpers.classCallCheck(this, MyHomeFr);
+    return babelHelpers.possibleConstructorReturn(this, (MyHomeFr.__proto__ || Object.getPrototypeOf(MyHomeFr)).apply(this, arguments));
+  }
 
-            this.root.addEventListener('link-followed', event => {
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: event.detail.target,
-                    },
-                    bubbles: true
-                }));
-            });
+  babelHelpers.createClass(MyHomeFr, [{
+    key: "ready",
+    value: function ready() {
+      var _this = this;
 
-
-            this.$['info-btn'].addEventListener('click', event => {
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: "/info-about-page"
-                    },
-                    bubbles: true
-                }));
-            })
-
-            this.$['info-btn'].addEventListener('tap', event => {
-                this.dispatchEvent(new CustomEvent('link-followed', {
-                    detail: {
-                        target: "/info-about-page"
-                    },
-                    bubbles: true
-                }));
-            });
-        }
+      babelHelpers.get(MyHomeFr.prototype.__proto__ || Object.getPrototypeOf(MyHomeFr.prototype), "ready", this).call(this);
+      this.root.addEventListener('link-followed', function (event) {
+        _this.dispatchEvent(new CustomEvent('link-followed', {
+          detail: {
+            target: event.detail.target
+          },
+          bubbles: true
+        }));
+      });
+      this.$['info-btn'].addEventListener('click', function (event) {
+        _this.dispatchEvent(new CustomEvent('link-followed', {
+          detail: {
+            target: "/info-about-page"
+          },
+          bubbles: true
+        }));
+      });
+      this.$['info-btn'].addEventListener('tap', function (event) {
+        _this.dispatchEvent(new CustomEvent('link-followed', {
+          detail: {
+            target: "/info-about-page"
+          },
+          bubbles: true
+        }));
+      });
     }
+  }], [{
+    key: "is",
+    get: function get() {
+      return 'my-home-fr';
+    }
+  }, {
+    key: "properties",
+    get: function get() {
+      return {};
+    }
+  }]);
+  return MyHomeFr;
+}(Polymer.Element);
 
-    window.customElements.define(MyHomeFr.is, MyHomeFr);
-    </script>
+window.customElements.define(MyHomeFr.is, MyHomeFr);</script>
 </dom-module>
