@@ -18,7 +18,7 @@
     <author email="julien.kilian@icfi.com" href="http://cordova.io">
         ICF Dev
     </author>
-    <content src="ios-index.html" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
