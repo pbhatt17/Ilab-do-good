@@ -31650,9 +31650,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         _render(value, locale) {
             
+            if(locale == undefined)
+                locale = 'en';
+
 			if(locale == null)
-                locale = window.localStorage.getItem("lang")
+                locale = window.localStorage.getItem("lang");
             
+
             var data = {
                 en: {
                     home: "Home",
@@ -33898,6 +33902,61 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         #pageContent:focus { 
             outline: none;
         }
+		
+	.loader {
+                      border: 16px solid #f3f3f3;
+                      border-radius: 50%;
+                      border-top: 16px solid #003354;
+                      width: 120px;
+                      height: 120px;
+                      -webkit-animation: spin 2s linear infinite; /* Safari */
+                      animation: spin 2s linear infinite;
+        
+                      margin-left:45%; 
+                      margin-top:20%;
+                }
+
+   .loading_text{
+   	margin-left: 40%
+   }
+
+		@media (max-width: 1224px) {
+
+		    /* For mobile phones and tablets */
+		    
+		    .loader {
+		              border: 16px solid #f3f3f3;
+		              border-radius: 50%;
+		              border-top: 16px solid #003354;
+		              width: 120px;
+		              height: 120px;
+		              -webkit-animation: spin 2s linear infinite; /* Safari */
+		              animation: spin 2s linear infinite;
+
+		              margin-left:40%; 
+		              margin-top:50%;
+		        }
+
+
+		           .loading_text{
+				   	margin-left: 30%
+				   }
+
+		}
+
+		
+         
+
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+
+        .temp-width{
+        	overflow: hidden;
+        }
         </style>
         <global-data locale="{{lang}}"></global-data>
         <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
@@ -33984,6 +34043,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </iron-selector>
             </app-drawer>
             <!-- Main content -->
+            <div style="{{display}}">
+                <div class="loader"></div>
+                <h1 class="loading_text">Loading Resources....</h1>
+            </div>
             <app-header-layout id="scrollingRegion" has-scrolling-region="">
                 <app-header slot="header" id="app-header" fixed="" scroll-target="scrollingRegion">
                     <app-toolbar>
@@ -34132,6 +34195,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 currentMenuStep: {
                     type: Object,
                     value: null
+                },
+
+                display:{
+                    type : String,
+                    value: "display: none;"
                 },
 
                 //language specific text for 508 compliance 
@@ -34287,8 +34355,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 	       
 	        var homepages = ["home","home-es", "home-fr"] ;
 	       // if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
-	        if (e.target.selectedItem.lang != localStorage.lang){  
+	        if (e.target.selectedItem.lang != localStorage.lang){
+
+                this.$.drawer.style.display = 'none';
+
                 window.localStorage.setItem("lang", e.target.selectedItem.lang);  
+                
+                this.display = "height: 100%; overflow: hidden;";
 	            location.reload();
 	        }
 	      }
@@ -34334,6 +34407,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             super.connectedCallback();
            
             this.root.querySelector('my-home').addEventListener('link-followed', event => {
+                if (event.detail.target=='/home') {
+                    this.$['bread-crumbs-container'].style.display = 'none';
+                }
+                else {
+                    this.$['bread-crumbs-container'].style.display = 'block';
+                }
                 console.log(event.detail.target);
                 this.root.querySelector('bread-crumbs').scrollIntoView();
                 this.$['app-header'].scroll(0, 0);
@@ -34349,6 +34428,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
             });
             this.root.addEventListener('link-followed', event => {
+                if (event.detail.target=='/home') {
+                    this.$['bread-crumbs-container'].style.display = 'none';
+                }
+                else {
+                    this.$['bread-crumbs-container'].style.display = 'block';
+                }
                 console.log(event.detail.target);
                 this.root.querySelector('bread-crumbs').scrollIntoView();
                 this.$['app-header'].scroll(0, 0);
@@ -34383,7 +34468,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             super.ready();
             this.lang = window.localStorage.getItem("lang");
             this.searchInputTarget = this.$['search-input'];
+            
+            this.display = "height: 100%; overflow: hidden;";
 
+            if (this.route.path=='/') {
+                this.$['bread-crumbs-container'].style.display = 'none';
+            }
 
             if (this.lang == 'en') {
                 this.page = "home";
@@ -34419,8 +34509,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.search_placeholder = "Buscar...";
             }
 
-
-
+            var that = this;
+            $(window).bind("load", function() {
+                       that.display = "display: none;"; 
+                       console.log("Done loading");
+                    });
 
             app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
@@ -34674,6 +34767,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         trigger: 'hover focus',
                         template: '<div class="popover s8"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
                     });
+
+                if (window.matchMedia("(max-width: 768px)").matches) {
+                    $('[data-toggle="popover1"]').popover('destroy'); 
+                    $('[data-toggle="popover2"]').popover('destroy'); 
+                    $('[data-toggle="popover3"]').popover('destroy'); 
+                    $('[data-toggle="popover4"]').popover('destroy'); 
+                    $('[data-toggle="popover5"]').popover('destroy'); 
+                    $('[data-toggle="popover6"]').popover('destroy'); 
+                    $('[data-toggle="popover7"]').popover('destroy'); 
+                    $('[data-toggle="popover8"]').popover('destroy'); 
+                }
             });
  
     </script>
