@@ -46,9 +46,13 @@
 
         _render(value, locale) {
             
+            if(locale == undefined)
+                locale = 'en';
+
 			if(locale == null)
-                locale = window.localStorage.getItem("lang")
+                locale = window.localStorage.getItem("lang");
             
+
             var data = {
                 en: {
                     home: "Home",
