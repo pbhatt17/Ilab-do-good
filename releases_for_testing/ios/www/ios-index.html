@@ -34767,6 +34767,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         trigger: 'hover focus',
                         template: '<div class="popover s8"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
                     });
+
+                if (window.matchMedia("(max-width: 768px)").matches) {
+                    $('[data-toggle="popover1"]').popover('destroy'); 
+                    $('[data-toggle="popover2"]').popover('destroy'); 
+                    $('[data-toggle="popover3"]').popover('destroy'); 
+                    $('[data-toggle="popover4"]').popover('destroy'); 
+                    $('[data-toggle="popover5"]').popover('destroy'); 
+                    $('[data-toggle="popover6"]').popover('destroy'); 
+                    $('[data-toggle="popover7"]').popover('destroy'); 
+                    $('[data-toggle="popover8"]').popover('destroy'); 
+                }
             });
  
     </script>
