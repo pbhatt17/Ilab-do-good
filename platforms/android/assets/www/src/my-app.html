@@ -178,21 +178,60 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         #pageContent:focus { 
             outline: none;
         }
+		
+	.loader {
+                      border: 16px solid #f3f3f3;
+                      border-radius: 50%;
+                      border-top: 16px solid #003354;
+                      width: 120px;
+                      height: 120px;
+                      -webkit-animation: spin 2s linear infinite; /* Safari */
+                      animation: spin 2s linear infinite;
+        
+                      margin-left:45%; 
+                      margin-top:20%;
+                }
 
-        .loader {
-              border: 16px solid #f3f3f3;
-              border-radius: 50%;
-              border-top: 16px solid #003354;
-              width: 120px;
-              height: 120px;
-              -webkit-animation: spin 2s linear infinite; /* Safari */
-              animation: spin 2s linear infinite;
-        }
+   .loading_text{
+   	margin-left: 40%
+   }
+
+		@media (max-width: 1224px) {
+
+		    /* For mobile phones and tablets */
+		    
+		    .loader {
+		              border: 16px solid #f3f3f3;
+		              border-radius: 50%;
+		              border-top: 16px solid #003354;
+		              width: 120px;
+		              height: 120px;
+		              -webkit-animation: spin 2s linear infinite; /* Safari */
+		              animation: spin 2s linear infinite;
+
+		              margin-left:40%; 
+		              margin-top:50%;
+		        }
+
+
+		           .loading_text{
+				   	margin-left: 30%
+				   }
+
+		}
+
+		
+         
 
 
         @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
+        }
+
+
+        .temp-width{
+        	overflow: hidden;
         }
         </style>
         <global-data locale="{{lang}}"></global-data>
@@ -281,12 +320,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </app-drawer>
             <!-- Main content -->
             <div style="{{display}}">
-                <!-- <img src="imgs/spinner.gif"> -->
                 <div class="loader"></div>
-                <h3>Loading Resources....</h3>
+                <h1 class="loading_text">Loading Resources....</h1>
             </div>
-            <!-- loading text revert if not working -->
-            <!-- <h1 style="{{display}}">Loading .....</h1> -->
             <app-header-layout id="scrollingRegion"  has-scrolling-region>
                 <app-header slot="header" id="app-header" fixed scroll-target="scrollingRegion">
                     <app-toolbar>
@@ -601,7 +637,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 window.localStorage.setItem("lang", e.target.selectedItem.lang);  
                 
-                this.display = "height: 100%; font-size:250%; margin-left:45%; margin-top:20%; overflow: hidden;";
+                this.display = "height: 100%; overflow: hidden;";
 	            location.reload();
 	        }
 	      }
@@ -709,7 +745,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.lang = window.localStorage.getItem("lang");
             this.searchInputTarget = this.$['search-input'];
             
-            this.display = "height: 100%; font-size:250%; margin-left:45%; margin-top:20%; overflow: hidden;";
+            this.display = "height: 100%; overflow: hidden;";
 
             if (this.route.path=='/') {
                 this.$['bread-crumbs-container'].style.display = 'none';
