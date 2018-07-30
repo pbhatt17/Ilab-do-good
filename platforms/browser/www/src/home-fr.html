@@ -6,7 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../bower_components/polymer/polymer-element.html">
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <dom-module id="my-home-fr">
     <template>
@@ -105,60 +106,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-icon-button id="info-btn" icon="icons:info" aria-label="Information" role="link"></paper-icon-button>
         </div>
     </template>
-    <script>var MyHomeFr =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(MyHomeFr, _Polymer$Element);
+    <script>
+    class MyHomeFr extends Polymer.Element {
+        static get is() {
+            return 'my-home-fr';
+        }
+        static get properties() {
+            return {};
+        }
 
-  function MyHomeFr() {
-    babelHelpers.classCallCheck(this, MyHomeFr);
-    return babelHelpers.possibleConstructorReturn(this, (MyHomeFr.__proto__ || Object.getPrototypeOf(MyHomeFr)).apply(this, arguments));
-  }
+        ready() {
+            super.ready();
 
-  babelHelpers.createClass(MyHomeFr, [{
-    key: "ready",
-    value: function ready() {
-      var _this = this;
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
 
-      babelHelpers.get(MyHomeFr.prototype.__proto__ || Object.getPrototypeOf(MyHomeFr.prototype), "ready", this).call(this);
-      this.root.addEventListener('link-followed', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: event.detail.target
-          },
-          bubbles: true
-        }));
-      });
-      this.$['info-btn'].addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: "/info-about-page"
-          },
-          bubbles: true
-        }));
-      });
-      this.$['info-btn'].addEventListener('tap', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: "/info-about-page"
-          },
-          bubbles: true
-        }));
-      });
+
+            this.$['info-btn'].addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/info-about-page"
+                    },
+                    bubbles: true
+                }));
+            })
+
+            this.$['info-btn'].addEventListener('tap', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/info-about-page"
+                    },
+                    bubbles: true
+                }));
+            });
+        }
     }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'my-home-fr';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {};
-    }
-  }]);
-  return MyHomeFr;
-}(Polymer.Element);
 
-window.customElements.define(MyHomeFr.is, MyHomeFr);</script>
+    window.customElements.define(MyHomeFr.is, MyHomeFr);
+    </script>
 </dom-module>

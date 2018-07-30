@@ -13,12 +13,12 @@
             outline: none;
         }
         </style>
-        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
+        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation></iron-a11y-keys>
         <div class="layout horizontal label">
             <div class="layout vertical center-justified flex" id="link-label">
                 <slot name="label"></slot>
             </div>
-            <paper-button toggles="" tabindex="-1" aria-labelledby="link-label">
+            <paper-button toggles tabindex="-1" aria-labelledby="link-label">
                 <div class="layout vertical center-justified">
                     <div hidden$="[[isOpened]]">
                         <iron-icon icon="expand-more"></iron-icon>
@@ -33,74 +33,61 @@
             <slot name="items"></slot>
         </div>
     </template>
-    <script>var ExpandableItemLink =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(ExpandableItemLink, _Polymer$Element);
-  babelHelpers.createClass(ExpandableItemLink, null, [{
-    key: "is",
-    get: function get() {
-      return 'expandable-item-link';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        isOpened: {
-          type: Boolean,
-          value: false
-        },
-        role: {
-          type: String,
-          value: "button",
-          reflectToAttribute: true
-        },
-        tabindex: {
-          type: Number,
-          value: 0,
-          reflectToAttribute: true
-        },
-        target: {
-          type: Object
+    <script>
+    class ExpandableItemLink extends Polymer.Element {
+        static get is() {
+            return 'expandable-item-link';
         }
-      };
+
+
+        static get properties() {
+            return {
+                isOpened: {
+                    type: Boolean,
+                    value: false,
+                },
+                role: {
+                    type: String,
+                    value: "button",
+                    reflectToAttribute: true,
+                },
+                tabindex: {
+                    type: Number,
+                    value: 0,
+                    reflectToAttribute: true,
+                },
+                target: {
+                    type: Object
+                }
+            };
+        }
+
+        constructor() {
+            super();
+        }
+
+        toggleOpen(e) {
+            console.log(e);
+            this.isOpened = !this.isOpened;
+            if(this.isOpened) {
+                this.classList.add("open");
+            } else {
+                this.classList.remove("open"); 
+            }
+        }
+
+        ready() {
+            super.ready();
+            this.root.querySelector('paper-button').addEventListener('click', event => {
+                this.isOpened = !this.isOpened;
+            });
+            this.root.querySelector('paper-button').addEventListener('tap', event => {
+                this.isOpened = !this.isOpened;
+            });
+            this.target = this;
+        }
     }
-  }]);
 
-  function ExpandableItemLink() {
-    babelHelpers.classCallCheck(this, ExpandableItemLink);
-    return babelHelpers.possibleConstructorReturn(this, (ExpandableItemLink.__proto__ || Object.getPrototypeOf(ExpandableItemLink)).call(this));
-  }
-
-  babelHelpers.createClass(ExpandableItemLink, [{
-    key: "toggleOpen",
-    value: function toggleOpen(e) {
-      console.log(e);
-      this.isOpened = !this.isOpened;
-
-      if (this.isOpened) {
-        this.classList.add("open");
-      } else {
-        this.classList.remove("open");
-      }
-    }
-  }, {
-    key: "ready",
-    value: function ready() {
-      var _this = this;
-
-      babelHelpers.get(ExpandableItemLink.prototype.__proto__ || Object.getPrototypeOf(ExpandableItemLink.prototype), "ready", this).call(this);
-      this.root.querySelector('paper-button').addEventListener('click', function (event) {
-        _this.isOpened = !_this.isOpened;
-      });
-      this.root.querySelector('paper-button').addEventListener('tap', function (event) {
-        _this.isOpened = !_this.isOpened;
-      });
-      this.target = this;
-    }
-  }]);
-  return ExpandableItemLink;
-}(Polymer.Element);
-
-customElements.define(ExpandableItemLink.is, ExpandableItemLink);</script>
+    customElements.define(ExpandableItemLink.is, ExpandableItemLink);
+    </script>
 </dom-module>
