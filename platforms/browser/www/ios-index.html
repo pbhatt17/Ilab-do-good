@@ -34510,11 +34510,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             var that = this;
-            $(window).bind("load", function() {
+
+
+            var isIE = /*@cc_on!@*/false || !!document.documentMode;
+            var isFirefox = typeof InstallTrigger !== 'undefined';
+
+
+            if (isIE == true || isFirefox == true) {
+                $( document ).ready(function() {
                        that.display = "display: none;"; 
                        console.log("Done loading");
-                    });
+                    })
+            }
 
+            else
+            {
+                $(window).bind("load", function() {
+                           that.display = "display: none;"; 
+                           console.log("Done loading");
+                        });
+            }
+
+            
             app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
                     console.log("got step data");
