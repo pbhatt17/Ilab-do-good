@@ -8,107 +8,100 @@
         </style>
     </template>
     <div></div>
-    <script>var __globalRef = {
-  locale: null,
-  device: null,
-  // update: function() {
-  //    // this.__listeners.forEach(item => item.update());
-  // },
-  __listeners: []
-};
-document.addEventListener('deviceready', function () {
-  if (window.localStorage.getItem("lang") == null) {
-    window.localStorage.setItem("lang", "en");
-  }
+    <script>
+    var __globalRef = {
+        locale: null,
+        device: null,
+        // update: function() {
+        //    // this.__listeners.forEach(item => item.update());
+        // },
+        __listeners: [],
+    };
+    document.addEventListener('deviceready', () => {
 
-  console.log(window.localStorage.getItem("lang"));
-  __globalRef.device = cordova.platformId;
-  console.log(cordova.platformId); // __globalRef.update();
-}, false);
-
-var GlobalData =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(GlobalData, _Polymer$Element);
-  babelHelpers.createClass(GlobalData, [{
-    key: "update",
-    value: function update() {
-      this.locale = this.globalRef.locale;
-      this.device = this.globalRef.device;
-    }
-  }, {
-    key: "setLocale",
-    value: function setLocale(newLocale, oldLocale) {
-      this.locale = newLocale;
-      this.globalRef.locale = newLocale; //made the change in my-app so that there is no constant writing in loop
-      // if (this.locale != null) {
-      //     window.localStorage.setItem("lang", this.globalRef.locale);
-      // }
-      // this.globalRef.update();
-    }
-  }, {
-    key: "setDevice",
-    value: function setDevice(newDevice, oldDevice) {
-      this.device = newDevice;
-      this.globalRef.device = newDevice; //  this.globalRef.update();
-    }
-  }, {
-    key: "_getLocale",
-    value: function _getLocale(ref) {
-      return ref.locale;
-    }
-  }, {
-    key: "_getDevice",
-    value: function _getDevice(ref) {
-      return ref.device;
-    }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'global-data';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        locale: {
-          type: String,
-          reflectToAttribute: true,
-          notify: true,
-          observer: 'setLocale'
-        },
-        device: {
-          type: String,
-          reflectToAttribute: true,
-          notify: true,
-          observer: 'setDevice'
-        },
-        globalRef: {
-          type: Object,
-          value: __globalRef
+        if( window.localStorage.getItem("lang") == null)
+            {
+             window.localStorage.setItem("lang", "en" );
+            }
+        
+        console.log(window.localStorage.getItem("lang"));
+        __globalRef.device = cordova.platformId;
+        console.log(cordova.platformId);
+       // __globalRef.update();
+    }, false);
+    class GlobalData extends Polymer.Element {
+        static get is() {
+            return 'global-data';
         }
-      };
-    }
-  }, {
-    key: "observers",
-    get: function get() {
-      return [];
-    }
-  }]);
 
-  function GlobalData() {
-    babelHelpers.classCallCheck(this, GlobalData);
-    return babelHelpers.possibleConstructorReturn(this, (GlobalData.__proto__ || Object.getPrototypeOf(GlobalData)).call(this)); // __globalRef.__listeners.push(this);
-  }
 
-  babelHelpers.createClass(GlobalData, [{
-    key: "ready",
-    value: function ready() {
-      babelHelpers.get(GlobalData.prototype.__proto__ || Object.getPrototypeOf(GlobalData.prototype), "ready", this).call(this); //this.update();
+        static get properties() {
+            return {
+                locale: {
+                    type: String,
+                    reflectToAttribute: true,
+                    notify: true,
+                    observer: 'setLocale',
+                },
+                device: {
+                    type: String,
+                    reflectToAttribute: true,
+                    notify: true,
+                    observer: 'setDevice',
+                },
+                globalRef: {
+                    type: Object,
+                    value: __globalRef,
+                }
+
+            };
+        }
+
+        static get observers() {
+            return [
+            ];
+        }
+
+        update() {
+            this.locale = this.globalRef.locale;
+            this.device = this.globalRef.device;
+            
+        }
+
+        setLocale(newLocale, oldLocale) {
+            this.locale = newLocale;
+            this.globalRef.locale = newLocale;
+            //made the change in my-app so that there is no constant writing in loop
+            // if (this.locale != null) {
+            //     window.localStorage.setItem("lang", this.globalRef.locale);
+            // }
+
+           // this.globalRef.update();
+        }
+
+        setDevice(newDevice, oldDevice) {
+            this.device = newDevice;
+            this.globalRef.device = newDevice;
+          //  this.globalRef.update();
+        }
+        _getLocale(ref) {
+            return ref.locale;
+        }
+        _getDevice(ref) {
+            return ref.device;
+        }
+        constructor() {
+            super();
+           // __globalRef.__listeners.push(this);
+        }
+
+
+        ready() { 
+            super.ready();
+            //this.update();
+        }
     }
-  }]);
-  return GlobalData;
-}(Polymer.Element);
 
-customElements.define(GlobalData.is, GlobalData);</script>
+    customElements.define(GlobalData.is, GlobalData);
+    </script>
 </dom-module>

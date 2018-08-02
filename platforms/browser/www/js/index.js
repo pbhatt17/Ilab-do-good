@@ -17,28 +17,33 @@
  * under the License.
  */
 var app = {
-  // Application Constructor
-  initialize: function initialize() {
-    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    this.deviceReadyPromise = new Promise(function (resolve, reject) {
-      document.addEventListener('deviceready', function () {
-        resolve("done");
-      }, false);
-    });
-  },
-  // deviceready Event Handler
-  //
-  // Bind any cordova events here. Common events are:
-  // 'pause', 'resume', etc.
-  onDeviceReady: function onDeviceReady() {
-    this.receivedEvent('deviceready');
-    console.log(window.open);
-    window.open = cordova.InAppBrowser.open;
-    console.log(window.open);
-  },
-  // Update DOM on a Received Event
-  receivedEvent: function receivedEvent(id) {
-    console.log('Received Event: ' + id);
-  }
+    // Application Constructor
+    initialize: function() {
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        this.deviceReadyPromise = new Promise((resolve, reject) => {
+            document.addEventListener('deviceready', () => {
+                resolve("done");
+            }, false); 
+        });
+    },
+
+    // deviceready Event Handler
+    //
+    // Bind any cordova events here. Common events are:
+    // 'pause', 'resume', etc.
+    onDeviceReady: function() {
+        this.receivedEvent('deviceready');
+        console.log(window.open);
+        window.open = cordova.InAppBrowser.open;
+        console.log(window.open);
+    },
+
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+
+        console.log('Received Event: ' + id);
+
+    }
 };
+
 app.initialize();

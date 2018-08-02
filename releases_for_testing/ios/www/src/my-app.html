@@ -360,7 +360,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <div name="home-es"></div>
                         </iron-pages>
                     </div>
-                    <iron-pages selected="[[page]]" id="pageContent" tabindex="-1" attr-for-selected="name" fallback-selection="home" role="main">
+                    <iron-pages selected="[[page]]" id="pageContent" tabindex="1" attr-for-selected="name" fallback-selection="home" role="main">
                         <div name="home">
                             <my-home route="[[subroute]]">
                                 <div slot="append" class="layout horizontal">
@@ -786,11 +786,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             var that = this;
-            $(window).bind("load", function() {
+
+
+            var isIE = /*@cc_on!@*/false || !!document.documentMode;
+            var isFirefox = typeof InstallTrigger !== 'undefined';
+
+
+            if (isIE == true || isFirefox == true) {
+                $( document ).ready(function() {
                        that.display = "display: none;"; 
                        console.log("Done loading");
-                    });
+                    })
+            }
 
+            else
+            {
+                $(window).bind("load", function() {
+                           that.display = "display: none;"; 
+                           console.log("Done loading");
+                        });
+            }
+
+            
             app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
                     console.log("got step data");

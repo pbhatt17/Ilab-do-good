@@ -7,7 +7,7 @@
     <author email="akshay.sanganal@icfi.com" href="http://cordova.io">
         ICF Dev
     </author>
-    <content src="index.html" />
+    <content src="ios-index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

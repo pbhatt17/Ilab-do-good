@@ -6,7 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../bower_components/polymer/polymer-element.html">
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <dom-module id="info-sub-page">
     <template>
@@ -34,78 +35,61 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
         </div>
     </template>
-    <script>var InfoSubPage =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(InfoSubPage, _Polymer$Element);
-
-  function InfoSubPage() {
-    babelHelpers.classCallCheck(this, InfoSubPage);
-    return babelHelpers.possibleConstructorReturn(this, (InfoSubPage.__proto__ || Object.getPrototypeOf(InfoSubPage)).apply(this, arguments));
-  }
-
-  babelHelpers.createClass(InfoSubPage, [{
-    key: "loadHTML",
-    value: function loadHTML(targetData) {
-      var _this = this;
-
-      if (!targetData || !targetData.url) {
-        return;
-      }
-
-      if (targetData.url[0] === "/") {
-        targetData.url = targetData.url.substr(1);
-      }
-
-      ajax("GET", targetData.url).then(function (response) {
-        _this.htmlContent = response;
-      }).catch(function (error) {
-        console.log("error while attempting to load info-sub-page: " + error);
-      });
-      this.root.addEventListener('link-followed', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: event.detail.target,
-            id: event.detail.id
-          },
-          bubbles: true
-        }));
-      });
-    }
-  }, {
-    key: "ready",
-    value: function ready() {
-      babelHelpers.get(InfoSubPage.prototype.__proto__ || Object.getPrototypeOf(InfoSubPage.prototype), "ready", this).call(this);
-    }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'info-sub-page';
-    }
-  }, {
-    key: "observers",
-    get: function get() {
-      return ['loadHTML(targetData)'];
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        targetData: {
-          type: Object
-        },
-        targetId: {
-          type: String
-        },
-        htmlContent: {
-          type: String,
-          notify: true
+    <script>
+    class InfoSubPage extends Polymer.Element {
+        static get is() {
+            return 'info-sub-page';
         }
-      };
-    }
-  }]);
-  return InfoSubPage;
-}(Polymer.Element);
+        static get observers() {
+            return [
+                'loadHTML(targetData)'
+            ];
+        }
+        static get properties() {
+            return {
+                targetData: {
+                    type: Object,
+                },
+                targetId: {
+                    type: String,
+                },
+                htmlContent: {
+                    type: String,
+                    notify: true,
+                },
+            };
+        }
 
-window.customElements.define(InfoSubPage.is, InfoSubPage);</script>
+        loadHTML(targetData) {
+            if (!targetData || !targetData.url) {
+                return;
+            }
+            if (targetData.url[0] === "/") {
+                targetData.url = targetData.url.substr(1);
+            }
+            ajax("GET", targetData.url)
+                .then(response => {
+                    this.htmlContent = response;
+                }).catch(error => {
+                    console.log("error while attempting to load info-sub-page: " + error);
+                });
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                        id: event.detail.id,
+                    },
+                    bubbles: true
+                }));
+            });
+
+        }
+
+        ready() {
+            super.ready();
+        }
+    }
+
+    window.customElements.define(InfoSubPage.is, InfoSubPage);
+    </script>
 </dom-module>
