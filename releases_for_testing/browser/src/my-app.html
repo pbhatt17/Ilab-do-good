@@ -468,6 +468,7 @@ function (_Polymer$Element) {
         _this.root.querySelector('bread-crumbs').scrollIntoView();
 
         if (_this.$.search.results.length === 1) {
+          _this.$['bread-crumbs-container'].style.display = 'block';
           var item = _this.$.search.results[0];
 
           if (item.type === "step") {
