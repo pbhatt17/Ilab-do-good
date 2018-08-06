@@ -318,7 +318,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </iron-selector>
             </app-drawer>
             <!-- Main content -->
-            <div style="{{display}}">
+            <div id="spinner-loader" style="{{display}}">
                 <div class="loader"></div>
                 <h1 class="loading_text">Loading Resources....</h1>
             </div>
@@ -824,17 +824,28 @@ function (_Polymer$Element) {
       false || !!document.documentMode;
       var isFirefox = typeof InstallTrigger !== 'undefined';
 
-      if (isIE == true || isFirefox == true) {
+      if (isIE) {
         $(document).ready(function () {
-          that.display = "display: none;";
+          that.$['spinner-loader'].style.display = 'none';
           console.log("Done loading");
         });
-      } else {
-        $(window).bind("load", function () {
-          that.display = "display: none;";
-          console.log("Done loading");
-        });
-      }
+      } // checking if the browser is edge
+      else if (navigator.userAgent.indexOf('Edge') >= 0) {
+          $(document).ready(function () {
+            that.$['spinner-loader'].style.display = 'none';
+            console.log("Done loading");
+          });
+        } else if (isFirefox == true) {
+          $(document).ready(function () {
+            that.display = "display: none;";
+            console.log("Done loading");
+          });
+        } else {
+          $(window).bind("load", function () {
+            that.display = "display: none;";
+            console.log("Done loading");
+          });
+        }
 
       app.deviceReadyPromise.then(function () {
         return ajax('GET', "data.json");
