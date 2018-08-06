@@ -24,7 +24,7 @@
             /*outline: none;*/
         }
         </style>
-        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
+        <iron-a11y-keys id="a11y" target="[[target]]" tabindex="1" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
         <div class="layout horizontal label">
             <paper-button toggles="" aria-label$="[[contentLabel]].  Click to [[labelText]] content">
                 <div class="layout horizontal flex">
@@ -71,6 +71,11 @@ function (_Polymer$Element) {
         isOpened: {
           type: Boolean,
           value: false
+        },
+        tabindex: {
+          type: Number,
+          value: 0,
+          reflectToAttribute: true
         },
         labelText: {
           type: String,
