@@ -553,8 +553,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             setTimeout(() => {
                 window.scrollTo(0, 0);
                 this.root.querySelector('bread-crumbs').scrollIntoView();
+                this.$['bread-crumbs-container'].style.display = 'block';                               
                 if (this.$.search.results.length === 1) {
-                	this.$['bread-crumbs-container'].style.display = 'block';              	
                     var item = this.$.search.results[0];
                     if (item.type === "step") {
                         this.set('route.path', '/step/' + item.index);
