@@ -30685,7 +30685,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             cursor: pointer
         }
         </style>
-        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter" on-keys-pressed="follow"></iron-a11y-keys>
+        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter" on-keys-pressed="follow" tabindex="1"></iron-a11y-keys>
         <a id="link">
             <slot></slot>
         </a>
@@ -31187,7 +31187,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             /*outline: none;*/
         }
         </style>
-        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
+        <iron-a11y-keys id="a11y" target="[[target]]" tabindex="1" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
         <div class="layout horizontal label">
             <paper-button toggles="" aria-label$="[[contentLabel]].  Click to [[labelText]] content">
                 <div class="layout horizontal flex">
@@ -31221,6 +31221,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 isOpened: {
                     type: Boolean,
                     value: false,
+                },
+                tabindex: {
+                    type: Number,
+                    value: 0,
+                    reflectToAttribute: true,
                 },
                 labelText: {
                     type: String,

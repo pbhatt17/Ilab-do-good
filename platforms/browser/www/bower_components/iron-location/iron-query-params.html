@@ -8,76 +8,92 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 
 @demo demo/iron-query-params.html
---><link rel="import" href="../polymer/polymer.html">
+-->
+<link rel="import" href="../polymer/polymer.html">
 
-<script>'use strict';
+<script>
+  'use strict';
 
-Polymer({
-  is: 'iron-query-params',
-  properties: {
-    paramsString: {
-      type: String,
-      notify: true,
-      observer: 'paramsStringChanged'
-    },
-    paramsObject: {
-      type: Object,
-      notify: true,
-      value: function value() {
-        return {};
+  Polymer({
+    is: 'iron-query-params',
+
+    properties: {
+      paramsString: {
+        type: String,
+        notify: true,
+        observer: 'paramsStringChanged',
+      },
+
+      paramsObject: {
+        type: Object,
+        notify: true,
+        value: function() {
+          return {};
+        }
+      },
+
+      _dontReact: {
+        type: Boolean,
+        value: false
       }
     },
-    _dontReact: {
-      type: Boolean,
-      value: false
-    }
-  },
-  hostAttributes: {
-    hidden: true
-  },
-  observers: ['paramsObjectChanged(paramsObject.*)'],
-  paramsStringChanged: function paramsStringChanged() {
-    this._dontReact = true;
-    this.paramsObject = this._decodeParams(this.paramsString);
-    this._dontReact = false;
-  },
-  paramsObjectChanged: function paramsObjectChanged() {
-    if (this._dontReact) {
-      return;
-    }
 
-    this.paramsString = this._encodeParams(this.paramsObject).replace(/%3F/g, '?').replace(/%2F/g, '/').replace(/'/g, '%27');
-  },
-  _encodeParams: function _encodeParams(params) {
-    var encodedParams = [];
+    hostAttributes: {
+      hidden: true
+    },
 
-    for (var key in params) {
-      var value = params[key];
+    observers: [
+      'paramsObjectChanged(paramsObject.*)'
+    ],
 
-      if (value === '') {
-        encodedParams.push(encodeURIComponent(key));
-      } else if (value) {
-        encodedParams.push(encodeURIComponent(key) + '=' + encodeURIComponent(value.toString()));
+    paramsStringChanged: function() {
+      this._dontReact = true;
+      this.paramsObject = this._decodeParams(this.paramsString);
+      this._dontReact = false;
+    },
+
+    paramsObjectChanged: function() {
+      if (this._dontReact) {
+        return;
       }
-    }
+      this.paramsString = this._encodeParams(this.paramsObject)
+          .replace(/%3F/g, '?').replace(/%2F/g, '/').replace(/'/g, '%27');
+    },
 
-    return encodedParams.join('&');
-  },
-  _decodeParams: function _decodeParams(paramString) {
-    var params = {}; // Work around a bug in decodeURIComponent where + is not
-    // converted to spaces:
+    _encodeParams: function(params) {
+      var encodedParams = [];
 
-    paramString = (paramString || '').replace(/\+/g, '%20');
-    var paramList = paramString.split('&');
+      for (var key in params) {
+        var value = params[key];
 
-    for (var i = 0; i < paramList.length; i++) {
-      var param = paramList[i].split('=');
+        if (value === '') {
+          encodedParams.push(encodeURIComponent(key));
 
-      if (param[0]) {
-        params[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || '');
+        } else if (value) {
+          encodedParams.push(
+              encodeURIComponent(key) +
+              '=' +
+              encodeURIComponent(value.toString())
+          );
+        }
       }
-    }
+      return encodedParams.join('&');
+    },
 
-    return params;
-  }
-});</script>
+    _decodeParams: function(paramString) {
+      var params = {};
+      // Work around a bug in decodeURIComponent where + is not
+      // converted to spaces:
+      paramString = (paramString || '').replace(/\+/g, '%20');
+      var paramList = paramString.split('&');
+      for (var i = 0; i < paramList.length; i++) {
+        var param = paramList[i].split('=');
+        if (param[0]) {
+          params[decodeURIComponent(param[0])] =
+              decodeURIComponent(param[1] || '');
+        }
+      }
+      return params;
+    }
+  });
+</script>
