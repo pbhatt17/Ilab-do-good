@@ -24,44 +24,52 @@
             </div>
         </iron-pages>
     </template>
-    <script>
-    class PlatformSwitch extends Polymer.Element {
-        static get is() {
-            return 'platform-switch';
-        }
-
-
-        static get properties() {
-            return {
-                device: {
-                    type: String,
-                }
-            };
-        }
-
-        static get observers() {
-            return [
-                'check(device)'
-            ];
-        }
-
-        check(test) {
-        }
-
-        constructor() {
-
-            super();
-        }
-
-        connectedCallback() {
-            super.connectedCallback(); 
-        }
-
-        ready() {
-            super.ready();
-        }
+    <script>var PlatformSwitch =
+/*#__PURE__*/
+function (_Polymer$Element) {
+  babelHelpers.inherits(PlatformSwitch, _Polymer$Element);
+  babelHelpers.createClass(PlatformSwitch, [{
+    key: "check",
+    value: function check(test) {}
+  }], [{
+    key: "is",
+    get: function get() {
+      return 'platform-switch';
     }
+  }, {
+    key: "properties",
+    get: function get() {
+      return {
+        device: {
+          type: String
+        }
+      };
+    }
+  }, {
+    key: "observers",
+    get: function get() {
+      return ['check(device)'];
+    }
+  }]);
 
-    customElements.define(PlatformSwitch.is, PlatformSwitch);
-    </script>
+  function PlatformSwitch() {
+    babelHelpers.classCallCheck(this, PlatformSwitch);
+    return babelHelpers.possibleConstructorReturn(this, (PlatformSwitch.__proto__ || Object.getPrototypeOf(PlatformSwitch)).call(this));
+  }
+
+  babelHelpers.createClass(PlatformSwitch, [{
+    key: "connectedCallback",
+    value: function connectedCallback() {
+      babelHelpers.get(PlatformSwitch.prototype.__proto__ || Object.getPrototypeOf(PlatformSwitch.prototype), "connectedCallback", this).call(this);
+    }
+  }, {
+    key: "ready",
+    value: function ready() {
+      babelHelpers.get(PlatformSwitch.prototype.__proto__ || Object.getPrototypeOf(PlatformSwitch.prototype), "ready", this).call(this);
+    }
+  }]);
+  return PlatformSwitch;
+}(Polymer.Element);
+
+customElements.define(PlatformSwitch.is, PlatformSwitch);</script>
 </dom-module>

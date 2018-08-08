@@ -555,6 +555,7 @@ function (_Polymer$Element) {
         this.$.drawer.style.display = 'none';
         window.localStorage.setItem("lang", e.target.selectedItem.lang);
         this.display = "height: 100%; overflow: hidden;";
+        window.localStorage.langChanged = "true";
         location.reload();
       }
     }
@@ -726,6 +727,9 @@ function (_Polymer$Element) {
           _this3.$['app-header'].scroll(0, 0);
         }, 16); //this.root.querySelector('bread-crumbs').scrollIntoView()
 
+        window.localStorage.routePath = event.detail.target;
+        window.localStorage.targetId = event.detail.id;
+
         _this3.set('route.path', event.detail.target);
 
         _this3.set('targetId', event.detail.id);
@@ -752,6 +756,8 @@ function (_Polymer$Element) {
 
           _this3.$['app-header'].scroll(0, 0);
         }, 16);
+        window.localStorage.routePath = event.detail.target;
+        window.localStorage.targetId = event.detail.id;
 
         _this3.set('route.path', event.detail.target);
 
@@ -829,22 +835,50 @@ function (_Polymer$Element) {
         $(document).ready(function () {
           that.$['spinner-loader'].style.display = 'none';
           console.log("Done loading");
+
+          if (window.localStorage.langChanged == "true") {
+            window.localStorage.langChanged = "false";
+            that.set('route.path', window.localStorage.routePath);
+            that.set('targetId', window.localStorage.targetId);
+            that.$['bread-crumbs-container'].style.display = 'block';
+          }
         });
       } // checking if the browser is edge
       else if (navigator.userAgent.indexOf('Edge') >= 0) {
           $(document).ready(function () {
             that.$['spinner-loader'].style.display = 'none';
             console.log("Done loading");
+
+            if (window.localStorage.langChanged == "true") {
+              window.localStorage.langChanged = "false";
+              that.set('route.path', window.localStorage.routePath);
+              that.set('targetId', window.localStorage.targetId);
+              that.$['bread-crumbs-container'].style.display = 'block';
+            }
           });
         } else if (isFirefox == true) {
           $(document).ready(function () {
             that.display = "display: none;";
             console.log("Done loading");
+
+            if (window.localStorage.langChanged == "true") {
+              window.localStorage.langChanged = "false";
+              that.set('route.path', window.localStorage.routePath);
+              that.set('targetId', window.localStorage.targetId);
+              that.$['bread-crumbs-container'].style.display = 'block';
+            }
           });
         } else {
           $(window).bind("load", function () {
             that.display = "display: none;";
             console.log("Done loading");
+
+            if (window.localStorage.langChanged == "true") {
+              window.localStorage.langChanged = "false";
+              that.set('route.path', window.localStorage.routePath);
+              that.set('targetId', window.localStorage.targetId);
+              that.$['bread-crumbs-container'].style.display = 'block';
+            }
           });
         }
 

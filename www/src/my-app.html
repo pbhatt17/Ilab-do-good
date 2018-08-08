@@ -639,6 +639,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 window.localStorage.setItem("lang", e.target.selectedItem.lang);  
                 
                 this.display = "height: 100%; overflow: hidden;";
+                window.localStorage.langChanged = "true";
 	            location.reload();
 	        }
 	      }
@@ -698,6 +699,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     this.$['app-header'].scroll(0, 0);
                 }, 16);
                 //this.root.querySelector('bread-crumbs').scrollIntoView()
+                
+                window.localStorage.routePath = event.detail.target;
+                window.localStorage.targetId = event.detail.id;
                 this.set('route.path', event.detail.target);
                 this.set('targetId', event.detail.id);
                 if (!this.$.drawer.persistent) {
@@ -718,6 +722,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     this.root.querySelector('bread-crumbs').scrollIntoView();
                     this.$['app-header'].scroll(0, 0);
                 }, 16);
+
+                window.localStorage.routePath = event.detail.target;
+                window.localStorage.targetId = event.detail.id;
+
                 this.set('route.path', event.detail.target);
                 this.set('targetId', event.detail.id);
                 if (!this.$.drawer.persistent) {
@@ -795,6 +803,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             	 $( document ).ready(function() {
             	that.$['spinner-loader'].style.display = 'none';
                        console.log("Done loading");
+
+                       if (window.localStorage.langChanged == "true") {
+                           	window.localStorage.langChanged = "false";
+                           	that.set('route.path',window.localStorage.routePath );
+                			that.set('targetId', window.localStorage.targetId);
+                			that.$['bread-crumbs-container'].style.display = 'block';
+                           }
                     })
             }
 
@@ -803,22 +818,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             	 $( document ).ready(function() {
             	that.$['spinner-loader'].style.display = 'none';
                        console.log("Done loading");
+
+                       if (window.localStorage.langChanged == "true") {
+                           	window.localStorage.langChanged = "false";
+                           	that.set('route.path',window.localStorage.routePath );
+                			that.set('targetId', window.localStorage.targetId);
+                			that.$['bread-crumbs-container'].style.display = 'block';
+                           }
                     })
             }
 
 
             else if (isFirefox == true) {
                 $( document ).ready(function() {
-                       that.display = "display: none;"; 
-                       console.log("Done loading");
+                       that.display = "display: none;";
+                           console.log("Done loading");
+
+                           if (window.localStorage.langChanged == "true") {
+                           	window.localStorage.langChanged = "false";
+                           	that.set('route.path',window.localStorage.routePath );
+                			that.set('targetId', window.localStorage.targetId);
+                			that.$['bread-crumbs-container'].style.display = 'block';
+                           }
                     })
             }
 
             else
             {
                 $(window).bind("load", function() {
-                           that.display = "display: none;"; 
+                           that.display = "display: none;";
                            console.log("Done loading");
+
+                           if (window.localStorage.langChanged == "true") {
+                           	window.localStorage.langChanged = "false";
+                           	that.set('route.path',window.localStorage.routePath );
+                			that.set('targetId', window.localStorage.targetId);
+                			that.$['bread-crumbs-container'].style.display = 'block';
+                           }
+                           
+                           
                         });
             }
 
