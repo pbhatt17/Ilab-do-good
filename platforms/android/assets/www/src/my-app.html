@@ -178,8 +178,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         #pageContent:focus { 
             outline: none;
         }
-		
-	.loader {
+        
+    .loader {
                       border: 16px solid #f3f3f3;
                       border-radius: 50%;
                       border-top: 16px solid #003354;
@@ -193,34 +193,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
 
    .loading_text{
-   	margin-left: 40%
+    margin-left: 40%
    }
 
-		@media (max-width: 1224px) {
+        @media (max-width: 1224px) {
 
-		    /* For mobile phones and tablets */
-		    
-		    .loader {
-		              border: 16px solid #f3f3f3;
-		              border-radius: 50%;
-		              border-top: 16px solid #003354;
-		              width: 120px;
-		              height: 120px;
-		              -webkit-animation: spin 2s linear infinite; /* Safari */
-		              animation: spin 2s linear infinite;
+            /* For mobile phones and tablets */
+            
+            .loader {
+                      border: 16px solid #f3f3f3;
+                      border-radius: 50%;
+                      border-top: 16px solid #003354;
+                      width: 120px;
+                      height: 120px;
+                      -webkit-animation: spin 2s linear infinite; /* Safari */
+                      animation: spin 2s linear infinite;
 
-		              margin-left:40%; 
-		              margin-top:50%;
-		        }
+                      margin-left:40%; 
+                      margin-top:50%;
+                }
 
 
-		           .loading_text{
-				   	margin-left: 30%
-				   }
+                   .loading_text{
+                    margin-left: 30%
+                   }
 
-		}
+        }
 
-		
+        
          
 
 
@@ -231,7 +231,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
         .temp-width{
-        	overflow: hidden;
+            overflow: hidden;
         }
         </style>
         <global-data locale="{{lang}}"></global-data>
@@ -627,12 +627,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         _itemSelected(e) {
-	        var selectedItem = e.target.selectedItem;
+            var selectedItem = e.target.selectedItem;
              
-	       
-	        var homepages = ["home","home-es", "home-fr"] ;
-	       // if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
-	        if (e.target.selectedItem.lang != localStorage.lang){
+           
+            var homepages = ["home","home-es", "home-fr"] ;
+           // if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
+            if (e.target.selectedItem.lang != localStorage.lang){
 
                 this.$.drawer.style.display = 'none';
 
@@ -640,9 +640,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 
                 this.display = "height: 100%; overflow: hidden;";
                 window.localStorage.langChanged = "true";
-	            location.reload();
-	        }
-	      }
+                location.reload();
+            }
+          }
 
 
         _stepData(baseData, lang) {
@@ -796,49 +796,106 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             var that = this;
 
-			var isIE = /*@cc_on!@*/false || !!document.documentMode;
-			var isFirefox = typeof InstallTrigger !== 'undefined';
+            var isIE = /*@cc_on!@*/false || !!document.documentMode;
+            var isFirefox = typeof InstallTrigger !== 'undefined';
 
             if (isIE) {
-            	 $( document ).ready(function() {
-            	that.$['spinner-loader'].style.display = 'none';
-                       console.log("Done loading");
+                 $( document ).ready(function() {
 
-                       if (window.localStorage.langChanged == "true") {
-                           	window.localStorage.langChanged = "false";
-                           	that.set('route.path',window.localStorage.routePath );
-                			that.set('targetId', window.localStorage.targetId);
-                			that.$['bread-crumbs-container'].style.display = 'block';
-                           }
-                    })
+                    if (window.localStorage.langChanged == "true") 
+                        {
+                            window.localStorage.langChanged = "false";
+                            
+
+                            setTimeout(() => {
+                            that.set('route.path',window.localStorage.routePath );
+                            that.set('targetId', window.localStorage.targetId);
+                            that.$['bread-crumbs-container'].style.display = 'block';
+
+                            that.$['spinner-loader'].style.display = 'none';
+                            console.log("Done loading");
+                             }, 50);
+
+                            that.root.querySelector('bread-crumbs').scrollIntoView();
+                            that.$['app-header'].scroll(0, 0);
+                            setTimeout(() => {
+                                that.root.querySelector('bread-crumbs').scrollIntoView();
+                                that.$['app-header'].scroll(0, 0);
+                            }, 16);
+                        }
+
+                        else
+                        {
+                            that.$['spinner-loader'].style.display = 'none';
+                            console.log("Done loading");
+                        } 
+                
+
+                  })
             }
 
             // checking if the browser is edge
             else if (navigator.userAgent.indexOf('Edge') >= 0) {
-            	 $( document ).ready(function() {
-            	that.$['spinner-loader'].style.display = 'none';
-                       console.log("Done loading");
-
+                 $( document ).ready(function() {
+                
                        if (window.localStorage.langChanged == "true") {
-                           	window.localStorage.langChanged = "false";
-                           	that.set('route.path',window.localStorage.routePath );
-                			that.set('targetId', window.localStorage.targetId);
-                			that.$['bread-crumbs-container'].style.display = 'block';
+                            window.localStorage.langChanged = "false";
+                            
+
+                            setTimeout(() => {
+                            that.set('route.path',window.localStorage.routePath );
+                            that.set('targetId', window.localStorage.targetId);
+                            that.$['bread-crumbs-container'].style.display = 'block';
+
+                            that.$['spinner-loader'].style.display = 'none';
+                            console.log("Done loading");
+                             }, 50);
+
+                            that.root.querySelector('bread-crumbs').scrollIntoView();
+                            that.$['app-header'].scroll(0, 0);
+                            setTimeout(() => {
+                                that.root.querySelector('bread-crumbs').scrollIntoView();
+                                that.$['app-header'].scroll(0, 0);
+                            }, 16);
                            }
+
+                        else{
+                            that.$['spinner-loader'].style.display = 'none';
+                            console.log("Done loading");
+
+                        }   
                     })
             }
 
 
             else if (isFirefox == true) {
                 $( document ).ready(function() {
-                       that.display = "display: none;";
-                           console.log("Done loading");
+                      if (window.localStorage.langChanged == "true") {
+                            window.localStorage.langChanged = "false";
+                            
+                            setTimeout(() => {
+                            that.set('route.path',window.localStorage.routePath );
+                            that.set('targetId', window.localStorage.targetId);
+                            that.$['bread-crumbs-container'].style.display = 'block';
 
-                           if (window.localStorage.langChanged == "true") {
-                           	window.localStorage.langChanged = "false";
-                           	that.set('route.path',window.localStorage.routePath );
-                			that.set('targetId', window.localStorage.targetId);
-                			that.$['bread-crumbs-container'].style.display = 'block';
+                            that.display = "display: none;";
+                            console.log("Done loading");
+                             },50);
+
+                            that.root.querySelector('bread-crumbs').scrollIntoView();
+                            that.$['app-header'].scroll(0, 0);
+                            setTimeout(() => {
+                                that.root.querySelector('bread-crumbs').scrollIntoView();
+                                that.$['app-header'].scroll(0, 0);
+                            }, 16);
+                            
+                            
+                            
+                           }
+                           else{
+                            that.display = "display: none;";
+                             console.log("Done loading");
+
                            }
                     })
             }
@@ -846,16 +903,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             else
             {
                 $(window).bind("load", function() {
-                           that.display = "display: none;";
-                           console.log("Done loading");
-
-                           if (window.localStorage.langChanged == "true") {
-                           	window.localStorage.langChanged = "false";
-                           	that.set('route.path',window.localStorage.routePath );
-                			that.set('targetId', window.localStorage.targetId);
-                			that.$['bread-crumbs-container'].style.display = 'block';
-                           }
                            
+                           if (window.localStorage.langChanged == "true") {
+                            window.localStorage.langChanged = "false";
+                            
+                            setTimeout(() => {
+                            that.set('route.path',window.localStorage.routePath );
+                            that.set('targetId', window.localStorage.targetId);
+                            that.$['bread-crumbs-container'].style.display = 'block';
+
+                            that.display = "display: none;";
+                            console.log("Done loading");
+                             },50);
+
+                            that.root.querySelector('bread-crumbs').scrollIntoView();
+                            that.$['app-header'].scroll(0, 0);
+                            setTimeout(() => {
+                                that.root.querySelector('bread-crumbs').scrollIntoView();
+                                that.$['app-header'].scroll(0, 0);
+                            }, 16);
+                            
+                            
+                            
+                           }
+                           else{
+                            that.display = "display: none;";
+                             console.log("Done loading");
+
+                           }
                            
                         });
             }
@@ -867,7 +942,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     this.baseStepData = JSON.parse(response);
                     for (var lang in this.baseStepData) {
 
-                    	if (lang != this.lang) { continue; }
+                        if (lang != this.lang) { continue; }
 
                         this.baseStepData[lang].steps.forEach(step => {
                             if (!!step.furtherResources) {
