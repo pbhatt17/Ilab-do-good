@@ -830,32 +830,79 @@ function (_Polymer$Element) {
       /*@cc_on!@*/
       false || !!document.documentMode;
       var isFirefox = typeof InstallTrigger !== 'undefined';
+      var isEdge = navigator.userAgent.indexOf('Edge') >= 0;
 
-      if (isIE) {
-        $(document).ready(function () {
-          if (window.localStorage.langChanged == "true") {
-            window.localStorage.langChanged = "false";
-            setTimeout(function () {
-              that.set('route.path', window.localStorage.routePath);
-              that.set('targetId', window.localStorage.targetId);
-              that.$['bread-crumbs-container'].style.display = 'block';
-              that.$['spinner-loader'].style.display = 'none';
-              console.log("Done loading");
-            }, 50);
-            that.root.querySelector('bread-crumbs').scrollIntoView();
-            that.$['app-header'].scroll(0, 0);
-            setTimeout(function () {
-              that.root.querySelector('bread-crumbs').scrollIntoView();
-              that.$['app-header'].scroll(0, 0);
-            }, 16);
-          } else {
-            that.$['spinner-loader'].style.display = 'none';
-            console.log("Done loading");
+      if (isIE || isEdge) {
+        app.deviceReadyPromise.then(function () {
+          return ajax('GET', "data.json");
+        }).then(function (response) {
+          console.log("got step data");
+          _this4.baseStepData = JSON.parse(response);
+
+          for (var lang in _this4.baseStepData) {
+            if (lang != _this4.lang) {
+              continue;
+            }
+
+            _this4.baseStepData[lang].steps.forEach(function (step) {
+              if (!!step.furtherResources) {
+                if (step.furtherResources[0] == "/") {
+                  step.furtherResources = step.furtherResources.substr(1);
+                }
+
+                ajax('GET', step.furtherResources).then(function (result) {
+                  console.log("found " + step.furtherResources);
+                  step.furtherResources = result;
+                }).catch(function (error) {
+                  console.log("didn't find bib.");
+                });
+              }
+
+              if (!!step.extraInfo) {
+                if (step.extraInfo[0] == "/") {
+                  step.extraInfo = step.extraInfo.substr(1);
+                }
+
+                ajax('GET', step.extraInfo).then(function (result) {
+                  console.log("found " + step.extraInfo);
+                  step.extraInfo = result;
+                }).catch(function (error) {
+                  console.log("didn't find extraInfo.");
+                });
+              }
+
+              if (!!step.trainingMats) {
+                if (step.trainingMats[0] == "/") {
+                  step.trainingMats = step.trainingMats.substr(1);
+                }
+
+                ajax('GET', step.trainingMats).then(function (result) {
+                  console.log("found " + step.trainingMats);
+                  step.trainingMats = result;
+                }).catch(function (error) {
+                  console.log("didn't find trainingMats.");
+                });
+              }
+
+              step.topics.forEach(function (topic) {
+                if (!!topic.url) {
+                  if (topic.url[0] == "/") {
+                    topic.url = topic.url.substr(1);
+                    console.log(topic.url);
+                  }
+
+                  ajax('GET', topic.url).then(function (result) {
+                    console.log("found " + topic.url);
+                    topic.rawData = result;
+                  }).catch(function (error) {
+                    console.log("didn't find topic.");
+                  });
+                }
+              });
+            });
           }
-        });
-      } // checking if the browser is edge
-      else if (navigator.userAgent.indexOf('Edge') >= 0) {
-          $(document).ready(function () {
+        }).then(function () {
+          setTimeout(function () {
             if (window.localStorage.langChanged == "true") {
               window.localStorage.langChanged = "false";
               setTimeout(function () {
@@ -864,135 +911,116 @@ function (_Polymer$Element) {
                 that.$['bread-crumbs-container'].style.display = 'block';
                 that.$['spinner-loader'].style.display = 'none';
                 console.log("Done loading");
-              }, 50);
+              }, 500);
               that.root.querySelector('bread-crumbs').scrollIntoView();
               that.$['app-header'].scroll(0, 0);
               setTimeout(function () {
                 that.root.querySelector('bread-crumbs').scrollIntoView();
                 that.$['app-header'].scroll(0, 0);
-              }, 16);
+              }, 501);
             } else {
               that.$['spinner-loader'].style.display = 'none';
               console.log("Done loading");
             }
-          });
-        } else if (isFirefox == true) {
-          $(document).ready(function () {
-            if (window.localStorage.langChanged == "true") {
-              window.localStorage.langChanged = "false";
-              setTimeout(function () {
-                that.set('route.path', window.localStorage.routePath);
-                that.set('targetId', window.localStorage.targetId);
-                that.$['bread-crumbs-container'].style.display = 'block';
-                that.display = "display: none;";
-                console.log("Done loading");
-              }, 50);
-              that.root.querySelector('bread-crumbs').scrollIntoView();
-              that.$['app-header'].scroll(0, 0);
-              setTimeout(function () {
-                that.root.querySelector('bread-crumbs').scrollIntoView();
-                that.$['app-header'].scroll(0, 0);
-              }, 16);
-            } else {
-              that.display = "display: none;";
-              console.log("Done loading");
-            }
-          });
-        } else {
-          $(window).bind("load", function () {
-            if (window.localStorage.langChanged == "true") {
-              window.localStorage.langChanged = "false";
-              setTimeout(function () {
-                that.set('route.path', window.localStorage.routePath);
-                that.set('targetId', window.localStorage.targetId);
-                that.$['bread-crumbs-container'].style.display = 'block';
-                that.display = "display: none;";
-                console.log("Done loading");
-              }, 50);
-              that.root.querySelector('bread-crumbs').scrollIntoView();
-              that.$['app-header'].scroll(0, 0);
-              setTimeout(function () {
-                that.root.querySelector('bread-crumbs').scrollIntoView();
-                that.$['app-header'].scroll(0, 0);
-              }, 16);
-            } else {
-              that.display = "display: none;";
-              console.log("Done loading");
-            }
-          });
-        }
+          }, 500);
+        }).catch(function (error) {
+          console.log("error loading step data: " + error);
+        });
+      } else {
+        app.deviceReadyPromise.then(function () {
+          return ajax('GET', "data.json");
+        }).then(function (response) {
+          console.log("got step data");
+          _this4.baseStepData = JSON.parse(response);
 
-      app.deviceReadyPromise.then(function () {
-        return ajax('GET', "data.json");
-      }).then(function (response) {
-        console.log("got step data");
-        _this4.baseStepData = JSON.parse(response);
-
-        for (var lang in _this4.baseStepData) {
-          if (lang != _this4.lang) {
-            continue;
-          }
-
-          _this4.baseStepData[lang].steps.forEach(function (step) {
-            if (!!step.furtherResources) {
-              if (step.furtherResources[0] == "/") {
-                step.furtherResources = step.furtherResources.substr(1);
-              }
-
-              ajax('GET', step.furtherResources).then(function (result) {
-                console.log("found " + step.furtherResources);
-                step.furtherResources = result;
-              }).catch(function (error) {
-                console.log("didn't find bib.");
-              });
+          for (var lang in _this4.baseStepData) {
+            if (lang != _this4.lang) {
+              continue;
             }
 
-            if (!!step.extraInfo) {
-              if (step.extraInfo[0] == "/") {
-                step.extraInfo = step.extraInfo.substr(1);
-              }
-
-              ajax('GET', step.extraInfo).then(function (result) {
-                console.log("found " + step.extraInfo);
-                step.extraInfo = result;
-              }).catch(function (error) {
-                console.log("didn't find extraInfo.");
-              });
-            }
-
-            if (!!step.trainingMats) {
-              if (step.trainingMats[0] == "/") {
-                step.trainingMats = step.trainingMats.substr(1);
-              }
-
-              ajax('GET', step.trainingMats).then(function (result) {
-                console.log("found " + step.trainingMats);
-                step.trainingMats = result;
-              }).catch(function (error) {
-                console.log("didn't find trainingMats.");
-              });
-            }
-
-            step.topics.forEach(function (topic) {
-              if (!!topic.url) {
-                if (topic.url[0] == "/") {
-                  topic.url = topic.url.substr(1);
-                  console.log(topic.url);
+            _this4.baseStepData[lang].steps.forEach(function (step) {
+              if (!!step.furtherResources) {
+                if (step.furtherResources[0] == "/") {
+                  step.furtherResources = step.furtherResources.substr(1);
                 }
 
-                ajax('GET', topic.url).then(function (result) {
-                  console.log("found " + topic.url);
-                  topic.rawData = result;
+                ajax('GET', step.furtherResources).then(function (result) {
+                  console.log("found " + step.furtherResources);
+                  step.furtherResources = result;
                 }).catch(function (error) {
-                  console.log("didn't find topic.");
+                  console.log("didn't find bib.");
                 });
               }
+
+              if (!!step.extraInfo) {
+                if (step.extraInfo[0] == "/") {
+                  step.extraInfo = step.extraInfo.substr(1);
+                }
+
+                ajax('GET', step.extraInfo).then(function (result) {
+                  console.log("found " + step.extraInfo);
+                  step.extraInfo = result;
+                }).catch(function (error) {
+                  console.log("didn't find extraInfo.");
+                });
+              }
+
+              if (!!step.trainingMats) {
+                if (step.trainingMats[0] == "/") {
+                  step.trainingMats = step.trainingMats.substr(1);
+                }
+
+                ajax('GET', step.trainingMats).then(function (result) {
+                  console.log("found " + step.trainingMats);
+                  step.trainingMats = result;
+                }).catch(function (error) {
+                  console.log("didn't find trainingMats.");
+                });
+              }
+
+              step.topics.forEach(function (topic) {
+                if (!!topic.url) {
+                  if (topic.url[0] == "/") {
+                    topic.url = topic.url.substr(1);
+                    console.log(topic.url);
+                  }
+
+                  ajax('GET', topic.url).then(function (result) {
+                    console.log("found " + topic.url);
+                    topic.rawData = result;
+                  }).catch(function (error) {
+                    console.log("didn't find topic.");
+                  });
+                }
+              });
             });
-          });
-        }
-      }).catch(function (error) {
-        console.log("error loading step data: " + error);
-      });
+          }
+        }).then(function () {
+          setTimeout(function () {
+            if (window.localStorage.langChanged == "true") {
+              window.localStorage.langChanged = "false";
+              setTimeout(function () {
+                that.set('route.path', window.localStorage.routePath);
+                that.set('targetId', window.localStorage.targetId);
+                that.$['bread-crumbs-container'].style.display = 'block';
+                that.display = "display: none;";
+                console.log("Done loading");
+              }, 500);
+              that.root.querySelector('bread-crumbs').scrollIntoView();
+              that.$['app-header'].scroll(0, 0);
+              setTimeout(function () {
+                that.root.querySelector('bread-crumbs').scrollIntoView();
+                that.$['app-header'].scroll(0, 0);
+              }, 501);
+            } else {
+              that.display = "display: none;";
+              console.log("Done loading");
+            }
+          }, 500);
+        }).catch(function (error) {
+          console.log("error loading step data: " + error);
+        });
+      }
     }
   }]);
   return MyApp;

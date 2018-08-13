@@ -6,7 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../bower_components/polymer/polymer-element.html">
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <dom-module id="my-topic">
     <template>
@@ -31,419 +32,447 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="layout horizontal center-justified">
             <div class="main" aria-live="polite" tabindex="-1" id="pageTop">
                 <render-raw html-data="[[data.rawData]]" target="{{targetId}}"></render-raw>
-                <paper-button id="prev" hidden$="[[!hasPrevious]]" raised="">previous topic</paper-button>
-                <paper-button id="prevfr" hidden$="[[!hasPreviousfr]]" raised="">Sujet précédent</paper-button>
-                <paper-button id="preves" hidden$="[[!hasPreviouses]]" raised="">Tema anterior</paper-button>
+                <paper-button id="prev" hidden$="[[!hasPrevious]]" raised>previous topic</paper-button>
+                <paper-button id="prevfr" hidden$="[[!hasPreviousfr]]" raised>Sujet précédent</paper-button>
+                <paper-button id="preves" hidden$="[[!hasPreviouses]]" raised>Tema anterior</paper-button>
 
-                <paper-button id="prevStep" hidden$="[[!showPreviousStep]]" raised="">previous step</paper-button>
-                <paper-button id="prevStepfr" hidden$="[[!showPreviousStepfr]]" raised="">Étape précédente</paper-button>
-                <paper-button id="prevStepes" hidden$="[[!showPreviousStepes]]" raised="">Paso anterior</paper-button>
+                <paper-button id="prevStep" hidden$="[[!showPreviousStep]]" raised>previous step</paper-button>
+                <paper-button id="prevStepfr" hidden$="[[!showPreviousStepfr]]" raised>Étape précédente</paper-button>
+                <paper-button id="prevStepes" hidden$="[[!showPreviousStepes]]" raised>Paso anterior</paper-button>
                 
-                <paper-button id="next" hidden$="[[!hasNext]]" raised="">next topic</paper-button>
-                <paper-button id="nextfr" hidden$="[[!hasNextfr]]" raised="">Sujet suivant</paper-button>
-                <paper-button id="nextes" hidden$="[[!hasNextes]]" raised="">Próximo tema</paper-button>
+                <paper-button id="next" hidden$="[[!hasNext]]" raised>next topic</paper-button>
+                <paper-button id="nextfr" hidden$="[[!hasNextfr]]" raised>Sujet suivant</paper-button>
+                <paper-button id="nextes" hidden$="[[!hasNextes]]" raised>Próximo tema</paper-button>
 
-                <paper-button id="nextStep" hidden$="[[!showNextStep]]" raised="">Next Step</paper-button>
-                <paper-button id="nextStepfr" hidden$="[[!showNextStepfr]]" raised="">Étape suivante</paper-button>
-                <paper-button id="nextStepes" hidden$="[[!showNextStepes]]" raised="">Próximo paso</paper-button>
+                <paper-button id="nextStep" hidden$="[[!showNextStep]]" raised>Next Step</paper-button>
+                <paper-button id="nextStepfr" hidden$="[[!showNextStepfr]]" raised>Étape suivante</paper-button>
+                <paper-button id="nextStepes" hidden$="[[!showNextStepes]]" raised>Próximo paso</paper-button>
             </div>
         </div>
     </template>
-    <script>var MyTopic =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(MyTopic, _Polymer$Element);
-
-  function MyTopic() {
-    babelHelpers.classCallCheck(this, MyTopic);
-    return babelHelpers.possibleConstructorReturn(this, (MyTopic.__proto__ || Object.getPrototypeOf(MyTopic)).apply(this, arguments));
-  }
-
-  babelHelpers.createClass(MyTopic, [{
-    key: "_withIndex",
-    value: function _withIndex(stepId, topicId, stepData) {
-      if (!stepId || !topicId || !stepData) {
-        return null;
-      }
-
-      return stepData[Number.parseInt(stepId) - 1].topics[Number.parseInt(topicId) - 1];
-    }
-  }, {
-    key: "_hasNext",
-    value: function _hasNext(stepId, topicId, stepData) {
-      if (!stepId || !topicId || !stepData) {
-        return null;
-      }
-
-      if (window.localStorage.lang != 'en') {
-        return null;
-      }
-
-      return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
-    }
-  }, {
-    key: "_hasNextes",
-    value: function _hasNextes(stepId, topicId, stepData) {
-      if (!stepId || !topicId || !stepData) {
-        return null;
-      }
-
-      if (window.localStorage.lang != 'es') {
-        return null;
-      }
-
-      return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
-    }
-  }, {
-    key: "_hasNextfr",
-    value: function _hasNextfr(stepId, topicId, stepData) {
-      if (!stepId || !topicId || !stepData) {
-        return null;
-      }
-
-      if (window.localStorage.lang != 'fr') {
-        return null;
-      }
-
-      return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
-    }
-  }, {
-    key: "_showNextStep",
-    value: function _showNextStep(stepId, hasNextTopic, stepData) {
-      if (!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
-        return false;
-      }
-
-      if (hasNextTopic) {
-        return false;
-      }
-
-      if (window.localStorage.lang != "en") {
-        return false;
-      }
-
-      console.log(stepId, stepData.length);
-      return Number.parseInt(stepId) < stepData.length;
-    }
-  }, {
-    key: "_showNextStepfr",
-    value: function _showNextStepfr(stepId, hasNextTopic, stepData) {
-      if (!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
-        return false;
-      }
-
-      if (hasNextTopic) {
-        return false;
-      }
-
-      if (window.localStorage.lang != "fr") {
-        return false;
-      }
-
-      console.log(stepId, stepData.length);
-      return Number.parseInt(stepId) < stepData.length;
-    }
-  }, {
-    key: "_showNextStepes",
-    value: function _showNextStepes(stepId, hasNextTopic, stepData) {
-      if (!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
-        return false;
-      }
-
-      if (hasNextTopic) {
-        return false;
-      }
-
-      if (window.localStorage.lang != "es") {
-        return false;
-      }
-
-      console.log(stepId, stepData.length);
-      return Number.parseInt(stepId) < stepData.length;
-    }
-  }, {
-    key: "_hasPrevious",
-    value: function _hasPrevious(stepId, topicId, stepData) {
-      if (!stepId || !topicId || !stepData) {
-        return null;
-      }
-
-      if (window.localStorage.lang != 'en') {
-        return null;
-      }
-
-      return Number.parseInt(topicId) > 1;
-    }
-  }, {
-    key: "_hasPreviouses",
-    value: function _hasPreviouses(stepId, topicId, stepData) {
-      if (!stepId || !topicId || !stepData) {
-        return null;
-      }
-
-      if (window.localStorage.lang != 'es') {
-        return null;
-      }
-
-      return Number.parseInt(topicId) > 1;
-    }
-  }, {
-    key: "_hasPreviousfr",
-    value: function _hasPreviousfr(stepId, topicId, stepData) {
-      if (!stepId || !topicId || !stepData) {
-        return null;
-      }
-
-      if (window.localStorage.lang != 'fr') {
-        return null;
-      }
-
-      return Number.parseInt(topicId) > 1;
-    }
-  }, {
-    key: "_showPreviousStep",
-    value: function _showPreviousStep(stepId, hasPerviousTopic, stepData) {
-      if (!stepId || hasPerviousTopic === null || hasPerviousTopic === undefined || !stepData) {
-        return false;
-      }
-
-      if (hasPerviousTopic) {
-        return false;
-      }
-
-      if (window.localStorage.lang != 'en') {
-        return false;
-      }
-
-      console.log(stepId, stepData.length);
-      return stepId > 1;
-    }
-  }, {
-    key: "_showPreviousStepes",
-    value: function _showPreviousStepes(stepId, hasPerviousTopic, stepData) {
-      if (!stepId || hasPerviousTopic === null || hasPerviousTopic === undefined || !stepData) {
-        return false;
-      }
-
-      if (hasPerviousTopic) {
-        return false;
-      }
-
-      if (window.localStorage.lang != 'es') {
-        return false;
-      }
-
-      console.log(stepId, stepData.length);
-      return stepId > 1;
-    }
-  }, {
-    key: "_showPreviousStepfr",
-    value: function _showPreviousStepfr(stepId, hasPerviousTopic, stepData) {
-      if (!stepId || hasPerviousTopic === null || hasPerviousTopic === undefined || !stepData) {
-        return false;
-      }
-
-      if (hasPerviousTopic) {
-        return false;
-      }
-
-      if (window.localStorage.lang != 'fr') {
-        return false;
-      }
-
-      console.log(stepId, stepData.length);
-      return stepId > 1;
-    }
-  }, {
-    key: "refocusTop",
-    value: function refocusTop() {
-      this.$.pageTop.focus();
-    }
-  }, {
-    key: "ready",
-    value: function ready() {
-      var _this = this;
-
-      babelHelpers.get(MyTopic.prototype.__proto__ || Object.getPrototypeOf(MyTopic.prototype), "ready", this).call(this);
-      this.$.next.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/topic/' + _this.routeData.stepId + '/' + (Number.parseInt(_this.routeData.topicId) + 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.nextes.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/topic/' + _this.routeData.stepId + '/' + (Number.parseInt(_this.routeData.topicId) + 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.nextfr.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/topic/' + _this.routeData.stepId + '/' + (Number.parseInt(_this.routeData.topicId) + 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.nextStep.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/step/' + (Number.parseInt(_this.routeData.stepId) + 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.nextStepfr.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/step/' + (Number.parseInt(_this.routeData.stepId) + 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.nextStepes.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/step/' + (Number.parseInt(_this.routeData.stepId) + 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.prev.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/topic/' + _this.routeData.stepId + '/' + (Number.parseInt(_this.routeData.topicId) - 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.preves.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/topic/' + _this.routeData.stepId + '/' + (Number.parseInt(_this.routeData.topicId) - 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.prevfr.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/topic/' + _this.routeData.stepId + '/' + (Number.parseInt(_this.routeData.topicId) - 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.prevStep.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/step/' + (Number.parseInt(_this.routeData.stepId) - 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.prevStepes.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/step/' + (Number.parseInt(_this.routeData.stepId) - 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.prevStepfr.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/step/' + (Number.parseInt(_this.routeData.stepId) - 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.root.addEventListener('link-followed', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: event.detail.target,
-            id: event.detail.id
-          },
-          bubbles: true
-        }));
-      });
-    }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'my-topic';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        data: {
-          type: Object,
-          computed: '_withIndex(routeData.stepId, routeData.topicId, stepData)'
-        },
-        targetId: {
-          type: String,
-          value: null
-        },
-        hasNext: {
-          type: Boolean,
-          computed: '_hasNext(routeData.stepId, routeData.topicId, stepData)'
-        },
-        hasNextes: {
-          type: Boolean,
-          computed: '_hasNextes(routeData.stepId, routeData.topicId, stepData)'
-        },
-        hasNextfr: {
-          type: Boolean,
-          computed: '_hasNextfr(routeData.stepId, routeData.topicId, stepData)'
-        },
-        showNextStep: {
-          type: Boolean,
-          computed: '_showNextStep(routeData.stepId, hasNext, stepData)'
-        },
-        showNextStepes: {
-          type: Boolean,
-          computed: '_showNextStepes(routeData.stepId, hasNextes, stepData)'
-        },
-        showNextStepfr: {
-          type: Boolean,
-          computed: '_showNextStepfr(routeData.stepId, hasNextfr, stepData)'
-        },
-        hasPrevious: {
-          type: Boolean,
-          computed: '_hasPrevious(routeData.stepId, routeData.topicId, stepData)'
-        },
-        hasPreviousfr: {
-          type: Boolean,
-          computed: '_hasPreviousfr(routeData.stepId, routeData.topicId, stepData)'
-        },
-        hasPreviouses: {
-          type: Boolean,
-          computed: '_hasPreviouses(routeData.stepId, routeData.topicId, stepData)'
-        },
-        showPreviousStep: {
-          type: Boolean,
-          computed: '_showPreviousStep(routeData.stepId, hasPrevious, stepData)'
-        },
-        showPreviousStepfr: {
-          type: Boolean,
-          computed: '_showPreviousStepfr(routeData.stepId, hasPreviousfr, stepData)'
-        },
-        showPreviousStepes: {
-          type: Boolean,
-          computed: '_showPreviousStepes(routeData.stepId, hasPreviouses, stepData)'
-        },
-        stepData: {
-          type: Object
+    <script>
+    class MyTopic extends Polymer.Element {
+        static get is() {
+            return 'my-topic';
         }
-      };
-    }
-  }]);
-  return MyTopic;
-}(Polymer.Element);
+        static get properties() {
+            return {
+                data: {
+                    type: Object,
+                    computed: '_withIndex(routeData.stepId, routeData.topicId, stepData)',
+                },
+                targetId: {
+                    type: String,
+                    value: null
+                },
 
-window.customElements.define(MyTopic.is, MyTopic);</script>
+
+
+                hasNext: {
+                    type: Boolean,
+                    computed: '_hasNext(routeData.stepId, routeData.topicId, stepData)',
+                },
+                hasNextes: {
+                    type: Boolean,
+                    computed: '_hasNextes(routeData.stepId, routeData.topicId, stepData)',
+                },
+                hasNextfr: {
+                    type: Boolean,
+                    computed: '_hasNextfr(routeData.stepId, routeData.topicId, stepData)',
+                },
+
+
+
+                showNextStep: {
+                    type: Boolean,
+                    computed: '_showNextStep(routeData.stepId, hasNext, stepData)',
+                },
+
+                showNextStepes: {
+                    type: Boolean,
+                    computed: '_showNextStepes(routeData.stepId, hasNextes, stepData)',
+                },
+
+                showNextStepfr: {
+                    type: Boolean,
+                    computed: '_showNextStepfr(routeData.stepId, hasNextfr, stepData)',
+                },
+
+
+
+                hasPrevious: {
+                    type: Boolean,
+                    computed: '_hasPrevious(routeData.stepId, routeData.topicId, stepData)',
+                },
+                hasPreviousfr: {
+                    type: Boolean,
+                    computed: '_hasPreviousfr(routeData.stepId, routeData.topicId, stepData)',
+                },
+                hasPreviouses: {
+                    type: Boolean,
+                    computed: '_hasPreviouses(routeData.stepId, routeData.topicId, stepData)',
+                },
+
+
+
+                showPreviousStep: {
+                    type: Boolean,
+                    computed: '_showPreviousStep(routeData.stepId, hasPrevious, stepData)',
+                },
+                showPreviousStepfr: {
+                    type: Boolean,
+                    computed: '_showPreviousStepfr(routeData.stepId, hasPreviousfr, stepData)',
+                },
+                showPreviousStepes: {
+                    type: Boolean,
+                    computed: '_showPreviousStepes(routeData.stepId, hasPreviouses, stepData)',
+                },
+
+
+                stepData: {
+                    type: Object,
+                }
+            };
+        }
+
+        _withIndex(stepId, topicId, stepData) {
+            if (!stepId || !topicId || !stepData) {
+                return null;
+            }
+            return stepData[Number.parseInt(stepId) - 1].topics[Number.parseInt(topicId) - 1];
+        }
+
+
+
+
+
+        _hasNext(stepId, topicId, stepData) {
+            if (!stepId || !topicId || !stepData) {
+                return null;
+            }
+
+            if (window.localStorage.lang != 'en') {
+                return null;
+            }
+            return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
+        }
+
+        _hasNextes(stepId, topicId, stepData) {
+            if (!stepId || !topicId || !stepData) {
+                return null;
+            }
+
+            if (window.localStorage.lang != 'es') {
+                return null;
+            }
+            return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
+        }
+
+        _hasNextfr(stepId, topicId, stepData) {
+            if (!stepId || !topicId || !stepData) {
+                return null;
+            }
+
+            if (window.localStorage.lang != 'fr') {
+                return null;
+            }
+            return Number.parseInt(topicId) < stepData[Number.parseInt(stepId) - 1].topics.length;
+        }
+
+
+
+
+
+        _showNextStep(stepId, hasNextTopic, stepData) {
+            if (!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasNextTopic) {
+                return false;
+            }
+
+            if (window.localStorage.lang != "en") {
+                return false;
+            }
+
+            console.log(stepId, stepData.length)
+
+
+            return Number.parseInt(stepId) < stepData.length;
+        }
+
+        _showNextStepfr(stepId, hasNextTopic, stepData) {
+            if (!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasNextTopic) {
+                return false;
+            }
+
+            if (window.localStorage.lang != "fr") {
+                return false;
+            }
+            console.log(stepId, stepData.length)
+
+
+            return Number.parseInt(stepId) < stepData.length;
+        }
+
+        _showNextStepes(stepId, hasNextTopic, stepData) {
+            if (!stepId || hasNextTopic === null || hasNextTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasNextTopic) {
+                return false;
+            }
+
+            if (window.localStorage.lang != "es") {
+                return false;
+            }
+            console.log(stepId, stepData.length)
+
+
+            return Number.parseInt(stepId) < stepData.length;
+        }
+
+
+
+
+        _hasPrevious(stepId, topicId, stepData) {
+            if (!stepId || !topicId || !stepData) {
+                return null;
+            }
+
+            if (window.localStorage.lang != 'en') {
+                return null;
+            }
+            return Number.parseInt(topicId) > 1;
+        }
+
+        _hasPreviouses(stepId, topicId, stepData) {
+            if (!stepId || !topicId || !stepData) {
+                return null;
+            }
+
+            if (window.localStorage.lang != 'es') {
+                return null;
+            }
+
+
+            return Number.parseInt(topicId) > 1;
+        }
+
+        _hasPreviousfr(stepId, topicId, stepData) {
+            if (!stepId || !topicId || !stepData) {
+                return null;
+            }
+
+            if (window.localStorage.lang != 'fr') {
+                return null;
+            }
+            return Number.parseInt(topicId) > 1;
+        }
+
+
+
+
+
+
+        _showPreviousStep(stepId, hasPerviousTopic, stepData) {
+            if (!stepId || hasPerviousTopic === null || hasPerviousTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasPerviousTopic) {
+                return false;
+            }
+
+            if (window.localStorage.lang != 'en') {
+                return false;
+            }
+            console.log(stepId, stepData.length)
+
+
+            return stepId > 1;
+        }
+
+        _showPreviousStepes(stepId, hasPerviousTopic, stepData) {
+            if (!stepId || hasPerviousTopic === null || hasPerviousTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasPerviousTopic) {
+                return false;
+            }
+
+            if (window.localStorage.lang != 'es') {
+                return false;
+            }
+            console.log(stepId, stepData.length)
+
+
+            return stepId > 1;
+        }
+
+        _showPreviousStepfr(stepId, hasPerviousTopic, stepData) {
+            if (!stepId || hasPerviousTopic === null || hasPerviousTopic === undefined || !stepData) {
+                return false;
+            }
+
+            if (hasPerviousTopic) {
+                return false;
+            }
+
+            if (window.localStorage.lang != 'fr') {
+                return false;
+            }
+            console.log(stepId, stepData.length)
+
+
+            return stepId > 1;
+        }
+
+
+
+        refocusTop() {
+            this.$.pageTop.focus();
+        }
+
+        ready() {
+            super.ready();
+            this.$.next.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.nextes.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.nextfr.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+
+
+
+            this.$.nextStep.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.nextStepfr.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.nextStepes.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+
+
+            this.$.prev.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.preves.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.prevfr.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/topic/' + this.routeData.stepId + '/' + (Number.parseInt(this.routeData.topicId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+
+
+
+            this.$.prevStep.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.prevStepes.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.prevStepfr.addEventListener('click', event => {
+
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) - 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+
+
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                        id: event.detail.id,
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(MyTopic.is, MyTopic);
+    </script>
 </dom-module>

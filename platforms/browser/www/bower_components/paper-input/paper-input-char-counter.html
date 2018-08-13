@@ -6,7 +6,9 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../polymer/polymer.html">
+-->
+
+<link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-styles/typography.html">
 <link rel="import" href="paper-input-addon-behavior.html">
 
@@ -52,39 +54,46 @@ Custom property | Description | Default
   </template>
 </dom-module>
 
-<script>Polymer({
-  is: 'paper-input-char-counter',
-  behaviors: [Polymer.PaperInputAddonBehavior],
-  properties: {
-    _charCounterStr: {
-      type: String,
-      value: '0'
+<script>
+  Polymer({
+    is: 'paper-input-char-counter',
+
+    behaviors: [
+      Polymer.PaperInputAddonBehavior
+    ],
+
+    properties: {
+      _charCounterStr: {
+        type: String,
+        value: '0'
+      }
+    },
+
+    /**
+     * This overrides the update function in PaperInputAddonBehavior.
+     * @param {{
+     *   inputElement: (Element|undefined),
+     *   value: (string|undefined),
+     *   invalid: boolean
+     * }} state -
+     *     inputElement: The input element.
+     *     value: The input value.
+     *     invalid: True if the input value is invalid.
+     */
+    update: function(state) {
+      if (!state.inputElement) {
+        return;
+      }
+
+      state.value = state.value || '';
+
+      var counter = state.value.toString().length.toString();
+
+      if (state.inputElement.hasAttribute('maxlength')) {
+        counter += '/' + state.inputElement.getAttribute('maxlength');
+      }
+
+      this._charCounterStr = counter;
     }
-  },
-
-  /**
-   * This overrides the update function in PaperInputAddonBehavior.
-   * @param {{
-   *   inputElement: (Element|undefined),
-   *   value: (string|undefined),
-   *   invalid: boolean
-   * }} state -
-   *     inputElement: The input element.
-   *     value: The input value.
-   *     invalid: True if the input value is invalid.
-   */
-  update: function update(state) {
-    if (!state.inputElement) {
-      return;
-    }
-
-    state.value = state.value || '';
-    var counter = state.value.toString().length.toString();
-
-    if (state.inputElement.hasAttribute('maxlength')) {
-      counter += '/' + state.inputElement.getAttribute('maxlength');
-    }
-
-    this._charCounterStr = counter;
-  }
-});</script>
+  });
+</script>

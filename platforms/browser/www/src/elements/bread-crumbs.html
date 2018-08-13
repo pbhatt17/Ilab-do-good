@@ -32,16 +32,16 @@
                         </app-link>
                         <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                             <div class="inline" page-name="default">
-                                <span aria-hidden="true">&gt;</span> 
+                                <span aria-hidden="true">></span> 
                                 <app-link href="/steps-landing" hidden$="[[!isEnglish]]"><div class="link inline">Steps</div></app-link>
                                 <app-link href="/steps-landing" hidden$="[[!isFrench]]"><div class="link inline">Étapes</div></app-link>
                                 <app-link href="/steps-landing" hidden$="[[!isSpanish]]"><div class="link inline">Pasos</div></app-link>
                                 <iron-pages class="inline" attr-for-selected="page-name" selected="[[routeData.page]]" fallback-selection="default">
                                     <div class="inline" page-name="step">
-                                        <span aria-hidden="true">&gt;</span> <localized-data value="step"></localized-data> [[step.index]]
+                                        <span aria-hidden="true">></span> <localized-data value="step"></localized-data> [[step.index]]
                                     </div>
                                     <div class="inline" page-name="topic">
-                                        &gt;
+                                        >
                                         <app-link href="/step/[[step.index]]" hidden$="[[!isEnglish]]">
                                             <div class="link inline">Step [[step.index]]
                                                 <!--[[step.stepTitle]]-->
@@ -60,40 +60,40 @@
                                             </div>
                                         </app-link>
 
-                                        <span aria-hidden="true">&gt;</span> <localized-data value="topic"></localized-data> [[topic.index]] / [[step.topics.length]]
+                                        <span aria-hidden="true">></span> <localized-data value="topic"></localized-data> [[topic.index]] / [[step.topics.length]]
                                         <!--[[topic.title]]-->
                                     </div>
                                 </iron-pages>
                             </div>
                             <div class="inline" page-name="info-why-develop-page">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="why_develop"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="why_develop"></localized-data>
                             </div>
                             <div class="inline" page-name="info-basics-page">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="basics_of"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="basics_of"></localized-data>
                             </div>
                             <div class="inline" page-name="info-about-page">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="about_this_app"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="about_this_app"></localized-data>
                             </div>
                             <div class="inline" page-name="info-what-are-page">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="what_are"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="what_are"></localized-data>
                             </div>
                             <div class="inline" page-name="info-root-causes-page">
-                                <span aria-hidden="true">&gt;</span> Addressing Root Causes
+                                <span aria-hidden="true">></span> Addressing Root Causes
                             </div>
                             <div class="inline" page-name="info-key-resources">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="key_r"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="key_r"></localized-data>
                             </div>
                             <div class="inline" page-name="index-info">
-                                <span aria-hidden="true">&gt;</span> More Info
+                                <span aria-hidden="true">></span> More Info
                             </div>
                             <div class="inline" page-name="steps-landing">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="steps"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="steps"></localized-data>
                             </div>
                             <div class="inline" page-name="search-results">
-                                <span aria-hidden="true">&gt;</span> <localized-data value="search_results"></localized-data>
+                                <span aria-hidden="true">></span> <localized-data value="search_results"></localized-data>
                             </div>
                             <div class="inline" page-name="info">
-                                <span aria-hidden="true">&gt;</span> Info
+                                <span aria-hidden="true">></span> Info
                             </div>
                         </iron-pages>
                     </div>
@@ -103,135 +103,121 @@
             </div>
         </div>
     </template>
-    <script>var BreadCrumbs =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(BreadCrumbs, _Polymer$Element);
-  babelHelpers.createClass(BreadCrumbs, [{
-    key: "getStep",
-    value: function getStep(id) {
-      if (id === null || id === undefined) {
-        return null;
-      }
-
-      console.log(this.routeData);
-      return this.stepData[Number.parseInt(id) - 1];
-    }
-  }, {
-    key: "getTopic",
-    value: function getTopic(step, id) {
-      if (!step) {
-        return null;
-      } else if (id === null || id === undefined) {
-        return null;
-      } else {
-        return step.topics[Number.parseInt(id) - 1];
-      }
-    }
-  }, {
-    key: "_isEnglish",
-    value: function _isEnglish() {
-      if (window.localStorage.lang == 'en') {
-        return true;
-      }
-
-      return false;
-    }
-  }, {
-    key: "_isFrench",
-    value: function _isFrench() {
-      if (window.localStorage.lang == 'fr') {
-        return true;
-      }
-
-      return false;
-    }
-  }, {
-    key: "_isSpanish",
-    value: function _isSpanish() {
-      if (window.localStorage.lang == 'es') {
-        return true;
-      }
-
-      return false;
-    }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'bread-crumbs';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        stepData: {
-          type: Array,
-          value: null
-        },
-        route: {
-          type: Object,
-          value: null,
-          reflectToAttribute: true
-        },
-        step: {
-          type: Object,
-          computed: 'getStep(routeData.stepId)'
-        },
-        topic: {
-          type: Object,
-          computed: 'getTopic(step, routeData.topicId)'
-        },
-        locale: {
-          type: String
-        },
-        isSearching: {
-          type: Boolean,
-          notify: true
-        },
-        isEnglish: {
-          type: Boolean,
-          computed: '_isEnglish(routeData.stepId, stepData)'
-        },
-        isFrench: {
-          type: Boolean,
-          computed: '_isFrench(routeData.stepId, stepData)'
-        },
-        isSpanish: {
-          type: Boolean,
-          computed: '_isSpanish(routeData.stepId, stepData)'
+    <script>
+    class BreadCrumbs extends Polymer.Element {
+        static get is() {
+            return 'bread-crumbs';
         }
-      };
+
+
+        static get properties() {
+            return {
+                stepData: {
+                    type: Array,
+                    value: null,
+                },
+                route: {
+                    type: Object,
+                    value: null,
+                    reflectToAttribute: true,
+                },
+                step: {
+                    type: Object,
+                    computed: 'getStep(routeData.stepId)',
+                },
+                topic: {
+                    type: Object,
+                    computed: 'getTopic(step, routeData.topicId)',
+                },
+                locale: {
+                    type: String,
+                },
+                isSearching: {
+                    type: Boolean,
+                    notify: true,
+                },
+                isEnglish: {
+                    type: Boolean,
+                    computed: '_isEnglish(routeData.stepId, stepData)',
+                },
+                isFrench: {
+                    type: Boolean,
+                    computed: '_isFrench(routeData.stepId, stepData)',
+                },
+                isSpanish: {
+                    type: Boolean,
+                    computed: '_isSpanish(routeData.stepId, stepData)',
+                }
+            };
+        }
+
+        getStep(id) {
+            if (id === null || id === undefined) {
+                return null;
+            }
+            console.log(this.routeData);
+            return this.stepData[Number.parseInt(id) - 1];
+        }
+
+        getTopic(step, id) {
+            if (!step) {
+                return null;
+            } else if (id === null || id === undefined) {
+                return null;
+            } else {
+                return step.topics[Number.parseInt(id) - 1];
+            }
+        }
+
+        _isEnglish()
+        {
+            if (window.localStorage.lang == 'en') {
+                return true;
+            }
+
+            return false;
+        }
+
+        _isFrench()
+        {
+            if (window.localStorage.lang == 'fr') {
+                return true;
+            }
+
+            return false;
+        }
+
+        _isSpanish()
+        {
+            if (window.localStorage.lang == 'es') {
+                return true;
+            }
+
+            return false;
+        }
+
+
+        static get observers() {
+            return [];
+        }
+
+        constructor() {
+            super();
+        }
+
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+        }
     }
-  }, {
-    key: "observers",
-    get: function get() {
-      return [];
-    }
-  }]);
 
-  function BreadCrumbs() {
-    babelHelpers.classCallCheck(this, BreadCrumbs);
-    return babelHelpers.possibleConstructorReturn(this, (BreadCrumbs.__proto__ || Object.getPrototypeOf(BreadCrumbs)).call(this));
-  }
-
-  babelHelpers.createClass(BreadCrumbs, [{
-    key: "ready",
-    value: function ready() {
-      var _this = this;
-
-      babelHelpers.get(BreadCrumbs.prototype.__proto__ || Object.getPrototypeOf(BreadCrumbs.prototype), "ready", this).call(this);
-      this.root.addEventListener('link-followed', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: event.detail.target
-          },
-          bubbles: true
-        }));
-      });
-    }
-  }]);
-  return BreadCrumbs;
-}(Polymer.Element);
-
-customElements.define(BreadCrumbs.is, BreadCrumbs);</script>
+    customElements.define(BreadCrumbs.is, BreadCrumbs);
+    </script>
 </dom-module>
