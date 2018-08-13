@@ -793,6 +793,11 @@ function (_Polymer$Element) {
       babelHelpers.get(MyApp.prototype.__proto__ || Object.getPrototypeOf(MyApp.prototype), "ready", this).call(this);
       this.lang = window.localStorage.getItem("lang");
       this.searchInputTarget = this.$['search-input'];
+      var isIE =
+      /*@cc_on!@*/
+      false || !!document.documentMode;
+      var isFirefox = typeof InstallTrigger !== 'undefined';
+      var isEdge = navigator.userAgent.indexOf('Edge') >= 0;
       this.display = "height: 100%; overflow: hidden;";
 
       if (this.route.path == '/') {
@@ -826,11 +831,6 @@ function (_Polymer$Element) {
       }
 
       var that = this;
-      var isIE =
-      /*@cc_on!@*/
-      false || !!document.documentMode;
-      var isFirefox = typeof InstallTrigger !== 'undefined';
-      var isEdge = navigator.userAgent.indexOf('Edge') >= 0;
 
       if (isIE || isEdge) {
         app.deviceReadyPromise.then(function () {

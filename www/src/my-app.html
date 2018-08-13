@@ -753,8 +753,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             super.ready();
             this.lang = window.localStorage.getItem("lang");
             this.searchInputTarget = this.$['search-input'];
-            
+
+            var isIE = /*@cc_on!@*/false || !!document.documentMode;
+            var isFirefox = typeof InstallTrigger !== 'undefined';
+            var isEdge = navigator.userAgent.indexOf('Edge') >= 0;
+
+
+                        
             this.display = "height: 100%; overflow: hidden;";
+
+            
 
             if (this.route.path=='/') {
                 this.$['bread-crumbs-container'].style.display = 'none';
@@ -796,12 +804,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             var that = this;
 
-            var isIE = /*@cc_on!@*/false || !!document.documentMode;
-            var isFirefox = typeof InstallTrigger !== 'undefined';
-            var isEdge = navigator.userAgent.indexOf('Edge') >= 0;
-
+            
             if (isIE || isEdge) 
-            {
+            {	
+
             	app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
                     console.log("got step data");
@@ -864,10 +870,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 	setTimeout(() => {
 	                	if (window.localStorage.langChanged == "true") 
-                        {
+	                	{
                             window.localStorage.langChanged = "false";
                             
-
                             setTimeout(() => {
                             that.set('route.path',window.localStorage.routePath );
                             that.set('targetId', window.localStorage.targetId);
@@ -875,7 +880,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                             that.$['spinner-loader'].style.display = 'none';
                             console.log("Done loading");
-                             }, 500);
+                              }, 500);
 
                             that.root.querySelector('bread-crumbs').scrollIntoView();
                             that.$['app-header'].scroll(0, 0);
@@ -883,26 +888,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 that.root.querySelector('bread-crumbs').scrollIntoView();
                                 that.$['app-header'].scroll(0, 0);
                             }, 501);
+                            
                         }
 
-                        else
-                        {
-                            that.$['spinner-loader'].style.display = 'none';
-                            console.log("Done loading");
-                        } 
+                       else
+                       {
+                        	that.$['spinner-loader'].style.display = 'none';
+                           	console.log("Done loading");
+
+                       }
 
                     },500);
 
                 }).catch(error => {
                     console.log("error loading step data: " + error);
-                });      
+                });    
 
-        }
+
+
+        	}
 
            
-
-
-            
 
             else
             {	
