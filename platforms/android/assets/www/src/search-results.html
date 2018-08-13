@@ -6,7 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../bower_components/polymer/polymer-element.html">
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <dom-module id="search-results">
     <template>
@@ -81,171 +82,131 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </ul>
         </div>
     </template>
-    <script>var SearchResults =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(SearchResults, _Polymer$Element);
-
-  function SearchResults() {
-    babelHelpers.classCallCheck(this, SearchResults);
-    return babelHelpers.possibleConstructorReturn(this, (SearchResults.__proto__ || Object.getPrototypeOf(SearchResults)).apply(this, arguments));
-  }
-
-  babelHelpers.createClass(SearchResults, [{
-    key: "_hasResults",
-    value: function _hasResults(target) {
-      return target.length;
-    }
-  }, {
-    key: "initiateSearch",
-    value: function initiateSearch() {
-      var _this = this;
-
-      this.results = this._search(this.stepData, this.infoData, this.searchTerm);
-      setTimeout(function () {
-        _this.$.pageTop.focus();
-      }, 16);
-    }
-  }, {
-    key: "_search",
-    value: function _search(stepData, infoData, searchTerm) {
-      if (stepData === null || infoData === null || searchTerm === null || searchTerm.length < 3) {
-        return [];
-      }
-
-      function searchObject(obj, term) {
-        if (obj === null || obj === undefined) {
-          return false;
+    <script>
+    class SearchResults extends Polymer.Element {
+        static get is() {
+            return 'search-results';
+        }
+        static get properties() {
+            return {
+                stepData: {
+                    type: Object,
+                },
+                infoData: {
+                    type: Object,
+                },
+                searchTerm: {
+                    type: String,
+                    value: '',
+                },
+                results: {
+                    type: Array,
+                    value: [],
+                },
+                hasResults: {
+                    type: Number,
+                    computed: '_hasResults(results)',
+                }
+            };
         }
 
-        if (babelHelpers.instanceof(obj, Array)) {
-          return obj.reduce(function (accum, item) {
-            return accum || searchObject(item, term);
-          }, false);
+        _hasResults(target) {
+            return target.length;
         }
 
-        if (typeof obj === "string") {
-          return term.test(obj);
+        initiateSearch() {
+            this.results = this._search(this.stepData, this.infoData, this.searchTerm);
+            setTimeout(() => {
+
+               this.$.pageTop.focus();
+            }, 16);
         }
 
-        if (babelHelpers.instanceof(obj, Object)) {
-          for (var prop in obj) {
-            if (searchObject(obj[prop], term)) {
-              return true;
+        _search(stepData, infoData, searchTerm) {
+            if (stepData === null || infoData === null || searchTerm === null || searchTerm.length < 3) {
+                return [];
             }
-          }
+
+            function searchObject(obj, term) {
+                if (obj === null || obj === undefined) {
+                    return false;
+                }
+
+                if (obj instanceof Array) {
+                    return obj.reduce((accum, item) => accum || searchObject(item, term), false)
+                }
+                if (typeof obj === "string") {
+                    return term.test(obj);
+                }
+                if (obj instanceof Object) {
+                    for (var prop in obj) {
+                        if (searchObject(obj[prop], term)) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            function searchKeywords(obj, term) {
+                return obj.keywords.reduce((accum, item) => accum || term.test(item), false);
+            }
+
+            var stepsToSearch = stepData.map(item => ({
+                index: item.index,
+                title: item.stepTitle,
+                learningObjectives: item.learningObjectives,
+                keyTerms: item.keyTerms,
+                topics: item.topics.map(topic => topic.title),
+                furtherResources: item.furtherResources,
+                preview: item.preview,
+                keywords: item.keywords,
+                type: "step"
+            }));
+
+            var topicsToSearch = stepData.map(item => item.topics.map(topic => ({
+                index: topic.index,
+                title: topic.title,
+                stepIndex: item.index,
+                rawData: topic.rawData,
+                preview: topic.preview,
+                keywords: topic.keywords,
+                type: "topic",
+            }))).reduce((accum, item) => accum.concat(item), []);
+
+            var infoToSearch = infoData.map(item => ({
+                id: item.id,
+                title: item.title,
+                content: item.content,
+                preview: item.preview,
+                keywords: item.keywords,
+                type: "info"
+            }));
+
+
+            searchTerm = new RegExp(searchTerm, 'i');
+            var keywordAll = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(item => searchKeywords(item, searchTerm));
+            if (keywordAll.length === 1) {
+                return keywordAll;
+            }
+            var all = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(item => searchObject(item, searchTerm));
+            return all;
         }
 
-        return false;
-      }
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
 
-      function searchKeywords(obj, term) {
-        return obj.keywords.reduce(function (accum, item) {
-          return accum || term.test(item);
-        }, false);
-      }
-
-      var stepsToSearch = stepData.map(function (item) {
-        return {
-          index: item.index,
-          title: item.stepTitle,
-          learningObjectives: item.learningObjectives,
-          keyTerms: item.keyTerms,
-          topics: item.topics.map(function (topic) {
-            return topic.title;
-          }),
-          furtherResources: item.furtherResources,
-          preview: item.preview,
-          keywords: item.keywords,
-          type: "step"
-        };
-      });
-      var topicsToSearch = stepData.map(function (item) {
-        return item.topics.map(function (topic) {
-          return {
-            index: topic.index,
-            title: topic.title,
-            stepIndex: item.index,
-            rawData: topic.rawData,
-            preview: topic.preview,
-            keywords: topic.keywords,
-            type: "topic"
-          };
-        });
-      }).reduce(function (accum, item) {
-        return accum.concat(item);
-      }, []);
-      var infoToSearch = infoData.map(function (item) {
-        return {
-          id: item.id,
-          title: item.title,
-          content: item.content,
-          preview: item.preview,
-          keywords: item.keywords,
-          type: "info"
-        };
-      });
-      searchTerm = new RegExp(searchTerm, 'i');
-      var keywordAll = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(function (item) {
-        return searchKeywords(item, searchTerm);
-      });
-
-      if (keywordAll.length === 1) {
-        return keywordAll;
-      }
-
-      var all = topicsToSearch.concat(stepsToSearch).concat(infoToSearch).filter(function (item) {
-        return searchObject(item, searchTerm);
-      });
-      return all;
-    }
-  }, {
-    key: "ready",
-    value: function ready() {
-      var _this2 = this;
-
-      babelHelpers.get(SearchResults.prototype.__proto__ || Object.getPrototypeOf(SearchResults.prototype), "ready", this).call(this);
-      this.root.addEventListener('link-followed', function (event) {
-        _this2.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: event.detail.target
-          },
-          bubbles: true
-        }));
-      });
-    }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'search-results';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        stepData: {
-          type: Object
-        },
-        infoData: {
-          type: Object
-        },
-        searchTerm: {
-          type: String,
-          value: ''
-        },
-        results: {
-          type: Array,
-          value: []
-        },
-        hasResults: {
-          type: Number,
-          computed: '_hasResults(results)'
         }
-      };
     }
-  }]);
-  return SearchResults;
-}(Polymer.Element);
 
-window.customElements.define(SearchResults.is, SearchResults);</script>
+    window.customElements.define(SearchResults.is, SearchResults);
+    </script>
 </dom-module>

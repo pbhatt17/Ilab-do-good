@@ -6,10 +6,14 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../polymer/polymer.html">
+-->
+
+<link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
 
-<script>/**
+<script>
+
+/**
 `iron-a11y-keys` provides a cross-browser interface for processing
 keyboard commands. The interface adheres to [WAI-ARIA best
 practices](http://www.w3.org/TR/wai-aria-practices/#kbd_general_binding).
@@ -123,41 +127,53 @@ value. `setMax` should move the slider to the maximum value.
 
 @demo demo/index.html
 */
-Polymer({
-  is: 'iron-a11y-keys',
-  behaviors: [Polymer.IronA11yKeysBehavior],
-  properties: {
-    /** @type {?Node} */
-    target: {
-      type: Object,
-      observer: '_targetChanged'
+
+
+
+  Polymer({
+    is: 'iron-a11y-keys',
+
+    behaviors: [
+      Polymer.IronA11yKeysBehavior
+    ],
+
+    properties: {
+      /** @type {?Node} */
+      target: {
+        type: Object,
+        observer: '_targetChanged'
+      },
+
+      /**
+       * Space delimited list of keys where each key follows the format:
+       * `[MODIFIER+]*KEY[:EVENT]`.
+       * e.g. `keys="space ctrl+shift+tab enter:keyup"`.
+       * More detail can be found in the "Grammar" section of the documentation
+       */
+      keys: {
+        type: String,
+        reflectToAttribute: true,
+        observer: '_keysChanged'
+      }
     },
 
-    /**
-     * Space delimited list of keys where each key follows the format:
-     * `[MODIFIER+]*KEY[:EVENT]`.
-     * e.g. `keys="space ctrl+shift+tab enter:keyup"`.
-     * More detail can be found in the "Grammar" section of the documentation
-     */
-    keys: {
-      type: String,
-      reflectToAttribute: true,
-      observer: '_keysChanged'
+    attached: function() {
+      if (!this.target) {
+        this.target = this.parentNode;
+      }
+    },
+
+    _targetChanged: function(target) {
+      this.keyEventTarget = target;
+    },
+
+    _keysChanged: function() {
+      this.removeOwnKeyBindings();
+      this.addOwnKeyBinding(this.keys, '_fireKeysPressed');
+    },
+
+    _fireKeysPressed: function(event) {
+      this.fire('keys-pressed', event.detail, {});
     }
-  },
-  attached: function attached() {
-    if (!this.target) {
-      this.target = this.parentNode;
-    }
-  },
-  _targetChanged: function _targetChanged(target) {
-    this.keyEventTarget = target;
-  },
-  _keysChanged: function _keysChanged() {
-    this.removeOwnKeyBindings();
-    this.addOwnKeyBinding(this.keys, '_fireKeysPressed');
-  },
-  _fireKeysPressed: function _fireKeysPressed(event) {
-    this.fire('keys-pressed', event.detail, {});
-  }
-});</script>
+  });
+</script>
