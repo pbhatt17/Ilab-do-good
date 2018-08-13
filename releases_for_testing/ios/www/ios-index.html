@@ -39,9 +39,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="msapplication-TileColor" content="#3f51b5">
     <meta name="msapplication-tap-highlight" content="no">
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="cordova.js"></script>
@@ -30685,8 +30685,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             cursor: pointer
         }
         </style>
-        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter" on-keys-pressed="follow" tabindex="1"></iron-a11y-keys>
-        <a id="link">
+        <iron-a11y-keys id="a11y" target="[[target]]" keys="enter" on-keys-pressed="follow"></iron-a11y-keys>
+        <a tabindex="1" id="link">
             <slot></slot>
         </a>
     </template>
@@ -30857,7 +30857,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 <span aria-hidden="true">&gt;</span> <localized-data value="steps"></localized-data>
                             </div>
                             <div class="inline" page-name="search-results">
-                                <span aria-hidden="true">&gt;</span> Search Results
+                                <span aria-hidden="true">&gt;</span> <localized-data value="search_results"></localized-data>
                             </div>
                             <div class="inline" page-name="info">
                                 <span aria-hidden="true">&gt;</span> Info
@@ -31688,6 +31688,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     next_step:"Next Step",
                     further_resources:"Further Resources",
                     training_materials:"Training Materials",
+                    results: " results found for ",
+                    search_results:"Search Results"
                 },
                 es: {
                     home: "Inicio",
@@ -31714,6 +31716,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     next_step:"Próximo paso",
                     further_resources:"Recursos adicionales",
                     training_materials:"Materiales de capacitación",
+                    results: " resultados encontrados para ",
+                    search_results: "Resultados de búsqueda"
                 },
                 fr: {
                     home: "Accueil",
@@ -31740,6 +31744,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     next_step:"étape suivante",
                     further_resources:"Autres ressources",
                     training_materials:"Documents de formation",
+                    results: " résultats trouvés avec ",
+                    search_results: "Résultats de votre recherché"
                 },
             }
             return data[locale][value];
@@ -32811,7 +32817,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <dom-if if="[[hasResults]]"> 
                 <p>
                     [[hasResults]]
-                     results found for "[[searchTerm]]".
+                     <localized-data value="results"></localized-data> "[[searchTerm]]".
                 </p>
             </dom-if>
             <ul>
@@ -33907,8 +33913,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         #pageContent:focus { 
             outline: none;
         }
-		
-	.loader {
+        
+    .loader {
                       border: 16px solid #f3f3f3;
                       border-radius: 50%;
                       border-top: 16px solid #003354;
@@ -33922,34 +33928,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
 
    .loading_text{
-   	margin-left: 40%
+    margin-left: 40%
    }
 
-		@media (max-width: 1224px) {
+        @media (max-width: 1224px) {
 
-		    /* For mobile phones and tablets */
-		    
-		    .loader {
-		              border: 16px solid #f3f3f3;
-		              border-radius: 50%;
-		              border-top: 16px solid #003354;
-		              width: 120px;
-		              height: 120px;
-		              -webkit-animation: spin 2s linear infinite; /* Safari */
-		              animation: spin 2s linear infinite;
+            /* For mobile phones and tablets */
+            
+            .loader {
+                      border: 16px solid #f3f3f3;
+                      border-radius: 50%;
+                      border-top: 16px solid #003354;
+                      width: 120px;
+                      height: 120px;
+                      -webkit-animation: spin 2s linear infinite; /* Safari */
+                      animation: spin 2s linear infinite;
 
-		              margin-left:40%; 
-		              margin-top:50%;
-		        }
+                      margin-left:40%; 
+                      margin-top:50%;
+                }
 
 
-		           .loading_text{
-				   	margin-left: 30%
-				   }
+                   .loading_text{
+                    margin-left: 30%
+                   }
 
-		}
+        }
 
-		
+        
          
 
 
@@ -33960,7 +33966,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
         .temp-width{
-        	overflow: hidden;
+            overflow: hidden;
         }
         </style>
         <global-data locale="{{lang}}"></global-data>
@@ -34282,8 +34288,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             setTimeout(() => {
                 window.scrollTo(0, 0);
                 this.root.querySelector('bread-crumbs').scrollIntoView();
+                this.$['bread-crumbs-container'].style.display = 'block';                               
                 if (this.$.search.results.length === 1) {
-                	this.$['bread-crumbs-container'].style.display = 'block';              	
                     var item = this.$.search.results[0];
                     if (item.type === "step") {
                         this.set('route.path', '/step/' + item.index);
@@ -34356,21 +34362,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         _itemSelected(e) {
-	        var selectedItem = e.target.selectedItem;
+            var selectedItem = e.target.selectedItem;
              
-	       
-	        var homepages = ["home","home-es", "home-fr"] ;
-	       // if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
-	        if (e.target.selectedItem.lang != localStorage.lang){
+           
+            var homepages = ["home","home-es", "home-fr"] ;
+           // if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
+            if (e.target.selectedItem.lang != localStorage.lang){
 
                 this.$.drawer.style.display = 'none';
 
                 window.localStorage.setItem("lang", e.target.selectedItem.lang);  
                 
                 this.display = "height: 100%; overflow: hidden;";
-	            location.reload();
-	        }
-	      }
+                window.localStorage.langChanged = "true";
+                location.reload();
+            }
+          }
 
 
         _stepData(baseData, lang) {
@@ -34427,6 +34434,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     this.$['app-header'].scroll(0, 0);
                 }, 16);
                 //this.root.querySelector('bread-crumbs').scrollIntoView()
+                
+                window.localStorage.routePath = event.detail.target;
+                window.localStorage.targetId = event.detail.id;
                 this.set('route.path', event.detail.target);
                 this.set('targetId', event.detail.id);
                 if (!this.$.drawer.persistent) {
@@ -34447,6 +34457,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     this.root.querySelector('bread-crumbs').scrollIntoView();
                     this.$['app-header'].scroll(0, 0);
                 }, 16);
+
+                window.localStorage.routePath = event.detail.target;
+                window.localStorage.targetId = event.detail.id;
+
                 this.set('route.path', event.detail.target);
                 this.set('targetId', event.detail.id);
                 if (!this.$.drawer.persistent) {
@@ -34474,8 +34488,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             super.ready();
             this.lang = window.localStorage.getItem("lang");
             this.searchInputTarget = this.$['search-input'];
-            
+
+            var isIE = /*@cc_on!@*/false || !!document.documentMode;
+            var isFirefox = typeof InstallTrigger !== 'undefined';
+            var isEdge = navigator.userAgent.indexOf('Edge') >= 0;
+
+
+                        
             this.display = "height: 100%; overflow: hidden;";
+
+            
 
             if (this.route.path=='/') {
                 this.$['bread-crumbs-container'].style.display = 'none';
@@ -34517,48 +34539,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             var that = this;
 
-			var isIE = /*@cc_on!@*/false || !!document.documentMode;
-			var isFirefox = typeof InstallTrigger !== 'undefined';
-
-            if (isIE) {
-            	 $( document ).ready(function() {
-            	that.$['spinner-loader'].style.display = 'none';
-                       console.log("Done loading");
-                    })
-            }
-
-            // checking if the browser is edge
-            else if (navigator.userAgent.indexOf('Edge') >= 0) {
-            	 $( document ).ready(function() {
-            	that.$['spinner-loader'].style.display = 'none';
-                       console.log("Done loading");
-                    })
-            }
-
-
-            else if (isFirefox == true) {
-                $( document ).ready(function() {
-                       that.display = "display: none;"; 
-                       console.log("Done loading");
-                    })
-            }
-
-            else
-            {
-                $(window).bind("load", function() {
-                           that.display = "display: none;"; 
-                           console.log("Done loading");
-                        });
-            }
-
             
-            app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
+            if (isIE || isEdge) 
+            {	
+
+            	app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
                 .then(response => {
                     console.log("got step data");
                     this.baseStepData = JSON.parse(response);
                     for (var lang in this.baseStepData) {
 
-                    	if (lang != this.lang) { continue; }
+                        if (lang != this.lang) { continue; }
 
                         this.baseStepData[lang].steps.forEach(step => {
                             if (!!step.furtherResources) {
@@ -34610,10 +34601,154 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             });
                         });
                     }
-                })
-                .catch(error => {
+                }).then (() =>{
+
+                	setTimeout(() => {
+	                	if (window.localStorage.langChanged == "true") 
+	                	{
+                            window.localStorage.langChanged = "false";
+                            
+                            setTimeout(() => {
+                            that.set('route.path',window.localStorage.routePath );
+                            that.set('targetId', window.localStorage.targetId);
+                            that.$['bread-crumbs-container'].style.display = 'block';
+
+                            that.$['spinner-loader'].style.display = 'none';
+                            console.log("Done loading");
+                              }, 500);
+
+                            that.root.querySelector('bread-crumbs').scrollIntoView();
+                            that.$['app-header'].scroll(0, 0);
+                            setTimeout(() => {
+                                that.root.querySelector('bread-crumbs').scrollIntoView();
+                                that.$['app-header'].scroll(0, 0);
+                            }, 501);
+                            
+                        }
+
+                       else
+                       {
+                        	that.$['spinner-loader'].style.display = 'none';
+                           	console.log("Done loading");
+
+                       }
+
+                    },500);
+
+                }).catch(error => {
+                    console.log("error loading step data: " + error);
+                });    
+
+
+
+        	}
+
+           
+
+            else
+            {	
+
+            	app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
+                .then(response => {
+                    console.log("got step data");
+                    this.baseStepData = JSON.parse(response);
+                    for (var lang in this.baseStepData) {
+
+                        if (lang != this.lang) { continue; }
+
+                        this.baseStepData[lang].steps.forEach(step => {
+                            if (!!step.furtherResources) {
+                                if (step.furtherResources[0] == "/") {
+                                    step.furtherResources = step.furtherResources.substr(1);
+                                }
+                                ajax('GET', step.furtherResources).then(result => {
+                                    console.log("found " + step.furtherResources)
+                                    step.furtherResources = result;
+                                }).catch(error => {
+                                    console.log("didn't find bib.");
+                                });
+                            }
+                            if (!!step.extraInfo) {
+                                if (step.extraInfo[0] == "/") {
+                                    step.extraInfo = step.extraInfo.substr(1);
+                                }
+                                ajax('GET', step.extraInfo).then(result => {
+                                    console.log("found " + step.extraInfo)
+                                    step.extraInfo = result;
+                                }).catch(error => {
+                                    console.log("didn't find extraInfo.");
+                                });
+                            }
+                            if (!!step.trainingMats) {
+                                if (step.trainingMats[0] == "/") {
+                                    step.trainingMats = step.trainingMats.substr(1);
+                                }
+                                ajax('GET', step.trainingMats).then(result => {
+                                    console.log("found " + step.trainingMats)
+                                    step.trainingMats = result;
+                                }).catch(error => {
+                                    console.log("didn't find trainingMats.");
+                                });
+                            }
+                            step.topics.forEach(topic => {
+                                if (!!topic.url) {
+                                    if (topic.url[0] == "/") {
+                                        topic.url = topic.url.substr(1);
+                                        console.log(topic.url);
+                                    }
+                                    ajax('GET', topic.url).then(result => {
+                                        console.log("found " + topic.url)
+                                        topic.rawData = result;
+                                    }).catch(error => {
+                                        console.log("didn't find topic.");
+                                    });
+                                }
+                            });
+                        });
+                    }
+                }).then (() =>{
+
+                	setTimeout(() => {
+	                	if (window.localStorage.langChanged == "true") 
+	                	{
+                            window.localStorage.langChanged = "false";
+                            
+                            setTimeout(() => {
+                            that.set('route.path',window.localStorage.routePath );
+                            that.set('targetId', window.localStorage.targetId);
+                            that.$['bread-crumbs-container'].style.display = 'block';
+
+                            that.display = "display: none;";
+                            console.log("Done loading");
+                              }, 500);
+
+                            that.root.querySelector('bread-crumbs').scrollIntoView();
+                            that.$['app-header'].scroll(0, 0);
+                            setTimeout(() => {
+                                that.root.querySelector('bread-crumbs').scrollIntoView();
+                                that.$['app-header'].scroll(0, 0);
+                            }, 501);
+                            
+                        }
+
+                       else
+                       {
+                        	that.display = "display: none;";
+                         	console.log("Done loading");
+
+                       }
+
+                    },500);
+
+                }).catch(error => {
                     console.log("error loading step data: " + error);
                 });
+               
+            }
+
+            
+            
+                
         }
     }
 
