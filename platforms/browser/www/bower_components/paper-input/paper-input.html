@@ -6,7 +6,9 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../polymer/polymer.html">
+-->
+
+<link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
 <link rel="import" href="../iron-input/iron-input.html">
 <link rel="import" href="paper-input-behavior.html">
@@ -134,7 +136,12 @@ style this element.
       }
     </style>
 
-    <paper-input-container id="container" no-label-float="[[noLabelFloat]]" always-float-label="[[_computeAlwaysFloatLabel(alwaysFloatLabel,placeholder)]]" auto-validate$="[[autoValidate]]" disabled$="[[disabled]]" invalid="[[invalid]]">
+    <paper-input-container id="container"
+        no-label-float="[[noLabelFloat]]"
+        always-float-label="[[_computeAlwaysFloatLabel(alwaysFloatLabel,placeholder)]]"
+        auto-validate$="[[autoValidate]]"
+        disabled$="[[disabled]]"
+        invalid="[[invalid]]">
 
       <slot name="prefix" slot="prefix"></slot>
 
@@ -160,61 +167,134 @@ style this element.
     Expect some conditional code (especially in the tests).
    -->
   <template id="v0">
-    <input is="iron-input" id="input" slot="input" aria-labelledby$="[[_ariaLabelledBy]]" aria-describedby$="[[_ariaDescribedBy]]" disabled$="[[disabled]]" title$="[[title]]" bind-value="{{value}}" invalid="{{invalid}}" prevent-invalid-input="[[preventInvalidInput]]" allowed-pattern="[[allowedPattern]]" validator="[[validator]]" type$="[[type]]" pattern$="[[pattern]]" required$="[[required]]" autocomplete$="[[autocomplete]]" autofocus$="[[autofocus]]" inputmode$="[[inputmode]]" minlength$="[[minlength]]" maxlength$="[[maxlength]]" min$="[[min]]" max$="[[max]]" step$="[[step]]" name$="[[name]]" placeholder$="[[placeholder]]" readonly$="[[readonly]]" list$="[[list]]" size$="[[size]]" autocapitalize$="[[autocapitalize]]" autocorrect$="[[autocorrect]]" on-change="_onChange" tabindex$="[[tabIndex]]" autosave$="[[autosave]]" results$="[[results]]" accept$="[[accept]]" multiple$="[[multiple]]">
+    <input is="iron-input" id="input" slot="input"
+        aria-labelledby$="[[_ariaLabelledBy]]"
+        aria-describedby$="[[_ariaDescribedBy]]"
+        disabled$="[[disabled]]"
+        title$="[[title]]"
+        bind-value="{{value}}"
+        invalid="{{invalid}}"
+        prevent-invalid-input="[[preventInvalidInput]]"
+        allowed-pattern="[[allowedPattern]]"
+        validator="[[validator]]"
+        type$="[[type]]"
+        pattern$="[[pattern]]"
+        required$="[[required]]"
+        autocomplete$="[[autocomplete]]"
+        autofocus$="[[autofocus]]"
+        inputmode$="[[inputmode]]"
+        minlength$="[[minlength]]"
+        maxlength$="[[maxlength]]"
+        min$="[[min]]"
+        max$="[[max]]"
+        step$="[[step]]"
+        name$="[[name]]"
+        placeholder$="[[placeholder]]"
+        readonly$="[[readonly]]"
+        list$="[[list]]"
+        size$="[[size]]"
+        autocapitalize$="[[autocapitalize]]"
+        autocorrect$="[[autocorrect]]"
+        on-change="_onChange"
+        tabindex$="[[tabIndex]]"
+        autosave$="[[autosave]]"
+        results$="[[results]]"
+        accept$="[[accept]]"
+        multiple$="[[multiple]]">
   </template>
 
   <template id="v1">
     <!-- Need to bind maxlength so that the paper-input-char-counter works correctly -->
-    <iron-input bind-value="{{value}}" id="input" slot="input" maxlength$="[[maxlength]]" allowed-pattern="[[allowedPattern]]" invalid="{{invalid}}" validator="[[validator]]">
-      <input id="nativeInput" aria-labelledby$="[[_ariaLabelledBy]]" aria-describedby$="[[_ariaDescribedBy]]" disabled$="[[disabled]]" title$="[[title]]" type$="[[type]]" pattern$="[[pattern]]" required$="[[required]]" autocomplete$="[[autocomplete]]" autofocus$="[[autofocus]]" inputmode$="[[inputmode]]" minlength$="[[minlength]]" maxlength$="[[maxlength]]" min$="[[min]]" max$="[[max]]" step$="[[step]]" name$="[[name]]" placeholder$="[[placeholder]]" readonly$="[[readonly]]" list$="[[list]]" size$="[[size]]" autocapitalize$="[[autocapitalize]]" autocorrect$="[[autocorrect]]" on-change="_onChange" tabindex$="[[tabIndex]]" autosave$="[[autosave]]" results$="[[results]]" accept$="[[accept]]" multiple$="[[multiple]]">
+    <iron-input bind-value="{{value}}" id="input" slot="input"
+        maxlength$="[[maxlength]]"
+        allowed-pattern="[[allowedPattern]]"
+        invalid="{{invalid}}"
+        validator="[[validator]]">
+      <input id="nativeInput"
+        aria-labelledby$="[[_ariaLabelledBy]]"
+        aria-describedby$="[[_ariaDescribedBy]]"
+        disabled$="[[disabled]]"
+        title$="[[title]]"
+        type$="[[type]]"
+        pattern$="[[pattern]]"
+        required$="[[required]]"
+        autocomplete$="[[autocomplete]]"
+        autofocus$="[[autofocus]]"
+        inputmode$="[[inputmode]]"
+        minlength$="[[minlength]]"
+        maxlength$="[[maxlength]]"
+        min$="[[min]]"
+        max$="[[max]]"
+        step$="[[step]]"
+        name$="[[name]]"
+        placeholder$="[[placeholder]]"
+        readonly$="[[readonly]]"
+        list$="[[list]]"
+        size$="[[size]]"
+        autocapitalize$="[[autocapitalize]]"
+        autocorrect$="[[autocorrect]]"
+        on-change="_onChange"
+        tabindex$="[[tabIndex]]"
+        autosave$="[[autosave]]"
+        results$="[[results]]"
+        accept$="[[accept]]"
+        multiple$="[[multiple]]">
     </iron-input>
   </template>
 
 </dom-module>
 
-<script>Polymer({
-  is: 'paper-input',
-  behaviors: [Polymer.PaperInputBehavior, Polymer.IronFormElementBehavior],
-  beforeRegister: function beforeRegister() {
-    // We need to tell which kind of of template to stamp based on
-    // what kind of `iron-input` we got, but because of polyfills and
-    // custom elements differences between v0 and v1, the safest bet is
-    // to check a particular method we know the iron-input#2.x can have.
-    // If it doesn't have it, then it's an iron-input#1.x.
-    var ironInput = document.createElement('iron-input');
-    var version = typeof ironInput._initSlottedInput == 'function' ? 'v1' : 'v0';
-    var template = Polymer.DomModule.import('paper-input', 'template');
-    var inputTemplate = Polymer.DomModule.import('paper-input', 'template#' + version);
-    var inputPlaceholder = template.content.querySelector('#template-placeholder');
+<script>
+  Polymer({
+    is: 'paper-input',
 
-    if (inputPlaceholder) {
-      inputPlaceholder.parentNode.replaceChild(inputTemplate.content, inputPlaceholder);
-    } // else it's already been processed, probably in superclass
+    behaviors: [
+      Polymer.PaperInputBehavior,
+      Polymer.IronFormElementBehavior
+    ],
 
-  },
+    beforeRegister: function() {
+      // We need to tell which kind of of template to stamp based on
+      // what kind of `iron-input` we got, but because of polyfills and
+      // custom elements differences between v0 and v1, the safest bet is
+      // to check a particular method we know the iron-input#2.x can have.
+      // If it doesn't have it, then it's an iron-input#1.x.
+      var ironInput = document.createElement('iron-input');
+      var version = typeof ironInput._initSlottedInput == 'function' ? 'v1' : 'v0';
+      var template = Polymer.DomModule.import('paper-input', 'template');
+      var inputTemplate = Polymer.DomModule.import('paper-input', 'template#' + version);
+      var inputPlaceholder = template.content.querySelector('#template-placeholder');
+      if (inputPlaceholder) {
+        inputPlaceholder.parentNode.replaceChild(inputTemplate.content, inputPlaceholder);
+      }
+      // else it's already been processed, probably in superclass
+    },
 
-  /**
-   * Returns a reference to the focusable element. Overridden from PaperInputBehavior
-   * to correctly focus the native input.
-   */
-  get _focusableElement() {
-    return Polymer.Element ? this.inputElement._inputElement : this.inputElement;
-  },
+    /**
+     * Returns a reference to the focusable element. Overridden from PaperInputBehavior
+     * to correctly focus the native input.
+     */
+    get _focusableElement() {
+      return Polymer.Element ? this.inputElement._inputElement : this.inputElement;
+    },
 
-  // Note: This event is only available in the 1.0 version of this element.
-  // In 2.0, the functionality of `_onIronInputReady` is done in
-  // PaperInputBehavior::attached.
-  listeners: {
-    'iron-input-ready': '_onIronInputReady'
-  },
-  _onIronInputReady: function _onIronInputReady() {
-    if (this.inputElement && this._typesThatHaveText.indexOf(this.$.nativeInput.type) !== -1) {
-      this.alwaysFloatLabel = true;
-    } // Only validate when attached if the input already has a value.
+    // Note: This event is only available in the 1.0 version of this element.
+    // In 2.0, the functionality of `_onIronInputReady` is done in
+    // PaperInputBehavior::attached.
+    listeners: {
+      'iron-input-ready': '_onIronInputReady'
+    },
 
+    _onIronInputReady: function() {
+      if (this.inputElement &&
+          this._typesThatHaveText.indexOf(this.$.nativeInput.type) !== -1) {
+        this.alwaysFloatLabel = true;
+      }
 
-    if (!!this.inputElement.bindValue) {
-      this.$.container._handleValueAndAutoValidate(this.inputElement);
-    }
-  }
-});</script>
+      // Only validate when attached if the input already has a value.
+      if (!!this.inputElement.bindValue) {
+        this.$.container._handleValueAndAutoValidate(this.inputElement);
+      }
+    },
+  });
+</script>

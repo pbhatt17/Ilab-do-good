@@ -24,9 +24,9 @@
             /*outline: none;*/
         }
         </style>
-        <iron-a11y-keys id="a11y" target="[[target]]" tabindex="1" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation=""></iron-a11y-keys>
+        <iron-a11y-keys id="a11y" target="[[target]]" tabindex="1" keys="enter space" on-keys-pressed="toggleOpen" stop-keyboard-event-propagation></iron-a11y-keys>
         <div class="layout horizontal label">
-            <paper-button toggles="" aria-label$="[[contentLabel]].  Click to [[labelText]] content">
+            <paper-button toggles aria-label$="[[contentLabel]].  Click to [[labelText]] content">
                 <div class="layout horizontal flex">
                     <div class="layout vertical center-justified flex">
                         <slot name="label"></slot>
@@ -46,90 +46,78 @@
             <slot name="items"></slot>
         </iron-collapse>
     </template>
-    <script>var ExpandableItem =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(ExpandableItem, _Polymer$Element);
-  babelHelpers.createClass(ExpandableItem, [{
-    key: "_labelText",
-    value: function _labelText(open) {
-      if (open) {
-        return "collapse";
-      } else {
-        return "expand";
-      }
-    }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'expandable-item';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        isOpened: {
-          type: Boolean,
-          value: false
-        },
-        tabindex: {
-          type: Number,
-          value: 0,
-          reflectToAttribute: true
-        },
-        labelText: {
-          type: String,
-          computed: '_labelText(isOpened)'
-        },
-        contentLabel: {
-          type: String,
-          value: ""
-        },
-        target: {
-          type: Object
+    <script>
+    class ExpandableItem extends Polymer.Element {
+        static get is() {
+            return 'expandable-item';
         }
-      };
+
+
+        static get properties() {
+            return {
+                isOpened: {
+                    type: Boolean,
+                    value: false,
+                },
+                tabindex: {
+                    type: Number,
+                    value: 0,
+                    reflectToAttribute: true,
+                },
+                labelText: {
+                    type: String,
+                    computed: '_labelText(isOpened)'
+                },
+                contentLabel: {
+                    type: String,
+                    value: ""
+                },
+                target: {
+                    type: Object
+                }
+            };
+        }
+
+        _labelText(open) {
+            if(open) {
+                return "collapse";
+            } else {
+                return "expand";
+            }
+        }
+
+        constructor() {
+            super();
+        }
+
+        toggleOpen() {
+            this._debouncer = Polymer.Debouncer.debounce(
+                this._debouncer, // initially undefined
+                Polymer.Async.timeOut.after(15),
+                () => {
+
+                    this.isOpened = !this.isOpened;
+                    this.$.collapse.toggle();
+                });
+
+        }
+
+
+        ready() {
+            super.ready();
+            this.root.querySelector('paper-button').addEventListener('click', event => {
+                this.toggleOpen();
+            });
+            this.root.querySelector('paper-button').addEventListener('tap', event => {
+                this.toggleOpen();
+            });
+            this.target = this;
+            if(this.isOpened) {
+                this.$.collapse.show();
+            }
+        }
     }
-  }]);
 
-  function ExpandableItem() {
-    babelHelpers.classCallCheck(this, ExpandableItem);
-    return babelHelpers.possibleConstructorReturn(this, (ExpandableItem.__proto__ || Object.getPrototypeOf(ExpandableItem)).call(this));
-  }
-
-  babelHelpers.createClass(ExpandableItem, [{
-    key: "toggleOpen",
-    value: function toggleOpen() {
-      var _this = this;
-
-      this._debouncer = Polymer.Debouncer.debounce(this._debouncer, // initially undefined
-      Polymer.Async.timeOut.after(15), function () {
-        _this.isOpened = !_this.isOpened;
-
-        _this.$.collapse.toggle();
-      });
-    }
-  }, {
-    key: "ready",
-    value: function ready() {
-      var _this2 = this;
-
-      babelHelpers.get(ExpandableItem.prototype.__proto__ || Object.getPrototypeOf(ExpandableItem.prototype), "ready", this).call(this);
-      this.root.querySelector('paper-button').addEventListener('click', function (event) {
-        _this2.toggleOpen();
-      });
-      this.root.querySelector('paper-button').addEventListener('tap', function (event) {
-        _this2.toggleOpen();
-      });
-      this.target = this;
-
-      if (this.isOpened) {
-        this.$.collapse.show();
-      }
-    }
-  }]);
-  return ExpandableItem;
-}(Polymer.Element);
-
-customElements.define(ExpandableItem.is, ExpandableItem);</script>
+    customElements.define(ExpandableItem.is, ExpandableItem);
+    </script>
 </dom-module>
