@@ -179,22 +179,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             outline: none;
         }
         
-    .loader {
-                      border: 16px solid #f3f3f3;
-                      border-radius: 50%;
-                      border-top: 16px solid #003354;
-                      width: 120px;
-                      height: 120px;
-                      -webkit-animation: spin 2s linear infinite; /* Safari */
-                      animation: spin 2s linear infinite;
-        
-                      margin-left:45%; 
-                      margin-top:20%;
-                }
+        .loader {
+                          border: 16px solid #f3f3f3;
+                          border-radius: 50%;
+                          border-top: 16px solid #003354;
+                          width: 120px;
+                          height: 120px;
+                          -webkit-animation: spin 2s linear infinite; /* Safari */
+                          animation: spin 2s linear infinite;
+            
+                          margin-left:45%; 
+                          margin-top:20%;
+        }
 
-   .loading_text{
-    margin-left: 40%
-   }
+       .loading_text{
+        margin-left: 40%;
+       }
+    
+        /*adding IE and EDGE specific css so that the spinner is shown fully on the loading screen*/
+
+       @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+             /* IE10+ CSS styles go here */
+
+             .loading_text{
+                margin-bottom: 50%;
+               }
+        }
+
+        @supports (-ms-accelerator:true) {
+          /* IE Edge 12+ CSS styles go here */ 
+
+          .loading_text{
+                margin-bottom: 50%;
+               }
+        }
 
         @media (max-width: 1224px) {
 
