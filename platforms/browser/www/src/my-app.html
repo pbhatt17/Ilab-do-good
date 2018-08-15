@@ -939,6 +939,8 @@ function (_Polymer$Element) {
             } else {
               that.$['spinner-loader'].style.display = 'none';
               console.log("Done loading");
+              window.localStorage.routePath = "/home";
+              window.localStorage.targetId = undefined;
             }
           }, 500);
         }).catch(function (error) {
@@ -1033,6 +1035,8 @@ function (_Polymer$Element) {
             } else {
               that.display = "display: none;";
               console.log("Done loading");
+              window.localStorage.routePath = "/home";
+              window.localStorage.targetId = undefined;
             }
           }, 500);
         }).catch(function (error) {
