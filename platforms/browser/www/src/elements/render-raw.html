@@ -182,88 +182,74 @@
         <global-data id="data" device="{{device}}"></global-data>
             <div id="content"></div>
     </template>
-    <script>var RenderRaw =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(RenderRaw, _Polymer$Element);
-  babelHelpers.createClass(RenderRaw, null, [{
-    key: "is",
-    get: function get() {
-      return 'render-raw';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        htmlData: {
-          type: String,
-          value: ''
-        },
-        target: {
-          type: String,
-          value: null
-        },
-        device: {
-          type: String
+    <script>
+    class RenderRaw extends Polymer.Element {
+        static get is() {
+            return 'render-raw';
         }
-      };
-    }
-  }, {
-    key: "observers",
-    get: function get() {
-      return ['htmlChanged(htmlData)', 'targetChanged(htmlData, target)'];
-    }
-  }]);
 
-  function RenderRaw() {
-    babelHelpers.classCallCheck(this, RenderRaw);
-    return babelHelpers.possibleConstructorReturn(this, (RenderRaw.__proto__ || Object.getPrototypeOf(RenderRaw)).call(this));
-  }
 
-  babelHelpers.createClass(RenderRaw, [{
-    key: "htmlChanged",
-    value: function htmlChanged(data) {
-      var _this = this;
-
-      this.root.querySelector('#content').innerHTML = data;
-      this.root.addEventListener('link-followed', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: event.detail.target,
-            id: event.detail.id
-          },
-          bubbles: true
-        }));
-      });
-    }
-  }, {
-    key: "targetChanged",
-    value: function targetChanged(data, target) {
-      if (target !== null) {
-        var scrollTarget = this.root.querySelector("#" + target);
-        console.log(scrollTarget);
-
-        if (scrollTarget !== null) {
-          setTimeout(function () {
-            scrollTarget.scrollIntoView();
-          }, 16);
+        static get properties() {
+            return {
+                htmlData: {
+                    type: String,
+                    value: '',
+                },
+                target: {
+                    type: String,
+                    value: null
+                },
+                device: {
+                    type: String
+                }
+            };
         }
-      }
-    }
-  }, {
-    key: "connectedCallback",
-    value: function connectedCallback() {
-      babelHelpers.get(RenderRaw.prototype.__proto__ || Object.getPrototypeOf(RenderRaw.prototype), "connectedCallback", this).call(this);
-      this.root.querySelector('#content').classList.add(this.device);
-    }
-  }, {
-    key: "ready",
-    value: function ready() {
-      babelHelpers.get(RenderRaw.prototype.__proto__ || Object.getPrototypeOf(RenderRaw.prototype), "ready", this).call(this);
-    }
-  }]);
-  return RenderRaw;
-}(Polymer.Element);
 
-customElements.define(RenderRaw.is, RenderRaw);</script>
+        static get observers() {
+            return [
+                'htmlChanged(htmlData)',
+                'targetChanged(htmlData, target)'
+            ];
+        }
+
+        constructor() {
+            super();
+        }
+
+
+        htmlChanged(data) {
+            this.root.querySelector('#content').innerHTML = data;
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                        id: event.detail.id,
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+        targetChanged(data, target) {
+            if (target !== null) {
+                var scrollTarget = this.root.querySelector("#" + target);
+                console.log(scrollTarget);
+                if (scrollTarget !== null) {
+                    setTimeout(() => {
+                        scrollTarget.scrollIntoView();
+                    }, 16);
+                }
+            }
+        }
+        connectedCallback() {
+            super.connectedCallback();
+            this.root.querySelector('#content').classList.add(this.device);
+        }
+
+        ready() {
+            super.ready();
+        }
+    }
+
+    customElements.define(RenderRaw.is, RenderRaw);
+    </script>
 </dom-module>

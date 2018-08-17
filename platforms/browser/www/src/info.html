@@ -6,7 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../bower_components/polymer/polymer-element.html">
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <dom-module id="info-page">
     <template>
@@ -27,48 +28,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </template>
         </dom-repeat>
     </template>
-    <script>var InfoPage =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(InfoPage, _Polymer$Element);
-
-  function InfoPage() {
-    babelHelpers.classCallCheck(this, InfoPage);
-    return babelHelpers.possibleConstructorReturn(this, (InfoPage.__proto__ || Object.getPrototypeOf(InfoPage)).apply(this, arguments));
-  }
-
-  babelHelpers.createClass(InfoPage, [{
-    key: "ready",
-    value: function ready() {
-      var _this = this;
-
-      babelHelpers.get(InfoPage.prototype.__proto__ || Object.getPrototypeOf(InfoPage.prototype), "ready", this).call(this);
-      this.root.addEventListener('link-followed', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: event.detail.target
-          },
-          bubbles: true
-        }));
-      });
-    }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'info-page';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        infoData: {
-          type: Array
+    <script>
+    class InfoPage extends Polymer.Element {
+        static get is() {
+            return 'info-page';
         }
-      };
-    }
-  }]);
-  return InfoPage;
-}(Polymer.Element);
+        static get properties() {
+            return {
+                infoData: {
+                    type: Array,
+                }
+            };
+        }
 
-window.customElements.define(InfoPage.is, InfoPage);</script>
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(InfoPage.is, InfoPage);
+    </script>
 </dom-module>

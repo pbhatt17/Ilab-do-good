@@ -1329,7 +1329,7 @@
 		"steps": [{
 				"index": 1,
 				"type": "splash",
-				"stepTitle": "Première étape: Faire participer les parties prenantes et les partenaires",
+				"stepTitle": "Première étape: faire participer les parties prenantes et les partenaires",
 				"preview": "This is a sample preview for Step 1",
 				"keywords": ["Partie prenante", "Communauté"],
 				"learningObjectives": [
@@ -1351,7 +1351,7 @@
 						"type": "other",
 						"preview": "This is a sample preview for 'Why Seek Stakeholder Engagement?'",
 						"keywords": [],
-						"title": "Pourquoi rechercher la participation des parties prenantes?",
+						"title": "Pourquoi rechercher la participation des parties prenantes&nbsp;?",
 						"url": "/topics/step1/topic1_fr.html"
 					},
 					{
@@ -1359,7 +1359,7 @@
 						"type": "other",
 						"preview": "This is a sample preview for Step 1 Topic 2",
 						"keywords": [],
-						"title": "Que peuvent faire les parties prenantes?",
+						"title": "Que peuvent faire les parties prenantes&nbsp;?",
 						"url": "/topics/step1/topic2_fr.html"
 					},
 					{

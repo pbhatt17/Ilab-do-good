@@ -6,7 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../bower_components/polymer/polymer-element.html">
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <dom-module id="my-step-splash">
     <template>
@@ -119,9 +120,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 </template>
                             </dom-repeat>
                         </ul>
-                        <paper-button id="next" hidden$="[[!hasNext]]" raised="">Continue to Step [[nextStepId]]</paper-button>
-                        <paper-button id="next_fr" hidden$="[[!hasNext_fr]]" raised="">Continuez à l'étape [[nextStepId]]</paper-button>
-                        <paper-button id="next_es" hidden$="[[!hasNext_es]]" raised="">Continúa con el paso [[nextStepId]]</paper-button>
+                        <paper-button id="next" hidden$="[[!hasNext]]" raised>Continue to Step [[nextStepId]]</paper-button>
+                        <paper-button id="next_fr" hidden$="[[!hasNext_fr]]" raised>Continuez à l'étape [[nextStepId]]</paper-button>
+                        <paper-button id="next_es" hidden$="[[!hasNext_es]]" raised>Continúa con el paso [[nextStepId]]</paper-button>
                     </div>
                 </div>
                 <!--/expandable-item-->
@@ -146,177 +147,140 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
         </div>
     </template>
-    <script>var MyStepSplash =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(MyStepSplash, _Polymer$Element);
-
-  function MyStepSplash() {
-    babelHelpers.classCallCheck(this, MyStepSplash);
-    return babelHelpers.possibleConstructorReturn(this, (MyStepSplash.__proto__ || Object.getPrototypeOf(MyStepSplash)).apply(this, arguments));
-  }
-
-  babelHelpers.createClass(MyStepSplash, [{
-    key: "_hasTrainingMats",
-    value: function _hasTrainingMats(data) {
-      if (data === null || data === undefined) {
-        return false;
-      }
-
-      return data.trainingMats !== null && data.trainingMats !== undefined;
-    }
-  }, {
-    key: "_hasFurtherResources",
-    value: function _hasFurtherResources(data) {
-      if (data === null || data === undefined) {
-        return false;
-      }
-
-      return data.furtherResources !== null && data.furtherResources !== undefined;
-    }
-  }, {
-    key: "_hasExtraInfo",
-    value: function _hasExtraInfo(data) {
-      if (data === null || data === undefined) {
-        return false;
-      }
-
-      return data.extraInfo !== null && data.extraInfo !== undefined;
-    }
-  }, {
-    key: "_nextId",
-    value: function _nextId(id) {
-      if (id === null || id === undefined) {
-        return null;
-      }
-
-      return Number.parseInt(id) + 1;
-    }
-  }, {
-    key: "_hasNext",
-    value: function _hasNext(data, stepId) {
-      if (data === null || stepId === null) {
-        return false;
-      }
-
-      if (window.localStorage.lang != 'en') {
-        return false;
-      }
-
-      return Number.parseInt(stepId) < data.length;
-    }
-  }, {
-    key: "_hasNext_fr",
-    value: function _hasNext_fr(data, stepId) {
-      if (data === null || stepId === null) {
-        return false;
-      }
-
-      if (window.localStorage.lang != 'fr') {
-        return false;
-      }
-
-      return Number.parseInt(stepId) < data.length;
-    }
-  }, {
-    key: "_hasNext_es",
-    value: function _hasNext_es(data, stepId) {
-      if (data === null || stepId === null) {
-        return false;
-      }
-
-      if (window.localStorage.lang != 'es') {
-        return false;
-      }
-
-      return Number.parseInt(stepId) < data.length;
-    }
-  }, {
-    key: "_withIndex",
-    value: function _withIndex(id, stepData) {
-      if (!id || !stepData) {
-        return null;
-      }
-
-      return stepData[Number.parseInt(id) - 1];
-    }
-  }, {
-    key: "ready",
-    value: function ready() {
-      var _this = this;
-
-      babelHelpers.get(MyStepSplash.prototype.__proto__ || Object.getPrototypeOf(MyStepSplash.prototype), "ready", this).call(this);
-      this.root.addEventListener('link-followed', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: event.detail.target,
-            id: event.detail.id
-          },
-          bubbles: true
-        }));
-      });
-      this.$.next.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/step/' + (Number.parseInt(_this.routeData.stepId) + 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.next_es.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/step/' + (Number.parseInt(_this.routeData.stepId) + 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-      this.$.next_fr.addEventListener('click', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: '/step/' + (Number.parseInt(_this.routeData.stepId) + 1).toString()
-          },
-          bubbles: true
-        }));
-      });
-    }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'my-step-splash';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        stepData: {
-          type: Object
-        },
-        data: {
-          type: Object,
-          computed: '_withIndex(routeData.stepId, stepData)'
-        },
-        hasNext: {
-          type: Boolean,
-          computed: '_hasNext(stepData, routeData.stepId)'
-        },
-        hasNext_es: {
-          type: Boolean,
-          computed: '_hasNext_es(stepData, routeData.stepId)'
-        },
-        hasNext_fr: {
-          type: Boolean,
-          computed: '_hasNext_fr(stepData, routeData.stepId)'
-        },
-        nextStepId: {
-          type: Number,
-          computed: '_nextId(routeData.stepId)'
+    <script>
+    class MyStepSplash extends Polymer.Element {
+        static get is() {
+            return 'my-step-splash';
         }
-      };
-    }
-  }]);
-  return MyStepSplash;
-}(Polymer.Element);
+        static get properties() {
+            return {
+                stepData: {
+                    type: Object,
+                },
+                data: {
+                    type: Object,
+                    computed: '_withIndex(routeData.stepId, stepData)'
+                },
+                hasNext: {
+                    type: Boolean,
+                    computed: '_hasNext(stepData, routeData.stepId)'
+                },
+                hasNext_es: {
+                    type: Boolean,
+                    computed: '_hasNext_es(stepData, routeData.stepId)'
+                },
+                hasNext_fr: {
+                    type: Boolean,
+                    computed: '_hasNext_fr(stepData, routeData.stepId)'
+                },
+                nextStepId: {
+                    type: Number,
+                    computed: '_nextId(routeData.stepId)'
+                }
 
-window.customElements.define(MyStepSplash.is, MyStepSplash);</script>
+            };
+        }
+        _hasTrainingMats(data) {
+            if (data === null || data === undefined) {
+                return false;
+            }
+            return data.trainingMats !== null && data.trainingMats !== undefined;
+        }
+        _hasFurtherResources(data) {
+            if (data === null || data === undefined) {
+                return false;
+            }
+            return data.furtherResources !== null && data.furtherResources !== undefined;
+        }
+        _hasExtraInfo(data) {
+            if (data === null || data === undefined) {
+                return false;
+            }
+            return data.extraInfo !== null && data.extraInfo !== undefined;
+        }
+
+        _nextId(id) {
+            if (id === null || id === undefined) {
+                return null;
+            }
+            return Number.parseInt(id) + 1;
+        }
+
+        _hasNext(data, stepId) {
+            if (data === null || stepId === null) {
+                return false
+            }
+            if (window.localStorage.lang != 'en') {
+                return false
+            }
+            return Number.parseInt(stepId) < data.length;
+        }
+
+        _hasNext_fr(data, stepId) {
+            if (data === null || stepId === null) {
+                return false
+            }
+            if (window.localStorage.lang != 'fr') {
+                return false
+            }
+            return Number.parseInt(stepId) < data.length;
+        }
+
+        _hasNext_es(data, stepId) {
+            if (data === null || stepId === null) {
+                return false
+            }
+            if (window.localStorage.lang != 'es') {
+                return false
+            }
+            return Number.parseInt(stepId) < data.length;
+        }
+
+
+        _withIndex(id, stepData) {
+            if (!id || !stepData) {
+                return null;
+            }
+            return stepData[Number.parseInt(id) - 1];
+        }
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                        id: event.detail.id,
+                    },
+                    bubbles: true
+                }));
+            });
+            this.$.next.addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+             this.$.next_es.addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+              this.$.next_fr.addEventListener('click', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: '/step/' + (Number.parseInt(this.routeData.stepId) + 1).toString(),
+                    },
+                    bubbles: true
+                }));
+            });
+        }
+    }
+
+    window.customElements.define(MyStepSplash.is, MyStepSplash);
+    </script>
 </dom-module>
