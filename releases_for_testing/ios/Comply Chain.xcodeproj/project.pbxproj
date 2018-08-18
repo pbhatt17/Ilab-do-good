@@ -366,7 +366,7 @@
 				INFOPLIST_FILE = "Comply Chain/Comply Chain-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.complychain1;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.complychain000;
 				PRODUCT_NAME = "Comply Chain";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -390,7 +390,7 @@
 				INFOPLIST_FILE = "Comply Chain/Comply Chain-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.complychain1;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.complychain000;
 				PRODUCT_NAME = "Comply Chain";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
