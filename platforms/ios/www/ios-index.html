@@ -31029,8 +31029,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <slot></slot>
             </div>
         </div>
-        <platform-switch>
-            <div slot="ios" class="sr-only">
+        
+            <div hidden$="[[!isiOS]]" class="sr-only">
                 <ul style="list-style: none;">
                     <li>
                         <app-link href="/step/1">Step 1: Engage Stakeholders and Partners</app-link>
@@ -31059,7 +31059,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </ul> 
 
             </div>
-        </platform-switch>
+        
     </template>
     <script>
     class ChainAnchorLink extends Polymer.Element {
@@ -31069,7 +31069,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
         static get properties() {
-            return {};
+            return {
+
+            	isiOS :{
+                    type: Boolean,
+                    value: false,
+                }
+            };
         }
 
         constructor() {
@@ -31078,6 +31084,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         connectedCallback() {
             super.connectedCallback();
+            if (cordova.platformId == 'ios') {
+                this.isiOS = true;
+            }
             var slot = Polymer.dom(this.querySelector('slot'));
             var target = slot.queryDistributedElements('img')[0];
             target.removeAttribute("hidden");

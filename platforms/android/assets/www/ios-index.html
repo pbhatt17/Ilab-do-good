@@ -31029,8 +31029,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <slot></slot>
             </div>
         </div>
-        <platform-switch>
-            <div slot="ios" class="sr-only">
+        
+            <div hidden$="[[!isiOS]]" class="sr-only">
                 <ul style="list-style: none;">
                     <li>
                         <app-link href="/step/1">Step 1: Engage Stakeholders and Partners</app-link>
@@ -31059,7 +31059,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </ul> 
 
             </div>
-        </platform-switch>
+        
     </template>
     <script>
     class ChainAnchorLink extends Polymer.Element {
@@ -31069,7 +31069,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
         static get properties() {
-            return {};
+            return {
+
+            	isiOS :{
+                    type: Boolean,
+                    value: false,
+                }
+            };
         }
 
         constructor() {
@@ -31078,6 +31084,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         connectedCallback() {
             super.connectedCallback();
+            if (cordova.platformId == 'ios') {
+                this.isiOS = true;
+            }
             var slot = Polymer.dom(this.querySelector('slot'));
             var target = slot.queryDistributedElements('img')[0];
             target.removeAttribute("hidden");
@@ -31402,6 +31411,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         app-link {
             color: rgb(0, 0, 238);
             text-decoration: underline;
+
+
+            background: linear-gradient(#fff,#fff),linear-gradient(#fff,#fff),linear-gradient(#0000EE,#0000EE);
+	        background-size: .05em 1px,.05em 1px,1px 1px;
+	        background-repeat: no-repeat,no-repeat,repeat-x;
+	        text-shadow: .03em 0 #fff,-.03em 0 #fff,0 .03em #fff,0 -.03em #fff,.06em 0 #fff,-.06em 0 #fff,.09em 0 #fff,-.09em 0 #fff,.12em 0 #fff,-.12em 0 #fff,.15em 0 #fff,-.15em 0 #fff;
+	        background-position: 0 95%,100% 95%,0 95%;
         }
 
         img {
@@ -31928,6 +31944,80 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     customElements.define(PlatformSwitch.is, PlatformSwitch);
+    </script>
+</dom-module>
+<dom-module id="smart-link" assetpath="src/elements/">
+    <template>
+        <custom-style>
+        </custom-style>
+        <style>
+
+        </style>
+        
+
+        <div hidden$="[[!isAndroid]]">
+            <a href="https://play.google.com/store/apps/details?id=gov.dol.childlabor&amp;hl=en">Sweat &amp; Toil</a>
+        </div>
+
+        <div hidden$="[[!isiOS]]">
+            <a href="https://itunes.apple.com/us/app/sweat-toil-child-labor-forced/id1018240593?ls=1&amp;mt=8">Sweat &amp; Toil</a>            
+        </div>
+
+        <div hidden$="[[!isBrowser]]">
+            <a href="https://www.dol.gov/dol/apps/ilab.htm" target="_blank">Sweat &amp; Toil</a>              
+        </div>
+    
+    </template>
+    <script>
+    class SmartLink extends Polymer.Element {
+        static get is() {
+            return 'smart-link';
+        }
+
+
+        static get properties() {
+            return {
+                isiOS :{
+                    type: Boolean,
+                    value: false,
+                },
+                isAndroid :{
+                    type: Boolean,
+                    value: false,
+                },
+                isBrowser :{
+                    type: Boolean,
+                    value: false,
+                }
+
+            };
+        }
+
+
+        constructor() {
+
+            super();
+        }
+
+
+
+        ready() {
+            super.ready();
+
+
+            if (cordova.platformId == 'ios') {
+                this.isiOS = true;
+            }
+            else if (cordova.platformId == 'android') {
+                this.isAndroid = true;
+            }
+           else {
+                this.isBrowser = true;
+            }
+        }
+    }
+
+    customElements.define(SmartLink.is, SmartLink);
     </script>
 </dom-module>
 <dom-module id="border-separator" assetpath="src/elements/">
@@ -33914,22 +34004,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             outline: none;
         }
         
-    .loader {
-                      border: 16px solid #f3f3f3;
-                      border-radius: 50%;
-                      border-top: 16px solid #003354;
-                      width: 120px;
-                      height: 120px;
-                      -webkit-animation: spin 2s linear infinite; /* Safari */
-                      animation: spin 2s linear infinite;
-        
-                      margin-left:45%; 
-                      margin-top:20%;
-                }
+        .loader {
+                          border: 16px solid #f3f3f3;
+                          border-radius: 50%;
+                          border-top: 16px solid #003354;
+                          width: 120px;
+                          height: 120px;
+                          -webkit-animation: spin 2s linear infinite; /* Safari */
+                          animation: spin 2s linear infinite;
+            
+                          margin-left:45%; 
+                          margin-top:20%;
+        }
 
-   .loading_text{
-    margin-left: 40%
-   }
+       .loading_text{
+        margin-left: 40%;
+       }
+    
+        /*adding IE and EDGE specific css so that the spinner is shown fully on the loading screen*/
+
+       @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+             /* IE10+ CSS styles go here */
+
+             .loading_text{
+                margin-bottom: 50%;
+               }
+        }
+
+        @supports (-ms-accelerator:true) {
+          /* IE Edge 12+ CSS styles go here */ 
+
+          .loading_text{
+                margin-bottom: 50%;
+               }
+        }
 
         @media (max-width: 1224px) {
 
@@ -33991,8 +34099,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <paper-dropdown-menu hidden="" label="{{language}}" on-iron-select="_itemSelected">
                         <paper-listbox attr-for-selected="lang" slot="dropdown-content" selected="{{lang}}">
                             <paper-item lang="en">English</paper-item>
-                            <paper-item lang="es">Espanol</paper-item>
-                            <paper-item lang="fr">French</paper-item>
+                            <paper-item lang="es">Español</paper-item>
+                            <paper-item lang="fr">Français</paper-item>
                         </paper-listbox>
                     </paper-dropdown-menu>
                     <app-link name="home" href="/home">
@@ -34628,8 +34736,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                        else
                        {
+                                                  
                         	that.$['spinner-loader'].style.display = 'none';
                            	console.log("Done loading");
+                            window.localStorage.routePath = "/home";
+                            window.localStorage.targetId = undefined; 
 
                        }
 
@@ -34732,9 +34843,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         }
 
                        else
-                       {
+                       {    
+                            
                         	that.display = "display: none;";
                          	console.log("Done loading");
+                            window.localStorage.routePath = "/home";
+                            window.localStorage.targetId = undefined;
 
                        }
 

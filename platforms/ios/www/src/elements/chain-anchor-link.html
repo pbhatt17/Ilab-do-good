@@ -42,8 +42,8 @@
                 <slot></slot>
             </div>
         </div>
-        <platform-switch>
-            <div slot="ios" class="sr-only">
+        
+            <div hidden$="[[!isiOS]]" class="sr-only">
                 <ul style="list-style: none;">
                     <li>
                         <app-link href="/step/1">Step 1: Engage Stakeholders and Partners</app-link>
@@ -72,7 +72,7 @@
                 </ul> 
 
             </div>
-        </platform-switch>
+        
     </template>
     <script>
     class ChainAnchorLink extends Polymer.Element {
@@ -82,7 +82,13 @@
 
 
         static get properties() {
-            return {};
+            return {
+
+            	isiOS :{
+                    type: Boolean,
+                    value: false,
+                }
+            };
         }
 
         constructor() {
@@ -91,6 +97,9 @@
 
         connectedCallback() {
             super.connectedCallback();
+            if (cordova.platformId == 'ios') {
+                this.isiOS = true;
+            }
             var slot = Polymer.dom(this.querySelector('slot'));
             var target = slot.queryDistributedElements('img')[0];
             target.removeAttribute("hidden");

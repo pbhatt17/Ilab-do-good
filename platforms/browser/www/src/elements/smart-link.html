@@ -9,11 +9,11 @@
         
 
         <div hidden$="[[!isAndroid]]">
-            <a href="https://play.google.com/store/apps/details?id=gov.dol.childlabor&amp;hl=en">Sweat &amp; Toil</a>
+            <a href="https://play.google.com/store/apps/details?id=gov.dol.childlabor&hl=en">Sweat &amp; Toil</a>
         </div>
 
         <div hidden$="[[!isiOS]]">
-            <a href="https://itunes.apple.com/us/app/sweat-toil-child-labor-forced/id1018240593?ls=1&amp;mt=8">Sweat &amp; Toil</a>            
+            <a href="https://itunes.apple.com/us/app/sweat-toil-child-labor-forced/id1018240593?ls=1&mt=8">Sweat &amp; Toil</a>            
         </div>
 
         <div hidden$="[[!isBrowser]]">
@@ -21,56 +21,55 @@
         </div>
     
     </template>
-    <script>var SmartLink =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(SmartLink, _Polymer$Element);
-  babelHelpers.createClass(SmartLink, null, [{
-    key: "is",
-    get: function get() {
-      return 'smart-link';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        isiOS: {
-          type: Boolean,
-          value: false
-        },
-        isAndroid: {
-          type: Boolean,
-          value: false
-        },
-        isBrowser: {
-          type: Boolean,
-          value: false
+    <script>
+    class SmartLink extends Polymer.Element {
+        static get is() {
+            return 'smart-link';
         }
-      };
+
+
+        static get properties() {
+            return {
+                isiOS :{
+                    type: Boolean,
+                    value: false,
+                },
+                isAndroid :{
+                    type: Boolean,
+                    value: false,
+                },
+                isBrowser :{
+                    type: Boolean,
+                    value: false,
+                }
+
+            };
+        }
+
+
+        constructor() {
+
+            super();
+        }
+
+
+
+        ready() {
+            super.ready();
+
+
+            if (cordova.platformId == 'ios') {
+                this.isiOS = true;
+            }
+            else if (cordova.platformId == 'android') {
+                this.isAndroid = true;
+            }
+           else {
+                this.isBrowser = true;
+            }
+        }
     }
-  }]);
 
-  function SmartLink() {
-    babelHelpers.classCallCheck(this, SmartLink);
-    return babelHelpers.possibleConstructorReturn(this, (SmartLink.__proto__ || Object.getPrototypeOf(SmartLink)).call(this));
-  }
-
-  babelHelpers.createClass(SmartLink, [{
-    key: "ready",
-    value: function ready() {
-      babelHelpers.get(SmartLink.prototype.__proto__ || Object.getPrototypeOf(SmartLink.prototype), "ready", this).call(this);
-
-      if (cordova.platformId == 'ios') {
-        this.isiOS = true;
-      } else if (cordova.platformId == 'android') {
-        this.isAndroid = true;
-      } else {
-        this.isBrowser = true;
-      }
-    }
-  }]);
-  return SmartLink;
-}(Polymer.Element);
-
-customElements.define(SmartLink.is, SmartLink);</script>
+    customElements.define(SmartLink.is, SmartLink);
+    </script>
 </dom-module>

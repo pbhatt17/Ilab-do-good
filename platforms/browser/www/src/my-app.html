@@ -6,7 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../bower_components/polymer/polymer-element.html">
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
@@ -256,9 +257,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
         <app-route route="[[route]]" pattern="/:page/:stepId" data="{{routeData}}"></app-route>
         <app-route route="[[route]]" pattern="/:page/:stepId/:topicId" data="{{routeData}}"></app-route>
-        <app-drawer-layout class="temp-width" fullbleed="" force-narrow="">
+        <app-drawer-layout class="temp-width" fullbleed force-narrow>
             <!-- Drawer content -->
-            <app-drawer id="drawer" slot="drawer" persistent="">
+            <app-drawer id="drawer" slot="drawer" persistent>
                 <app-toolbar>
                     <div class="layout horizontal flex">
                         <p class="flex">
@@ -271,7 +272,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" fallback-selection="steps-landing">
-                    <paper-dropdown-menu hidden="" label="{{language}}" on-iron-select="_itemSelected">
+                    <paper-dropdown-menu hidden label="{{language}}" on-iron-select="_itemSelected">
                         <paper-listbox attr-for-selected="lang" slot="dropdown-content" selected="{{lang}}">
                             <paper-item lang="en">English</paper-item>
                             <paper-item lang="es">Español</paper-item>
@@ -341,12 +342,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div class="loader"></div>
                 <h1 class="loading_text">Loading Resources....</h1>
             </div>
-            <app-header-layout id="scrollingRegion" has-scrolling-region="">
-                <app-header slot="header" id="app-header" fixed="" scroll-target="scrollingRegion">
+            <app-header-layout id="scrollingRegion"  has-scrolling-region>
+                <app-header slot="header" id="app-header" fixed scroll-target="scrollingRegion">
                     <app-toolbar>
-                        <paper-icon-button icon="my-icons:menu" drawer-toggle="" aria-label="Menu"></paper-icon-button>
-                        <div main-title="" class="layout horizontal">
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="{{ilab}}" class="logo-img-small" src="imgs/ilab.png"></a></div>
+                        <paper-icon-button icon="my-icons:menu" drawer-toggle aria-label="Menu"></paper-icon-button>
+                        <div main-title class="layout horizontal">
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/agencies/ilab"> <img id="ilab" alt="{{ilab}}" class="logo-img-small" src="imgs/ilab.png"  /></a></div>
                             <div class="flex layout horizontal center-justified">
                                 <div class="layout vertical title-bar-text">
                                     <div class="flex layout horizontal center-justified" style="margin-bottom: 50%">
@@ -354,7 +355,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="{{usdol}}" class="logo-img" src="imgs/dol.png"></a></div>
+                            <div class="flex-none layout vertical center-justified"><a href="https://www.dol.gov/"><img id="dol" alt="{{usdol}}" class="logo-img" src="imgs/dol.png" /></a></div>
                         </div>
                     </app-toolbar>
                 </app-header>
@@ -370,7 +371,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <div name="default" class="layout horizontal">
                                 <bread-crumbs name="default" class="flex" route="[[route]]" step-data="[[stepData]]" is-searching="{{isSearching}}"></bread-crumbs>
                                 <div>
-                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}" id="bread-crumbs-search"></paper-icon-button>
+                                    <paper-icon-button icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}" id="bread-crumbs-search"></paper-icon-button>
                                 </div>
                             </div>
                             <div name="home"></div>
@@ -386,7 +387,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home>
@@ -398,7 +399,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home-fr>
@@ -410,7 +411,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                     </div>
                                     <div>
                                         <div id="icon-background"></div>
-                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles="" aria-label="{{search_aria}}"></paper-icon-button>
+                                        <paper-icon-button id="icon" icon="icons:search" active="{{isSearching}}" toggles aria-label="{{search_aria}}"></paper-icon-button>
                                     </div>
                                 </div>
                             </my-home-es>
@@ -435,619 +436,612 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </app-header-layout>
         </app-drawer-layout>
     </template>
-    <script>var MyApp =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(MyApp, _Polymer$Element);
-  babelHelpers.createClass(MyApp, [{
-    key: "menuBack",
-    value: function menuBack() {
-      if (this.menuState === "listTopics") {
-        this.menuState = "listSteps";
-      } else if (this.menuState === "listSteps") {
-        this.menuState = "none";
-      }
+    <script>
+    class MyApp extends Polymer.Element {
 
-      console.log("menuBack:" + this.menuState);
-    }
-  }, {
-    key: "showSteps",
-    value: function showSteps() {
-      this.menuState = "listSteps";
-      console.log("showSteps:" + this.menuState);
-    }
-  }, {
-    key: "gotoStep",
-    value: function gotoStep(e) {
-      this.currentMenuStep = e.target.stepTarget;
-      this.menuState = "listTopics";
-      console.log("gotoStep:" + this.menuState);
-      console.log("stepid:" + this.currentMenuStep);
-      console.log("stepid:" + e.target.dataset.index);
-      console.log("stepid:" + e.target.dataset.testIndex);
-      console.log("stepid:" + e.target.index);
-      console.log("stepid:" + e.target.testIndex);
-    }
-  }, {
-    key: "_searchChange",
-    value: function _searchChange(isSearching) {
-      if (isSearching) {//this.$['search-input'].focus();
-      }
-    }
-  }, {
-    key: "onSearch",
-    value: function onSearch() {
-      var _this = this;
-
-      this.set('route.path', '/search-results');
-      this.$.search.initiateSearch();
-      setTimeout(function () {
-        window.scrollTo(0, 0);
-
-        _this.root.querySelector('bread-crumbs').scrollIntoView();
-
-        _this.$['bread-crumbs-container'].style.display = 'block';
-
-        if (_this.$.search.results.length === 1) {
-          var item = _this.$.search.results[0];
-
-          if (item.type === "step") {
-            _this.set('route.path', '/step/' + item.index);
-          }
-
-          if (item.type === "info") {
-            _this.set('route.path', '/' + item.id);
-          }
-
-          if (item.type === "topic") {
-            _this.set('route.path', '/topic/' + item.stepIndex + '/' + item.index);
-          }
-        }
-      }, 15);
-    }
-  }, {
-    key: "_routePageChanged",
-    value: function _routePageChanged(page) {
-      // Polymer 2.0 will call with `undefined` on initialization.
-      // Ignore until we are properly called with a string.
-      if (page === undefined) {
-        return;
-      } // If no page was found in the route data, page will be an empty string.
-      // Deault to 'home' in that case.
-
-
-      this.page = page || 'home';
-
-      if (this.page === "android_asset") {
-        this.page = "home";
-      }
-
-      if (this.page == 'home' && localStorage.lang == 'fr') {
-        this.page = "home-fr";
-      }
-
-      if (this.page == 'home' && localStorage.lang == 'es') {
-        this.page = "home-es";
-      } // Close a non-persistent drawer when the page & route are changed. 
-
-
-      if (!this.$.drawer.persistent) {
-        this.$.drawer.close();
-      }
-
-      if (this.page === "topic") {
-        this.$.topic.refocusTop();
-      }
-
-      if (this.page !== 'search-results') {
-        this.isSearching = false;
-        this.searchText = "";
-      }
-    }
-  }, {
-    key: "_pageChanged",
-    value: function _pageChanged(page) {
-      var _this2 = this;
-
-      // Load page import on demand. Show 404 page if fails
-      var resolvedPageUrl = this.resolveUrl(page + '.html');
-
-      if (/info.+/.exec(page)) {//resolvedPageUrl = this.resolveUrl('info-sub-page.html');
-      } else {
-        resolvedPageUrl = this.resolveUrl(page + '.html');
-        app.deviceReadyPromise.then(function () {
-          Polymer.importHref(resolvedPageUrl, null, null, true);
-
-          if (page === "steps-landing") {
-            _this2.$.landing.recalcMap();
-          }
-        });
-      }
-    }
-  }, {
-    key: "_itemSelected",
-    value: function _itemSelected(e) {
-      var selectedItem = e.target.selectedItem;
-      var homepages = ["home", "home-es", "home-fr"]; // if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
-
-      if (e.target.selectedItem.lang != localStorage.lang) {
-        this.$.drawer.style.display = 'none';
-        window.localStorage.setItem("lang", e.target.selectedItem.lang);
-        this.display = "height: 100%; overflow: hidden;";
-        window.localStorage.langChanged = "true";
-        location.reload();
-      }
-    }
-  }, {
-    key: "_stepData",
-    value: function _stepData(baseData, lang) {
-      if (baseData === null) {
-        return null;
-      }
-
-      if (lang == null) {
-        this.lang = 'en';
-        lang = 'en';
-      }
-
-      return baseData[lang].steps;
-    }
-  }, {
-    key: "_infoData",
-    value: function _infoData(baseData, lang) {
-      if (baseData === null) {
-        return null;
-      }
-
-      return baseData[lang].info;
-    }
-  }, {
-    key: "_infoDataVisible",
-    value: function _infoDataVisible(baseData, lang) {
-      if (baseData === null) {
-        return null;
-      }
-
-      return baseData[lang].info.filter(function (item) {
-        return !item.hidden;
-      });
-    }
-  }, {
-    key: "infoFor",
-    value: function infoFor(target, id) {
-      if (target === null || target === undefined) {
-        return null;
-      }
-
-      return target.filter(function (item) {
-        return item.id === id;
-      })[0];
-    }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'my-app';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        page: {
-          type: String,
-          reflectToAttribute: true,
-          observer: '_pageChanged'
-        },
-        baseStepData: {
-          type: Object,
-          value: null
-        },
-        stepData: {
-          type: Array,
-          computed: '_stepData(baseStepData, lang)'
-        },
-        infoData: {
-          type: Object,
-          computed: '_infoData(baseStepData, lang)'
-        },
-        infoDataVisible: {
-          type: Object,
-          computed: '_infoDataVisible(baseStepData, lang)'
-        },
-        lang: {
-          type: String,
-          value: "en"
-        },
-        isSearching: {
-          type: Boolean,
-          observer: '_searchChange'
-        },
-        target: {
-          type: Object
-        },
-        route: {
-          type: Object,
-          value: {
-            path: "/home"
-          }
-        },
-        menuState: {
-          type: String,
-          value: "none"
-        },
-        currentMenuStep: {
-          type: Object,
-          value: null
-        },
-        display: {
-          type: String,
-          value: "display: none;"
-        },
-        //language specific text for 508 compliance 
-        language: {
-          type: String,
-          value: "Language"
-        },
-        close_menu: {
-          type: String,
-          value: "Close Menu"
-        },
-        ilab: {
-          type: String,
-          value: "ILAB - The Bureau of International Labor Affairs"
-        },
-        usdol: {
-          type: String,
-          value: "United States Department of Labor"
-        },
-        search_aria: {
-          type: String,
-          value: "Search"
-        },
-        search_placeholder: {
-          type: String,
-          value: "Search..."
-        }
-      };
-    }
-  }, {
-    key: "observers",
-    get: function get() {
-      return ['_routePageChanged(routeData.page)'];
-    }
-  }]);
-
-  function MyApp() {
-    babelHelpers.classCallCheck(this, MyApp);
-    return babelHelpers.possibleConstructorReturn(this, (MyApp.__proto__ || Object.getPrototypeOf(MyApp)).call(this));
-  }
-
-  babelHelpers.createClass(MyApp, [{
-    key: "connectedCallback",
-    value: function connectedCallback() {
-      var _this3 = this;
-
-      babelHelpers.get(MyApp.prototype.__proto__ || Object.getPrototypeOf(MyApp.prototype), "connectedCallback", this).call(this);
-      this.root.querySelector('my-home').addEventListener('link-followed', function (event) {
-        if (event.detail.target == '/home') {
-          _this3.$['bread-crumbs-container'].style.display = 'none';
-        } else {
-          _this3.$['bread-crumbs-container'].style.display = 'block';
+        static get is() {
+            return 'my-app';
         }
 
-        console.log(event.detail.target);
+        static get properties() {
+            return {
+                page: {
+                    type: String,
+                    reflectToAttribute: true,
+                    observer: '_pageChanged',
+                },
+                baseStepData: {
+                    type: Object,
+                    value: null,
+                },
+                stepData: {
+                    type: Array,
+                    computed: '_stepData(baseStepData, lang)',
+                },
+                infoData: {
+                    type: Object,
+                    computed: '_infoData(baseStepData, lang)',
+                },
+                infoDataVisible: {
+                    type: Object,
+                    computed: '_infoDataVisible(baseStepData, lang)',
+                },
+                lang: {
+                    type: String,
+                    value: "en",
+                },
+                isSearching: {
+                    type: Boolean,
+                    observer: '_searchChange',
+                },
+                target: {
+                    type: Object,
+                },
+                route: {
+                    type: Object,
+                    value: {
+                        path: "/home"
+                    }
+                },
+                menuState: {
+                    type: String,
+                    value: "none"
+                },
+                currentMenuStep: {
+                    type: Object,
+                    value: null
+                },
 
-        _this3.root.querySelector('bread-crumbs').scrollIntoView();
+                display:{
+                    type : String,
+                    value: "display: none;"
+                },
 
-        _this3.$['app-header'].scroll(0, 0);
-
-        setTimeout(function () {
-          _this3.root.querySelector('bread-crumbs').scrollIntoView();
-
-          _this3.$['app-header'].scroll(0, 0);
-        }, 16); //this.root.querySelector('bread-crumbs').scrollIntoView()
-
-        window.localStorage.routePath = event.detail.target;
-        window.localStorage.targetId = event.detail.id;
-
-        _this3.set('route.path', event.detail.target);
-
-        _this3.set('targetId', event.detail.id);
-
-        if (!_this3.$.drawer.persistent) {
-          _this3.$.drawer.close();
+                //language specific text for 508 compliance 
+                language:{
+                    type: String,
+                    value: "Language"
+                },
+                close_menu:{
+                    type: String,
+                    value: "Close Menu"
+                },
+                ilab:{
+                    type: String,
+                    value: "ILAB - The Bureau of International Labor Affairs"
+                },
+                usdol:{
+                    type: String,
+                    value:"United States Department of Labor"
+                },
+                search_aria:{
+                    type: String,
+                    value : "Search"
+                },
+                search_placeholder:{
+                    type: String,
+                    value: "Search..."
+                }
+            };
         }
-      });
-      this.root.addEventListener('link-followed', function (event) {
-        if (event.detail.target == '/home') {
-          _this3.$['bread-crumbs-container'].style.display = 'none';
-        } else {
-          _this3.$['bread-crumbs-container'].style.display = 'block';
+
+        static get observers() {
+            return [
+                '_routePageChanged(routeData.page)',
+            ];
         }
 
-        console.log(event.detail.target);
-
-        _this3.root.querySelector('bread-crumbs').scrollIntoView();
-
-        _this3.$['app-header'].scroll(0, 0);
-
-        setTimeout(function () {
-          _this3.root.querySelector('bread-crumbs').scrollIntoView();
-
-          _this3.$['app-header'].scroll(0, 0);
-        }, 16);
-        window.localStorage.routePath = event.detail.target;
-        window.localStorage.targetId = event.detail.id;
-
-        _this3.set('route.path', event.detail.target);
-
-        _this3.set('targetId', event.detail.id);
-
-        if (!_this3.$.drawer.persistent) {
-          _this3.$.drawer.close();
+        menuBack() {
+            if (this.menuState === "listTopics") {
+                this.menuState = "listSteps";
+            } else if (this.menuState === "listSteps") {
+                this.menuState = "none";
+            }
+            console.log("menuBack:" + this.menuState);
         }
-      });
-      this.$.icon.addEventListener('click', function (event) {
-        if (_this3.isSearching) {
-          _this3.$['search-input'].focus();
+
+        showSteps() {
+            this.menuState = "listSteps";
+            console.log("showSteps:" + this.menuState);
         }
-      });
-      this.$['bread-crumbs-search'].addEventListener('click', function (event) {
-        if (_this3.isSearching) {
-          _this3.$['search-input'].focus();
+
+        gotoStep(e) {
+            this.currentMenuStep = e.target.stepTarget;
+            this.menuState = "listTopics";
+            console.log("gotoStep:" + this.menuState);
+            console.log("stepid:" + this.currentMenuStep);
+            console.log("stepid:" + e.target.dataset.index);
+            console.log("stepid:" + e.target.dataset.testIndex);
+            console.log("stepid:" + e.target.index);
+            console.log("stepid:" + e.target.testIndex);
+
         }
-      });
-      this.$['close-menu-btn'].addEventListener('click', function (event) {
-        if (!_this3.$.drawer.persistent) {
-          _this3.$.drawer.close();
 
-          _this3.$.pageContent.focus();
+
+        _searchChange(isSearching) {
+            if (isSearching) {
+                //this.$['search-input'].focus();
+
+            }
         }
-      });
-    }
-  }, {
-    key: "ready",
-    value: function ready() {
-      var _this4 = this;
 
-      babelHelpers.get(MyApp.prototype.__proto__ || Object.getPrototypeOf(MyApp.prototype), "ready", this).call(this);
-      this.lang = window.localStorage.getItem("lang");
-      this.searchInputTarget = this.$['search-input'];
-      var isIE =
-      /*@cc_on!@*/
-      false || !!document.documentMode;
-      var isFirefox = typeof InstallTrigger !== 'undefined';
-      var isEdge = navigator.userAgent.indexOf('Edge') >= 0;
-      this.display = "height: 100%; overflow: hidden;";
 
-      if (this.route.path == '/') {
-        this.$['bread-crumbs-container'].style.display = 'none';
-      }
+        onSearch() {
+            this.set('route.path', '/search-results');
+            this.$.search.initiateSearch();
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                this.root.querySelector('bread-crumbs').scrollIntoView();
+                this.$['bread-crumbs-container'].style.display = 'block';                               
+                if (this.$.search.results.length === 1) {
+                    var item = this.$.search.results[0];
+                    if (item.type === "step") {
+                        this.set('route.path', '/step/' + item.index);
+                    }
+                    if (item.type === "info") {
+                        this.set('route.path', '/' + item.id);
+                    }
+                    if (item.type === "topic") {
+                        this.set('route.path', '/topic/' + item.stepIndex + '/' + item.index);
+                    }
 
-      if (this.lang == 'en') {
-        this.page = "home";
-        this.language = "Language";
-        this.close_menu = "Close Menu";
-        this.ilab = "ILAB - The Bureau of International Labor Affairs";
-        this.usdol = "United States Department of Labor";
-        this.search_aria = "Search";
-        this.search_placeholder = "Search...";
-      } else if (this.lang == 'fr') {
-        this.page = "home-fr";
-        this.language = "Langue";
-        this.close_menu = "Fermer";
-        this.ilab = "Bureau des Affaires Internationales du Travail";
-        this.usdol = "Département du travail des États-Unis";
-        this.search_aria = "Rechercher";
-        this.search_placeholder = "Rechercher...";
-      } else if (this.lang == 'es') {
-        this.page = "home-es";
-        this.language = "Idioma";
-        this.close_menu = "Cerrar el menú";
-        this.ilab = "Dirección de Asuntos Internacionales de Trabajo";
-        this.dol = "Departamento de Trabajo de los Estados Unidos";
-        this.search_aria = "Buscar";
-        this.search_placeholder = "Buscar...";
-      }
+                }
+            }, 15);
+        }
 
-      var that = this;
-
-      if (isIE || isEdge) {
-        app.deviceReadyPromise.then(function () {
-          return ajax('GET', "data.json");
-        }).then(function (response) {
-          console.log("got step data");
-          _this4.baseStepData = JSON.parse(response);
-
-          for (var lang in _this4.baseStepData) {
-            if (lang != _this4.lang) {
-              continue;
+        _routePageChanged(page) {
+            // Polymer 2.0 will call with `undefined` on initialization.
+            // Ignore until we are properly called with a string.
+            if (page === undefined) {
+                return;
             }
 
-            _this4.baseStepData[lang].steps.forEach(function (step) {
-              if (!!step.furtherResources) {
-                if (step.furtherResources[0] == "/") {
-                  step.furtherResources = step.furtherResources.substr(1);
-                }
+            // If no page was found in the route data, page will be an empty string.
+            // Deault to 'home' in that case.
+            this.page = page || 'home';
+            if (this.page === "android_asset") {
+                this.page = "home";
+            }
 
-                ajax('GET', step.furtherResources).then(function (result) {
-                  console.log("found " + step.furtherResources);
-                  step.furtherResources = result;
-                }).catch(function (error) {
-                  console.log("didn't find bib.");
-                });
-              }
+            if (this.page == 'home' && localStorage.lang == 'fr') {
+                this.page = "home-fr";
+            }
 
-              if (!!step.extraInfo) {
-                if (step.extraInfo[0] == "/") {
-                  step.extraInfo = step.extraInfo.substr(1);
-                }
+            if (this.page == 'home' && localStorage.lang == 'es') {
+                this.page = "home-es";
+            }
 
-                ajax('GET', step.extraInfo).then(function (result) {
-                  console.log("found " + step.extraInfo);
-                  step.extraInfo = result;
-                }).catch(function (error) {
-                  console.log("didn't find extraInfo.");
-                });
-              }
+            // Close a non-persistent drawer when the page & route are changed. 
+            if (!this.$.drawer.persistent) {
+                this.$.drawer.close();
+            }
+            if (this.page === "topic") {
+                this.$.topic.refocusTop();
+            }
+            if (this.page !== 'search-results') {
+                this.isSearching = false;
+                this.searchText = "";
+            }
+        }
 
-              if (!!step.trainingMats) {
-                if (step.trainingMats[0] == "/") {
-                  step.trainingMats = step.trainingMats.substr(1);
-                }
-
-                ajax('GET', step.trainingMats).then(function (result) {
-                  console.log("found " + step.trainingMats);
-                  step.trainingMats = result;
-                }).catch(function (error) {
-                  console.log("didn't find trainingMats.");
-                });
-              }
-
-              step.topics.forEach(function (topic) {
-                if (!!topic.url) {
-                  if (topic.url[0] == "/") {
-                    topic.url = topic.url.substr(1);
-                    console.log(topic.url);
-                  }
-
-                  ajax('GET', topic.url).then(function (result) {
-                    console.log("found " + topic.url);
-                    topic.rawData = result;
-                  }).catch(function (error) {
-                    console.log("didn't find topic.");
-                  });
-                }
-              });
-            });
-          }
-        }).then(function () {
-          setTimeout(function () {
-            if (window.localStorage.langChanged == "true") {
-              window.localStorage.langChanged = "false";
-              setTimeout(function () {
-                that.set('route.path', window.localStorage.routePath);
-                that.set('targetId', window.localStorage.targetId);
-                that.$['bread-crumbs-container'].style.display = 'block';
-                that.$['spinner-loader'].style.display = 'none';
-                console.log("Done loading");
-              }, 500);
-              that.root.querySelector('bread-crumbs').scrollIntoView();
-              that.$['app-header'].scroll(0, 0);
-              setTimeout(function () {
-                that.root.querySelector('bread-crumbs').scrollIntoView();
-                that.$['app-header'].scroll(0, 0);
-              }, 501);
+        _pageChanged(page) {
+            // Load page import on demand. Show 404 page if fails
+            var resolvedPageUrl = this.resolveUrl(page + '.html');
+            if (/info.+/.exec(page)) {
+                //resolvedPageUrl = this.resolveUrl('info-sub-page.html');
             } else {
-              that.$['spinner-loader'].style.display = 'none';
-              console.log("Done loading");
-              window.localStorage.routePath = "/home";
-              window.localStorage.targetId = undefined;
-            }
-          }, 500);
-        }).catch(function (error) {
-          console.log("error loading step data: " + error);
-        });
-      } else {
-        app.deviceReadyPromise.then(function () {
-          return ajax('GET', "data.json");
-        }).then(function (response) {
-          console.log("got step data");
-          _this4.baseStepData = JSON.parse(response);
-
-          for (var lang in _this4.baseStepData) {
-            if (lang != _this4.lang) {
-              continue;
+                resolvedPageUrl = this.resolveUrl(page + '.html');
+                app.deviceReadyPromise.then(() => {
+                    Polymer.importHref(
+                        resolvedPageUrl,
+                        null,
+                        null,
+                        true);
+                    if (page === "steps-landing") {
+                        this.$.landing.recalcMap();
+                    }
+                });
             }
 
-            _this4.baseStepData[lang].steps.forEach(function (step) {
-              if (!!step.furtherResources) {
-                if (step.furtherResources[0] == "/") {
-                  step.furtherResources = step.furtherResources.substr(1);
-                }
+        }
 
-                ajax('GET', step.furtherResources).then(function (result) {
-                  console.log("found " + step.furtherResources);
-                  step.furtherResources = result;
-                }).catch(function (error) {
-                  console.log("didn't find bib.");
-                });
-              }
+        _itemSelected(e) {
+            var selectedItem = e.target.selectedItem;
+             
+           
+            var homepages = ["home","home-es", "home-fr"] ;
+           // if (e.target.selectedItem.lang != localStorage.lang && homepages.includes(this.page)) {
+            if (e.target.selectedItem.lang != localStorage.lang){
 
-              if (!!step.extraInfo) {
-                if (step.extraInfo[0] == "/") {
-                  step.extraInfo = step.extraInfo.substr(1);
-                }
+                this.$.drawer.style.display = 'none';
 
-                ajax('GET', step.extraInfo).then(function (result) {
-                  console.log("found " + step.extraInfo);
-                  step.extraInfo = result;
-                }).catch(function (error) {
-                  console.log("didn't find extraInfo.");
-                });
-              }
-
-              if (!!step.trainingMats) {
-                if (step.trainingMats[0] == "/") {
-                  step.trainingMats = step.trainingMats.substr(1);
-                }
-
-                ajax('GET', step.trainingMats).then(function (result) {
-                  console.log("found " + step.trainingMats);
-                  step.trainingMats = result;
-                }).catch(function (error) {
-                  console.log("didn't find trainingMats.");
-                });
-              }
-
-              step.topics.forEach(function (topic) {
-                if (!!topic.url) {
-                  if (topic.url[0] == "/") {
-                    topic.url = topic.url.substr(1);
-                    console.log(topic.url);
-                  }
-
-                  ajax('GET', topic.url).then(function (result) {
-                    console.log("found " + topic.url);
-                    topic.rawData = result;
-                  }).catch(function (error) {
-                    console.log("didn't find topic.");
-                  });
-                }
-              });
-            });
+                window.localStorage.setItem("lang", e.target.selectedItem.lang);  
+                
+                this.display = "height: 100%; overflow: hidden;";
+                window.localStorage.langChanged = "true";
+                location.reload();
+            }
           }
-        }).then(function () {
-          setTimeout(function () {
-            if (window.localStorage.langChanged == "true") {
-              window.localStorage.langChanged = "false";
-              setTimeout(function () {
-                that.set('route.path', window.localStorage.routePath);
-                that.set('targetId', window.localStorage.targetId);
-                that.$['bread-crumbs-container'].style.display = 'block';
-                that.display = "display: none;";
-                console.log("Done loading");
-              }, 500);
-              that.root.querySelector('bread-crumbs').scrollIntoView();
-              that.$['app-header'].scroll(0, 0);
-              setTimeout(function () {
-                that.root.querySelector('bread-crumbs').scrollIntoView();
-                that.$['app-header'].scroll(0, 0);
-              }, 501);
-            } else {
-              that.display = "display: none;";
-              console.log("Done loading");
-              window.localStorage.routePath = "/home";
-              window.localStorage.targetId = undefined;
-            }
-          }, 500);
-        }).catch(function (error) {
-          console.log("error loading step data: " + error);
-        });
-      }
-    }
-  }]);
-  return MyApp;
-}(Polymer.Element);
 
-window.customElements.define(MyApp.is, MyApp);</script>
+
+        _stepData(baseData, lang) {
+            if (baseData === null) {
+                return null;
+            }
+            if (lang == null) {
+                this.lang = 'en';
+                lang = 'en';
+            }
+            return baseData[lang].steps;
+        }
+
+        _infoData(baseData, lang) {
+            if (baseData === null) {
+                return null;
+            }
+            return baseData[lang].info;
+        }
+        _infoDataVisible(baseData, lang) {
+            if (baseData === null) {
+                return null;
+            }
+            return baseData[lang].info.filter(item => !item.hidden);
+        }
+
+
+        infoFor(target, id) {
+            if (target === null || target === undefined) {
+                return null;
+            }
+            return target.filter(item => item.id === id)[0];
+        }
+
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            super.connectedCallback();
+           
+            this.root.querySelector('my-home').addEventListener('link-followed', event => {
+                if (event.detail.target=='/home') {
+                    this.$['bread-crumbs-container'].style.display = 'none';
+                }
+                else {
+                    this.$['bread-crumbs-container'].style.display = 'block';
+                }
+                console.log(event.detail.target);
+                this.root.querySelector('bread-crumbs').scrollIntoView();
+                this.$['app-header'].scroll(0, 0);
+                setTimeout(() => {
+                    this.root.querySelector('bread-crumbs').scrollIntoView();
+                    this.$['app-header'].scroll(0, 0);
+                }, 16);
+                //this.root.querySelector('bread-crumbs').scrollIntoView()
+                
+                window.localStorage.routePath = event.detail.target;
+                window.localStorage.targetId = event.detail.id;
+                this.set('route.path', event.detail.target);
+                this.set('targetId', event.detail.id);
+                if (!this.$.drawer.persistent) {
+                    this.$.drawer.close();
+                }
+            });
+            this.root.addEventListener('link-followed', event => {
+                if (event.detail.target=='/home') {
+                    this.$['bread-crumbs-container'].style.display = 'none';
+                }
+                else {
+                    this.$['bread-crumbs-container'].style.display = 'block';
+                }
+                console.log(event.detail.target);
+                this.root.querySelector('bread-crumbs').scrollIntoView();
+                this.$['app-header'].scroll(0, 0);
+                setTimeout(() => {
+                    this.root.querySelector('bread-crumbs').scrollIntoView();
+                    this.$['app-header'].scroll(0, 0);
+                }, 16);
+
+                window.localStorage.routePath = event.detail.target;
+                window.localStorage.targetId = event.detail.id;
+
+                this.set('route.path', event.detail.target);
+                this.set('targetId', event.detail.id);
+                if (!this.$.drawer.persistent) {
+                    this.$.drawer.close();
+                }
+            });
+            this.$.icon.addEventListener('click', event => {
+                if (this.isSearching) {
+                    this.$['search-input'].focus();
+                }
+            });
+            this.$['bread-crumbs-search'].addEventListener('click', event => {
+                if (this.isSearching) {
+                    this.$['search-input'].focus();
+                }
+            });
+            this.$['close-menu-btn'].addEventListener('click', event => {
+                if (!this.$.drawer.persistent) {
+                    this.$.drawer.close();
+                    this.$.pageContent.focus();
+                }
+            });
+        }
+        ready() {
+            super.ready();
+            this.lang = window.localStorage.getItem("lang");
+            this.searchInputTarget = this.$['search-input'];
+
+            var isIE = /*@cc_on!@*/false || !!document.documentMode;
+            var isFirefox = typeof InstallTrigger !== 'undefined';
+            var isEdge = navigator.userAgent.indexOf('Edge') >= 0;
+
+
+                        
+            this.display = "height: 100%; overflow: hidden;";
+
+            
+
+            if (this.route.path=='/') {
+                this.$['bread-crumbs-container'].style.display = 'none';
+            }
+
+            if (this.lang == 'en') {
+                this.page = "home";
+
+                this.language = "Language";
+                this.close_menu = "Close Menu";
+                this.ilab = "ILAB - The Bureau of International Labor Affairs";
+                this.usdol = "United States Department of Labor"
+                this.search_aria = "Search";
+                this.search_placeholder = "Search...";
+            }
+
+
+            else if (this.lang == 'fr') {
+                this.page = "home-fr";
+
+                this.language = "Langue";
+                this.close_menu= "Fermer";
+                this.ilab = "Bureau des Affaires Internationales du Travail";
+                this.usdol = "Département du travail des États-Unis";
+                this.search_aria = "Rechercher";
+                this.search_placeholder = "Rechercher...";
+            }
+
+            else if (this.lang == 'es') {
+                this.page = "home-es";
+
+                this.language = "Idioma";
+                this.close_menu = "Cerrar el menú";
+                this.ilab = "Dirección de Asuntos Internacionales de Trabajo";
+                this.dol = "Departamento de Trabajo de los Estados Unidos";
+                this.search_aria = "Buscar";
+                this.search_placeholder = "Buscar...";
+            }
+
+            var that = this;
+
+            
+            if (isIE || isEdge) 
+            {	
+
+            	app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
+                .then(response => {
+                    console.log("got step data");
+                    this.baseStepData = JSON.parse(response);
+                    for (var lang in this.baseStepData) {
+
+                        if (lang != this.lang) { continue; }
+
+                        this.baseStepData[lang].steps.forEach(step => {
+                            if (!!step.furtherResources) {
+                                if (step.furtherResources[0] == "/") {
+                                    step.furtherResources = step.furtherResources.substr(1);
+                                }
+                                ajax('GET', step.furtherResources).then(result => {
+                                    console.log("found " + step.furtherResources)
+                                    step.furtherResources = result;
+                                }).catch(error => {
+                                    console.log("didn't find bib.");
+                                });
+                            }
+                            if (!!step.extraInfo) {
+                                if (step.extraInfo[0] == "/") {
+                                    step.extraInfo = step.extraInfo.substr(1);
+                                }
+                                ajax('GET', step.extraInfo).then(result => {
+                                    console.log("found " + step.extraInfo)
+                                    step.extraInfo = result;
+                                }).catch(error => {
+                                    console.log("didn't find extraInfo.");
+                                });
+                            }
+                            if (!!step.trainingMats) {
+                                if (step.trainingMats[0] == "/") {
+                                    step.trainingMats = step.trainingMats.substr(1);
+                                }
+                                ajax('GET', step.trainingMats).then(result => {
+                                    console.log("found " + step.trainingMats)
+                                    step.trainingMats = result;
+                                }).catch(error => {
+                                    console.log("didn't find trainingMats.");
+                                });
+                            }
+                            step.topics.forEach(topic => {
+                                if (!!topic.url) {
+                                    if (topic.url[0] == "/") {
+                                        topic.url = topic.url.substr(1);
+                                        console.log(topic.url);
+                                    }
+                                    ajax('GET', topic.url).then(result => {
+                                        console.log("found " + topic.url)
+                                        topic.rawData = result;
+                                    }).catch(error => {
+                                        console.log("didn't find topic.");
+                                    });
+                                }
+                            });
+                        });
+                    }
+                }).then (() =>{
+
+                	setTimeout(() => {
+	                	if (window.localStorage.langChanged == "true") 
+	                	{
+                            window.localStorage.langChanged = "false";
+                            
+                            setTimeout(() => {
+                            that.set('route.path',window.localStorage.routePath );
+                            that.set('targetId', window.localStorage.targetId);
+                            that.$['bread-crumbs-container'].style.display = 'block';
+
+                            that.$['spinner-loader'].style.display = 'none';
+                            console.log("Done loading");
+                              }, 500);
+
+                            that.root.querySelector('bread-crumbs').scrollIntoView();
+                            that.$['app-header'].scroll(0, 0);
+                            setTimeout(() => {
+                                that.root.querySelector('bread-crumbs').scrollIntoView();
+                                that.$['app-header'].scroll(0, 0);
+                            }, 501);
+                            
+                        }
+
+                       else
+                       {
+                                                  
+                        	that.$['spinner-loader'].style.display = 'none';
+                           	console.log("Done loading");
+                            window.localStorage.routePath = "/home";
+                            window.localStorage.targetId = undefined; 
+
+                       }
+
+                    },500);
+
+                }).catch(error => {
+                    console.log("error loading step data: " + error);
+                });    
+
+
+
+        	}
+
+           
+
+            else
+            {	
+
+            	app.deviceReadyPromise.then(() => ajax('GET', "data.json"))
+                .then(response => {
+                    console.log("got step data");
+                    this.baseStepData = JSON.parse(response);
+                    for (var lang in this.baseStepData) {
+
+                        if (lang != this.lang) { continue; }
+
+                        this.baseStepData[lang].steps.forEach(step => {
+                            if (!!step.furtherResources) {
+                                if (step.furtherResources[0] == "/") {
+                                    step.furtherResources = step.furtherResources.substr(1);
+                                }
+                                ajax('GET', step.furtherResources).then(result => {
+                                    console.log("found " + step.furtherResources)
+                                    step.furtherResources = result;
+                                }).catch(error => {
+                                    console.log("didn't find bib.");
+                                });
+                            }
+                            if (!!step.extraInfo) {
+                                if (step.extraInfo[0] == "/") {
+                                    step.extraInfo = step.extraInfo.substr(1);
+                                }
+                                ajax('GET', step.extraInfo).then(result => {
+                                    console.log("found " + step.extraInfo)
+                                    step.extraInfo = result;
+                                }).catch(error => {
+                                    console.log("didn't find extraInfo.");
+                                });
+                            }
+                            if (!!step.trainingMats) {
+                                if (step.trainingMats[0] == "/") {
+                                    step.trainingMats = step.trainingMats.substr(1);
+                                }
+                                ajax('GET', step.trainingMats).then(result => {
+                                    console.log("found " + step.trainingMats)
+                                    step.trainingMats = result;
+                                }).catch(error => {
+                                    console.log("didn't find trainingMats.");
+                                });
+                            }
+                            step.topics.forEach(topic => {
+                                if (!!topic.url) {
+                                    if (topic.url[0] == "/") {
+                                        topic.url = topic.url.substr(1);
+                                        console.log(topic.url);
+                                    }
+                                    ajax('GET', topic.url).then(result => {
+                                        console.log("found " + topic.url)
+                                        topic.rawData = result;
+                                    }).catch(error => {
+                                        console.log("didn't find topic.");
+                                    });
+                                }
+                            });
+                        });
+                    }
+                }).then (() =>{
+
+                	setTimeout(() => {
+	                	if (window.localStorage.langChanged == "true") 
+	                	{
+                            window.localStorage.langChanged = "false";
+                            
+                            setTimeout(() => {
+                            that.set('route.path',window.localStorage.routePath );
+                            that.set('targetId', window.localStorage.targetId);
+                            that.$['bread-crumbs-container'].style.display = 'block';
+
+                            that.display = "display: none;";
+                            console.log("Done loading");
+                              }, 500);
+
+                            that.root.querySelector('bread-crumbs').scrollIntoView();
+                            that.$['app-header'].scroll(0, 0);
+                            setTimeout(() => {
+                                that.root.querySelector('bread-crumbs').scrollIntoView();
+                                that.$['app-header'].scroll(0, 0);
+                            }, 501);
+                            
+                        }
+
+                       else
+                       {    
+                            
+                        	that.display = "display: none;";
+                         	console.log("Done loading");
+                            window.localStorage.routePath = "/home";
+                            window.localStorage.targetId = undefined;
+
+                       }
+
+                    },500);
+
+                }).catch(error => {
+                    console.log("error loading step data: " + error);
+                });
+               
+            }
+
+            
+            
+                
+        }
+    }
+
+    window.customElements.define(MyApp.is, MyApp);
+    </script>
 </dom-module>

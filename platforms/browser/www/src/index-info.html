@@ -6,7 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../bower_components/polymer/polymer-element.html">
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <dom-module id="index-info">
     <template>
@@ -74,49 +75,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <border-separator></border-separator>
             <platform-switch>
                 <a slot="browser" href="https://www.dol.gov/dol/apps/ilab" target="_blank">More</a>
-                <a slot="android" href="https://play.google.com/store/apps/details?id=gov.dol.childlabor&amp;hl=en">More</a>
-                <a slot="ios" href="https://itunes.apple.com/us/app/sweat-toil-child-labor-forced/id1018240593?ls=1&amp;mt=8">More</a>
+                <a slot="android" href="https://play.google.com/store/apps/details?id=gov.dol.childlabor&hl=en">More</a>
+                <a slot="ios" href="https://itunes.apple.com/us/app/sweat-toil-child-labor-forced/id1018240593?ls=1&mt=8" >More</a>
             </platform-switch>
         </div>
     </template>
-    <script>var IndexInfo =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(IndexInfo, _Polymer$Element);
+    <script>
+    class IndexInfo extends Polymer.Element {
+        static get is() {
+            return 'index-info';
+        }
+        static get properties() {
+            return {};
+        }
 
-  function IndexInfo() {
-    babelHelpers.classCallCheck(this, IndexInfo);
-    return babelHelpers.possibleConstructorReturn(this, (IndexInfo.__proto__ || Object.getPrototypeOf(IndexInfo)).apply(this, arguments));
-  }
-
-  babelHelpers.createClass(IndexInfo, [{
-    key: "ready",
-    value: function ready() {
-      var _this = this;
-
-      babelHelpers.get(IndexInfo.prototype.__proto__ || Object.getPrototypeOf(IndexInfo.prototype), "ready", this).call(this);
-      this.root.addEventListener('link-followed', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: event.detail.target
-          },
-          bubbles: true
-        }));
-      });
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: event.detail.target,
+                    },
+                    bubbles: true
+                }));
+            });
+        }
     }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'index-info';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {};
-    }
-  }]);
-  return IndexInfo;
-}(Polymer.Element);
 
-window.customElements.define(IndexInfo.is, IndexInfo);</script>
+    window.customElements.define(IndexInfo.is, IndexInfo);
+    </script>
 </dom-module>
