@@ -1,0 +1,75 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="smart-link">
+    <template>
+        <custom-style>
+        </custom-style>
+        <style>
+
+        </style>
+        
+
+        <div hidden$="[[!isAndroid]]">
+            <a href="https://play.google.com/store/apps/details?id=gov.dol.childlabor&hl=en">Sweat &amp; Toil</a>
+        </div>
+
+        <div hidden$="[[!isiOS]]">
+            <a href="https://itunes.apple.com/us/app/sweat-toil-child-labor-forced/id1018240593?ls=1&mt=8">Sweat &amp; Toil</a>            
+        </div>
+
+        <div hidden$="[[!isBrowser]]">
+            <a href="https://www.dol.gov/dol/apps/ilab.htm" target="_blank">Sweat &amp; Toil</a>              
+        </div>
+    
+    </template>
+    <script>
+    class SmartLink extends Polymer.Element {
+        static get is() {
+            return 'smart-link';
+        }
+
+
+        static get properties() {
+            return {
+                isiOS :{
+                    type: Boolean,
+                    value: false,
+                },
+                isAndroid :{
+                    type: Boolean,
+                    value: false,
+                },
+                isBrowser :{
+                    type: Boolean,
+                    value: false,
+                }
+
+            };
+        }
+
+
+        constructor() {
+
+            super();
+        }
+
+
+
+        ready() {
+            super.ready();
+
+
+            if (cordova.platformId == 'ios') {
+                this.isiOS = true;
+            }
+            else if (cordova.platformId == 'android') {
+                this.isAndroid = true;
+            }
+           else {
+                this.isBrowser = true;
+            }
+        }
+    }
+
+    customElements.define(SmartLink.is, SmartLink);
+    </script>
+</dom-module>
