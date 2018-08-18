@@ -42,8 +42,8 @@
                 <slot></slot>
             </div>
         </div>
-        <platform-switch>
-            <div slot="ios" class="sr-only">
+        
+            <div hidden$="[[!isiOS]]" class="sr-only">
                 <ul style="list-style: none;">
                     <li>
                         <app-link href="/step/1">Step 1: Engage Stakeholders and Partners</app-link>
@@ -72,7 +72,7 @@
                 </ul> 
 
             </div>
-        </platform-switch>
+        
     </template>
     <script>var ChainAnchorLink =
 /*#__PURE__*/
@@ -86,7 +86,12 @@ function (_Polymer$Element) {
   }, {
     key: "properties",
     get: function get() {
-      return {};
+      return {
+        isiOS: {
+          type: Boolean,
+          value: false
+        }
+      };
     }
   }]);
 
@@ -101,6 +106,11 @@ function (_Polymer$Element) {
       var _this = this;
 
       babelHelpers.get(ChainAnchorLink.prototype.__proto__ || Object.getPrototypeOf(ChainAnchorLink.prototype), "connectedCallback", this).call(this);
+
+      if (cordova.platformId == 'ios') {
+        this.isiOS = true;
+      }
+
       var slot = Polymer.dom(this.querySelector('slot'));
       var target = slot.queryDistributedElements('img')[0];
       target.removeAttribute("hidden");
