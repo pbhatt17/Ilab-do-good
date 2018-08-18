@@ -13,81 +13,94 @@
             <slot></slot>
         </a>
     </template>
-    <script>
-    class AppLink extends Polymer.Element {
-        static get is() {
-            return 'app-link';
-        }
-        static get properties() {
-            return {
-                href: {
-                    type: String,
-                    value: "",
-                },
-                targetId: {
-                    type: String,
-                    value: null
-                },
-                role: {
-                    type: String,
-                    value: "link",
-                    reflectToAttribute: true,
-                },
-                tabindex: {
-                    type: Number,
-                    value: 0,
-                    reflectToAttribute: true,
-                },
-                target: {
-                    type: Object
-                }
-            };
-        }
-
-        constructor() {
-            super();
-        }
-
-        follow() {
-            this._debouncer = Polymer.Debouncer.debounce(
-                this._debouncer, // initially undefined
-                Polymer.Async.timeOut.after(15),
-                () => {
-                    this.dispatchEvent(new CustomEvent('link-followed', {
-                        detail: {
-                            target: this.href,
-                            id: this.targetId
-                        },
-                        bubbles: true
-                    }));
-                });
-
-        }
-
-        ready() {
-            super.ready();
-            this.target = this;
-            this.addEventListener('click', () => {
-                this.follow();
-            });
-            this.addEventListener('tap', () => {
-                this.follow();
-            });
-            this.root.querySelector('#link').addEventListener('click', () => {
-                this.follow();
-            });
-            this.root.querySelector('#link').addEventListener('tap', () => {
-                this.follow();
-            });
-            this.root.addEventListener('tap', () => {
-                this.follow();
-            });
-            this.root.addEventListener('click', () => {
-                this.follow();
-            });
-        }
+    <script>var AppLink =
+/*#__PURE__*/
+function (_Polymer$Element) {
+  babelHelpers.inherits(AppLink, _Polymer$Element);
+  babelHelpers.createClass(AppLink, null, [{
+    key: "is",
+    get: function get() {
+      return 'app-link';
     }
+  }, {
+    key: "properties",
+    get: function get() {
+      return {
+        href: {
+          type: String,
+          value: ""
+        },
+        targetId: {
+          type: String,
+          value: null
+        },
+        role: {
+          type: String,
+          value: "link",
+          reflectToAttribute: true
+        },
+        tabindex: {
+          type: Number,
+          value: 0,
+          reflectToAttribute: true
+        },
+        target: {
+          type: Object
+        }
+      };
+    }
+  }]);
 
-    customElements.define(AppLink.is, AppLink);
-    </script>
+  function AppLink() {
+    babelHelpers.classCallCheck(this, AppLink);
+    return babelHelpers.possibleConstructorReturn(this, (AppLink.__proto__ || Object.getPrototypeOf(AppLink)).call(this));
+  }
+
+  babelHelpers.createClass(AppLink, [{
+    key: "follow",
+    value: function follow() {
+      var _this = this;
+
+      this._debouncer = Polymer.Debouncer.debounce(this._debouncer, // initially undefined
+      Polymer.Async.timeOut.after(15), function () {
+        _this.dispatchEvent(new CustomEvent('link-followed', {
+          detail: {
+            target: _this.href,
+            id: _this.targetId
+          },
+          bubbles: true
+        }));
+      });
+    }
+  }, {
+    key: "ready",
+    value: function ready() {
+      var _this2 = this;
+
+      babelHelpers.get(AppLink.prototype.__proto__ || Object.getPrototypeOf(AppLink.prototype), "ready", this).call(this);
+      this.target = this;
+      this.addEventListener('click', function () {
+        _this2.follow();
+      });
+      this.addEventListener('tap', function () {
+        _this2.follow();
+      });
+      this.root.querySelector('#link').addEventListener('click', function () {
+        _this2.follow();
+      });
+      this.root.querySelector('#link').addEventListener('tap', function () {
+        _this2.follow();
+      });
+      this.root.addEventListener('tap', function () {
+        _this2.follow();
+      });
+      this.root.addEventListener('click', function () {
+        _this2.follow();
+      });
+    }
+  }]);
+  return AppLink;
+}(Polymer.Element);
+
+customElements.define(AppLink.is, AppLink);</script>
 </dom-module>
