@@ -18,6 +18,7 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="loadUrlTimeoutValue" value="60000" />
+        <preference name="android-targetSdkVersion" value="26" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
