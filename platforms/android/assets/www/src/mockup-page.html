@@ -6,7 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../bower_components/polymer/polymer-element.html">
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="shared-styles.html">
 <dom-module id="mockup-page">
@@ -91,39 +92,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </p>
         </div>
     </template>
-    <script>var MockupPage =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(MockupPage, _Polymer$Element);
+    <script>
+    class MockupPage extends Polymer.Element {
+        static get is() {
+            return 'mockup-page';
+        }
+        static get observers() {
+            return [];
+        }
+        static get properties() {
+            return {};
+        }
 
-  function MockupPage() {
-    babelHelpers.classCallCheck(this, MockupPage);
-    return babelHelpers.possibleConstructorReturn(this, (MockupPage.__proto__ || Object.getPrototypeOf(MockupPage)).apply(this, arguments));
-  }
 
-  babelHelpers.createClass(MockupPage, [{
-    key: "ready",
-    value: function ready() {
-      babelHelpers.get(MockupPage.prototype.__proto__ || Object.getPrototypeOf(MockupPage.prototype), "ready", this).call(this);
+        ready() {
+            super.ready();
+        }
     }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'mockup-page';
-    }
-  }, {
-    key: "observers",
-    get: function get() {
-      return [];
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {};
-    }
-  }]);
-  return MockupPage;
-}(Polymer.Element);
 
-window.customElements.define(MockupPage.is, MockupPage);</script>
+    window.customElements.define(MockupPage.is, MockupPage);
+    </script>
 </dom-module>

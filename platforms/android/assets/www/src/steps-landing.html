@@ -6,7 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../bower_components/polymer/polymer-element.html">
+-->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <dom-module id="steps-landing">
     <template>
@@ -26,50 +27,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </chain-anchor-link>         
         </div>
     </template>
-    <script>var StepsLanding =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(StepsLanding, _Polymer$Element);
+    <script>
+    class StepsLanding extends Polymer.Element {
+        static get is() {
+            return 'steps-landing';
+        }
+        static get properties() {
+            return {};
+        }
 
-  function StepsLanding() {
-    babelHelpers.classCallCheck(this, StepsLanding);
-    return babelHelpers.possibleConstructorReturn(this, (StepsLanding.__proto__ || Object.getPrototypeOf(StepsLanding)).apply(this, arguments));
-  }
+        recalcMap() {
+            this.$.cal.recalcMap();
+        }
 
-  babelHelpers.createClass(StepsLanding, [{
-    key: "recalcMap",
-    value: function recalcMap() {
-      this.$.cal.recalcMap();
+        ready() {
+            super.ready();
+            this.root.addEventListener('link-followed', event => {
+                this.dispatchEvent(new CustomEvent('link-followed', {
+                    detail: {
+                        target: "/step/" + event.detail.step,
+                        id: event.detail.id,
+                    },
+                    bubbles: true
+                }));
+            });
+        }
     }
-  }, {
-    key: "ready",
-    value: function ready() {
-      var _this = this;
 
-      babelHelpers.get(StepsLanding.prototype.__proto__ || Object.getPrototypeOf(StepsLanding.prototype), "ready", this).call(this);
-      this.root.addEventListener('link-followed', function (event) {
-        _this.dispatchEvent(new CustomEvent('link-followed', {
-          detail: {
-            target: "/step/" + event.detail.step,
-            id: event.detail.id
-          },
-          bubbles: true
-        }));
-      });
-    }
-  }], [{
-    key: "is",
-    get: function get() {
-      return 'steps-landing';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {};
-    }
-  }]);
-  return StepsLanding;
-}(Polymer.Element);
-
-window.customElements.define(StepsLanding.is, StepsLanding);</script>
+    window.customElements.define(StepsLanding.is, StepsLanding);
+    </script>
 </dom-module>

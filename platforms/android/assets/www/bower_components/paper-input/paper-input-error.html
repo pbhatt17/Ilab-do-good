@@ -6,7 +6,9 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
---><link rel="import" href="../polymer/polymer.html">
+-->
+
+<link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-styles/default-theme.html">
 <link rel="import" href="../paper-styles/typography.html">
 <link rel="import" href="paper-input-addon-behavior.html">
@@ -55,32 +57,38 @@ Custom property | Description | Default
   </template>
 </dom-module>
 
-<script>Polymer({
-  is: 'paper-input-error',
-  behaviors: [Polymer.PaperInputAddonBehavior],
-  properties: {
-    /**
-     * True if the error is showing.
-     */
-    invalid: {
-      readOnly: true,
-      reflectToAttribute: true,
-      type: Boolean
-    }
-  },
+<script>
+  Polymer({
+    is: 'paper-input-error',
 
-  /**
-   * This overrides the update function in PaperInputAddonBehavior.
-   * @param {{
-   *   inputElement: (Element|undefined),
-   *   value: (string|undefined),
-   *   invalid: boolean
-   * }} state -
-   *     inputElement: The input element.
-   *     value: The input value.
-   *     invalid: True if the input value is invalid.
-   */
-  update: function update(state) {
-    this._setInvalid(state.invalid);
-  }
-});</script>
+    behaviors: [
+      Polymer.PaperInputAddonBehavior
+    ],
+
+    properties: {
+      /**
+       * True if the error is showing.
+       */
+      invalid: {
+        readOnly: true,
+        reflectToAttribute: true,
+        type: Boolean
+      }
+    },
+
+    /**
+     * This overrides the update function in PaperInputAddonBehavior.
+     * @param {{
+     *   inputElement: (Element|undefined),
+     *   value: (string|undefined),
+     *   invalid: boolean
+     * }} state -
+     *     inputElement: The input element.
+     *     value: The input value.
+     *     invalid: True if the input value is invalid.
+     */
+    update: function(state) {
+      this._setInvalid(state.invalid);
+    }
+  });
+</script>

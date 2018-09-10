@@ -135,127 +135,141 @@
 
         
     </template>
-    <script>var ChainAnchorLink =
-/*#__PURE__*/
-function (_Polymer$Element) {
-  babelHelpers.inherits(ChainAnchorLink, _Polymer$Element);
-  babelHelpers.createClass(ChainAnchorLink, null, [{
-    key: "is",
-    get: function get() {
-      return 'chain-anchor-link';
-    }
-  }, {
-    key: "properties",
-    get: function get() {
-      return {
-        isiOS_en: {
-          type: Boolean,
-          value: false
-        },
-        isiOS_es: {
-          type: Boolean,
-          value: false
-        },
-        isiOS_fr: {
-          type: Boolean,
-          value: false
-        }
-      };
-    }
-  }]);
-
-  function ChainAnchorLink() {
-    babelHelpers.classCallCheck(this, ChainAnchorLink);
-    return babelHelpers.possibleConstructorReturn(this, (ChainAnchorLink.__proto__ || Object.getPrototypeOf(ChainAnchorLink)).call(this));
-  }
-
-  babelHelpers.createClass(ChainAnchorLink, [{
-    key: "connectedCallback",
-    value: function connectedCallback() {
-      var _this = this;
-
-      babelHelpers.get(ChainAnchorLink.prototype.__proto__ || Object.getPrototypeOf(ChainAnchorLink.prototype), "connectedCallback", this).call(this);
-
-      if (cordova.platformId == 'ios') {
-        if (window.localStorage.lang == 'es') {
-          this.isiOS_es = true;
+    <script>
+    class ChainAnchorLink extends Polymer.Element {
+        static get is() {
+            return 'chain-anchor-link';
         }
 
-        if (window.localStorage.lang == 'fr') {
-          this.isiOS_fr = true;
-        } else {
-          this.isiOS_en = true;
-        }
-      }
 
-      var slot = Polymer.dom(this.querySelector('slot'));
-      var target = slot.queryDistributedElements('img')[0];
-      target.removeAttribute("hidden");
-      var map = slot.queryDistributedElements('map')[0];
-      var areas = map.querySelectorAll('area');
+        static get properties() {
+            return {
 
-      if (window.localStorage.lang == 'fr') {
-        var image = "imgs/gear_demo_4_fr.png";
-      } else if (window.localStorage.lang == 'es') {
-        var image = "imgs/gear_demo_4_es.png";
-      } else {
-        var image = "imgs/gear_demo_4.png";
-      } //var target = this.root.querySelector('img');
-      //var areas = [].slice.call(this.root.querySelectorAll('area'));
+            	isiOS_en :{
+                    type: Boolean,
+                    value: false,
+                },
 
+                isiOS_es :{
+                    type: Boolean,
+                    value: false,
+                },
 
-      areas.forEach(function (area) {
-        area.addEventListener('mouseover', function () {
-          target.src = image; //target.src = "imgs/gear_demo_off.png";
-        });
-        area.addEventListener('mouseout', function () {
-          target.src = image; // target.src = "imgs/circle_nav_" + area.dataset.step + ".png";
-        });
-        area.addEventListener('click', function (e) {
-          e.preventDefault();
-
-          _this.dispatchEvent(new CustomEvent('link-followed', {
-            detail: {
-              step: area.dataset.step
-            },
-            bubbles: true
-          }));
-        });
-      });
-      this.recalcMap();
-      window.addEventListener('resize', function (event) {//img.style.height = img.offsetWidth + "px";
-        //imageMapResize(map, img);
-      });
-    }
-  }, {
-    key: "recalcMap",
-    value: function recalcMap() {
-      var slot = Polymer.dom(this.querySelector('slot'));
-      var target = slot.queryDistributedElements('img')[0];
-      target.removeAttribute("hidden");
-      var map = slot.queryDistributedElements('map')[0];
-      var areas = map.querySelectorAll('area');
-      console.log(window.innerWidth);
-      console.log(window.innerHeight);
-      var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight - 110));
-      var isFirefox = typeof InstallTrigger !== 'undefined';
-      setTimeout(function () {
-        if (!isFirefox) {
-          target.style.width = less + "px";
-          target.style.height = less + "px";
+                isiOS_fr :{
+                    type: Boolean,
+                    value: false,
+                },
+            };
         }
 
-        imageMapResize(map, target);
-      }, 1);
-    }
-  }, {
-    key: "ready",
-    value: function ready() {
-      babelHelpers.get(ChainAnchorLink.prototype.__proto__ || Object.getPrototypeOf(ChainAnchorLink.prototype), "ready", this).call(this);
-    }
-  }]);
-  return ChainAnchorLink;
-}(Polymer.Element);
+        constructor() {
+            super();
+        }
 
-customElements.define(ChainAnchorLink.is, ChainAnchorLink);</script>
+        connectedCallback() {
+            super.connectedCallback();
+
+
+            if (cordova.platformId == 'ios') {
+
+                if (window.localStorage.lang == 'es') {
+                this.isiOS_es = true;                    
+                }
+
+                if (window.localStorage.lang == 'fr') {
+                this.isiOS_fr = true;                    
+                }
+
+                else {
+                this.isiOS_en = true;
+
+                }
+            }
+
+
+            var slot = Polymer.dom(this.querySelector('slot'));
+            var target = slot.queryDistributedElements('img')[0];
+            target.removeAttribute("hidden");
+            var map = slot.queryDistributedElements('map')[0];
+            var areas = map.querySelectorAll('area');
+
+            
+            if (window.localStorage.lang =='fr') {
+                var image= "imgs/gear_demo_4_fr.png";
+            }
+            else if (window.localStorage.lang =='es') {
+                var image= "imgs/gear_demo_4_es.png";
+            }
+
+            else {
+                var image= "imgs/gear_demo_4.png";
+            }
+
+            //var target = this.root.querySelector('img');
+            //var areas = [].slice.call(this.root.querySelectorAll('area'));
+            areas.forEach(area => {
+                area.addEventListener('mouseover', () => {
+                    target.src = image;
+                    //target.src = "imgs/gear_demo_off.png";
+                    
+                });
+
+                area.addEventListener('mouseout', () => {
+
+                   target.src = image;
+                   // target.src = "imgs/circle_nav_" + area.dataset.step + ".png";
+                   
+                });
+                area.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.dispatchEvent(new CustomEvent('link-followed', {
+                        detail: {
+                            step: area.dataset.step
+                        },
+                        bubbles: true
+                    }));
+                });
+            });
+
+            this.recalcMap();
+            window.addEventListener('resize', (event) => {
+                //img.style.height = img.offsetWidth + "px";
+                //imageMapResize(map, img);
+            });
+
+        }
+
+        recalcMap() {
+            var slot = Polymer.dom(this.querySelector('slot'));
+            var target = slot.queryDistributedElements('img')[0];
+            target.removeAttribute("hidden");
+            var map = slot.queryDistributedElements('map')[0];
+            var areas = map.querySelectorAll('area');
+            console.log(window.innerWidth);
+            console.log(window.innerHeight);
+
+            var less = Math.min(910, Math.min(window.innerWidth, window.innerHeight - 110));
+
+
+            var isFirefox = typeof InstallTrigger !== 'undefined';
+
+            setTimeout(() => {
+                if (!isFirefox) {
+                    target.style.width = less + "px";
+                    target.style.height = less + "px";
+                }
+                imageMapResize(map, target);
+            }, 1);
+
+        }
+
+
+        ready() {
+            super.ready();
+
+        }
+    }
+
+    customElements.define(ChainAnchorLink.is, ChainAnchorLink);
+    </script>
 </dom-module>
